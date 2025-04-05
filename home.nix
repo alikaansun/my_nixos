@@ -21,6 +21,13 @@
   programs.oh-my-posh.useTheme = "emodipt-extend";
   programs.oh-my-posh.enableBashIntegration = true;
 
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+      eval "$(ssh-agent -s)" > /dev/null
+      ssh-add -q ~/.ssh/id_ed25519g > /dev/null
+    '';
+  };
 
   programs.git = {
   enable= true;
