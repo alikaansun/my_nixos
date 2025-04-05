@@ -91,7 +91,7 @@
     open = true;
     # prime.sync.enable = true;
   };
-  # hardware.nvidia
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -100,8 +100,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -130,6 +128,7 @@
       tor-browser
       # davinci-resolve
       ffmpeg
+      zotero
 	];
   };
   # home-manager
@@ -142,19 +141,14 @@
   };
 
 
-  # home-manager.users.alik = {pkgs,...}:
-  #   {
-  #     programs.oh-my-posh.enable = true;
-  #     programs.oh-my-posh.useTheme = "emodipt-extend";
-  #   };
-
   environment.systemPackages = with pkgs; [
    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
    wget
    git
+   nvd#nixos package version diff tool
    nixd
+   nix-output-monitor
    nerd-fonts.fira-code
-  #  oh-my-posh
    protonup
    lutris
    steam
@@ -166,17 +160,14 @@
    ghostty
    obs-studio
    shadps4
-   nix-output-monitor
    unrar
-   nvtopPackages.full
-   nvd#nixos package version diff tool
+   nvtopPackages.nvd
    kdePackages.filelight
    foliate #ebook
    blender
    obs-studio
    eduvpn-client 
    gimp
-   mpb
    virtiofsd# share files (virtmanager) 
 	#];
 #})
@@ -193,11 +184,6 @@
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "alik";
 
-  #virtualbox setup
-  # virtualisation.virtualbox.host.enable = true;
-  # virtualisation.virtualbox.host.enableExtensionPack = true;
-  # virtualisation.virtualbox.guest.enable = true;
-  # virtualisation.virtualbox.host.addNetworkInterface = false;
   #virt-manager
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
@@ -221,17 +207,6 @@
     # enable = true;
   # };
 
-
-
-
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # List services that you want to enable:
 
