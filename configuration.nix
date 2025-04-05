@@ -128,7 +128,7 @@
       heroic
       nextcloud-client
       tor-browser
-      davinci-resolve
+      # davinci-resolve
       ffmpeg
 	];
   };
