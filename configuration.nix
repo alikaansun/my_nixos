@@ -40,7 +40,12 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
-    LANG= "en_US.UTF-8";
+
+    LANGUAGE = "en_US.UTF-8";
+
+    LC_ALL = "en_US.UTF-8";
+
+    LC_CTYPE = "en_US.UTF-8";
 
     LC_ADDRESS = "nl_NL.UTF-8";
   
@@ -149,6 +154,7 @@
    nixd
    nix-output-monitor
    nerd-fonts.fira-code
+   nerd-fonts.meslo-lg
    protonup
    lutris
    steam
@@ -161,7 +167,7 @@
    obs-studio
    shadps4
    unrar
-   nvtopPackages.nvd
+   nvtopPackages.full
    kdePackages.filelight
    foliate #ebook
    blender
