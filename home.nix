@@ -27,6 +27,10 @@
       eval "$(ssh-agent -s)" > /dev/null
       ssh-add -q ~/.ssh/id_ed25519g > /dev/null
     '';
+    shellAliases = {
+      cdrepos = "cd ~/Documents/Repos";
+      # You can add more aliases here
+    };
   };
 
   programs.git = {

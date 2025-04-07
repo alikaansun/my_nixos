@@ -43,15 +43,17 @@
 
     LANGUAGE = "en_US.UTF-8";
 
-    LC_ALL = "en_US.UTF-8";
-
     LC_CTYPE = "en_US.UTF-8";
 
     LC_ADDRESS = "nl_NL.UTF-8";
+
+    LC_COLLATE = "nl_NL.UTF-8";
   
     LC_IDENTIFICATION = "nl_NL.UTF-8";
  
     LC_MEASUREMENT = "nl_NL.UTF-8";
+
+    LC_MESSAGES = "nl_NL.UTF-8";
     
     LC_MONETARY = "nl_NL.UTF-8";
  
@@ -90,7 +92,7 @@
     enable32Bit = true;
   };
 
-  services.xserver.videoDrivers = [ "nvidia"];
+  services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     modesetting.enable = true;
     open = true;
@@ -175,6 +177,7 @@
    eduvpn-client 
    gimp
    virtiofsd# share files (virtmanager) 
+
 	#];
 #})
   ];
@@ -209,9 +212,12 @@
   #STYLIX
   # stylix.image= /home/alik/Pictures/20241210_204004.jpg;
 
-  # programs.heroic = {
-    # enable = true;
+  ##OLLAMA & OPENWEBUI
+  # services.ollama = {
+  #   enable = true;
+  #   acceleration = "cuda";
   # };
+  # services.open-webui.enable = true;
 
 
   # List services that you want to enable:
