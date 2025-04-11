@@ -178,7 +178,7 @@
    gimp
    virtiofsd# share files (virtmanager) 
 
-	#];
+	#];   
 #})
   ];
 
@@ -213,11 +213,11 @@
   # stylix.image= /home/alik/Pictures/20241210_204004.jpg;
 
   ##OLLAMA & OPENWEBUI
-  # services.ollama = {
-  #   enable = true;
-  #   acceleration = "cuda";
-  # };
-  # services.open-webui.enable = true;
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
+  services.open-webui.enable = true;
 
 
   # List services that you want to enable:
