@@ -162,6 +162,7 @@
    lutris
    hmcl #minecraft
    gamemode
+   wineWowPackages.full
    shadps4
    ungoogled-chromium
    mangohud
