@@ -131,6 +131,7 @@
       discord
       vlc
       heroic
+      parted
       nextcloud-client
       tor-browser
       # davinci-resolve
@@ -159,15 +160,14 @@
    nerd-fonts.meslo-lg
    protonup
    lutris
-   steam
    hmcl #minecraft
+   gamemode
+   shadps4
    ungoogled-chromium
    mangohud
-   gamemode
    spotify
    ghostty
    obs-studio
-   shadps4
    unrar
    nvtopPackages.full
    kdePackages.filelight
