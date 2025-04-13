@@ -12,7 +12,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs: 
+  let
+    system = "x86_64-linux";
+  in {
     # use "nixos", or your hostname as the name of the configuration
     # it's a better practice than "default" shown in the video
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -23,5 +26,8 @@
         # inputs.stylix.nixosModules.stylix
       ];
     };
+    
+    # Add packages output so nix copy works
+    packages.${system}.default = self.nixosConfigurations.nixos.config.system.build.toplevel;
   };
 }
