@@ -10,22 +10,22 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd"];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/48f8adcd-e0ee-4bce-a6f3-c06aacc52875";
+    { device = "/dev/disk/by-uuid/46c328ec-5869-4062-a3ec-21735ec4f252";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/7FF7-E245";
+    { device = "/dev/disk/by-uuid/A101-B46B";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/0feff4f7-5e38-4f05-a1b0-f20917650e43"; }
+    [ { device = "/dev/disk/by-uuid/95746b45-fd55-4623-b065-78a7cda0dfdc"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -34,9 +34,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.vboxnet0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp8s0.useDHCP = lib.mkDefault true;
-  hardware.bluetooth.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
