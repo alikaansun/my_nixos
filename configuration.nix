@@ -9,6 +9,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./gaming.nix 
       # inputs.home-manager.nixosModules.default
     ];
 
@@ -171,12 +172,12 @@
    nix-output-monitor
    nerd-fonts.fira-code
    nerd-fonts.meslo-lg
-   protonup
-   lutris
-   hmcl #minecraft
-   gamemode
-   wineWowPackages.full
-   shadps4
+  #  protonup
+  #  lutris
+  #  hmcl #minecraft
+  #  gamemode
+  #  wineWowPackages.full
+  #  shadps4
    ungoogled-chromium
    mangohud
    spotify
@@ -196,11 +197,6 @@
 #})
   ];
 
-  environment.sessionVariables = {
-    # HOME = "/home/alik";
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/alik/.steam/root/compatibilitytools.d";
-
-  };
   networking.firewall.allowedTCPPorts = [ 57621 ];
   networking.firewall.allowedUDPPorts = [ 5353 ];
   # Enable automatic login for the user.services.displayManager.autoLogin
@@ -214,15 +210,21 @@
   programs.firefox.enable = true;
   programs.kdeconnect.enable = true;
 
-  programs.gamemode.enable = true;
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-    gamescopeSession.enable = true;
+  # environment.sessionVariables = {
+  #   # HOME = "/home/alik";
+  #   STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/alik/.steam/root/compatibilitytools.d";
 
-};
+  # };
+
+#   programs.gamemode.enable = true;
+#   programs.steam = {
+#     enable = true;
+#     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+#     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+#     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+#     gamescopeSession.enable = true;
+
+#   };
   #STYLIX
   # stylix.image= /home/alik/Pictures/20241210_204004.jpg;
 
