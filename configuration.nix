@@ -12,6 +12,7 @@
       #MODULES
       ./modules/locale.nix #Dont disable it 
       ./modules/gaming.nix 
+      ./modules/virtualisation.nix
       #./modules/localai.nix
       # inputs.home-manager.nixosModules.default
     ];
@@ -152,8 +153,7 @@
    blender
    obs-studio
    eduvpn-client 
-   gimp
-   virtiofsd# share files (virtmanager) 
+   gimp 
 
 	#];   
 #})
@@ -164,10 +164,6 @@
   # Enable automatic login for the user.services.displayManager.autoLogin
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "alik";
-
-  #virt-manager
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
   #Programs
   programs.firefox.enable = true;
   programs.kdeconnect.enable = true;
