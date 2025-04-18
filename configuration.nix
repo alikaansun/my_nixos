@@ -14,6 +14,8 @@
       ./modules/gaming.nix 
       ./modules/virtualisation.nix
       #./modules/localai.nix
+      #DESKTOP MODULES
+      ./modules/desktop/kde.nix
       # inputs.home-manager.nixosModules.default
     ];
 
@@ -23,6 +25,13 @@
   nix.gc.dates = "weekly";
   nix.gc.options = "--delete-older-than 10d";
   nix.settings.auto-optimise-store = true;
+
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "us,ir,tr";
+    variant = "";
+    # options = "grp:alt_shift_toggle";
+  };
 
   # Bootloader.
   boot.loader = {
@@ -52,20 +61,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
   # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-  layout = "us,ir,tr";   # Add US and Iranian layouts
-  variant = "";       # Use default variants for both layouts
-  # options = "grp:alt_shift_toggle";  # Use Alt+Shift to switch between layouts
-  };
  
   # Enable CUPS to print documents.
   services.printing.enable = true;

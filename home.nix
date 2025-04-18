@@ -15,8 +15,6 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
   
- 
-
   programs.oh-my-posh.enable = true;
   programs.oh-my-posh.useTheme = "emodipt-extend";
   programs.oh-my-posh.enableBashIntegration = true;
