@@ -29,6 +29,8 @@
     '';
     shellAliases = {
       cdrepos = "cd ~/Documents/Repos";
+      nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles";
+      eduvpn = "nohup eduvpn-gui &";
       # You can add more aliases here
     };
   };
@@ -62,7 +64,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
 
-  home.packages = [
+  home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     
