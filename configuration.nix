@@ -7,9 +7,12 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./gaming.nix 
+    [ 
+      ./hardware-configuration.nix #Dont disable it
+      #MODULES
+      ./modules/locale.nix #Dont disable it 
+      ./modules/gaming.nix 
+      #./modules/localai.nix
       # inputs.home-manager.nixosModules.default
     ];
 
@@ -24,7 +27,7 @@
   boot.loader = {
   efi = {
     canTouchEfiVariables = true;
-    efiSysMountPoint = "/boot"; # ← use the same mount point here.
+    efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
   };
   grub = {
      efiSupport = true;
@@ -47,41 +50,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-
-    LANGUAGE = "en_US.UTF-8";
-
-    LC_CTYPE = "en_US.UTF-8";
-
-    LC_ADDRESS = "nl_NL.UTF-8";
-
-    LC_COLLATE = "nl_NL.UTF-8";
-  
-    LC_IDENTIFICATION = "nl_NL.UTF-8";
- 
-    LC_MEASUREMENT = "nl_NL.UTF-8";
-
-    LC_MESSAGES = "nl_NL.UTF-8";
-    
-    LC_MONETARY = "nl_NL.UTF-8";
- 
-    LC_NAME = "nl_NL.UTF-8";
- 
-    LC_NUMERIC = "nl_NL.UTF-8";
- 
-    LC_PAPER = "nl_NL.UTF-8";
- 
-    LC_TELEPHONE = "nl_NL.UTF-8";
- 
-    LC_TIME = "nl_NL.UTF-8";
- 
-  };
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
@@ -172,12 +140,6 @@
    nix-output-monitor
    nerd-fonts.fira-code
    nerd-fonts.meslo-lg
-  #  protonup
-  #  lutris
-  #  hmcl #minecraft
-  #  gamemode
-  #  wineWowPackages.full
-  #  shadps4
    ungoogled-chromium
    mangohud
    spotify
@@ -210,33 +172,7 @@
   programs.firefox.enable = true;
   programs.kdeconnect.enable = true;
 
-  # environment.sessionVariables = {
-  #   # HOME = "/home/alik";
-  #   STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/alik/.steam/root/compatibilitytools.d";
-
-  # };
-
-#   programs.gamemode.enable = true;
-#   programs.steam = {
-#     enable = true;
-#     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-#     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-#     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-#     gamescopeSession.enable = true;
-
-#   };
-  #STYLIX
-  # stylix.image= /home/alik/Pictures/20241210_204004.jpg;
-
-  ##OLLAMA & OPENWEBUI
-  # services.ollama = {
-  #   enable = true;
-  #   acceleration = "cuda";
-  # };
-  # services.open-webui.enable = true;
-
-
-  # List services that you want to enable:
+    # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
