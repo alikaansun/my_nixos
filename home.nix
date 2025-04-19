@@ -1,5 +1,5 @@
 { config, pkgs, 
-#lib , 
+lib , 
 programs, ... }:
 
 {
@@ -8,6 +8,11 @@ programs, ... }:
   home.username = "alik";
   home.homeDirectory = "/home/alik";
 
+
+  imports =
+    [
+      ./modules/desktop/hypr_home.nix
+    ];
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
