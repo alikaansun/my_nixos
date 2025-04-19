@@ -36,6 +36,8 @@ programs, ... }:
       cdrepos = "cd ~/Documents/Repos";
       nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles";
       eduvpn = "nohup eduvpn-gui &";
+      ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10  
+      sudo nix-collect-garbage";
       # You can add more aliases here
     };
   };

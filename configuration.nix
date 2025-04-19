@@ -16,7 +16,7 @@
       #./modules/localai.nix
       #DESKTOP MODULES
       ./modules/desktop/kde.nix
-      ./modules/desktop/hypr.nix
+      # ./modules/desktop/hypr.nix
       # ./modules/desktop/stylix.nix
       # inputs.home-manager.nixosModules.default
     ];
@@ -114,6 +114,7 @@
       parted
       nextcloud-client
       tor-browser
+      libreoffice
       # davinci-resolve
       ffmpeg
       zotero
@@ -141,7 +142,7 @@
    ungoogled-chromium
    mangohud
    spotify
-   ghostty
+   alacritty
    obs-studio
    unrar
    nvtopPackages.full
