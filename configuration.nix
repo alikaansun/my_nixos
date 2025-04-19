@@ -114,7 +114,8 @@
       parted
       nextcloud-client
       tor-browser
-      libreoffice
+      libreoffice-qt6
+      # libreoffice # Added the original libreoffice package for compatibility
       # davinci-resolve
       ffmpeg
       zotero
