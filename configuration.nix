@@ -16,6 +16,7 @@
       #./modules/localai.nix
       #DESKTOP MODULES
       ./modules/desktop/kde.nix
+      ./modules/desktop/hypr.nix
       # ./modules/desktop/stylix.nix
       # inputs.home-manager.nixosModules.default
     ];
