@@ -16,6 +16,7 @@
       #./modules/localai.nix
       #DESKTOP MODULES
       ./modules/desktop/kde.nix
+      # ./modules/desktop/stylix.nix
       # inputs.home-manager.nixosModules.default
     ];
 
@@ -132,7 +133,7 @@
    wget
    git
    nvd#nixos package version diff tool
-   nixd
+   nixd#nix language server
    nix-output-monitor
    nerd-fonts.fira-code
    nerd-fonts.meslo-lg

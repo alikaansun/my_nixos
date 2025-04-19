@@ -1,4 +1,6 @@
-{ config, pkgs, programs, ... }:
+{ config, pkgs, 
+#lib , 
+programs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
