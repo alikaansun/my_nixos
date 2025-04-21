@@ -142,6 +142,7 @@
     users = {
       "alik" = import ./home.nix;
     };
+    backupFileExtension = "backup";
 
   };
 
@@ -158,7 +159,6 @@
    ungoogled-chromium
    mangohud
    spotify
-   alacritty
    obs-studio
    unrar
    nvtopPackages.full

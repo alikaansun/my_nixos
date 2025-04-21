@@ -52,6 +52,31 @@ programs, ... }:
     # safe.directory="/etc/nixos";
     };
   };
+
+  programs.alacritty = { 
+    enable= true;
+    settings= { 
+      window = {
+      opacity = 0.8;
+      padding = {
+        x = 10;
+        y = 10;
+      };
+      decorations = "full";
+      dynamic_title = true;
+    };
+    colors = {
+      primary = {
+        background = "#282c34";
+        foreground = "#abb2bf";
+      };
+    };
+    cursor = {
+      style = "Beam";
+      # blinking = "On";
+    };
+    };
+  };
   # home.programs = {
   #   oh-my-posh.enable = true;
   #   oh-my-posh.useTheme = "emodipt-extend";
@@ -74,7 +99,7 @@ programs, ... }:
   home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
-    
+    plasma-panel-colorizer
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
