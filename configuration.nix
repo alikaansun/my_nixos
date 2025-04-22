@@ -61,7 +61,9 @@
      #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
      device = "nodev";
      fontSize = 30;
+     timeoutStyle = "hidden"; #If this option is set to ‘countdown’ or ‘hidden’ […] and ESC or F4 are pressed, or SHIFT is held down during that time, 
   };
+  timeout = 1;
 };
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;

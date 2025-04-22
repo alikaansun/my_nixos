@@ -65,15 +65,30 @@ programs, ... }:
       decorations = "full";
       dynamic_title = true;
     };
-    colors = {
+      colors = {
       primary = {
         background = "#282c34";
         foreground = "#abb2bf";
       };
     };
-    cursor = {
+      cursor = {
       style = "Beam";
       # blinking = "On";
+    };
+      font = {
+      normal = {
+        family = "FiraCode Nerd Font Mono";
+        style = "Regular";
+      };
+      bold = {
+        family = "FiraCode Nerd Font Mono";
+        style = "Bold";
+      };
+      italic = {
+        family = "FiraCode Nerd Font Mono";
+        style = "Italic";
+      };
+      size = 13;
     };
     };
   };
