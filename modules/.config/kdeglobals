@@ -1,0 +1,144 @@
+[ColorEffects:Disabled]
+ChangeSelectionColor=
+Color=0,0,0
+ColorAmount=0.325
+ColorEffect=2
+ContrastAmount=0.5
+ContrastEffect=1
+Enable=
+IntensityAmount=-0.7
+IntensityEffect=2
+
+[ColorEffects:Inactive]
+ChangeSelectionColor=true
+Color=0,0,0
+ColorAmount=0.2
+ColorEffect=2
+ContrastAmount=0.35
+ContrastEffect=1
+Enable=false
+IntensityAmount=-0.85
+IntensityEffect=2
+
+[Colors:Button]
+BackgroundAlternate=82,82,82
+BackgroundNormal=90,90,90
+DecorationFocus=128,128,128
+DecorationHover=148,148,148
+ForegroundActive=223,223,223
+ForegroundInactive=191,191,191
+ForegroundLink=149,190,255
+ForegroundNegative=255,149,149
+ForegroundNeutral=255,203,138
+ForegroundNormal=207,207,207
+ForegroundPositive=148,255,138
+ForegroundVisited=173,165,255
+
+[Colors:Selection]
+BackgroundAlternate=119,119,119
+BackgroundNormal=127,127,127
+DecorationFocus=170,170,170
+DecorationHover=191,191,191
+ForegroundActive=255,255,255
+ForegroundInactive=239,239,239
+ForegroundLink=149,190,255
+ForegroundNegative=255,149,149
+ForegroundNeutral=255,203,138
+ForegroundNormal=247,247,247
+ForegroundPositive=148,255,138
+ForegroundVisited=173,165,255
+
+[Colors:Tooltip]
+BackgroundAlternate=109,109,109
+BackgroundNormal=117,117,117
+DecorationFocus=157,157,157
+DecorationHover=177,177,177
+ForegroundActive=255,255,255
+ForegroundInactive=223,223,223
+ForegroundLink=149,190,255
+ForegroundNegative=255,149,149
+ForegroundNeutral=255,203,138
+ForegroundNormal=239,239,239
+ForegroundPositive=148,255,138
+ForegroundVisited=173,165,255
+
+[Colors:View]
+BackgroundAlternate=98,98,98
+BackgroundNormal=106,106,106
+DecorationFocus=144,144,144
+DecorationHover=164,164,164
+ForegroundActive=239,239,239
+ForegroundInactive=207,207,207
+ForegroundLink=149,190,255
+ForegroundNegative=255,149,149
+ForegroundNeutral=255,203,138
+ForegroundNormal=223,223,223
+ForegroundPositive=148,255,138
+ForegroundVisited=173,165,255
+
+[Colors:Window]
+BackgroundAlternate=76,76,76
+BackgroundNormal=84,84,84
+DecorationFocus=119,119,119
+DecorationHover=137,137,137
+ForegroundActive=207,207,207
+ForegroundInactive=175,175,175
+ForegroundLink=149,190,255
+ForegroundNegative=255,149,149
+ForegroundNeutral=255,203,138
+ForegroundNormal=191,191,191
+ForegroundPositive=148,255,138
+ForegroundVisited=173,165,255
+
+[DirSelect Dialog]
+DirSelectDialog Size=1219,686
+History Items[$e]=file:///mnt/D/AppData/Spotify,file:$HOME/Games/shadps4/dlc,file:$HOME/Games/shadps4,file:$HOME/Documents/Repos/myflakes,file:$HOME/Documents/Repos/Shells,file:$HOME/Documents/Repos/Shells,file:///etc/nixos,file:$HOME/Nextcloud/Notes,file:$HOME/Documents/Repos/nazca_imos,file:$HOME/Nextcloud/AppData/Notes,file:$HOME/Nextcloud/AppData/VMsShare,file:$HOME/Videos,file:$HOME/VirtualBox VMs/Share,file:$HOME/VirtualBox VMs/Share,file:$HOME/Games,file:$HOME/Nextcloud/Notes,file:$HOME/VirtualBox VMs/Share,file:$HOME/VirtualBox VMs/rhel,file:$HOME/Documents/VMshare,file:$HOME/AppData
+Splitter State=\x00\x00\x00\xff\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x8c\x00\x00\x02\xa8\x00\xff\xff\xff\xff\x01\x00\x00\x00\x01\x00
+
+[General]
+ColorScheme=151532-Optimal
+ColorSchemeHash=8d483e98b770fbeba364db371382301dbfc92748
+TerminalApplication=ghostty
+TerminalService=com.mitchellh.ghostty.desktop
+
+[Icons]
+Theme=breeze-dark
+
+[KDE]
+LookAndFeelPackage=Ant-Dark
+ShowDeleteCommand=false
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=false
+Decoration position=2
+LocationCombo Completionmode=5
+PathCombo Completionmode=5
+Show Bookmarks=false
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=true
+Sort by=Name
+Sort directories first=true
+Sort hidden files last=false
+Sort reversed=false
+Speedbar Width=140
+View Style=DetailTree
+
+[KScreen]
+ScreenScaleFactors=Unknown-1=1;
+
+[PreviewSettings]
+EnableRemoteFolderThumbnail=false
+MaximumRemoteSize=0
+
+[WM]
+activeBackground=84,84,84
+activeBlend=76,76,76
+activeForeground=191,191,191
+inactiveBackground=84,84,84
+inactiveBlend=76,76,76
+inactiveForeground=175,175,175

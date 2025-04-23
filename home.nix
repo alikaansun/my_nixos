@@ -144,7 +144,12 @@ programs, ... }:
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-
+    ".config/kdeglobals".source = ./modules/.config/kdeglobals;
+    ".config/kwinrc".source = ./modules/.config/kwinrc;
+    ".config/kglobalshortcutsrc".source = ./modules/.config/kglobalshortcutsrc;
+    ".config/kwinrulesrc".source = ./modules/.config/kwinrulesrc;
+    ".config/kcminputrc".source = ./modules/.config/kcminputrc;
+    # Add more as needed
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
