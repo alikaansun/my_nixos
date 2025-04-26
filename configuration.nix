@@ -18,12 +18,16 @@
       ./modules/virtualisation.nix 
       #./modules/localai.nix
       #DESKTOP-MODULES
-      ./modules/desktop/kde.nix
+      # ./modules/desktop/kde.nix
       # ./modules/desktop/hypr.nix
       # ./modules/desktop/stylix.nix
       # inputs.home-manager.nixosModules.default
     ];
-
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    };
+    
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
