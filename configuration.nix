@@ -11,7 +11,8 @@
       ./hardware-configuration.nix #Dont disable it
       #MODULES
       ./modules/locale.nix #Dont disable it 
-      ./modules/gc.nix #garbage collection and store optim
+      ./modules/gc.nix #garbage collection and store opt
+      ./modules/extrastorage.nix #extra storage
       ./modules/gaming.nix 
       ./modules/virtualisation.nix 
       #./modules/localai.nix
@@ -24,10 +25,6 @@
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # nix.gc.automatic = true;
-  # nix.gc.dates = "weekly";
-  # nix.gc.options = "--delete-older-than 10d";
-  # nix.settings.auto-optimise-store = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -37,19 +34,19 @@
   };
 
   # 
-  fileSystems."/mnt/D" = {
-    device = "/dev/disk/by-uuid/218ce1d4-70e8-4b81-aa2b-3abab153a6b4";
-    fsType = "ext4";
-    options = [ "defaults" "rw" ];
-  };
-  system.activationScripts.setStoragePermissions = {
-  text = ''
-    mkdir -p /mnt/D
-    chown alik /mnt/D
-    chmod -R 777 /mnt/D
-  '';
-  deps = [];
-  };
+  # fileSystems."/mnt/D" = {
+  #   device = "/dev/disk/by-uuid/218ce1d4-70e8-4b81-aa2b-3abab153a6b4";
+  #   fsType = "ext4";
+  #   options = [ "defaults" "rw" ];
+  # };
+  # system.activationScripts.setStoragePermissions = {
+  # text = ''
+  #   mkdir -p /mnt/D
+  #   chown alik /mnt/D
+  #   chmod -R 777 /mnt/D
+  # '';
+  # deps = [];
+  # };
 
   # Bootloader.
   boot.loader = {
