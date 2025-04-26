@@ -13,7 +13,7 @@
       fontSize = 30;
       timeoutStyle = "hidden";
     };
-    timeout = 1;
+    # timeout = 5;
   };
   ##Old configuration
   # boot.loader.systemd-boot.enable = true;
