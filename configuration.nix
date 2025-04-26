@@ -9,14 +9,15 @@
   imports =
     [ 
       ./hardware-configuration.nix #Dont disable it
-      #MODULES
+      #CUSTOM-MODULES
+      ./modules/bootloader.nix #bootloader #Dont disable it
       ./modules/locale.nix #Dont disable it 
       ./modules/gc.nix #garbage collection and store opt
       ./modules/extrastorage.nix #extra storage
       ./modules/gaming.nix 
       ./modules/virtualisation.nix 
       #./modules/localai.nix
-      #DESKTOP MODULES
+      #DESKTOP-MODULES
       ./modules/desktop/kde.nix
       # ./modules/desktop/hypr.nix
       # ./modules/desktop/stylix.nix
@@ -32,40 +33,7 @@
     variant = "";
     # options = "grp:alt_shift_toggle";
   };
-
-  # 
-  # fileSystems."/mnt/D" = {
-  #   device = "/dev/disk/by-uuid/218ce1d4-70e8-4b81-aa2b-3abab153a6b4";
-  #   fsType = "ext4";
-  #   options = [ "defaults" "rw" ];
-  # };
-  # system.activationScripts.setStoragePermissions = {
-  # text = ''
-  #   mkdir -p /mnt/D
-  #   chown alik /mnt/D
-  #   chmod -R 777 /mnt/D
-  # '';
-  # deps = [];
-  # };
-
-  # Bootloader.
-  boot.loader = {
-  efi = {
-    canTouchEfiVariables = true;
-    efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
-  };
-  grub = {
-     efiSupport = true;
-     #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
-     device = "nodev";
-     fontSize = 30;
-     timeoutStyle = "hidden"; #If this option is set to ‘countdown’ or ‘hidden’ […] and ESC or F4 are pressed, or SHIFT is held down during that time, 
-  };
-  timeout = 1;
-};
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-  
+ 
   
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -77,7 +45,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  # Enable the X11 windowing system.
  
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -103,9 +70,6 @@
     alsa.support32Bit = true;
     pulse.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -117,21 +81,7 @@
     isNormalUser = true;
     description = "alik";
     extraGroups = [ "networkmanager" "wheel" "input" "vboxusers" "libvirt" ];
-    packages = with pkgs; [
-      # thunderbird
-      # vscode
-      # obsidian
-      # fastfetch
-      # klayout
-      # discord
-      # vlc
-      # parted
-      # nextcloud-client
-      # tor-browser
-      # libreoffice-qt6
-      # ffmpeg
-      # zotero
-	];
+    # packages = with pkgs; [];
   };
   # home-manager
   home-manager = {
@@ -150,21 +100,15 @@
    git
    nvd#nixos package version diff tool
    nixd#nix language server
-   nix-output-monitor
+   alejandra #nix language server
    nerd-fonts.fira-code
    nerd-fonts.meslo-lg
    ungoogled-chromium
-   mangohud
-   spotify
-   obs-studio
    unrar
    nvtopPackages.full
    kdePackages.filelight
-   foliate #ebook
-   blender
-   obs-studio
    eduvpn-client 
-   gimp 
+
 
 	#];   
 #})

@@ -96,24 +96,7 @@ programs, ... }:
   };
 
   };
-  # home.programs = {
-  #   oh-my-posh.enable = true;
-  #   oh-my-posh.useTheme = "emodipt-extend";
 
-  #   # # This enables the 'hello' program. You can run it with 'hello'.
-  #   # hello.enable = true;
-
-  #   # # This enables the 'git' program. You can run it with 'git'.
-  #   # git.enable = true;
-
-  #   # # This enables the 'emacs' program. You can run it with 'emacs'.
-  #   # emacs.enable = true;
-  # };
-
-
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
 
   home.packages = with pkgs; [
 
@@ -131,6 +114,11 @@ programs, ... }:
     libreoffice-qt6
     ffmpeg
     zotero
+    obs-studio
+    spotify
+    gimp 
+    foliate #ebook
+    blender
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
