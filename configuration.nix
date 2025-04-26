@@ -11,8 +11,9 @@
       ./hardware-configuration.nix #Dont disable it
       #MODULES
       ./modules/locale.nix #Dont disable it 
+      ./modules/gc.nix #garbage collection and store optim
       ./modules/gaming.nix 
-      ./modules/virtualisation.nix
+      ./modules/virtualisation.nix 
       #./modules/localai.nix
       #DESKTOP MODULES
       ./modules/desktop/kde.nix
@@ -23,10 +24,10 @@
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.gc.automatic = true;
-  nix.gc.dates = "weekly";
-  nix.gc.options = "--delete-older-than 10d";
-  nix.settings.auto-optimise-store = true;
+  # nix.gc.automatic = true;
+  # nix.gc.dates = "weekly";
+  # nix.gc.options = "--delete-older-than 10d";
+  # nix.settings.auto-optimise-store = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -120,22 +121,19 @@
     description = "alik";
     extraGroups = [ "networkmanager" "wheel" "input" "vboxusers" "libvirt" ];
     packages = with pkgs; [
-      thunderbird
-      vscode
-      obsidian
-      neofetch
-      klayout
-      discord
-      vlc
-      heroic
-      parted
-      nextcloud-client
-      tor-browser
-      libreoffice-qt6
-      # libreoffice # Added the original libreoffice package for compatibility
-      # davinci-resolve
-      ffmpeg
-      zotero
+      # thunderbird
+      # vscode
+      # obsidian
+      # fastfetch
+      # klayout
+      # discord
+      # vlc
+      # parted
+      # nextcloud-client
+      # tor-browser
+      # libreoffice-qt6
+      # ffmpeg
+      # zotero
 	];
   };
   # home-manager

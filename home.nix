@@ -7,7 +7,7 @@ programs, ... }:
   # manage.
   home.username = "alik";
   home.homeDirectory = "/home/alik";
-
+  nixpkgs.config.allowUnfree = true;
 
   # imports =
   #   [
@@ -22,11 +22,13 @@ programs, ... }:
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
   
-  programs.oh-my-posh.enable = true;
-  programs.oh-my-posh.useTheme = "emodipt-extend";
-  programs.oh-my-posh.enableBashIntegration = true;
+  programs = {
 
-  programs.bash = {
+  oh-my-posh.enable = true;
+  oh-my-posh.useTheme = "emodipt-extend";
+  oh-my-posh.enableBashIntegration = true;
+
+  bash = {
     enable = true;
     initExtra = ''
       eval "$(ssh-agent -s)" > /dev/null
@@ -42,7 +44,7 @@ programs, ... }:
     };
   };
 
-  programs.git = {
+  git = {
   enable= true;
   userName= "alik";
   userEmail = "asunnetcoglu@gmail.com";
@@ -53,7 +55,7 @@ programs, ... }:
     };
   };
 
-  programs.alacritty = { 
+  alacritty = { 
     enable= true;
     settings= { 
       window = {
@@ -92,6 +94,8 @@ programs, ... }:
     };
     };
   };
+
+  };
   # home.programs = {
   #   oh-my-posh.enable = true;
   #   oh-my-posh.useTheme = "emodipt-extend";
@@ -112,10 +116,21 @@ programs, ... }:
   # environment.
 
   home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    plasma-panel-colorizer
 
+    plasma-panel-colorizer
+    thunderbird
+    vscode
+    obsidian
+    fastfetch
+    klayout
+    discord
+    vlc
+    parted
+    nextcloud-client
+    tor-browser
+    libreoffice-qt6
+    ffmpeg
+    zotero
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -129,6 +144,7 @@ programs, ... }:
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
   #virt-manager with wayland requires a gdk cursor to be set
   #In order to run on Wayland, virt-manager must be ran under XWayland with `$ GDK_BACKEND=x11 virt-manager` or a gdk cursor must be set. 
   #An example of setting a gdk cursor with home-manager is as follows: 
@@ -137,8 +153,7 @@ programs, ... }:
     package = pkgs.vanilla-dmz;
     name = "Vanilla-DMZ";
   };
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
+
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
