@@ -100,7 +100,6 @@ programs, ... }:
 
   home.packages = with pkgs; [
 
-    plasma-panel-colorizer
     thunderbird
     vscode
     obsidian
