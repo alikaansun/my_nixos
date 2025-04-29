@@ -12,6 +12,8 @@ programs, ... }:
   imports =
     [
       ./modules/desktop/hyprland.nix
+      ./modules/terminal.nix
+      ./modules/git.nix
     ];
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -22,80 +24,89 @@ programs, ... }:
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
   
-  programs = {
+  # programs = {
 
-  oh-my-posh.enable = true;
-  oh-my-posh.useTheme = "emodipt-extend";
-  oh-my-posh.enableBashIntegration = true;
+  # oh-my-posh.enable = true;
+  # oh-my-posh.useTheme = "emodipt-extend";
+  # oh-my-posh.enableBashIntegration = true;
 
-  bash = {
-    enable = true;
-    initExtra = ''
-      eval "$(ssh-agent -s)" > /dev/null
-      ssh-add -q ~/.ssh/id_ed25519g > /dev/null
-    '';
-    shellAliases = {
-      cdrepos = "cd ~/Documents/Repos";
-      nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles";
-      eduvpn = "nohup eduvpn-gui &";
-      ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10  
-      sudo nix-collect-garbage";
-      # You can add more aliases here
-    };
-  };
+  # bash = {
+  #   enable = true;
+  #   initExtra = ''
+  #     eval "$(ssh-agent -s)" > /dev/null
+  #     ssh-add -q ~/.ssh/id_ed25519g > /dev/null
 
-  git = {
-  enable= true;
-  userName= "alik";
-  userEmail = "asunnetcoglu@gmail.com";
-  extraConfig = {
-    init.defaultBranch = "main";
-    pull.rebase = "true";
-    # safe.directory="/etc/nixos";
-    };
-  };
+  #     # Enable fzf keybindings
+  #     [ -f ${pkgs.fzf}/share/fzf/key-bindings.bash ] && source ${pkgs.fzf}/share/fzf/key-bindings.bash
+  #     [ -f ${pkgs.fzf}/share/fzf/completion.bash ] && source ${pkgs.fzf}/share/fzf/completion.bash
+  #   '';
+  #   shellAliases = {
+  #     cdrepos = "cd ~/Documents/Repos";
+  #     nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles";
+  #     eduvpn = "nohup eduvpn-gui &";
+  #     ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10  
+  #     sudo nix-collect-garbage";
+  #     # You can add more aliases here
+  #   };
+  # };
+  # #Fuzzy search ctrl-r for command history ctrl-t for file search inside terminal
+  # programs.fzf = {
+  #   enable = true;
+  #   enableBashIntegration = true;
+  # };
 
-  alacritty = { 
-    enable= true;
-    settings= { 
-      window = {
-      opacity = 0.8;
-      padding = {
-        x = 10;
-        y = 10;
-      };
-      decorations = "full";
-      dynamic_title = true;
-    };
-      colors = {
-      primary = {
-        background = "#282c34";
-        foreground = "#abb2bf";
-      };
-    };
-      cursor = {
-      style = "Beam";
-      # blinking = "On";
-    };
-      font = {
-      normal = {
-        family = "FiraCode Nerd Font Mono";
-        style = "Regular";
-      };
-      bold = {
-        family = "FiraCode Nerd Font Mono";
-        style = "Bold";
-      };
-      italic = {
-        family = "FiraCode Nerd Font Mono";
-        style = "Italic";
-      };
-      size = 13;
-    };
-    };
-  };
+  # git = {
+  # enable= true;
+  # userName= "alik";
+  # userEmail = "asunnetcoglu@gmail.com";
+  # extraConfig = {
+  #   init.defaultBranch = "main";
+  #   pull.rebase = "true";
+  #   # safe.directory="/etc/nixos";
+  #   };
+  # };
 
-  };
+  # alacritty = { 
+  #   enable= true;
+  #   settings= { 
+  #     window = {
+  #     opacity = 0.8;
+  #     padding = {
+  #       x = 10;
+  #       y = 10;
+  #     };
+  #     decorations = "full";
+  #     dynamic_title = true;
+  #   };
+  #     colors = {
+  #     primary = {
+  #       background = "#282c34";
+  #       foreground = "#abb2bf";
+  #     };
+  #   };
+  #     cursor = {
+  #     style = "Beam";
+  #     # blinking = "On";
+  #   };
+  #     font = {
+  #     normal = {
+  #       family = "FiraCode Nerd Font Mono";
+  #       style = "Regular";
+  #     };
+  #     bold = {
+  #       family = "FiraCode Nerd Font Mono";
+  #       style = "Bold";
+  #     };
+  #     italic = {
+  #       family = "FiraCode Nerd Font Mono";
+  #       style = "Italic";
+  #     };
+  #     size = 13;
+  #   };
+  #   };
+  # };
+
+  # };
 
 
   home.packages = with pkgs; [
