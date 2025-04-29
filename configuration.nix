@@ -25,13 +25,10 @@
       # ./modules/desktop/stylix.nix
       # inputs.home-manager.nixosModules.default
     ];
-  programs.hyprland = {
-    enable = true;
-    # withUWSM = true;
-    };
     
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
 
   # Configure keymap in X11
   services.xserver.xkb = {

@@ -1,5 +1,9 @@
 { config,lib, pkgs,inputs, ... }:
 {
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+  programs.hyprland.enable = true;
+  
   home.packages = with pkgs; [
     swww
     grim
