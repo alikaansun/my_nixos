@@ -18,7 +18,10 @@
       ./modules/virtualisation.nix 
       #./modules/localai.nix
       #DESKTOP-MODULES
-      ./modules/desktop/kde.nix
+      # ./modules/desktop/kde.nix
+      ./modules/desktop/xfce.nix
+      # ./modules/desktop/gnome.nix
+      
       # ./modules/desktop/stylix.nix
       # inputs.home-manager.nixosModules.default
     ];
