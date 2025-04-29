@@ -28,7 +28,14 @@
     
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  programs.hyprland.enable = true;
+ #Enabling hyprlnd on NixOS
+  programs.hyprland = {
+  enable = true;
+  # nvidiaPatches = true;
+  # xwayland.enable = true;
+  # withUWSM = true;
+  package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+};
   
 
   nixpkgs.config.allowUnfree = true;
