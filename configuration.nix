@@ -26,6 +26,11 @@
       # inputs.home-manager.nixosModules.default
     ];
     
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+  programs.hyprland.enable = true;
+  
+
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
