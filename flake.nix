@@ -32,6 +32,6 @@
     };
     
     # Add packages output so nix copy works
-    packages.${system}.default = self.nixosConfigurations.nixos.config.system.build.toplevel;
+    # packages.${system}.default = self.nixosConfigurations.nixos.config.system.build.toplevel;
   };
 }
