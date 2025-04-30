@@ -34,6 +34,7 @@
         repeat_delay = 300;
         follow_mouse = 1;
         float_switch_override_focus = 0;
+        kb_layout = "us";
       }; 
       gestures = {
         workspace_swipe = 1;

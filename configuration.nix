@@ -18,7 +18,8 @@
       ./modules/virtualisation.nix 
       #./modules/localai.nix
       #DESKTOP-MODULES
-      ./modules/desktop/kde.nix
+      # ./modules/desktop/kde.nix
+      ./modules/desktop/hypr.nix
       # ./modules/desktop/xfce.nix
       # ./modules/desktop/gnome.nix
       
@@ -26,28 +27,12 @@
       # inputs.home-manager.nixosModules.default
     ];
     
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
- #Enabling hyprlnd on NixOS
-  programs.hyprland = {
-  enable = true;
-  # set the flake package
-  package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-  # make sure to also set the portal package, so that they are in sync
-  portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-};
+
   
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us,ir,tr";
-    variant = "";
-    # options = "grp:alt_shift_toggle";
-  };
  
   
   networking.hostName = "nixos"; # Define your hostname.
@@ -73,7 +58,6 @@
   hardware.nvidia = {
     modesetting.enable = true;
     open = true;
-    # prime.sync.enable = true;
   };
 
   # Enable sound with pipewire.
@@ -135,8 +119,6 @@
   services.displayManager.autoLogin.user = "alik";
   #Programs
   programs.firefox.enable = true;
-  programs.kdeconnect.enable = true;
-
     # List services that you want to enable:
 
   # Enable the OpenSSH daemon.

@@ -16,6 +16,14 @@
       # Enable fzf keybindings
       [ -f ${pkgs.fzf}/share/fzf/key-bindings.bash ] && source ${pkgs.fzf}/share/fzf/key-bindings.bash
       [ -f ${pkgs.fzf}/share/fzf/completion.bash ] && source ${pkgs.fzf}/share/fzf/completion.bash
+
+      # Git commit and push function
+      gitcp() {
+        git add *
+        git commit -m "$1"
+        git push
+      }
+    
     '';
     
     shellAliases = {
