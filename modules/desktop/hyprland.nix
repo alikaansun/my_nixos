@@ -5,10 +5,11 @@
     swww
     grim
     slurp
+    waybar
     wl-clipboard
-    ydotool
-    hyprpolkitagent
-    hyprland-qtutils  # needed for banners and ANR messages
+    rofi-wayland
+    # hyprpolkitagent
+    # hyprland-qtutils  # needed for banners and ANR messages
   ];
 
   
@@ -22,10 +23,10 @@
     xwayland = {
       enable = true;
     };
-
-    plugins = [
-        inputs.hyprland-plugins.packages."${pkgs.system}".default
-    ];
+    
+    # plugins = [
+    #     inputs.hyprland-plugins.packages."${pkgs.system}".hyprbars
+    # ];
 
   # home.file."~/.config/hypr/hyprland.conf".text = ''
   #   decoration {
