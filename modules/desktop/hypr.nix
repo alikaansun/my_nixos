@@ -3,9 +3,11 @@
 {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
  #Enabling hyprlnd on NixOS
   programs.hyprland = {
   enable = true;
+  withUWSM = true;
   # set the flake package
   package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
   # make sure to also set the portal package, so that they are in sync
