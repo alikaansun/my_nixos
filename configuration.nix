@@ -103,6 +103,7 @@
    nerd-fonts.meslo-lg
    ungoogled-chromium
    unrar
+   gparted
    nvtopPackages.full
    kdePackages.filelight
    eduvpn-client 

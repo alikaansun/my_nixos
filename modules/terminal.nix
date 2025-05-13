@@ -32,6 +32,7 @@
       eduvpn = "nohup eduvpn-gui &";
       ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10  
       sudo nix-collect-garbage";
+      cdflakes = "cd ~/Documents/Repos/myflakes";
     };
   };
 
