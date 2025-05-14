@@ -122,6 +122,10 @@
   programs.firefox.enable = true;
     # List services that you want to enable:
 
+
+  #trezord adds required udev rules to start the bridge  
+  services.trezord.enable = true;
+  
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
