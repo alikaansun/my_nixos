@@ -3,11 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins ={
-      url = "github:hyprwm/Hyprland-Plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland-plugins ={
+    #   url = "github:hyprwm/Hyprland-Plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
     # stylix.url = "github:danth/stylix";
     # soundshed.url = "github:soundshed/soundshed-app";
     home-manager = {
