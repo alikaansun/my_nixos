@@ -69,22 +69,34 @@ programs, ... }:
     name = "Vanilla-DMZ";
   };
 
+  # home.backupFileExtension = "backup";
+
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-    ".config/kdeglobals".source = ./modules/.config/kdeglobals;
-    ".config/kwinrc".source = ./modules/.config/kwinrc;
-    ".config/kglobalshortcutsrc".source = ./modules/.config/kglobalshortcutsrc;
-    ".config/kwinrulesrc".source = ./modules/.config/kwinrulesrc;
-    ".config/kcminputrc".source = ./modules/.config/kcminputrc;
+    # ".config/kdeglobals".source = ./modules/.config/kdeglobals; 
+    # ".config/kwinrc".source = ./modules/.config/kwinrc; 
+    # ".config/kglobalshortcutsrc".source = ./modules/.config/kglobalshortcutsrc;
+    # ".config/kwinrulesrc".source = ./modules/.config/kwinrulesrc;
+    # ".config/kcminputrc".source = ./modules/.config/kcminputrc;
+    
+    
+    # ".config/kcminputrc" = {
+    #   source = ./modules/.config/kcminputrc;
+    #   force = true;
+    # };
+  # Add more as needed
+    
+    
+    
     # Add more as needed
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    # recursive=true;
   };
 
   # Home Manager can also manage your environment variables through
