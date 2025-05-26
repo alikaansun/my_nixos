@@ -107,6 +107,8 @@
    nvtopPackages.full
    kdePackages.filelight
    eduvpn-client 
+   
+   
 
 
 	#];   
