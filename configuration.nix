@@ -101,7 +101,7 @@
    alejandra #nix language server
    nerd-fonts.fira-code
    nerd-fonts.meslo-lg
-   ungoogled-chromium
+   chromium
    unrar
    gparted
    nvtopPackages.full
@@ -121,7 +121,7 @@
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "alik";
   #Programs
-  programs.firefox.enable = true;
+  
     # List services that you want to enable:
 
 
