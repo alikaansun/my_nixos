@@ -16,6 +16,7 @@
       ./modules/extrastorage.nix #extra storage
       ./modules/gaming.nix 
       ./modules/virtualisation.nix 
+      
       #./modules/localai.nix
       #DESKTOP-MODULES
       ./modules/desktop/kde.nix
@@ -25,8 +26,10 @@
       
       # ./modules/desktop/stylix.nix
       # inputs.home-manager.nixosModules.default
+      inputs.sops-nix.nixosModules.sops
     ];
-    
+  
+  
 
   
 
@@ -107,9 +110,6 @@
    nvtopPackages.full
    kdePackages.filelight
    eduvpn-client 
-   
-   
-
 
 	#];   
 #})
@@ -128,6 +128,7 @@
   #trezord adds required udev rules to start the bridge  
   services.trezord.enable = true;
   
+
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 

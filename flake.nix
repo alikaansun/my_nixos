@@ -9,9 +9,12 @@
     #   inputs.hyprland.follows = "hyprland";
     # };
     # stylix.url = "github:danth/stylix";
-    # soundshed.url = "github:soundshed/soundshed-app";
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

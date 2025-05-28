@@ -33,7 +33,7 @@
       ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10  
       sudo nix-collect-garbage";
       cdflakes = "cd ~/Documents/Repos/myflakes";
-      e = "nohup dolphin --new-window . > /dev/null 2>&1 &"
+      e = "nohup dolphin --new-window . > /dev/null 2>&1 &";
     };
   };
 
