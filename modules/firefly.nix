@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib,... }:
 
 {
 
@@ -38,7 +38,7 @@
   };
 
   # Override automatic startup - this is the key part
-  systemd.services.firefly-iii = {
-    wantedBy = lib.mkForce [];
-  };
+  # systemd.services.firefly-iii = {
+  #   wantedBy = lib.mkForce [];
+  # };
 }
