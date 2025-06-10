@@ -16,6 +16,7 @@
       ./modules/extrastorage.nix #extra storage
       ./modules/gaming.nix 
       ./modules/virtualisation.nix 
+      ./modules/networking.nix
       
       #./modules/localai.nix
       #DESKTOP-MODULES
