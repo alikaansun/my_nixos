@@ -15,6 +15,8 @@ programs, ... }:
       # ./modules/desktop/hyprland.nix
       ../../modules/terminal.nix
       ../../modules/git.nix
+      ../../modules/creative.nix
+
     ];
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -42,16 +44,10 @@ programs, ... }:
     ffmpeg
     zotero
     obs-studio
-    spotify
-    gimp 
+    spotify 
     foliate #ebook
-    blender
-    ardour #sound recording
     rustdesk
-    anydesk
-    ergogen
-    kicad
-    freecad
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
