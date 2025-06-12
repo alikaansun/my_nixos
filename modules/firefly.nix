@@ -17,7 +17,7 @@
       host = "localhost";
       name = "firefly";
       user = "firefly";
-      passwordFile = config.sops.secrets.firefly-db-password.path; # Consider using a secrets management approach
+      passwordFile = config.sops.secrets.firefly-db-password.path; 
       port = 3306;
     };
   };

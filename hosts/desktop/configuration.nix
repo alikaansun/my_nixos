@@ -10,24 +10,23 @@
     [ 
       ./hardware-configuration.nix #Dont disable it
       #CUSTOM-MODULES
-      ./modules/bootloader.nix #bootloader #Dont disable it
-      ./modules/locale.nix #Dont disable it 
-      ./modules/gc.nix #garbage collection and store opt
-      ./modules/extrastorage.nix #extra storage
-      ./modules/gaming.nix 
-      ./modules/virtualisation.nix 
-      ./modules/networking.nix
+      ../../modules/bootloader.nix #bootloader #Dont disable it
+      ../../modules/locale.nix #Dont disable it 
+      ../../modules/gc.nix #garbage collection and store opt
+      ../../modules/extrastorage.nix #extra storage
+      ../../modules/gaming.nix 
+      ../../modules/virtualisation.nix 
+      ../../modules/networking.nix
       
       #./modules/localai.nix
       #DESKTOP-MODULES
-      ./modules/desktop/kde.nix
+      ../../modules/desktop/kde.nix
       # ./modules/desktop/hypr.nix
       # ./modules/desktop/xfce.nix
       # ./modules/desktop/gnome.nix
       
       # ./modules/desktop/stylix.nix
       # inputs.home-manager.nixosModules.default
-      inputs.sops-nix.nixosModules.sops
     ];
   
   
@@ -39,7 +38,7 @@
 
  
   
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "desktop"; # Define your hostname.
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
