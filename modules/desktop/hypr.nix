@@ -4,11 +4,11 @@
   
   
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.xkb = {
-    layout = "us,ir,tr";
-    variant = "";
-    # options = "grp:alt_shift_toggle";
-  };
+  # services.xserver.xkb = {
+  #   layout = "us,ir,tr";
+  #   variant = "";
+  #   # options = "grp:alt_shift_toggle";
+  # };
   #Enabling hyprlnd on NixOS
   programs.hyprland = {
   enable = true;
