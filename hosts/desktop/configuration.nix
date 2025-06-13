@@ -10,13 +10,10 @@
     [ 
       ./hardware-configuration.nix #Dont disable it
       #CUSTOM-MODULES
-      ../../modules/bootloader.nix #bootloader #Dont disable it
       ../../modules/locale.nix #Dont disable it 
       ../../modules/gc.nix #garbage collection and store opt
-      ../../modules/extrastorage.nix #extra storage
       ../../modules/gaming.nix 
       ../../modules/virtualisation.nix 
-      ../../modules/networking.nix
       
       #./modules/localai.nix
       #DESKTOP-MODULES
@@ -36,10 +33,32 @@
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
- 
-  
-  networking.hostName = "desktop"; # Define your hostname.
+   
+  fileSystems."/mnt/D" = {
+    device = "/dev/disk/by-uuid/218ce1d4-70e8-4b81-aa2b-3abab153a6b4";
+    fsType = "ext4";
+    options = [ "defaults" "rw" ];
+  };
 
+  system.activationScripts.setStoragePermissions = {
+    text = ''
+      mkdir -p /mnt/D
+      chown alik /mnt/D
+      chmod -R 777 /mnt/D
+    '';
+    deps = [];
+  };
+  
+
+  networking = {
+    hostName = "desktop";
+    interfaces.eno1 = {
+    ipv4.addresses = [{
+      address = "192.168.10.1";
+      prefixLength = 24;
+    }];
+  };
+  };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -48,6 +67,20 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  boot.loader = {
+  efi = {
+    canTouchEfiVariables = true;
+    efiSysMountPoint = "/boot/efi";
+  };
+  grub = {
+    efiSupport = true;
+    #efiInstallAsRemovable = true;
+    device = "nodev";
+    fontSize = 30;
+    timeoutStyle = "hidden";
+  };
+  };
  
   # Enable CUPS to print documents.
   # services.printing.enable = true;
