@@ -17,12 +17,13 @@
     enable = true;
     systemd = {
       enable = true;
-      # enableXdgAutostart = true;
+      # uenableXdgAutostart = true;
       # variables = ["--all"];
     };
     xwayland = {
       enable = true;
     };
+    
     
     # plugins = [
     #     inputs.hyprland-plugins.packages."${pkgs.system}".hyprbars
