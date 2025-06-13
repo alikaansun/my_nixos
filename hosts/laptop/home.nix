@@ -29,7 +29,6 @@ programs, ... }:
 
   home.packages = with pkgs; [
     keepassxc
-    trezor-suite
     thunderbird
     vscode
     obsidian
@@ -39,7 +38,6 @@ programs, ... }:
     vlc
     parted
     nextcloud-client
-    tor-browser
     libreoffice-qt6
     ffmpeg
     zotero
