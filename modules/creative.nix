@@ -9,7 +9,7 @@
     freecad          # Parametric 3D CAD modeler
     ergogen          # Keyboard PCB generator
     ardour           # Audio recording and editing
-    kdenlive       # Video editor
+    # davinci-resolve       # Video editor
     # musescore      # Music notation software
   ];
 }
