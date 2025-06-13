@@ -9,7 +9,7 @@
     [
       ./hardware-configuration.nix #Dont disable it
       #CUSTOM-MODULES
-      ../../modules/bootloader.nix #bootloader #Dont disable it
+      # ../../modules/bootloader.nix #bootloader #Dont disable it
       ../../modules/locale.nix #Dont disable it
       ../../modules/gc.nix #garbage collection and store opt
 #       ../../modules/extrastorage.nix #extra storage
@@ -35,6 +35,8 @@
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
 
   networking.hostName = "laptop"; # Define your hostname.
