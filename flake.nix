@@ -17,12 +17,20 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, 
+  plasma-manager, ... }@inputs: 
   let
     system = "x86_64-linux";
-    
+
+    username="alik";
+
     mkHost = hostname: nixpkgs.lib.nixosSystem{
       inherit system;
       specialArgs = {inherit inputs;};
@@ -33,11 +41,31 @@
         inputs.stylix.nixosModules.stylix
       ];
     };
+
+    mkHome = hostname: home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {inherit system;};
+      modules= [ 
+        inputs.plasma-manager.homeManagerModules.plasma-manager
+        ./hosts/${hostname}/home.nix
+        {
+          home = {
+            inherit username;
+            homeDirectory = "/home/${username}";
+          };
+        }
+      ];
+    };
+
   in {
     nixosConfigurations = {
       desktop = mkHost "desktop";
       laptop = mkHost "laptop";
       nixos = mkHost "laptop";
+    };
+
+    homeConfigurations = {
+      "alik@desktop" = mkHome "desktop";
+      "alik@laptop" = mkHome "laptop";
+    };
   };
-};
 }
