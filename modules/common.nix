@@ -1,5 +1,5 @@
 
-{ pkgs,inputs,... }:
+{ pkgs,inputs,config,... }:
 
 {
 
@@ -40,7 +40,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "alik" = import ./home.nix;
+      "alik" = import ../hosts/${config.networking.hostName}/home.nix;
     };
     backupFileExtension = "backup";
 
