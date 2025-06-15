@@ -15,7 +15,8 @@ programs,inputs, ... }:
      # ../../modules/desktop/hyprland.nix
       ../../modules/home/terminal.nix
       ../../modules/home/git.nix
-      inputs.plasma-manager.homeManagerModules.plasma-manager
+      # inputs.plasma-manager.homeManagerModules.plasma-manager
+      ../../modules/home/plasma.nix
 #       ../../modules/creative.nix
 
     ];
