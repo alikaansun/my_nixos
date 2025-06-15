@@ -1,4 +1,4 @@
-{  pkgs,  ... }:
+{inputs,  pkgs,  ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -11,9 +11,10 @@
   imports =
     [
       # ./modules/desktop/hyprland.nix
-      ../../modules/terminal.nix
-      ../../modules/git.nix
+      ../../modules/home/terminal.nix
+      ../../modules/home/git.nix
       ../../modules/creative.nix
+      inputs.plasma-manager.homeManagerModules.plasma-manager
 
     ];
   # This value determines the Home Manager release that your configuration is

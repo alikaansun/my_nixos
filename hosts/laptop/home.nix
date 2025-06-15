@@ -1,6 +1,6 @@
 { config, pkgs,
 lib ,
-programs, ... }:
+programs,inputs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -13,9 +13,9 @@ programs, ... }:
   imports =
     [
      # ../../modules/desktop/hyprland.nix
-      ../../modules/terminal.nix
-      ../../modules/git.nix
-      <plasma-manager/modules>
+      ../../modules/home/terminal.nix
+      ../../modules/home/git.nix
+      inputs.plasma-manager.homeManagerModules.plasma-manager
 #       ../../modules/creative.nix
 
     ];
@@ -26,7 +26,7 @@ programs, ... }:
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-
+  
   programs.plasma = { 
     enable = true;
     
