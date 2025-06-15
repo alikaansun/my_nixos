@@ -11,6 +11,7 @@
       #CUSTOM-MODULES
       # ../../modules/bootloader.nix #bootloader #Dont disable it
       ../../modules/locale.nix #Dont disable it
+      ../../modules/common.nix #Dont disable it
       ../../modules/gc.nix #garbage collection and store opt
 #       ../../modules/extrastorage.nix #extra storage
       ../../modules/gaming.nix
@@ -29,12 +30,6 @@
     ];
 
 
-
-
-
-  nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -43,12 +38,8 @@
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -58,71 +49,14 @@
   #  enable32Bit = true;
   #};
 
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.alik = {
-    # hashedPasswordFile = "/etc/passwdfile";
-    isNormalUser = true;
-    description = "alik";
-    extraGroups = [ "networkmanager" "wheel" "input" "vboxusers" "libvirt" ];
-    # packages = with pkgs; [];
-  };
-  # home-manager
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "alik" = import ./home.nix;
-    };
-    backupFileExtension = "backup";
-
-  };
 
 
-  environment.systemPackages = with pkgs; [
-   wget
-   git
-   nvd#nixos package version diff tool
-   nixd#nix language server
-   alejandra #nix language server
-   nerd-fonts.fira-code
-   nerd-fonts.meslo-lg
-   chromium
-   unrar
-   gparted
-   nvtopPackages.full
-   kdePackages.filelight
-   eduvpn-client
-
-	#];
-#})
-  ];
 
   networking.firewall.allowedTCPPorts = [ 57621 ];
   networking.firewall.allowedUDPPorts = [ 5353 ];
   # Enable automatic login for the user.services.displayManager.autoLogin
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "alik";
-  #Programs
-
-    # List services that you want to enable:
-
-
-  #trezord adds required udev rules to start the bridge
-  services.trezord.enable = true;
-
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

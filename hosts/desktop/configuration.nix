@@ -28,13 +28,12 @@
     ];
   
 
-   
+  #Mount extra drive and make it 
   fileSystems."/mnt/D" = {
     device = "/dev/disk/by-uuid/218ce1d4-70e8-4b81-aa2b-3abab153a6b4";
     fsType = "ext4";
     options = [ "defaults" "rw" ];
   };
-
   system.activationScripts.setStoragePermissions = {
     text = ''
       mkdir -p /mnt/D
@@ -44,7 +43,7 @@
     deps = [];
   };
   
-
+  #Bridge network for nas
   networking = {
     hostName = "desktop";
     interfaces.eno1 = {
@@ -54,11 +53,6 @@
     }];
   };
   };
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   boot.loader = {
   efi = {
@@ -88,51 +82,11 @@
     open = true;
   };
 
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.alik = {
-    # hashedPasswordFile = "/etc/passwdfile";
-    isNormalUser = true;
-    description = "alik";
-    extraGroups = [ "networkmanager" "wheel" "input" "vboxusers" "libvirt" ];
-    # packages = with pkgs; [];
-  };
-  # home-manager
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "alik" = import ./home.nix;
-    };
-    backupFileExtension = "backup";
-
-  };
-
-
   networking.firewall.allowedTCPPorts = [ 57621 ];
   networking.firewall.allowedUDPPorts = [ 5353 ];
   # Enable automatic login for the user.services.displayManager.autoLogin
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "alik";
-  #Programs
-  
-    # List services that you want to enable:
-
-
-  #trezord adds required udev rules to start the bridge  
-  
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
