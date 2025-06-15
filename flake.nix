@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins ={
+    hyprland-plugins = {
       url = "github:hyprwm/Hyprland-Plugins";
       inputs.hyprland.follows = "hyprland";
     };
@@ -24,48 +24,58 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, 
-  plasma-manager, ... }@inputs: 
-  let
-    system = "x86_64-linux";
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      plasma-manager,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
 
-    username="alik";
+      username = "alik";
 
-    mkHost = hostname: nixpkgs.lib.nixosSystem{
-      inherit system;
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/${hostname}/configuration.nix
-        inputs.home-manager.nixosModules.default
-        inputs.sops-nix.nixosModules.sops
-        inputs.stylix.nixosModules.stylix
-      ];
+      mkHost =
+        hostname:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/${hostname}/configuration.nix
+            inputs.home-manager.nixosModules.default
+            inputs.sops-nix.nixosModules.sops
+            inputs.stylix.nixosModules.stylix
+          ];
+        };
+
+      mkHome =
+        hostname:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { inherit system; };
+          modules = [
+            inputs.plasma-manager.homeManagerModules.plasma-manager
+            ./hosts/${hostname}/home.nix
+            {
+              home = {
+                inherit username;
+                homeDirectory = "/home/${username}";
+              };
+            }
+          ];
+        };
+    in
+    {
+      nixosConfigurations = {
+        desktop = mkHost "desktop";
+        laptop = mkHost "laptop";
+        nixos = mkHost "laptop";
+      };
+
+      homeConfigurations = {
+        "alik@desktop" = mkHome "desktop";
+        "alik@laptop" = mkHome "laptop";
+      };
     };
-
-    mkHome = hostname: home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs {inherit system;};
-      modules= [ 
-        inputs.plasma-manager.homeManagerModules.plasma-manager
-        ./hosts/${hostname}/home.nix
-        {
-          home = {
-            inherit username;
-            homeDirectory = "/home/${username}";
-          };
-        }
-      ];
-    };
-
-  in {
-    nixosConfigurations = {
-      desktop = mkHost "desktop";
-      laptop = mkHost "laptop";
-      nixos = mkHost "laptop";
-    };
-
-    homeConfigurations = {
-      "alik@desktop" = mkHome "desktop";
-      "alik@laptop" = mkHome "laptop";
-    };
-  };
 }

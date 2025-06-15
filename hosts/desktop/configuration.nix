@@ -11,6 +11,7 @@
       ./hardware-configuration.nix #Dont disable it
       #CUSTOM-MODULES
       ../../modules/locale.nix #Dont disable it 
+      ../../modules/common.nix #Dont disable it 
       ../../modules/gc.nix #garbage collection and store opt
       ../../modules/gaming.nix 
       ../../modules/virtualisation.nix 
@@ -26,12 +27,6 @@
       # inputs.home-manager.nixosModules.default
     ];
   
-  
-
-  
-
-  nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
    
   fileSystems."/mnt/D" = {
@@ -64,9 +59,6 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   boot.loader = {
   efi = {
@@ -129,25 +121,6 @@
   };
 
 
-  environment.systemPackages = with pkgs; [
-   wget
-   git
-   nvd#nixos package version diff tool
-   nixd#nix language server
-   alejandra #nix language server
-   nerd-fonts.fira-code
-   nerd-fonts.meslo-lg
-   chromium
-   unrar
-   gparted
-   nvtopPackages.full
-   kdePackages.filelight
-   eduvpn-client 
-
-	#];   
-#})
-  ];
-
   networking.firewall.allowedTCPPorts = [ 57621 ];
   networking.firewall.allowedUDPPorts = [ 5353 ];
   # Enable automatic login for the user.services.displayManager.autoLogin
@@ -159,7 +132,6 @@
 
 
   #trezord adds required udev rules to start the bridge  
-  services.trezord.enable = true;
   
 
   # Enable the OpenSSH daemon.

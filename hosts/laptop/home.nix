@@ -15,6 +15,7 @@ programs, ... }:
       ../../modules/desktop/hyprland.nix
       ../../modules/terminal.nix
       ../../modules/git.nix
+      <plasma-manager/modules>
 #       ../../modules/creative.nix
 
     ];
@@ -25,8 +26,13 @@ programs, ... }:
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "25.05"; # Please read the comment before changing.
 
+  programs.plasma = { 
+    enable = true;
+    
+  };
+  home.stateVersion = "25.05"; # Please read the comment before changing.
+  
   home.packages = with pkgs; [
     keepassxc
     thunderbird
@@ -86,17 +92,8 @@ programs, ... }:
     #   source = ./modules/.config/kcminputrc;
     #   force = true;
     # };
-  # Add more as needed
 
 
-
-    # Add more as needed
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-    # recursive=true;
   };
 
   # Home Manager can also manage your environment variables through
