@@ -20,8 +20,8 @@
 
       #./modules/localai.nix
       #DESKTOP-MODULES
-      # ../../modules/desktop/kde.nix
-      ../../modules/desktop/hypr.nix
+       ../../modules/desktop/kde.nix
+      # ../../modules/desktop/hypr.nix
       # ../../modules/desktop/xfce.nix
       # ../../modules/desktop/gnome.nix
 

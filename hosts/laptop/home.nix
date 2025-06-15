@@ -12,7 +12,7 @@ programs, ... }:
 
   imports =
     [
-      ../../modules/desktop/hyprland.nix
+     # ../../modules/desktop/hyprland.nix
       ../../modules/terminal.nix
       ../../modules/git.nix
       <plasma-manager/modules>
