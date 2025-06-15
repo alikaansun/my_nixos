@@ -11,7 +11,8 @@
   bash = {
     enable = true;
     initExtra = ''
-      # eval "$(ssh-agent -s)" > /dev/null
+      eval "$(ssh-agent -s)" > /dev/null
+      find ~/.ssh -type f -name "id_*" ! -name "*.pub" -exec ssh-add -q {} \; 2>/dev/null
       # ssh-add -q ~/.ssh/id_ed25519g > /dev/null
       # Enable fzf keybindings
       [ -f ${pkgs.fzf}/share/fzf/key-bindings.bash ] && source ${pkgs.fzf}/share/fzf/key-bindings.bash
