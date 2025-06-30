@@ -63,8 +63,8 @@
       "kwin"."Switch to Desktop 17" = "none,,Switch to Desktop 17";
       "kwin"."Switch to Desktop 18" = "none,,Switch to Desktop 18";
       "kwin"."Switch to Desktop 19" = "none,,Switch to Desktop 19";
-      "kwin"."Switch to Desktop 2" = "none,Ctrl+F2,Switch to Desktop 2";
       "kwin"."Switch to Desktop 20" = "none,,Switch to Desktop 20";
+      "kwin"."Switch to Desktop 2" = "none,Ctrl+F2,Switch to Desktop 2";
       "kwin"."Switch to Desktop 3" = "none,Ctrl+F3,Switch to Desktop 3";
       "kwin"."Switch to Desktop 4" = "Ctrl+F4";
       "kwin"."Switch to Desktop 5" = "none,,Switch to Desktop 5";
