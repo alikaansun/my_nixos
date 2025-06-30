@@ -14,7 +14,7 @@
       ../../modules/home/terminal.nix
       ../../modules/home/git.nix
       ../../modules/creative.nix
-      inputs.plasma-manager.homeManagerModules.plasma-manager
+      # ../../modules/plasma.nix
 
     ];
   # This value determines the Home Manager release that your configuration is

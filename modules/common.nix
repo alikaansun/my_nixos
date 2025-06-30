@@ -60,6 +60,7 @@
    nvtopPackages.full
    kdePackages.filelight
    eduvpn-client 
+   lm_sensors
 
 	#];   
 #})

@@ -37,6 +37,7 @@
       cdflakes = "cd ~/Documents/Repos/myflakes";
       e = "nohup dolphin --new-window . > /dev/null 2>&1 &";
       freecad-x11 = "QT_QPA_PLATFORM=xcb freecad";
+      rc2nix = "nix run github:nix-community/plasma-manager > ~/.dotfiles/modules/home/plasma.txt";
 
 
     };
