@@ -22,6 +22,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    nvf={
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };  
   };
 
   outputs =
@@ -30,6 +34,7 @@
       nixpkgs,
       home-manager,
       plasma-manager,
+      nvf,
       ...
     }@inputs:
     let
@@ -47,6 +52,7 @@
             inputs.home-manager.nixosModules.default
             inputs.sops-nix.nixosModules.sops
             inputs.stylix.nixosModules.stylix
+            # inputs.nvf.nixosModules.default
           ];
         };
 
@@ -56,6 +62,7 @@
           pkgs = import nixpkgs { inherit system; };
           modules = [
             inputs.plasma-manager.homeManagerModules.plasma-manager
+            inputs.nvf.homeManagerModules.default
             ./hosts/${hostname}/home.nix
             {
               home = {
