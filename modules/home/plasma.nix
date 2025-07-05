@@ -19,7 +19,7 @@
     }; 
     kscreenlocker = {
       appearance = {
-        wallpaper = "/home/alik/.dotfiles/modules/desktop/fav.jpg";
+        wallpaper = "/home/alik/.dotfiles/modules/desktop/fav1.jpg";
         showMediaControls = true;
         };
     };
