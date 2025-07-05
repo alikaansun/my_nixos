@@ -23,6 +23,8 @@
             python.enable = true;
 
           };
+          statusline.lualine.enable = true;
+          telescope.enable = true;
         };
         ############
       };

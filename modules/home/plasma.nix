@@ -3,6 +3,7 @@
   imports = [
   inputs.plasma-manager.homeManagerModules.plasma-manager
   ];
+
   programs.plasma= { 
 
     workspace = {  
@@ -16,6 +17,12 @@
         # size = 24;
       };
     }; 
+    kscreenlocker = {
+      appearance = {
+        wallpaper = "/home/alik/.dotfiles/modules/desktop/fav.jpg";
+        showMediaControls = true;
+        };
+    };
 
     kwin = {
       effects = {
