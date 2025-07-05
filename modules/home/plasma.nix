@@ -64,6 +64,7 @@
         "Switch to Desktop 1" = "Ctrl+F1";
         "Switch to Desktop 2" = "Ctrl+F2";
       };
+      "ksmserver"."Lock Session" = ["Meta+L" "Screensaver,Meta+L" "Screensaver,Lock Session"];
       "services/Alacritty.desktop"."New" = "Ctrl+Alt+T";
       "services/chromium-browser.desktop"."new-window" = "Meta+Space";
       "services/code.desktop"."_launch" = "Ctrl+Alt+V";
