@@ -5,7 +5,7 @@
   ];
 
   programs.plasma= { 
-
+    enable = true;
     workspace = {  
       theme="breeze-dark";
       wallpaper="/home/alik/.dotfiles/modules/desktop/fav.jpg";

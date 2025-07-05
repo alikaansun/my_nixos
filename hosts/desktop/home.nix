@@ -14,16 +14,10 @@
       ../../modules/home/terminal.nix
       ../../modules/home/git.nix
       ../../modules/creative.nix
-      # ../../modules/plasma.nix
+      ../../modules/home/plasma.nix
 
     ];
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
+
   home.stateVersion = "24.11"; # Please read the comment before changing.
   
   home.packages = with pkgs; [
@@ -73,23 +67,7 @@
   # home.backupFileExtension = "backup";
 
   home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".config/kdeglobals".source = ./modules/.config/kdeglobals; 
-    # ".config/kwinrc".source = ./modules/.config/kwinrc; 
-    # ".config/kglobalshortcutsrc".source = ./modules/.config/kglobalshortcutsrc;
-    # ".config/kwinrulesrc".source = ./modules/.config/kwinrulesrc;
-    # ".config/kcminputrc".source = ./modules/.config/kcminputrc;
-    
-    
-    # ".config/kcminputrc" = {
-    #   source = ./modules/.config/kcminputrc;
-    #   force = true;
-    # };
-  # Add more as needed
-    
-    
+
     
     # Add more as needed
     # # You can also set the file content immediately.
