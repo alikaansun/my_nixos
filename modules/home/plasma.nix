@@ -50,6 +50,10 @@
         ];
       };
     };
+    krunner={
+      activateWhenTypingOnDesktop=true;
+      shortcuts.launch="Alt + Space";
+      };
 
     shortcuts = {
       kwin = {
@@ -78,6 +82,33 @@
       "services/thunderbird.desktop"."_launch" = "Ctrl+Alt+M";
 
     }; 
+
+    configFile = {
+      "kwinrc"."Plugins"."translucencyEnabled" = true;
+      "kwinrc"."Effect-translucency"."DropdownMenus" = 80;
+      "kwinrc"."Effect-translucency"."IndividualMenuConfig" = true;
+      "kwinrc"."Effect-translucency"."Menus" = 80;
+      "kwinrc"."Effect-translucency"."PopupMenus" = 80;
+      "kwinrc"."Effect-translucency"."TornOffMenus" = 90;
+      "kwinrc"."TabBox"."LayoutName" = "compact";
+      "kwinrc"."Plugins"."dimscreenEnabled" = true;
+
+      "kwinrc"."Desktops"."Id_1" = "Desktop_1";
+      "kwinrc"."Desktops"."Id_2" = "Desktop_2";
+      "kwinrc"."Desktops"."Name_1" = "Desktop 1";
+      "kwinrc"."Desktops"."Name_2" = "Desktop 2";
+      "kwinrc"."Desktops"."Number" = 2;
+      "kwinrc"."Desktops"."Rows" = 1;
+
+      "kwalletrc"."Wallet"."First Use" = false;
+    };
+    
+    dataFile = {
+      "dolphin/view_properties/global/.directory"."Dolphin"."SortRole" = "modificationtime";
+      "dolphin/view_properties/global/.directory"."Dolphin"."ViewMode" = 1;
+      "dolphin/view_properties/global/.directory"."Settings"."HiddenFilesShown" = true;
+    };
+
     
   };
     # panels = [
