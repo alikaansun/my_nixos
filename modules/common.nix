@@ -61,6 +61,7 @@
    kdePackages.filelight
    eduvpn-client 
    lm_sensors
+  #  waydroid
 
 	#];   
 #})
