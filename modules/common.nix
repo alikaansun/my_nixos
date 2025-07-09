@@ -45,6 +45,17 @@
     backupFileExtension = "backup";
 
   };
+  
+  programs.chromium = {
+    enable = true;
+    # enablePlasmaBrowserIntegration = false;
+    extensions = [
+      "oboonakemofpalcgghocfoadofidjkkk" # keepassxc
+      "ekhagklcjbdpajgpjgmbionohlpdbjgc" # zotero
+      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
+    ];
+
+  };
 
   environment.systemPackages = with pkgs; [
    wget
@@ -54,15 +65,22 @@
    nixfmt-rfc-style #nix language server
    nerd-fonts.fira-code
    nerd-fonts.meslo-lg
-   chromium
    unrar
    gparted
    nvtopPackages.full
    kdePackages.filelight
    eduvpn-client 
    lm_sensors
+   (chromium.override {
+    commandLineArgs = [
+      "--force-device-scale-factor=1"
+      "--disable-features=UseOzonePlatform"
+      "--enable-features=VaapiVideoDecoder"
+      "--ozone-platform=wayland"  # or "x11" if you prefer
+    ];
+  })
   #  waydroid
-
+  
 	#];   
 #})
   ];
