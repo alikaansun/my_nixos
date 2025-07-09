@@ -32,8 +32,8 @@
       nightLight = {
         enable = true;
         mode = "times";
-        temperature.day = 4000;
-        temperature.night = 5100;
+        temperature.day = 4900;
+        temperature.night = 4100;
         time.evening="20:00"; 
         time.morning="06:30";
       };
@@ -65,8 +65,14 @@
         "Switch One Desktop Up" = "Meta+Ctrl+Up";
         "Switch One Desktop to the Left" = "Meta+Ctrl+Left";
         "Switch One Desktop to the Right" = "Meta+Ctrl+Right";
+        "Window One Desktop Down" = "Meta+Ctrl+Shift+Down";
+        "Window One Desktop Up" = "Meta+Ctrl+Shift+Up";
+        "Window One Desktop to the Left" = "Meta+Ctrl+Shift+Left";
+        "Window One Desktop to the Right" = "Meta+Ctrl+Shift+Right";
         "Switch to Desktop 1" = "Ctrl+F1";
         "Switch to Desktop 2" = "Ctrl+F2";
+        "Window Close" = ["Alt+4" "Alt+F4,Alt+F4,Close Window"];
+
       };
       "ksmserver"."Lock Session" = ["Meta+L" "Screensaver,Meta+L" "Screensaver,Lock Session"];
       "services/Alacritty.desktop"."New" = "Ctrl+Alt+T";
