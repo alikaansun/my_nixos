@@ -63,6 +63,7 @@
           modules = [
             inputs.plasma-manager.homeManagerModules.plasma-manager
             inputs.nvf.homeManagerModules.default
+            inputs.sops-nix.nixosModules.sops
             ./hosts/${hostname}/home.nix
             {
               home = {
