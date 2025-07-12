@@ -29,7 +29,7 @@
   # services.xserver.libinput.enable = true;
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
-  sops.age.keyFile = "~/home/alik/.config/sops/age/keys.txt";
+  sops.age.keyFile = "/home/alik/.config/sops/age/keys.txt";
 
   
   
