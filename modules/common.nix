@@ -27,7 +27,9 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
+  sops.defaultSopsFile = ./secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "~/home/alik/.config/sops/age/keys.txt";
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alik = {
     # hashedPasswordFile = "/etc/passwdfile";
@@ -48,17 +50,20 @@
   
   programs.chromium = {
     enable = true;
-    # enablePlasmaBrowserIntegration = false;
+    enablePlasmaBrowserIntegration = true;
     extensions = [
       "oboonakemofpalcgghocfoadofidjkkk" # keepassxc
       "ekhagklcjbdpajgpjgmbionohlpdbjgc" # zotero
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
+      "cimiefiiaegbelhefglklhhakcgmhkai" # plasmintegration
     ];
 
   };
 
   environment.systemPackages = with pkgs; [
    wget
+   age
+   sops
    git
    nvd#nixos package version diff tool
    nixd#nix language server
