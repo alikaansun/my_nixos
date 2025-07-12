@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
-
+  imports = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
   home.username = "alik";
   home.homeDirectory = "/home/alik";
   nixpkgs.config.allowUnfree = true;
