@@ -1,20 +1,15 @@
 {inputs,  pkgs,  ... }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "alik";
-  home.homeDirectory = "/home/alik";
-  nixpkgs.config.allowUnfree = true;
-  home.enableNixpkgsReleaseCheck=false;
-  
+
   imports =
     [
       # ./modules/desktop/hyprland.nix
+      ../../modules/home/common.nix
       ../../modules/home/terminal.nix
       ../../modules/home/git.nix
-      ../../modules/creative.nix
       ../../modules/home/plasma.nix
+      ../../modules/creative.nix
 
     ];
 
@@ -54,7 +49,7 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-  
+
   programs.ssh = {
     enable = true;
     matchBlocks = {

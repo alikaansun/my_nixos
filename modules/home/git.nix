@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs,config, ... }:
 {
   
   programs.git = {
     enable = true;
     userName = "alik";
-    userEmail = "asunnetcoglu@gmail.com";
+    userEmail = config.sops.secrets.git_email.path;
     extraConfig = {
       init.defaultBranch = "main";
       pull.rebase = "true";
