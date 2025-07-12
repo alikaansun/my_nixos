@@ -30,6 +30,9 @@
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "~/home/alik/.config/sops/age/keys.txt";
+  # sops.secrets.git_email
+  
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alik = {
     # hashedPasswordFile = "/etc/passwdfile";
