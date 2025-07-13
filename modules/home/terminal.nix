@@ -54,12 +54,12 @@
 
       shellAliases = {
         cdrepos = "cd ~/Documents/Repos";
+        cdflakes = "cd ~/Documents/Repos/my_nix_flakes";
         nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#$(hostname)";
         eduvpn = "nohup eduvpn-gui &";
         ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10  
         sudo nix-collect-garbage";
         nixupp = "sudo nix flake update --flake ~/.dotfiles";
-        cdflakes = "cd ~/Documents/Repos/myflakes";
         e = "nohup dolphin --new-window . > /dev/null 2>&1 &";
         freecad-x11 = "QT_QPA_PLATFORM=xcb freecad";
         rc2nix = "nix run github:nix-community/plasma-manager > ~/.dotfiles/modules/home/plasma.txt";

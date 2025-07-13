@@ -83,7 +83,7 @@
     commandLineArgs = [
       "--force-device-scale-factor=1"
       "--disable-features=UseOzonePlatform"
-      "--enable-features=VaapiVideoDecoder"
+      # "--enable-features=VaapiVideoDecoder"
       "--ozone-platform=wayland"  # or "x11" if you prefer
     ];
   })
