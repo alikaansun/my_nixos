@@ -1,44 +1,46 @@
 { config, pkgs, lib,... }:
 
 {
-
-  sops.defaultSopsFile = ../secrets/firefly.yaml;
-  sops.secrets.firefly-db-password = {
-    owner = config.services.firefly-iii.user;
-  };
-
-  
-  services.firefly-iii = {
-    enable = true;
-    hostname = "finance.localhost"; # Or your preferred domain
-    # Database configuration
-    database = {
-      type = "mysql"; # Or "pgsql" for PostgreSQL
-      host = "localhost";
-      name = "firefly";
-      user = "firefly";
-      passwordFile = config.sops.secrets.firefly-db-password.path; 
-      port = 3306;
-    };
-  };
-
-  # Enable the database service (MySQL in this example)
-  services.mysql = {
-    enable = true;
-    package = pkgs.mysql80;
-    ensureDatabases = [ "firefly" ];
-    ensureUsers = [
-      {
-        name = "firefly";
-        ensurePermissions = {
-          "firefly.*" = "ALL PRIVILEGES";
-        };
+  config = {
+    # https://github.com/firefly-iii/firefly-iii/blob/main/.env.example
+    sops.secrets.firefly.passwd={};
+    sops.secrets.git_email={};
+    
+    services.firefly-iii = {
+      enable = true;
+      virtualHost = "localhost.finance";
+      settings = {
+        APP_ENV = "production";
+        # APP_KEY_FILE = "/var/secrets/firefly-iii-app-key.txt";
+        SITE_OWNER = config.sops.secrets.git_email.path;
+        DB_CONNECTION = "mysql";
+        DB_HOST = "db";
+        DB_PORT = 3306;
+        DB_DATABASE = "firefly";
+        DB_USERNAME = "firefly";
+        DB_PASSWORD_FILE = config.sops.secrets.firefly.passwd.path;
       }
-    ];
-  };
+      ;
+    };
 
-  # Override automatic startup - this is the key part
-  # systemd.services.firefly-iii = {
-  #   wantedBy = lib.mkForce [];
-  # };
+    # # Enable the database service (MySQL in this example)
+    services.mysql = {
+      enable = true;
+      package = pkgs.mysql80;
+      ensureDatabases = [ "firefly" ];
+      ensureUsers = [
+        {
+          name = "firefly";
+          ensurePermissions = {
+            "firefly.*" = "ALL PRIVILEGES";
+          };
+        }
+      ];
+    };
+
+    # Override automatic startup - this is the key part
+    # systemd.services.firefly-iii = {
+    #   wantedBy = lib.mkForce [];
+    # };
+  };
 }

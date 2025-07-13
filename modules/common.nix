@@ -30,7 +30,7 @@
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/alik/.config/sops/age/keys.txt";
-
+  
   
   
   # Define a user account. Don't forget to set a password with ‘passwd’.

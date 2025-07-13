@@ -23,9 +23,9 @@
       # ./modules/desktop/xfce.nix
       # ./modules/desktop/gnome.nix
       
-      # ./modules/desktop/stylix.nix
-      # inputs.home-manager.nixosModules.default
-      # inputs.sops-nix.nixosModules.sops
+      #Services
+      ../../modules/firefly.nix
+
     ];
   
   #Mount extra drive and make it 

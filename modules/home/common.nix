@@ -11,6 +11,6 @@
   sops.defaultSopsFile = ../../modules/secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/alik/.config/sops/age/keys.txt";
-  sops.secrets.git_email={};
+  
 
 }
