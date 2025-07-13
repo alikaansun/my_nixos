@@ -4,8 +4,14 @@
   # https://github.com/firefly-iii/firefly-iii/blob/main/.env.example
   config = {
     sops.secrets = {
-      firefly_app_key = {};
-      firefly_passwd = {};
+      firefly_app_key = {
+        owner = "firefly";
+        group = "firefly";
+      };
+      firefly_passwd = {
+        owner = "firefly";
+        group = "firefly";
+      };
       git_email = {};
     };
   
@@ -16,7 +22,7 @@
     virtualHost = "localhost.finance";
     settings = {
       APP_ENV = "production";
-      APP_KEY = config.sops.secrets.firefly_app_key.path;
+      APP_KEY_FILE = config.sops.secrets.firefly_app_key.path;
       SITE_OWNER = config.sops.secrets.git_email.path;
       DB_CONNECTION = "mysql";
       DB_HOST = "localhost";  # Changed from "db" to "localhost"
@@ -46,7 +52,13 @@
   # users.mysql.
 
 
-  services.nginx.enable = true;
+  services.nginx = {
+    enable = true;
+    recommendedTlsSettings = true;
+    recommendedOptimisation = true;
+    recommendedGzipSettings = true;
+    recommendedProxySettings = true;
+  };
   # Optional: Override automatic startup if needed
   # systemd.services.firefly-iii = {
   #   wantedBy = lib.mkForce [];

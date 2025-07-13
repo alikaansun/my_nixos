@@ -24,7 +24,7 @@
       # ./modules/desktop/gnome.nix
       
       #Services
-      ../../modules/firefly.nix
+      ../../modules/actual.nix
 
     ];
   
