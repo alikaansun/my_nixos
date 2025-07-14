@@ -1,5 +1,5 @@
 { config, pkgs,
-lib , system,
+lib ,
 programs,inputs, ... }:
 
 {
@@ -12,6 +12,7 @@ programs,inputs, ... }:
       ../../modules/home/git.nix
       # inputs.plasma-manager.homeManagerModules.plasma-manager
       ../../modules/home/plasma.nix
+      inputs.zen-browser.homeModules.beta
 #       ../../modules/creative.nix
 
     ];
@@ -36,7 +37,6 @@ programs,inputs, ... }:
     spotify
     foliate #ebook
     rustdesk
-    inputs.zen-browser.packages."${system}".specific
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -51,7 +51,7 @@ programs,inputs, ... }:
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-
+  programs.zen-browser.enable = true;
   #virt-manager with wayland requires a gdk cursor to be set
   #In order to run on Wayland, virt-manager must be ran under XWayland with `$ GDK_BACKEND=x11 virt-manager` or a gdk cursor must be set.
   #An example of setting a gdk cursor with home-manager is as follows:

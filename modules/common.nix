@@ -87,10 +87,7 @@
       "--ozone-platform=wayland"  # or "x11" if you prefer
     ];
   })
-  #  waydroid
-  
-	#];   
-#})
+    inputs.zen-browser.packages."${system}".beta
   ];
   services.trezord.enable = true;
 

@@ -27,7 +27,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };  
     shad06_nixpkgs.url="github:nixos/nixpkgs/b95dd9da90309705b8a32f849b80fad1cca16620";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser = {
+      url="github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -37,7 +40,6 @@
       home-manager,
       plasma-manager,
       nvf,
-      zen-browser,
       ...
     }@inputs:
     let
