@@ -1,12 +1,15 @@
-{ config, pkgs, ... }:
-
+{ inputs, pkgs, ... }:
+let
+  oldPkgs = import inputs.shad06_nixpkgs { system = pkgs.system; };
+in
 {
   environment.systemPackages = with pkgs; [
     protonup
     lutris
     heroic
     hmcl# minecraft
-    shadps4 
+    oldPkgs.shadps4 
+    # shadps4 
     gamemode
     wineWowPackages.full
     # wine-staging

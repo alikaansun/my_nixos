@@ -734,8 +734,25 @@
         "nixpkgs": "nixpkgs_2",
         "nvf": "nvf",
         "plasma-manager": "plasma-manager",
+        "shad06_nixpkgs": "shad06_nixpkgs",
         "sops-nix": "sops-nix",
         "stylix": "stylix"
+      }
+    },
+    "shad06_nixpkgs": {
+      "locked": {
+        "lastModified": 1741637051,
+        "narHash": "sha256-DNcje3koTBO/tBZuo7HF7q8ywQnLhlTc8KoqxeEdzdY=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "b95dd9da90309705b8a32f849b80fad1cca16620",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "b95dd9da90309705b8a32f849b80fad1cca16620",
+        "type": "github"
       }
     },
     "sops-nix": {
