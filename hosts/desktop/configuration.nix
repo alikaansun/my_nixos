@@ -43,15 +43,15 @@
     deps = [];
   };
   
-  #Bridge network for nas
+  # Bridge network for nas
   networking = {
     hostName = "desktop";
-    interfaces.eno1 = {
-    ipv4.addresses = [{
-      address = "192.168.10.1";
-      prefixLength = 24;
-    }];
-  };
+  #   interfaces.eno1 = {
+  #   ipv4.addresses = [{
+  #     address = "192.168.10.1";
+  #     prefixLength = 24;
+  #   }];
+  # };
   };
 
   boot.loader = {
