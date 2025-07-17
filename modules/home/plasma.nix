@@ -74,9 +74,11 @@
         "Window Close" = ["Alt+4" "Alt+F4,Alt+F4,Close Window"];
 
       };
+      "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
       "ksmserver"."Lock Session" = ["Meta+L" "Screensaver,Meta+L" "Screensaver,Lock Session"];
       "services/Alacritty.desktop"."New" = "Ctrl+Alt+T";
-      "services/chromium-browser.desktop"."new-window" = "Meta+Space";
+      # "services/chromium-browser.desktop"."new-window" = "Meta+Space";
+      "services/zen-beta.desktop"."_launch" = "Meta+Space";
       "services/code.desktop"."_launch" = "Ctrl+Alt+V";
       "services/discord.desktop"."_launch" = "Ctrl+Alt+D";
       "services/obsidian.desktop"."_launch" = "Ctrl+Alt+O";

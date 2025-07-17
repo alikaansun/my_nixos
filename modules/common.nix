@@ -79,14 +79,15 @@
    kdePackages.filelight
    eduvpn-client 
    lm_sensors
-   (chromium.override {
-    commandLineArgs = [
-      "--force-device-scale-factor=1"
-      "--disable-features=UseOzonePlatform"
-      # "--enable-features=VaapiVideoDecoder"
-      "--ozone-platform=wayland"  # or "x11" if you prefer
-    ];
-  })
+   (chromium
+  #  .override {commandLineArgs = [
+      # "--force-device-scale-factor=1"
+      # "--disable-features=UseOzonePlatform"
+      #"--enable-features=VaapiVideoDecoder"
+      # "--ozone-platform=wayland"  # or "x11" if you prefer
+    # ];
+  # }
+  )
     inputs.zen-browser.packages."${system}".beta
   ];
   services.trezord.enable = true;
