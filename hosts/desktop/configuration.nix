@@ -24,7 +24,7 @@
       # ./modules/desktop/gnome.nix
       
       #Services
-      ../../modules/actual.nix
+      # ../../modules/finance.nix
 
     ];
   
