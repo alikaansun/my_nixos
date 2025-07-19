@@ -1,5 +1,6 @@
 { pkgs,config, ... }:
 {
+        
   sops.secrets.git_email={};
 
   programs.git = {

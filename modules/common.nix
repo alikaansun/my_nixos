@@ -28,7 +28,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
   sops.defaultSopsFile = ./secrets/secrets.yaml;
-  sops.defaultSopsFormat = "yaml";
+  # sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/alik/.config/sops/age/keys.txt";
   
   
@@ -64,7 +64,7 @@
   };
 
   programs.bash.completion.enable=true;
-  
+
   environment.systemPackages = with pkgs; [
    wget
    age
