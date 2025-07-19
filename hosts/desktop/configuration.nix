@@ -24,7 +24,8 @@
       # ./modules/desktop/gnome.nix
       
       #Services
-      # ../../modules/finance.nix
+      # ../../modules/services/finance.nix
+      ../../modules/services/miniflux.nix
 
     ];
   

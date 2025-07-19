@@ -4,7 +4,7 @@
   config = {
     sops.secrets = {
       miniflux_admin = {
-        sopsFile = ../../modules/secrets/miniflux_admin;
+        sopsFile = ../secrets/miniflux_admin.env;
       };
       git_email = {};
     };
@@ -17,5 +17,5 @@
         LISTEN_ADDR = "localhost:8080";
     };  
   };
-}
+};
 }
