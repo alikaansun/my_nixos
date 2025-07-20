@@ -38,7 +38,7 @@
     # hashedPasswordFile = "/etc/passwdfile";
     isNormalUser = true;
     description = "alik";
-    extraGroups = [ "networkmanager" "wheel" "input" "vboxusers" "libvirt" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "vboxusers" "libvirt" "uinput"];
     # packages = with pkgs; [];
   };
   # home-manager

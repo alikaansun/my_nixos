@@ -3,11 +3,11 @@
 with lib;
 
 let
-  cfg = config.services.kanata;
+  cfg = config.services.mykanata;
 in
 
 {
-  options.services.kanata = {
+  options.services.mykanata = {
     enable = mkOption {
       type = types.bool;
       default = false;
@@ -46,6 +46,7 @@ in
               j (multi f24 (tap-hold $tap-time $hold-time j rsft)) 
               k (multi f24 (tap-hold $tap-time $hold-time k ralt)) 
               l (multi f24 (tap-hold $tap-time $hold-time l rmet)) 
+              ; (multi f24 (tap-hold $tap-time $hold-time ; rctl)) 
             )
 
             (deflayer base

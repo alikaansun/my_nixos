@@ -15,7 +15,7 @@
       ../../modules/gc.nix #garbage collection and store opt
 #       ../../modules/extrastorage.nix #extra storage
       ../../modules/gaming.nix
-      ../../modules/katana.nix
+      ../../modules/kanata.nix
 #       ../../modules/virtualisation.nix
 #       ../../modules/networking.nix
 
@@ -31,7 +31,7 @@
     ];
 
 
-  services.kanata = {
+  services.mykanata = {
     enable = true;
     deviceName = "/dev/input/event0"; # Change this to your actual device if needed
   };
