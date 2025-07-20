@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -22,6 +22,22 @@ in
   };
 
   config = mkIf cfg.enable {
+    # Ensure uinput module is loaded and uinput group exists
+    boot.kernelModules = [ "uinput" ];
+    users.groups.uinput = {};
+    
+    # Create comprehensive udev rules for uinput and input devices
+    services.udev.extraRules = ''
+      KERNEL=="uinput", GROUP="uinput", MODE="0660", OPTIONS+="static_node=uinput"
+      SUBSYSTEM=="input", GROUP="input", MODE="0664"
+      KERNEL=="event*", GROUP="input", MODE="0664"
+    '';
+
+    # Ensure proper permissions on boot
+    systemd.tmpfiles.rules = [
+      "c /dev/uinput 0660 root uinput"
+    ];
+
     services.kanata = {
       enable = true;
       keyboards = {
