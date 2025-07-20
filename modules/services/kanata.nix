@@ -55,14 +55,14 @@ in
 
             (defalias
               escctrl (tap-hold 100 100 esc lctl)
-              a (multi f24 (tap-hold $tap-time $hold-time a lctl)) 
-              s (multi f24 (tap-hold $tap-time $hold-time s lmet)) 
-              d (multi f24 (tap-hold $tap-time $hold-time d lalt)) 
-              f (multi f24 (tap-hold $tap-time $hold-time f lsft)) 
-              j (multi f24 (tap-hold $tap-time $hold-time j rsft)) 
-              k (multi f24 (tap-hold $tap-time $hold-time k ralt)) 
-              l (multi f24 (tap-hold $tap-time $hold-time l rmet)) 
-              ; (multi f24 (tap-hold $tap-time $hold-time ; rctl)) 
+              a (multi f24 (tap-hold $tap-time $hold-time a lsft)) 
+              s (multi f24 (tap-hold $tap-time $hold-time s lalt)) 
+              d (multi f24 (tap-hold $tap-time $hold-time d lmet)) 
+              f (multi f24 (tap-hold $tap-time $hold-time f lctl)) 
+              j (multi f24 (tap-hold $tap-time $hold-time j rctl)) 
+              k (multi f24 (tap-hold $tap-time $hold-time k rmet)) 
+              l (multi f24 (tap-hold $tap-time $hold-time l ralt)) 
+              ; (multi f24 (tap-hold $tap-time $hold-time ; rsft)) 
             )
 
             (deflayer base
