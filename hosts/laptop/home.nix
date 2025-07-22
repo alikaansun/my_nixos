@@ -59,7 +59,8 @@ programs,inputs, ... }:
     package = pkgs.vanilla-dmz;
     name = "Vanilla-DMZ";
   };
-
+  
+  
   # home.backupFileExtension = "backup";
 
   home.file = {

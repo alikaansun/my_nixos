@@ -51,6 +51,19 @@
           git commit -m "$1"
           git push
         }
+
+        # Auto-add all SSH keys
+        if [ -z "$SSH_AUTH_SOCK" ]; then
+          eval $(ssh-agent -s) > /dev/null 2>&1
+        fi
+
+        # Add all private keys in ~/.ssh/
+        for key in ~/.ssh/id_*; do
+          if [[ -f "$key" && ! "$key" =~ \.pub$ ]]; then
+            ssh-add "$key" 2>/dev/null
+          fi
+        done
+
       '';
 
       shellAliases = {

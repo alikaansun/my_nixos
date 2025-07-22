@@ -11,6 +11,15 @@
   sops.defaultSopsFile = ../../modules/secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/alik/.config/sops/age/keys.txt";
+
+  programs.ssh = {
+  enable = true;
+  addKeysToAgent = "yes";
+  extraConfig = ''
+    AddKeysToAgent yes
+    IdentitiesOnly no
+  '';
+  };
   
 
 }
