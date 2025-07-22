@@ -26,7 +26,7 @@ programs,inputs, ... }:
     obsidian
     fastfetch
     klayout
-    discord
+    vesktop
     vlc
     parted
     nextcloud-client
@@ -35,6 +35,7 @@ programs,inputs, ... }:
     zotero
     obs-studio
     spotify
+    spicetify-cli
     foliate #ebook
     rustdesk
     # # It is sometimes useful to fine-tune packages, for example, by applying

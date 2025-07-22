@@ -23,7 +23,7 @@
     obsidian
     fastfetch
     klayout
-    discord
+    vesktop
     vlc
     parted
     nextcloud-client
@@ -33,6 +33,7 @@
     zotero
     obs-studio
     spotify 
+    spicetify-cli
     foliate #ebook
     rustdesk
 
@@ -50,17 +51,17 @@
     # '')
   ];
 
-  programs.ssh = {
-    enable = true;
-    matchBlocks = {
-      "github.com" = {
-        hostname = "github.com";
-        user = "git";
-        identityFile = "~/.ssh/id_ed25519";
-        identitiesOnly = true;
-      };
-    };
-  };
+  # programs.ssh = {
+  #   enable = true;
+  #   matchBlocks = {
+  #     "github.com" = {
+  #       hostname = "github.com";
+  #       user = "git";
+  #       identityFile = "~/.ssh/id_ed25519";
+  #       identitiesOnly = true;
+  #     };
+  #   };
+  # };
   #virt-manager with wayland requires a gdk cursor to be set
   #In order to run on Wayland, virt-manager must be ran under XWayland with `$ GDK_BACKEND=x11 virt-manager` or a gdk cursor must be set. 
   #An example of setting a gdk cursor with home-manager is as follows: 
