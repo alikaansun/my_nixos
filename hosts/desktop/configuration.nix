@@ -88,7 +88,8 @@
   # Enable automatic login for the user.services.displayManager.autoLogin
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "alik";
-
+ 
+  services.trezord.enable = true;
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 

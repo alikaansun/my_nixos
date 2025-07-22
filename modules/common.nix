@@ -90,9 +90,9 @@
     # ];
   # }
   )
-    inputs.zen-browser.packages."${system}".beta
+    inputs.zen-browser.packages."${system}".default
   ];
-  services.trezord.enable = true;
+  
 
 
 }

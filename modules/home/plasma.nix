@@ -92,9 +92,10 @@ in
       "ksmserver"."Lock Session" = ["Meta+L" "Screensaver,Meta+L" "Screensaver,Lock Session"];
       "services/Alacritty.desktop"."New" = "Ctrl+Alt+T";
       # "services/chromium-browser.desktop"."new-window" = "Meta+Space";
-      "services/zen-beta.desktop"."_launch" = "Meta+Space";
+      "services/zen.desktop"."_launch" = "Meta+Space";
       "services/code.desktop"."_launch" = "Ctrl+Alt+V";
-      "services/discord.desktop"."_launch" = "Ctrl+Alt+D";
+      # "services/discord.desktop"."_launch" = "Ctrl+Alt+D";
+      "services/vesktop.desktop"."_launch" = "Ctrl+Alt+D";
       "services/obsidian.desktop"."_launch" = "Ctrl+Alt+O";
       "services/org.kde.konsole.desktop"."_launch" = [ ];
       "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Print";
