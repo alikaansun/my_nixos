@@ -40,6 +40,7 @@
     obs-studio
     foliate #ebook
     klayout
+    rsshub
   ];
   
 

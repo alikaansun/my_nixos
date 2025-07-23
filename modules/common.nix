@@ -8,10 +8,7 @@
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}"]; # Good thing to have for LSP
 
   nixpkgs.config.allowUnfree = true;
-  # Enable networking
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
   networking.networkmanager.enable = true;
 
     # Enable sound with pipewire.
@@ -25,8 +22,7 @@
 
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   # sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/alik/.config/sops/age/keys.txt";
