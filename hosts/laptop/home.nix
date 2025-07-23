@@ -20,24 +20,6 @@ programs,inputs, ... }:
   home.stateVersion = "25.05"; # Please read the comment before changing.
   
   home.packages = with pkgs; [
-    keepassxc
-    thunderbird
-    vscode
-    obsidian
-    fastfetch
-    klayout
-    vesktop
-    vlc
-    parted
-    nextcloud-client
-    libreoffice-qt6
-    ffmpeg
-    zotero
-    obs-studio
-    spotify
-    spicetify-cli
-    foliate #ebook
-    rustdesk
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -51,7 +33,8 @@ programs,inputs, ... }:
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-  programs.zen-browser.enable = true;
+  # programs.zen-browser.enable = true;
+  
   #virt-manager with wayland requires a gdk cursor to be set
   #In order to run on Wayland, virt-manager must be ran under XWayland with `$ GDK_BACKEND=x11 virt-manager` or a gdk cursor must be set.
   #An example of setting a gdk cursor with home-manager is as follows:

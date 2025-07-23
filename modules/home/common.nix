@@ -20,6 +20,27 @@
     IdentitiesOnly no
   '';
   };
+
+  home.packages = with pkgs; [
+    keepassxc
+    thunderbird
+    vscode
+    obsidian
+    fastfetch
+    vesktop
+    spotify 
+    vlc
+    parted
+    nextcloud-client
+    ffmpeg
+    zotero
+    tor-browser
+    rustdesk
+    libreoffice-qt6
+    obs-studio
+    foliate #ebook
+    klayout
+  ];
   
 
 }
