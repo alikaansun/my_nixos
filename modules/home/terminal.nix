@@ -70,7 +70,6 @@
         cdrepos = "cd ~/Documents/Repos";
         cdflakes = "cd ~/Documents/Repos/my_nix_flakes";
         nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#$(hostname)";
-        eduvpn = "nohup eduvpn-gui &";
         ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10  
         sudo nix-collect-garbage";
         nixupp = "sudo nix flake update --flake ~/.dotfiles";
