@@ -78,6 +78,7 @@
    kdePackages.filelight
    eduvpn-client 
    lm_sensors
+   pciutils
    (chromium
   #  .override {commandLineArgs = [
       # "--force-device-scale-factor=1"
