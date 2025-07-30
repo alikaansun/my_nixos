@@ -77,12 +77,12 @@
     enable32Bit = true;
   };
 
-  # services.xserver.videoDrivers = ["amdgpu"];
-  services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia = {
-    modesetting.enable = true;
-    open = true;
-  };
+  services.xserver.videoDrivers = ["amdgpu"];
+  # services.xserver.videoDrivers = ["nvidia"];
+  # hardware.nvidia = {
+  #   modesetting.enable = true;
+  #   open = true;
+  # };
 
   networking.firewall.allowedTCPPorts = [ 57621 ];
   networking.firewall.allowedUDPPorts = [ 5353 ];
