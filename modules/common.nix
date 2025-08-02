@@ -79,6 +79,9 @@
    eduvpn-client 
    lm_sensors
    pciutils
+   nfs-utils
+   cifs-utils
+   trezor-suite
    (chromium
   #  .override {commandLineArgs = [
       # "--force-device-scale-factor=1"

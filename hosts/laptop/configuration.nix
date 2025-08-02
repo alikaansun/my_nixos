@@ -28,7 +28,7 @@
 
   services.mykanata = {
     enable = true;
-    deviceName = "/dev/input/event0"; # Change this to your actual device if needed
+    deviceName = "/dev/input/event0";
   };
 
   boot.loader.systemd-boot.enable = true;
