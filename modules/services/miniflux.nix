@@ -1,4 +1,4 @@
-{ config, pkgs, lib,... }:
+{ config, pkgs, lib, ... }:
 
 {
   config = {
@@ -6,19 +6,17 @@
       # git_email = {};
     };
 
-  services.miniflux={
-    enable = true;
-    adminCredentialsFile = "/etc/miniflux.env";
-    config = { #https://miniflux.app/docs/configuration.html
+    services.miniflux = {
+      enable = true;
+      adminCredentialsFile = "/etc/miniflux.env";
+      config = {
         CLEANUP_FREQUENCY = 48;
-        LISTEN_ADDR = "127.0.0.1:8080";  # Changed back to localhost since nginx will proxy
-    };  
-  };
+        LISTEN_ADDR = "127.0.0.1:8080";
+      };  
+    };
 
-  # Enable nginx reverse proxy
-  services.nginx = {
-    enable = true;
-    virtualHosts."miniflux.local" = {
+    # Only configure the virtual host, don't enable nginx here
+    services.nginx.virtualHosts."miniflux.local" = {
       locations."/" = {
         proxyPass = "http://127.0.0.1:8080";
         proxyWebsockets = true;
@@ -30,16 +28,11 @@
         '';
       };
     };
+
+    # Add custom hostname to /etc/hosts
+    networking.extraHosts = ''
+      127.0.0.1 miniflux.local
+      192.168.2.20 miniflux.local  # Replace with your actual IP
+    '';
   };
-
-  # Open firewall ports for HTTP (and remove 8080 since it's now internal)
-  networking.firewall.allowedTCPPorts = [ 80 ];
-
-  # Add custom hostname to /etc/hosts
-  networking.extraHosts = ''
-    127.0.0.1 miniflux.local
-    192.168.2.20 miniflux.local  # Replace with your actual IP
-  '';
-};
-
 }
