@@ -79,11 +79,26 @@
             }
           ];
         };
+
+      mkBlade =
+        hostname:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/${hostname}/configuration.nix
+            # inputs.home-manager.nixosModules.default
+            inputs.sops-nix.nixosModules.sops
+  
+            # inputs.nvf.nixosModules.default
+          ];
+        };
     in
     {
       nixosConfigurations = {
         desktop = mkHost "desktop";
         laptop = mkHost "laptop";
+        blade = mkBlade "blade"; 
         # nixos = mkHost "laptop";
       };
 

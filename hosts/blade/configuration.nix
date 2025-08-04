@@ -11,43 +11,40 @@
       ./hardware-configuration.nix #Dont disable it
       #CUSTOM-MODULES
       ../../modules/locale.nix #Dont disable it 
-      ../../modules/common.nix #Dont disable it 
-      ../../modules/gc.nix #garbage collection and store opt
-      ../../modules/gaming.nix 
-      ../../modules/virtualisation.nix 
-      
+
+    
       #./modules/localai.nix
       #DESKTOP-MODULES
-      ../../modules/desktop/kde.nix
       # ./modules/desktop/hypr.nix
-      # ./modules/desktop/xfce.nix
+      ./modules/desktop/xfce.nix
       # ./modules/desktop/gnome.nix
       
       #Services
+      ../../modules/services/nginx.nix
       # ../../modules/services/finance.nix
       ../../modules/services/miniflux.nix
-      ../../modules/services/nginx.nix
+      # ../../modules/services/nextcloud.nix
 
     ];
   
   #Mount extra drive and make it 
-  fileSystems."/mnt/D" = {
-    device = "/dev/disk/by-uuid/218ce1d4-70e8-4b81-aa2b-3abab153a6b4";
-    fsType = "ext4";
-    options = [ "defaults" "rw" ];
-  };
-  system.activationScripts.setStoragePermissions = {
-    text = ''
-      mkdir -p /mnt/D
-      chown alik /mnt/D
-      chmod -R 777 /mnt/D
-    '';
-    deps = [];
-  };
+  # fileSystems."/mnt/D" = {
+  #   device = "/dev/disk/by-uuid/218ce1d4-70e8-4b81-aa2b-3abab153a6b4";
+  #   fsType = "ext4";
+  #   options = [ "defaults" "rw" ];
+  # };
+  # system.activationScripts.setStoragePermissions = {
+  #   text = ''
+  #     mkdir -p /mnt/D
+  #     chown alik /mnt/D
+  #     chmod -R 777 /mnt/D
+  #   '';
+  #   deps = [];
+  # };
   
   # Bridge network for nas
   networking = {
-    hostName = "desktop";
+    hostName = "blade";
   #   interfaces.eno1 = {
   #   ipv4.addresses = [{
   #     address = "192.168.10.1";
@@ -59,12 +56,12 @@
   boot.loader = {
   efi = {
     canTouchEfiVariables = true;
-    efiSysMountPoint = "/boot/efi";
+    # efiSysMountPoint = "/boot/efi";
   };
   grub = {
     efiSupport = true;
     #efiInstallAsRemovable = true;
-    device = "nodev";
+    # device = "nodev";
     fontSize = 30;
     timeoutStyle = "hidden";
   };
@@ -73,12 +70,12 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
+  # hardware.graphics = {
+    # enable = true;
+    # enable32Bit = true;
+  # };
 
-  services.xserver.videoDrivers = ["amdgpu"];
+  # services.xserver.videoDrivers = ["amdgpu"];
   # services.xserver.videoDrivers = ["nvidia"];
   # hardware.nvidia = {
   #   modesetting.enable = true;
@@ -88,12 +85,17 @@
   networking.firewall.allowedTCPPorts = [ 57621 ];
   networking.firewall.allowedUDPPorts = [ 5353 ];
   # Enable automatic login for the user.services.displayManager.autoLogin
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "alik";
+  # services.displayManager.autoLogin.enable = true;
+  # services.displayManager.autoLogin.user = "alik";
  
-  services.trezord.enable = true;
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
