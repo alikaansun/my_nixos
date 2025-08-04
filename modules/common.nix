@@ -69,7 +69,7 @@
    nvd#nixos package version diff tool
    tldr
    nixd#nix language server
-   nixfmt-rfc-style #nix language server
+   nixfmt-rfc-style #nix formatter
    nerd-fonts.fira-code
    nerd-fonts.meslo-lg
    unrar
