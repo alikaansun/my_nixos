@@ -32,7 +32,7 @@
       "kmix"."mic_mute" = ["Microphone Mute" "Meta+Volume Mute,Microphone Mute" "Meta+Volume Mute,Mute Microphone"];
       "kmix"."mute" = "Volume Mute";
       "ksmserver"."Halt Without Confirmation" = "none,,Shut Down Without Confirmation";
-      "ksmserver"."Lock Session" = ["Meta+L" "" "Screensaver\\, ,Meta+L" "Screensaver,Lock Session"];
+      "ksmserver"."Lock Session" = ["Meta+L" "Screensaver\\,Meta+L" "Screensaver\\,Lock Session"];
       "ksmserver"."Log Out" = "Ctrl+Alt+Del";
       "ksmserver"."Log Out Without Confirmation" = "none,,Log Out Without Confirmation";
       "ksmserver"."LogOut" = "none,,Log Out";
@@ -117,7 +117,7 @@
       "kwin"."Walk Through Windows of Current Application Alternative (Reverse)" = [ ];
       "kwin"."Window Above Other Windows" = "none,,Keep Window Above Others";
       "kwin"."Window Below Other Windows" = "none,,Keep Window Below Others";
-      "kwin"."Window Close" = ["Alt+4" "Alt+F4\\, Alt+F4\\, ,Alt+F4,Close Window"];
+      "kwin"."Window Close" = "Alt+F4\\,Alt+F4\\,Close Window";
       "kwin"."Window Custom Quick Tile Bottom" = "none,,Custom Quick Tile Window to the Bottom";
       "kwin"."Window Custom Quick Tile Left" = "none,,Custom Quick Tile Window to the Left";
       "kwin"."Window Custom Quick Tile Right" = "none,,Custom Quick Tile Window to the Right";
@@ -245,13 +245,15 @@
       "plasmashell"."switch to next activity" = "none,,Switch to Next Activity";
       "plasmashell"."switch to previous activity" = "none,,Switch to Previous Activity";
       "plasmashell"."toggle do not disturb" = "none,,Toggle do not disturb";
-      "services/Alacritty.desktop"."New" = "Ctrl+Alt+T";
+      "services/Kitty.desktop"."New" = "Ctrl+Alt+T";
       "services/code.desktop"."_launch" = "Ctrl+Alt+V";
       "services/discord.desktop"."_launch" = "Ctrl+Alt+D";
+      "services/kitty.desktop"."New" = "Ctrl+Alt+T";
+      "services/kitty.desktop"."_launch" = "Ctrl+Alt+T";
       "services/obsidian.desktop"."_launch" = "Ctrl+Alt+O";
       "services/org.kde.konsole.desktop"."_launch" = [ ];
       "services/org.kde.krunner.desktop"."RunClipboard" = [ ];
-      "services/org.kde.krunner.desktop"."_launch" = [ ];
+      "services/org.kde.krunner.desktop"."_launch" = "Alt + Space";
       "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Print";
       "services/org.kde.spectacle.desktop"."_launch" = "Meta+Shift+S";
       "services/org.keepassxc.KeePassXC.desktop"."_launch" = "Ctrl+Alt+K";
@@ -259,6 +261,7 @@
       "services/thunderbird.desktop"."_launch" = "Ctrl+Alt+M";
       "services/vesktop.desktop"."_launch" = "Ctrl+Alt+D";
       "services/zen-beta.desktop"."_launch" = "Meta+Space";
+      "services/zen.desktop"."_launch" = "Meta+Space";
       "services/zen.desktop"."new-window" = "Meta+Space";
     };
     configFile = {
@@ -308,7 +311,7 @@
       "kdeglobals"."DirSelect Dialog"."Splitter State" = "\x00\x00\x00\xff\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x8a\x00\x00\x02\xa8\x00\xff\xff\xff\xff\x01\x00\x00\x00\x01\x00";
       "kdeglobals"."General"."TerminalApplication" = "alacritty";
       "kdeglobals"."General"."TerminalService" = "Alacritty.desktop";
-      "kdeglobals"."KDE"."AnimationDurationFactor" = 0.5;
+      "kdeglobals"."KDE"."AnimationDurationFactor" = 0.17677669529663687;
       "kdeglobals"."KDE"."SingleClick" = false;
       "kdeglobals"."KFileDialog Settings"."Allow Expansion" = false;
       "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" = true;
@@ -409,8 +412,10 @@
       "kwinrc"."Plugins"."zoomEnabled" = false;
       "kwinrc"."TabBox"."LayoutName" = "compact";
       "kwinrc"."Tiling"."padding" = 4;
+      "kwinrc"."Tiling/55efe7b8-46a0-5f9b-8f59-2cc74aec7dd5"."[Tiling][Desktop_1][]" = "";
       "kwinrc"."Tiling/55efe7b8-46a0-5f9b-8f59-2cc74aec7dd5"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/Desktop_1/76238426-f1dc-4b9c-afe6-291d74883a38"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.4925390624999998},{\"layoutDirection\":\"vertical\",\"tiles\":[{\"height\":0.5},{\"height\":0.5}],\"width\":0.5074609374999983}]}";
+      "kwinrc"."Tiling/Desktop_1/a1565a47-cef5-40a9-8efc-d70fd9929894"."[Tiling][Desktop_2][]" = "";
       "kwinrc"."Tiling/Desktop_1/a1565a47-cef5-40a9-8efc-d70fd9929894"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/Desktop_2/76238426-f1dc-4b9c-afe6-291d74883a38"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Tiling/Desktop_2/a1565a47-cef5-40a9-8efc-d70fd9929894"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
@@ -424,7 +429,6 @@
       "kwinrc"."Xwayland"."Scale" = 1.15;
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "M";
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight" = "FIAX";
-      "kwinrc"."org.kde.kdecoration2"."theme" = "Breeze";
       "kwinrulesrc"."278db61e-eacc-4fa4-b9ff-7f09de48b137"."Description" = "Window settings for .eduvpn-gui-wrapped";
       "kwinrulesrc"."278db61e-eacc-4fa4-b9ff-7f09de48b137"."position" = "1763,456";
       "kwinrulesrc"."278db61e-eacc-4fa4-b9ff-7f09de48b137"."positionrule" = 3;
@@ -497,8 +501,9 @@
       "plasmarc"."Theme"."name" = "breeze-dark";
       "plasmarc"."Wallpapers"."usersWallpapers" = "/home/alik/Pictures/fav.jpg";
       "spectaclerc"."ImageSave"."lastImageSaveAsLocation" = "file:///home/alik/Pictures/Screenshots/Screenshot_20250715_210553.png";
-      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/alik/Pictures/Screenshots/Screenshot_20250715_210553.png";
+      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/alik/Pictures/Screenshots/Screenshot_20250804_211214.png";
       "spectaclerc"."ImageSave"."translatedScreenshotsFolder" = "Screenshots";
+      "spectaclerc"."VideoSave"."preferredVideoFormat" = 2;
       "spectaclerc"."VideoSave"."translatedScreencastsFolder" = "Screencasts";
       "systemsettingsrc"."systemsettings_sidebar_mode"."HighlightNonDefaultSettings" = true;
     };

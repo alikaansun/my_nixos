@@ -90,7 +90,7 @@ in
       };
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
       "ksmserver"."Lock Session" = ["Meta+L" "Screensaver,Meta+L" "Screensaver,Lock Session"];
-      "services/Alacritty.desktop"."New" = "Ctrl+Alt+T";
+      "services/kitty.desktop"."New" = "Ctrl+Alt+T";
       # "services/chromium-browser.desktop"."new-window" = "Meta+Space";
       "services/zen.desktop"."_launch" = "Meta+Space";
       "services/code.desktop"."_launch" = "Ctrl+Alt+V";

@@ -58,7 +58,6 @@
             inputs.home-manager.nixosModules.default
             inputs.sops-nix.nixosModules.sops
             inputs.stylix.nixosModules.stylix
-            # inputs.nvf.nixosModules.default
           ];
         };
 
@@ -87,10 +86,25 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./hosts/${hostname}/configuration.nix
-            # inputs.home-manager.nixosModules.default
+            inputs.home-manager.nixosModules.default
             inputs.sops-nix.nixosModules.sops
-  
-            # inputs.nvf.nixosModules.default
+          ];
+        };
+
+      mkBladeHome =
+        hostname:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { inherit system; };
+          modules = [
+            inputs.nvf.homeManagerModules.default
+            inputs.sops-nix.nixosModules.sops
+            ./hosts/${hostname}/home.nix
+            {
+              home = {
+                inherit username;
+                homeDirectory = "/home/${username}";
+              };
+            }
           ];
         };
     in
@@ -105,6 +119,7 @@
       homeConfigurations = {
         "alik@desktop" = mkHome "desktop";
         "alik@laptop" = mkHome "laptop";
+        "alik@blade" = mkBladeHome "blade";
       };
     };
 }

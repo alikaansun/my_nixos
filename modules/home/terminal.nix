@@ -3,6 +3,8 @@
 {
   imports = [ inputs.nvf.homeManagerModules.default ];
   
+
+
   programs = {
     nvf = {
       enable = true;
@@ -93,32 +95,53 @@
       enableBashIntegration = true;
     };
 
-    alacritty = { 
-      enable = true;
-      settings = { 
-        window = {
-          opacity = 0.8;
-          padding = { x = 10; y = 10; };
-          decorations = "full";
-          dynamic_title = true;
-        };
-        colors = {
-          primary = {
-            background = "#282c34";
-            foreground = "#abb2bf";
-          };
-        };
-        cursor = {
-          style = "Beam";
-        };
-        font = {
-          normal = { family = "FiraCode Nerd Font Mono"; style = "Regular"; };
-          bold = { family = "FiraCode Nerd Font Mono"; style = "Bold"; };
-          italic = { family = "FiraCode Nerd Font Mono"; style = "Italic"; };
-          size = 13;
-        };
+    # alacritty = { 
+    #   enable = true;
+    #   settings = { 
+    #     window = {
+    #       opacity = 0.8;
+    #       padding = { x = 10; y = 10; };
+    #       decorations = "full";
+    #       dynamic_title = true;
+    #     };
+    #     colors = {
+    #       primary = {
+    #         background = "#282c34";
+    #         foreground = "#abb2bf";
+    #       };
+    #     };
+    #     cursor = {
+    #       style = "Beam";
+    #     };
+    #     font = {
+    #       normal = { family = "FiraCode Nerd Font Mono"; style = "Regular"; };
+    #       bold = { family = "FiraCode Nerd Font Mono"; style = "Bold"; };
+    #       italic = { family = "FiraCode Nerd Font Mono"; style = "Italic"; };
+    #       size = 13;
+    #     };
+    #   };
+    # };
+
+    kitty={
+      enable=true;
+      shellIntegration.enableBashIntegration=true;
+      font.name = "FiraCode Nerd Font";
+      font.package = pkgs.nerd-fonts.fira-code;
+      font.size=13;
+      themeFile = "GruvboxMaterialDarkSoft";
+      settings={
+        background_opacity = 0.8;
+
       };
     };
+    # ghostty = {
+    #   enable = true;
+    #   enableBashIntegration = true;
+    #   settings={
+    #     theme= "GruvboxDark";
+
+    #   };
+    # };
 
   };
 
