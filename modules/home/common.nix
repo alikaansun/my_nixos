@@ -42,6 +42,7 @@
     foliate #ebook
     klayout
     rsshub
+    alarm-clock-applet
   ];
   
 

@@ -12,7 +12,6 @@ programs,inputs, ... }:
       ../../modules/home/git.nix
       # inputs.plasma-manager.homeManagerModules.plasma-manager
       ../../modules/home/plasma.nix
-      inputs.zen-browser.homeModules.beta
 #       ../../modules/creative.nix
 
     ];
