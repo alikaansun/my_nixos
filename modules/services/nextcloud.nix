@@ -26,7 +26,7 @@
   # Add custom hostname to /etc/hosts
   networking.extraHosts = ''
     127.0.0.1 miniflux.local
-    192.168.2.20 miniflux.local  # Replace with your actual IP
+    192.168.2.20 miniflux.local  
   '';
 };
 

@@ -36,8 +36,11 @@
 
 
   networking.hostName = "laptop"; # Define your hostname.
-
-
+  networking.extraHosts = ''
+  192.168.2.20 miniflux.local
+  '';  
+  networking.firewall.allowedTCPPorts = [ 57621 ];
+  networking.firewall.allowedUDPPorts = [ 5353 ];
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -46,8 +49,7 @@
   #  enable32Bit = true;
   #};
 
-  networking.firewall.allowedTCPPorts = [ 57621 ];
-  networking.firewall.allowedUDPPorts = [ 5353 ];
+  
   # Enable automatic login for the user.services.displayManager.autoLogin
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "alik";
