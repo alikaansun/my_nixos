@@ -32,6 +32,10 @@
       url="github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # anifetch = {
+    #   url = "github:Notenlish/anifetch";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs =

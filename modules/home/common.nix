@@ -27,6 +27,7 @@
     vscode
     obsidian
     fastfetch
+    # inputs.anifetch.packages.${pkgs.system}.default
     vesktop
     spotify 
     vlc
