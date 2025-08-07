@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    stablenixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-plugins = {
       url = "github:hyprwm/Hyprland-Plugins";
@@ -42,6 +43,7 @@
     {
       self,
       nixpkgs,
+      stablenixpkgs,
       home-manager,
       plasma-manager,
       nvf,
@@ -83,9 +85,9 @@
           ];
         };
 
-      mkBlade =
+      mkServer =
         hostname:
-        nixpkgs.lib.nixosSystem {
+        stablenixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
@@ -95,10 +97,10 @@
           ];
         };
 
-      mkBladeHome =
+      mkServerHome =
         hostname:
         home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { inherit system; };
+          pkgs = import stablenixpkgs { inherit system; };
           modules = [
             inputs.nvf.homeManagerModules.default
             inputs.sops-nix.nixosModules.sops
@@ -116,14 +118,14 @@
       nixosConfigurations = {
         desktop = mkHost "desktop";
         laptop = mkHost "laptop";
-        blade = mkBlade "blade"; 
+        blade = mkServer "blade"; 
         # nixos = mkHost "laptop";
       };
 
       homeConfigurations = {
         "alik@desktop" = mkHome "desktop";
         "alik@laptop" = mkHome "laptop";
-        "alik@blade" = mkBladeHome "blade";
+        "alik@blade" = mkServerHome "blade";
       };
     };
 }

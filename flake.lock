@@ -744,6 +744,7 @@
         "plasma-manager": "plasma-manager",
         "shad06_nixpkgs": "shad06_nixpkgs",
         "sops-nix": "sops-nix",
+        "stablenixpkgs": "stablenixpkgs",
         "stylix": "stylix",
         "zen-browser": "zen-browser"
       }
@@ -781,6 +782,22 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "stablenixpkgs": {
+      "locked": {
+        "lastModified": 1754292888,
+        "narHash": "sha256-1ziydHSiDuSnaiPzCQh1mRFBsM2d2yRX9I+5OPGEmIE=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "ce01daebf8489ba97bd1609d185ea276efdeb121",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.05",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },

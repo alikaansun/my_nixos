@@ -8,8 +8,8 @@ in
     lutris
     heroic
     hmcl# minecraft
-    oldPkgs.shadps4 
-    # shadps4 
+    # oldPkgs.shadps4 
+    shadps4 
     gamemode
     wineWowPackages.full
     # wine-staging
