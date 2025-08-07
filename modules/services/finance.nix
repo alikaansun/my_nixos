@@ -1,4 +1,4 @@
-{ config, pkgs, lib,... }:
+{ ... }:
 
 {
   # https://github.com/firefly-iii/firefly-iii/blob/main/.env.example

@@ -1,7 +1,7 @@
 { inputs, pkgs, ... }:
-let
-  oldPkgs = import inputs.shad06_nixpkgs { system = pkgs.system; };
-in
+# let
+#   oldPkgs = import inputs.shad06_nixpkgs { system = pkgs.system; };
+# in
 {
   environment.systemPackages = with pkgs; [
     protonup
@@ -47,6 +47,6 @@ in
 #       keyutils
 #     ];
 # };
-  # networking.firewall.allowedTCPPorts = [ 57621 ];
-  # networking.firewall.allowedUDPPorts = [ 5353 ];
+  networking.firewall.allowedTCPPorts = [ 57621 ];
+  networking.firewall.allowedUDPPorts = [ 5353 ];
 }

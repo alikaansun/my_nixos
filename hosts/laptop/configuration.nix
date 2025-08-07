@@ -1,8 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, inputs, ... }:
+{ ... }:
 
 {
   imports =
@@ -39,8 +35,6 @@
   networking.extraHosts = ''
   192.168.2.20 miniflux.local
   '';  
-  networking.firewall.allowedTCPPorts = [ 57621 ];
-  networking.firewall.allowedUDPPorts = [ 5353 ];
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 

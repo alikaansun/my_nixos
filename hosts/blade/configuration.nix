@@ -1,17 +1,13 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, inputs , ... }:
+{ ... }:
 
 
 {
+  
   imports =
     [ 
       ./hardware-configuration.nix #Dont disable it
       #CUSTOM-MODULES
       ../../modules/locale.nix #Dont disable it 
-
     
       #./modules/localai.nix
       #DESKTOP-MODULES
@@ -82,8 +78,6 @@
   #   open = true;
   # };
 
-  networking.firewall.allowedTCPPorts = [ 57621 ];
-  networking.firewall.allowedUDPPorts = [ 5353 ];
   # Enable automatic login for the user.services.displayManager.autoLogin
   # services.displayManager.autoLogin.enable = true;
   # services.displayManager.autoLogin.user = "alik";
