@@ -1,4 +1,37 @@
-{ pkgs,inputs,config, ... }:
+{ pkgs,inputs,osConfig, ... }:
+let
+  hostname = osConfig.networking.hostName;
+  
+  monitorConfigs = {
+    desktop = [
+      "DP-1,2560x1440@144,0x0,1"
+      "HDMI-A-1,1920x1080@60,2560x0,1"
+    ];
+    laptop = [
+      "eDP-1,1920x1080,0x0,1.25"
+    ];
+    default = [
+      ",preferred,auto,1"
+    ];
+  };
+
+  envConfigs = {
+    laptop = [
+      "GDK_SCALE,1.25"
+      "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+      "QT_SCALE_FACTOR,1.25"
+      "XCURSOR_SIZE,24"
+      "HYPRCURSOR_SIZE,24"
+    ];
+    desktop = [
+      "GDK_SCALE,1"
+      "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+      "QT_SCALE_FACTOR,1"
+      "XCURSOR_SIZE,24"
+      "HYPRCURSOR_SIZE,24"
+    ];
+  };
+in
 {
 
   home.packages = with pkgs; [
@@ -51,23 +84,11 @@
       # Essential keybindings
       "$mod" = "SUPER";
       
-      # Monitor configuration with proper scaling
-      monitor = [
-        # Adjust these values based on your display
-        # Format: name,resolution,position,scale
-        # "eDP-1,preferred,auto,1.25"  # 1.25x scaling for most laptops
-        # Or for specific monitor:
-        "eDP-1,1920x1080,0x0,1.25"
-      ];
+      # Monitor configuration with hostname-dependent logic
+      monitor = monitorConfigs.${hostname} or monitorConfigs.default;
 
-      # Environment variables for proper scaling
-      env = [
-        "GDK_SCALE,1.25"
-        "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-        "QT_SCALE_FACTOR,1.25"
-        "XCURSOR_SIZE,24"
-        "HYPRCURSOR_SIZE,24"
-      ];
+      # You can also make environment variables hostname-dependent
+      env = envConfigs.${hostname} or envConfigs.desktop;
       
       bind = [
         "$mod, Return, exec, kitty"
@@ -93,11 +114,9 @@
       
       # Basic appearance
       general = {
-        gaps_in = 5;
-        gaps_out = 10;
-        border_size = 2;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        gaps_in = 2;
+        gaps_out = 4;
+        border_size = 1;
         layout = "dwindle";
       };
       
