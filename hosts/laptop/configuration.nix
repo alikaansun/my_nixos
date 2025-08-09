@@ -16,6 +16,7 @@
 
       #DESKTOP-MODULES
        ../../modules/desktop/kde.nix
+       ../../modules/desktop/hypr.nix
 
       #SERVICES
       ../../modules/services/kanata.nix
