@@ -34,7 +34,24 @@
   #In order to run on Wayland, virt-manager must be ran under XWayland with `$ GDK_BACKEND=x11 virt-manager` or a gdk cursor must be set. 
   #An example of setting a gdk cursor with home-manager is as follows: 
   home.pointerCursor = {
-    gtk.enable = true;
+    gtk = {
+    enable = true;
+
+    theme = {
+      package = pkgs.flat-remix-gtk;
+      name = "Flat-Remix-GTK-Grey-Darkest";
+    };
+
+    iconTheme = {
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+
+    font = {
+      name = "Sans";
+      size = 11;
+    };
+    };
     package = pkgs.vanilla-dmz;
     name = "Vanilla-DMZ";
   };

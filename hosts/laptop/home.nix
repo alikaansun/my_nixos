@@ -6,7 +6,7 @@ programs,inputs, ... }:
 
   imports =
     [
-     # ../../modules/desktop/hyprland.nix
+     ../../modules/desktop/hyprland.nix
       ../../modules/home/common.nix
       ../../modules/home/terminal.nix
       ../../modules/home/git.nix

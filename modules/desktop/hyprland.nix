@@ -1,20 +1,22 @@
-{ config,lib, pkgs,inputs, ... }:
+{ pkgs,inputs, ... }:
 {
  
-  home.packages = with pkgs; [
-    swww
-    grim
-    slurp
-    waybar
-    wl-clipboard
-    rofi-wayland
-    # hyprpolkitagent
-    # hyprland-qtutils  # needed for banners and ANR messages
-  ];
+  # home.packages = with pkgs; [
+  #   # swww
+  #   # grim
+  #   # slurp
+  #   # waybar
+  #   # wl-clipboard
+  #   # rofi-wayland
+  #   # hyprpolkitagent
+  #   # hyprland-qtutils  # needed for banners and ANR messages
+  # ];
 
   
   wayland.windowManager.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     systemd = {
       enable = true;
       # uenableXdgAutostart = true;
@@ -29,22 +31,6 @@
     #     inputs.hyprland-plugins.packages."${pkgs.system}".hyprbars
     # ];
 
-  # home.file."~/.config/hypr/hyprland.conf".text = ''
-  #   decoration {
-  #     shadow_offset = 0 5
-  #     col.shadow = rgba(00000099)
-  #   }
-
-  #   $mod = SUPER
-
-  #   bindm = $mod, mouse:272, movewindow
-  #   bindm = $mod, mouse:273, resizewindow
-  #   bindm = $mod ALT, mouse:272, resizewindow
-  # '';
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    # plugins = [
-      # inputs.hyprland-plugins.packages."${pkgs.system}".borders-plus-plus
-    # ];
 
   };
 

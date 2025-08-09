@@ -82,6 +82,13 @@
                 homeDirectory = "/home/${username}";
               };
             }
+            {
+              wayland.windowManager.hyprland = {
+                enable = true;
+                # set the flake package
+                
+              };
+            }
           ];
         };
 
