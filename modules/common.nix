@@ -9,8 +9,12 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  networking.networkmanager.enable = true;
+  sops.defaultSopsFile = ./secrets/secrets.yaml;
+  # sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "/home/alik/.config/sops/age/keys.txt";
 
+  networking.networkmanager.enable = true;
+ 
     # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -21,13 +25,6 @@
     pulse.enable = true;
 
   };
-
-
-  sops.defaultSopsFile = ./secrets/secrets.yaml;
-  # sops.defaultSopsFormat = "yaml";
-  sops.age.keyFile = "/home/alik/.config/sops/age/keys.txt";
-  
-  
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alik = {
@@ -44,12 +41,10 @@
       "alik" = import ../hosts/${config.networking.hostName}/home.nix;
     };
     backupFileExtension = "backup";
-
   };
 
     # Enable the X11 windowing system.
   services.xserver.enable = true;
-
     # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us,tr";

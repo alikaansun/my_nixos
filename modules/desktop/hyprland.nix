@@ -33,18 +33,17 @@ let
   };
 in
 {
-
+  
   home.packages = with pkgs; [
     swww
     grim
     slurp
     kdePackages.dolphin
     # hyprpanel
-    # waybar
+    waybar
     wl-clipboard
     rofi-wayland
     hyprpolkitagent
-    hyprpanel
     hyprshot
     # Additional packages for waybar modules
     # pavucontrol      # Volume control GUI
@@ -55,49 +54,9 @@ in
     # hyprland-qtutils  # needed for banners and ANR messages
   ];
 
-  programs.hyprpanel = {
-    # package=pkgs.hyprpanel;
-    # Configure and theme almost all options from the GUI.
-    # See 'https://hyprpanel.com/configuration/settings.html'.
-    settings = {
-
-      # Configure bar layouts for monitors.
-      # See 'https://hyprpanel.com/configuration/panel.html'.
-      layout = {
-        bar.layouts = {
-          "0" = {
-            left = [ "dashboard" "workspaces" ];
-            middle = [ "media" ];
-            right = [ "volume" "systray" "notifications" ];
-          };
-        };
-      };
-
-      bar.launcher.autoDetectIcon = true;
-      bar.workspaces.show_icons = true;
-      menus.clock = {
-        time = {
-          military = true;
-          hideSeconds = true;
-        };
-        weather.unit = "metric";
-      };
-
-      menus.dashboard.directories.enabled = false;
-      # menus.dashboard.stats.enable_gpu = true;
-
-      theme.bar.transparent = true;
-      theme.font = {
-        name = "Fira Code Mono Nerd Font";
-        size = "14px";
-      };
-    };
-  };   
-  
-  programs.rofi={
-    enable=true;
-    font="Fira Code Mono Nerd Font";
-
+  programs.waybar = {
+    enable = true; 
+    package = pkgs.waybar;
   };
 
   home.sessionVariables = {
@@ -236,9 +195,6 @@ in
       "workspaces, 1, 2, default, slide"
       ];
 
-      # terminal = pkgs.kitty; 
-      # fileManager = pkgs.kdePackages.dolphin;
-
     };
 
 
@@ -260,3 +216,42 @@ in
   };
 
 }
+  # programs.hyprpanel = {
+  #   # package=pkgs.hyprpanel;
+  #   # Configure and theme almost all options from the GUI.
+  #   # See 'https://hyprpanel.com/configuration/settings.html'.
+  #   settings = {
+
+  #     # Configure bar layouts for monitors.
+  #     # See 'https://hyprpanel.com/configuration/panel.html'.
+  #     layout = {
+  #       bar.layouts = {
+  #         "0" = {
+  #           left = [ "dashboard" "workspaces" ];
+  #           middle = [ "media" ];
+  #           right = [ "volume" "systray" "notifications"  "power"];
+  #         };
+  #       };
+  #     };
+
+  #     bar.launcher.autoDetectIcon = true;
+  #     bar.workspaces.show_icons = true;
+      
+  #     menus.clock = {
+  #       time = {
+  #         military = true;
+  #         hideSeconds = true;
+  #       };
+  #       weather.unit = "metric";
+  #     };
+
+  #     menus.dashboard.directories.enabled = false;
+  #     # menus.dashboard.stats.enable_gpu = true;
+
+  #     theme.bar.transparent = true;
+  #     theme.font = {
+  #       name = "Fira Code Mono Nerd Font";
+  #       size = "14px";
+  #     };
+  #   };
+  # };   
