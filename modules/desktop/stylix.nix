@@ -1,11 +1,14 @@
 { ... }:
 
 {
-
-  stylix.enable = true;
-  stylix.image = ./fav.jpg;
-  # base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
-  stylix.polarity = "dark";
+  environment.systemPackages = with pkgs; [
+    base16-schemes
+  ];
+  stylix={
+    enable = true;
+    image = ./fav.jpg;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+    polarity = "dark";
   # stylix.targets.gtk.enable = true;
   # fonts = {
       # monospace = {
@@ -19,5 +22,5 @@
     # desktop = 10;
     # popups = 10;
   # };
-
+  };
 }
