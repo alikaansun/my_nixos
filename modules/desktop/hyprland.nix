@@ -38,18 +38,20 @@ in
     swww
     grim
     slurp
+    kdePackages.dolphin
     # hyprpanel
     # waybar
     wl-clipboard
     rofi-wayland
     hyprpolkitagent
     hyprpanel
+    hyprshot
     # Additional packages for waybar modules
-    pavucontrol      # Volume control GUI
-    blueman          # Bluetooth manager
-    networkmanager
-    htop             # System monitor
-    powertop         # Power management
+    # pavucontrol      # Volume control GUI
+    # blueman          # Bluetooth manager
+    # networkmanager
+    # htop             # System monitor
+    # powertop         # Power management
     # hyprland-qtutils  # needed for banners and ANR messages
   ];
 
@@ -85,16 +87,18 @@ in
       # menus.dashboard.stats.enable_gpu = true;
 
       theme.bar.transparent = true;
-
-
-      # theme.font = {
-      #   name = "CaskaydiaCove NF";
-      #   size = "16px";
-      # };
+      theme.font = {
+        name = "Fira Code Mono Nerd Font";
+        size = "14px";
+      };
     };
   };   
-  #   # };
-  # };
+  
+  programs.rofi={
+    enable=true;
+    font="Fira Code Mono Nerd Font";
+
+  };
 
   home.sessionVariables = {
     # HiDPI scaling
@@ -144,11 +148,13 @@ in
         # App launching shortcuts (using mod key instead of ctrl+alt)
         "$mod, SPACE, exec, zen"                      # Zen browser  
         "$mod, V, exec, code"                         # VSCode
+        "$mod, E, exec, dolphin"                         # VSCode
         "$mod, D, exec, vesktop"                      # Discord/Vesktop
         "$mod, O, exec, obsidian"                     # Obsidian
         "$mod, K, exec, keepassxc"                    # KeePassXC
         "$mod, S, exec, steam"                        # Steam
         "$mod, M, exec, thunderbird"                  # Thunderbird
+        ", PRINT, exec, hyprshot"
         
         # Screenshot shortcuts
         ", Print, exec, grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +'%Y%m%d_%H%M%S').png"
@@ -230,12 +236,8 @@ in
       "workspaces, 1, 2, default, slide"
       ];
 
-      plugin.hyprbars = {
-        bar_height = 20;
-        # bar_precedence_over_border = true;
-        icon_on_hover = true;
-      };
-
+      # terminal = pkgs.kitty; 
+      # fileManager = pkgs.kdePackages.dolphin;
 
     };
 
