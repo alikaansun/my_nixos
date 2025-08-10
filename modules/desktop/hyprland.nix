@@ -38,24 +38,61 @@ in
     swww
     grim
     slurp
+    # hyprpanel
     # waybar
     wl-clipboard
     rofi-wayland
     hyprpolkitagent
+    hyprpanel
     # Additional packages for waybar modules
     pavucontrol      # Volume control GUI
     blueman          # Bluetooth manager
-    networkmanager   # Network management
+    networkmanager
     htop             # System monitor
     powertop         # Power management
     # hyprland-qtutils  # needed for banners and ANR messages
   ];
 
-  # programs.waybar = {
-  #   enable = true; 
-  #   package = pkgs.waybar;
-  #   # settings = {
-      
+  programs.hyprpanel = {
+    # package=pkgs.hyprpanel;
+    # Configure and theme almost all options from the GUI.
+    # See 'https://hyprpanel.com/configuration/settings.html'.
+    settings = {
+
+      # Configure bar layouts for monitors.
+      # See 'https://hyprpanel.com/configuration/panel.html'.
+      layout = {
+        bar.layouts = {
+          "0" = {
+            left = [ "dashboard" "workspaces" ];
+            middle = [ "media" ];
+            right = [ "volume" "systray" "notifications" ];
+          };
+        };
+      };
+
+      bar.launcher.autoDetectIcon = true;
+      bar.workspaces.show_icons = true;
+      menus.clock = {
+        time = {
+          military = true;
+          hideSeconds = true;
+        };
+        weather.unit = "metric";
+      };
+
+      menus.dashboard.directories.enabled = false;
+      # menus.dashboard.stats.enable_gpu = true;
+
+      theme.bar.transparent = true;
+
+
+      # theme.font = {
+      #   name = "CaskaydiaCove NF";
+      #   size = "16px";
+      # };
+    };
+  };   
   #   # };
   # };
 
@@ -92,10 +129,10 @@ in
       
       bind = [
         "$mod, Return, exec, kitty"
-        "$mod, D, exec, rofi -show drun"
+        "$mod, R, exec, rofi -show drun"
         "$mod, Q, killactive"
         "$mod SHIFT, E, exit"
-        "$mod, V, togglefloating"
+        "$mod, T, togglefloating"                        # Terminal (alternative)
         "$mod, F, fullscreen"
         # Add workspace switching
         "$mod, 1, workspace, 1"
@@ -105,7 +142,6 @@ in
         "$mod, 5, workspace, 5"
         
         # App launching shortcuts (using mod key instead of ctrl+alt)
-        "$mod, T, exec, kitty"                        # Terminal (alternative)
         "$mod, SPACE, exec, zen"                      # Zen browser  
         "$mod, V, exec, code"                         # VSCode
         "$mod, D, exec, vesktop"                      # Discord/Vesktop
@@ -117,11 +153,51 @@ in
         # Screenshot shortcuts
         ", Print, exec, grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +'%Y%m%d_%H%M%S').png"
         "$mod SHIFT, S, exec, grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +'%Y%m%d_%H%M%S').png"
+        
+        # Move active window to different workspace and follow
+        "$mod SHIFT, 1, movetoworkspace, 1"
+        "$mod SHIFT, 2, movetoworkspace, 2"
+        "$mod SHIFT, 3, movetoworkspace, 3"
+        "$mod SHIFT, 4, movetoworkspace, 4"
+        "$mod SHIFT, 5, movetoworkspace, 5"
+        
+        # Move window to workspace and does not follow it
+        "$mod CTRL, 1, movetoworkspacesilent, 1"
+        "$mod CTRL, 2, movetoworkspacesilent, 2"
+        "$mod CTRL, 3, movetoworkspacesilent, 3"
+        "$mod CTRL, 4, movetoworkspacesilent, 4"
+        "$mod CTRL, 5, movetoworkspacesilent, 5"
+        
+        # Move windows around in current workspace
+        "$mod SHIFT, H, movewindow, l"
+        "$mod SHIFT, L, movewindow, r"
+        "$mod SHIFT, K, movewindow, u"
+        "$mod SHIFT, J, movewindow, d"
+                
+        # Create new workspace and move window there
+        "$mod SHIFT, N, movetoworkspace, special"
+        "$mod, N, togglespecialworkspace"
       ];
+      
+      # Mouse binds for dragging and resizing windows
+      bindm = [
+        "$mod, mouse:272, movewindow"    # Super + Left click to drag/move window
+        "$mod, mouse:273, resizewindow"  # Super + Right click to resize window
+      ];
+
+      # Optional: Mouse click binds (click without drag)
+      bindc = [
+        "$mod, mouse:273, togglefloating"  # Super + Right click to toggle floating
+      ];
+
+      # Configure drag threshold for distinguishing clicks from drags
+      binds = {
+        drag_threshold = 10;  # pixels to distinguish between click and drag
+      };
       
       # Auto-start essential services
       exec-once = [
-        "waybar"
+        "hyprpanel"
         "swww-daemon"
         "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent"
       ];
@@ -175,9 +251,9 @@ in
       enable = true;
     };
     
-    plugins = [
-        inputs.hyprland-plugins.packages."${pkgs.stdenv.hostPlatform.system}".hyprbars
-    ];
+    # plugins = [
+    #     inputs.hyprland-plugins.packages."${pkgs.stdenv.hostPlatform.system}".hy
+    # ];
 
   };
 
