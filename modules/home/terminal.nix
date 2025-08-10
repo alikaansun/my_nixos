@@ -13,11 +13,11 @@
         vim = {
           viAlias = false;
           vimAlias = true;
-          theme = {
-            enable = true;
-            name = "gruvbox";
-            style = "dark";
-          };
+          # theme = {
+          #   enable = true;
+          #   name = "gruvbox";
+          #   style = "dark";
+          # };
           languages={
             
             enableTreesitter = true;
@@ -125,14 +125,14 @@
     kitty={
       enable=true;
       shellIntegration.enableBashIntegration=true;
-      font.name = "FiraCode Nerd Font";
-      font.package = pkgs.nerd-fonts.fira-code;
-      font.size=13;
-      themeFile = "GruvboxMaterialDarkSoft";
-      settings={
-        background_opacity = 0.8;
+      # font.name = "FiraCode Nerd Font";
+      # font.package = pkgs.nerd-fonts.fira-code;
+      font.size=12;
+      # themeFile = "GruvboxMaterialDarkSoft";
+      # settings={
+      #   background_opacity = ;
 
-      };
+      # };
     };
     # ghostty = {
     #   enable = true;

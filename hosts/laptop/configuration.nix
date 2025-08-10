@@ -15,7 +15,7 @@
 #       ../../modules/networking.nix
 
       #DESKTOP-MODULES
-       ../../modules/desktop/kde.nix
+      #  ../../modules/desktop/kde.nix
        ../../modules/desktop/hypr.nix
        ../../modules/desktop/stylix.nix
 
