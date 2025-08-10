@@ -4,11 +4,11 @@ let
   
   monitorConfigs = {
     desktop = [
-      "DP-1,2560x1440@144,0x0,1"
+      "DP-1,2560x1440@144,0x0,1.25"
       "HDMI-A-1,1920x1080@60,2560x0,1"
     ];
     laptop = [
-      "eDP-1,1920x1080,0x0,1.25"
+      "eDP-1,1920x1080,0x0,1"
     ];
     default = [
       ",preferred,auto,1"
@@ -17,9 +17,9 @@ let
 
   envConfigs = {
     laptop = [
-      "GDK_SCALE,1.25"
+      "GDK_SCALE,1"
       "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-      "QT_SCALE_FACTOR,1.25"
+      "QT_SCALE_FACTOR,1"
       "XCURSOR_SIZE,24"
       "HYPRCURSOR_SIZE,24"
     ];
@@ -103,6 +103,20 @@ in
         "$mod, 3, workspace, 3"
         "$mod, 4, workspace, 4"
         "$mod, 5, workspace, 5"
+        
+        # App launching shortcuts (using mod key instead of ctrl+alt)
+        "$mod, T, exec, kitty"                        # Terminal (alternative)
+        "$mod, SPACE, exec, zen"                      # Zen browser  
+        "$mod, V, exec, code"                         # VSCode
+        "$mod, D, exec, vesktop"                      # Discord/Vesktop
+        "$mod, O, exec, obsidian"                     # Obsidian
+        "$mod, K, exec, keepassxc"                    # KeePassXC
+        "$mod, S, exec, steam"                        # Steam
+        "$mod, M, exec, thunderbird"                  # Thunderbird
+        
+        # Screenshot shortcuts
+        ", Print, exec, grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +'%Y%m%d_%H%M%S').png"
+        "$mod SHIFT, S, exec, grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +'%Y%m%d_%H%M%S').png"
       ];
       
       # Auto-start essential services

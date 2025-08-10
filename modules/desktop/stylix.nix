@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -8,7 +8,7 @@
     enable = true;
     image = ./fav.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
-    polarity = "dark";
+    # polarity = "dark";
   # stylix.targets.gtk.enable = true;
   # fonts = {
       # monospace = {
