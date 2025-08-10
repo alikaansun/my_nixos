@@ -38,7 +38,7 @@ in
     swww
     grim
     slurp
-    waybar
+    # waybar
     wl-clipboard
     rofi-wayland
     hyprpolkitagent
@@ -51,13 +51,13 @@ in
     # hyprland-qtutils  # needed for banners and ANR messages
   ];
 
-  programs.waybar = {
-    enable = true; 
-    package = pkgs.waybar;
-    # settings = {
+  # programs.waybar = {
+  #   enable = true; 
+  #   package = pkgs.waybar;
+  #   # settings = {
       
-    # };
-  };
+  #   # };
+  # };
 
   home.sessionVariables = {
     # HiDPI scaling
@@ -132,11 +132,35 @@ in
         gaps_out = 4;
         border_size = 1;
         layout = "dwindle";
+        resize_on_border = "true";
       };
       
       decoration = {
-        rounding = 10;
+        inactive_opacity = 0.8;
+        rounding = 4;
+        rounding_power = 4;
       };
+
+          # touchpad gestures
+      gestures = {
+        workspace_swipe = true;
+        workspace_swipe_forever = true;
+      };
+
+      animation = [
+      "border, 1, 2, default"
+      "fade, 1, 4, default"
+      "windows, 1, 3, default, popin 80%"
+      "workspaces, 1, 2, default, slide"
+      ];
+
+      plugin.hyprbars = {
+        bar_height = 20;
+        # bar_precedence_over_border = true;
+        icon_on_hover = true;
+      };
+
+
     };
 
 
@@ -151,9 +175,9 @@ in
       enable = true;
     };
     
-    # plugins = [
-    #     inputs.hyprland-plugins.packages."${pkgs.system}".hyprbars
-    # ];
+    plugins = [
+        inputs.hyprland-plugins.packages."${pkgs.stdenv.hostPlatform.system}".hyprbars
+    ];
 
   };
 

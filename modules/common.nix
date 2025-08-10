@@ -49,7 +49,15 @@
 
     # Enable the X11 windowing system.
   services.xserver.enable = true;
-  # Enable the KDE Plasma Desktop Environment.
+
+    # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "us,tr";
+    variant = "";
+    # options = "grp:alt_shift_toggle";
+  };
+  
+  #Wayland
   services.displayManager.sddm = {
     enable=true ; 
     wayland.enable = true; 
