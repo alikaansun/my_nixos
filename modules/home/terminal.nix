@@ -2,8 +2,6 @@
 
 {
   imports = [ inputs.nvf.homeManagerModules.default ];
-  
-
 
   programs = {
     nvf = {
@@ -78,12 +76,12 @@
         e = "nohup dolphin --new-window . > /dev/null 2>&1 &";
         freecad-x11 = "QT_QPA_PLATFORM=xcb freecad";
         rc2nix = "nix run github:nix-community/plasma-manager > ~/.dotfiles/modules/home/plasma.txt";
-        cd = "z";
+        # cd = "z";
 
       };
     };
 
-    bat.enable = true;
+    # bat.enable = true;
 
     zoxide={
       enable = true;
@@ -133,14 +131,7 @@
 
       # };
     };
-    # ghostty = {
-    #   enable = true;
-    #   enableBashIntegration = true;
-    #   settings={
-    #     theme= "GruvboxDark";
-
-    #   };
-    # };
+ 
 
   };
 

@@ -12,6 +12,14 @@
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/alik/.config/sops/age/keys.txt";
 
+
+   home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.vanilla-dmz;
+    name = "Vanilla-DMZ";
+  };
+
+  
   programs.ssh = {
   enable = true;
   addKeysToAgent = "yes";
