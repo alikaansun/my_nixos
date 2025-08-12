@@ -85,25 +85,29 @@ in
         "Window One Desktop to the Right" = "Meta+Ctrl+Shift+Right";
         "Switch to Desktop 1" = "Ctrl+F1";
         "Switch to Desktop 2" = "Ctrl+F2";
-        "Window Close" = ["Alt+F4,Alt+F4,Close Window"];
-
+        "Window Close" = ["Meta+Q,Alt+F4,Alt+F4,Close Window"];
       };
+
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
       "ksmserver"."Lock Session" = ["Meta+L" "Screensaver,Meta+L" "Screensaver,Lock Session"];
-      "services/kitty.desktop"."New" = "Ctrl+Alt+T";
-      # "services/chromium-browser.desktop"."new-window" = "Meta+Space";
-      "services/zen.desktop"."_launch" = "Meta+Space";
-      "services/code.desktop"."_launch" = "Ctrl+Alt+V";
-      # "services/discord.desktop"."_launch" = "Ctrl+Alt+D";
-      "services/vesktop.desktop"."_launch" = "Ctrl+Alt+D";
-      "services/obsidian.desktop"."_launch" = "Ctrl+Alt+O";
-      "services/org.kde.konsole.desktop"."_launch" = [ ];
-      "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Print";
-      "services/org.kde.spectacle.desktop"."_launch" = "Meta+Shift+S";
-      "services/org.keepassxc.KeePassXC.desktop"."_launch" = "Ctrl+Alt+K";
-      "services/steam.desktop"."_launch" = "Ctrl+Alt+S";
-      "services/thunderbird.desktop"."_launch" = "Ctrl+Alt+M";
 
+      # Apps (converted from Hyprland)
+      "services/kitty.desktop"."_launch" = "Meta+Return";
+      "services/zen.desktop"."_launch" = "Meta+Space";
+      "services/code.desktop"."_launch" = "Meta+V";
+      "services/org.kde.dolphin.desktop"."_launch" = "Meta+E";
+      "services/vesktop.desktop"."_launch" = "Meta+D";
+      "services/obsidian.desktop"."_launch" = "Meta+O";
+      "services/org.keepassxc.KeePassXC.desktop"."_launch" = "Meta+K";
+      "services/steam.desktop"."_launch" = "Meta+S";
+      "services/thunderbird.desktop"."_launch" = "Meta+M";
+
+      # Optional: keep the alternate terminal binding if you still want it
+      # "services/kitty.desktop"."New" = "Ctrl+Alt+T";
+
+      # Screenshots (you can keep as-is, or align both to region capture)
+      "services/org.kde.spectacle.desktop"."CurrentMonitorScreenShot" = "Print";
+      "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Ctrl+Print";
     }; 
 
     configFile = {

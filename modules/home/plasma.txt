@@ -32,7 +32,7 @@
       "kmix"."mic_mute" = ["Microphone Mute" "Meta+Volume Mute,Microphone Mute" "Meta+Volume Mute,Mute Microphone"];
       "kmix"."mute" = "Volume Mute";
       "ksmserver"."Halt Without Confirmation" = "none,,Shut Down Without Confirmation";
-      "ksmserver"."Lock Session" = ["Meta+L" "Screensaver\\,Meta+L" "Screensaver\\,Lock Session"];
+      "ksmserver"."Lock Session" = ["Meta+L" "" "Screensaver\\, ,Meta+L" "Screensaver,Lock Session"];
       "ksmserver"."Log Out" = "Ctrl+Alt+Del";
       "ksmserver"."Log Out Without Confirmation" = "none,,Log Out Without Confirmation";
       "ksmserver"."LogOut" = "none,,Log Out";
@@ -43,7 +43,7 @@
       "kwin"."Cycle Overview" = [ ];
       "kwin"."Cycle Overview Opposite" = [ ];
       "kwin"."Decrease Opacity" = "none,,Decrease Opacity of Active Window by 5%";
-      "kwin"."Edit Tiles" = "Meta+T";
+      "kwin"."Edit Tiles" = "none,Meta+T,Toggle Tiles Editor";
       "kwin"."Expose" = "Ctrl+F9";
       "kwin"."ExposeAll" = ["Ctrl+F10" "Launch (C),Ctrl+F10" "Launch (C),Toggle Present Windows (All desktops)"];
       "kwin"."ExposeClass" = "Ctrl+F7";
@@ -117,7 +117,7 @@
       "kwin"."Walk Through Windows of Current Application Alternative (Reverse)" = [ ];
       "kwin"."Window Above Other Windows" = "none,,Keep Window Above Others";
       "kwin"."Window Below Other Windows" = "none,,Keep Window Below Others";
-      "kwin"."Window Close" = "Alt+F4\\,Alt+F4\\,Close Window";
+      "kwin"."Window Close" = "Alt+F4\\, Alt+F4\\, ,Alt+F4,Close Window";
       "kwin"."Window Custom Quick Tile Bottom" = "none,,Custom Quick Tile Window to the Bottom";
       "kwin"."Window Custom Quick Tile Left" = "none,,Custom Quick Tile Window to the Left";
       "kwin"."Window Custom Quick Tile Right" = "none,,Custom Quick Tile Window to the Right";
@@ -234,7 +234,7 @@
       "plasmashell"."cycleNextAction" = "none,,Next History Item";
       "plasmashell"."cyclePrevAction" = "none,,Previous History Item";
       "plasmashell"."edit_clipboard" = "none,,Edit Contents…";
-      "plasmashell"."manage activities" = "Meta+Q";
+      "plasmashell"."manage activities" = "none,Meta+Q,Show Activity Switcher";
       "plasmashell"."next activity" = "Meta+A,none,Walk through activities";
       "plasmashell"."previous activity" = "Meta+Shift+A,none,Walk through activities (Reverse)";
       "plasmashell"."repeat_action" = "none,,Manually Invoke Action on Current Clipboard";
@@ -248,20 +248,20 @@
       "services/Kitty.desktop"."New" = "Ctrl+Alt+T";
       "services/code.desktop"."_launch" = "Ctrl+Alt+V";
       "services/discord.desktop"."_launch" = "Ctrl+Alt+D";
-      "services/kitty.desktop"."New" = "Ctrl+Alt+T";
       "services/kitty.desktop"."_launch" = "Ctrl+Alt+T";
       "services/obsidian.desktop"."_launch" = "Ctrl+Alt+O";
       "services/org.kde.konsole.desktop"."_launch" = [ ];
       "services/org.kde.krunner.desktop"."RunClipboard" = [ ];
-      "services/org.kde.krunner.desktop"."_launch" = "Alt + Space";
-      "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Print";
+      "services/org.kde.krunner.desktop"."_launch" = "Alt+Space";
+      "services/org.kde.spectacle.desktop"."CurrentMonitorScreenShot" = "Print";
+      "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Ctrl+Print";
       "services/org.kde.spectacle.desktop"."_launch" = "Meta+Shift+S";
       "services/org.keepassxc.KeePassXC.desktop"."_launch" = "Ctrl+Alt+K";
       "services/steam.desktop"."_launch" = "Ctrl+Alt+S";
       "services/thunderbird.desktop"."_launch" = "Ctrl+Alt+M";
       "services/vesktop.desktop"."_launch" = "Ctrl+Alt+D";
       "services/zen-beta.desktop"."_launch" = "Meta+Space";
-      "services/zen.desktop"."_launch" = "Meta+Space";
+      "services/zen.desktop"."_launch" = [ ];
       "services/zen.desktop"."new-window" = "Meta+Space";
     };
     configFile = {
@@ -277,7 +277,6 @@
       "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize" = false;
       "dolphinrc"."KFileDialog Settings"."Places Icons Static Size" = 22;
       "dolphinrc"."PreviewSettings"."Plugins" = "appimagethumbnail,audiothumbnail,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,ffmpegthumbs";
-      "dolphinrc"."Search"."Location" = "Everywhere";
       "kactivitymanagerdrc"."activities"."9d648a0c-709f-44fd-bdbb-a3237e6ae531" = "Default";
       "kactivitymanagerdrc"."main"."currentActivity" = "9d648a0c-709f-44fd-bdbb-a3237e6ae531";
       "katerc"."General"."Days Meta Infos" = 30;
@@ -307,7 +306,7 @@
       "katerc"."filetree"."viewShade" = "211,190,222";
       "kded5rc"."Module-browserintegrationreminder"."autoload" = false;
       "kded5rc"."Module-device_automounter"."autoload" = false;
-      "kdeglobals"."DirSelect Dialog"."DirSelectDialog Size" = "820,573";
+      "kdeglobals"."DirSelect Dialog"."DirSelectDialog Size" = "820,584";
       "kdeglobals"."DirSelect Dialog"."Splitter State" = "\x00\x00\x00\xff\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x8a\x00\x00\x02\xa8\x00\xff\xff\xff\xff\x01\x00\x00\x00\x01\x00";
       "kdeglobals"."General"."TerminalApplication" = "alacritty";
       "kdeglobals"."General"."TerminalService" = "Alacritty.desktop";
@@ -315,7 +314,7 @@
       "kdeglobals"."KDE"."SingleClick" = false;
       "kdeglobals"."KFileDialog Settings"."Allow Expansion" = false;
       "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" = true;
-      "kdeglobals"."KFileDialog Settings"."Breadcrumb Navigation" = false;
+      "kdeglobals"."KFileDialog Settings"."Breadcrumb Navigation" = true;
       "kdeglobals"."KFileDialog Settings"."Decoration position" = 2;
       "kdeglobals"."KFileDialog Settings"."LocationCombo Completionmode" = 5;
       "kdeglobals"."KFileDialog Settings"."PathCombo Completionmode" = 5;
@@ -500,18 +499,16 @@
       "plasmanotifyrc"."Notifications"."PopupPosition" = "BottomRight";
       "plasmarc"."Theme"."name" = "breeze-dark";
       "plasmarc"."Wallpapers"."usersWallpapers" = "/home/alik/Pictures/fav.jpg";
+      "spectaclerc"."Annotations"."annotationToolType" = 2;
       "spectaclerc"."ImageSave"."lastImageSaveAsLocation" = "file:///home/alik/Pictures/Screenshots/Screenshot_20250715_210553.png";
-      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/alik/Pictures/Screenshots/Screenshot_20250804_211214.png";
+      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/alik/Pictures/Screenshots/Screenshot_20250812_212751.png";
       "spectaclerc"."ImageSave"."translatedScreenshotsFolder" = "Screenshots";
       "spectaclerc"."VideoSave"."preferredVideoFormat" = 2;
       "spectaclerc"."VideoSave"."translatedScreencastsFolder" = "Screencasts";
       "systemsettingsrc"."systemsettings_sidebar_mode"."HighlightNonDefaultSettings" = true;
     };
     dataFile = {
-      "dolphin/view_properties/global/.directory"."Dolphin"."SortRole" = "modificationtime";
-      "dolphin/view_properties/global/.directory"."Dolphin"."ViewMode" = 1;
-      "dolphin/view_properties/global/.directory"."Settings"."HiddenFilesShown" = true;
-      "kate/anonymous.katesession"."Document 0"."URL" = "file:///home/alik/qmk_firmware/users/readme.md";
+      "kate/anonymous.katesession"."Document 0"."URL" = "file:///home/alik/Documents/kdeconf.txt";
       "kate/anonymous.katesession"."Kate Plugins"."cmaketoolsplugin" = false;
       "kate/anonymous.katesession"."Kate Plugins"."compilerexplorer" = false;
       "kate/anonymous.katesession"."Kate Plugins"."eslintplugin" = false;
@@ -562,7 +559,7 @@
       "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-Sidebar-3-Bar-0-TvList" = "output,diagnostics,kate_plugin_katesearch,kateprojectinfo,kate_private_plugin_katekonsoleplugin";
       "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-Sidebar-3-LastSize" = 204;
       "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-Sidebar-3-SectSizes" = 0;
-      "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-Sidebar-3-Splitter" = 469;
+      "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-Sidebar-3-Splitter" = 552;
       "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-Sidebar-Style" = 2;
       "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-Sidebar-Visible" = true;
       "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-ToolView-diagnostics-Position" = 3;
