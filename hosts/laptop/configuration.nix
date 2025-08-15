@@ -32,7 +32,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-
   networking.hostName = "laptop"; # Define your hostname.
   networking.extraHosts = ''
   192.168.2.20 miniflux.local

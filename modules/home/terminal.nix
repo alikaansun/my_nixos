@@ -11,11 +11,11 @@
         vim = {
           viAlias = false;
           vimAlias = true;
-          # theme = {
-          #   enable = true;
-          #   name = "gruvbox";
-          #   style = "dark";
-          # };
+          theme = {
+            enable = true;
+            name = "gruvbox";
+            style = "dark";
+          };
           languages={
             
             enableTreesitter = true;
@@ -46,7 +46,7 @@
         [ -f ${pkgs.fzf}/share/fzf/completion.bash ] && source ${pkgs.fzf}/share/fzf/completion.bash
 
         # Git commit and push function
-        gitcp() {
+        gitacp() {
           git add --all
           git commit -m "$1"
           git push
@@ -81,7 +81,7 @@
       };
     };
 
-    # bat.enable = true;
+    bat.enable = true;
 
     zoxide={
       enable = true;
@@ -123,13 +123,12 @@
     kitty={
       enable=true;
       shellIntegration.enableBashIntegration=true;
-      # font.name = "FiraCode Nerd Font";
-      # font.package = pkgs.nerd-fonts.fira-code;
-      # themeFile = "GruvboxMaterialDarkSoft";
-      # settings={
-      #   background_opacity = ;
-
-      # };
+      font.name = "FiraCode Nerd Font";
+      font.package = pkgs.nerd-fonts.fira-code;
+      themeFile = "GruvboxMaterialDarkSoft";
+      settings={
+        background_opacity = 0.8 ;
+      };
     };
  
 

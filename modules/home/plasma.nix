@@ -94,18 +94,18 @@ in
       # Apps (converted from Hyprland)
       "services/kitty.desktop"."_launch" = "Meta+Return";
       "services/zen.desktop"."_launch" = "Meta+Space";
-      "services/code.desktop"."_launch" = "Meta+V";
-      "services/org.kde.dolphin.desktop"."_launch" = "Meta+E";
-      "services/vesktop.desktop"."_launch" = "Meta+D";
-      "services/obsidian.desktop"."_launch" = "Meta+O";
-      "services/org.keepassxc.KeePassXC.desktop"."_launch" = "Meta+K";
-      "services/steam.desktop"."_launch" = "Meta+S";
-      "services/thunderbird.desktop"."_launch" = "Meta+M";
+      "services/code.desktop"."_launch" = "Ctrl+Alt+V";
+      "services/vesktop.desktop"."_launch" = "Ctrl+Alt+D";
+      "services/obsidian.desktop"."_launch" = "Ctrl+Alt+O";
+      "services/org.keepassxc.KeePassXC.desktop"."_launch" = "Ctrl+Alt+K";
+      "services/steam.desktop"."_launch" = "Ctrl+Alt+S";
+      "services/thunderbird.desktop"."_launch" = "Ctrl+Alt+M";
 
       # Optional: keep the alternate terminal binding if you still want it
       # "services/kitty.desktop"."New" = "Ctrl+Alt+T";
 
       # Screenshots (you can keep as-is, or align both to region capture)
+      "services/org.kde.spectacle.desktop"."_launch" = "Meta+Shift+S";
       "services/org.kde.spectacle.desktop"."CurrentMonitorScreenShot" = "Print";
       "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Ctrl+Print";
     }; 
