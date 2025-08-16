@@ -2,13 +2,16 @@
 let 
   OllamaHostAddr = "127.0.0.1";
   OWebHostAddr   = "0.0.0.0";
+  # OWebHostAddr   = "127.0.0.1";
 
   # LAN exposure
   lanIp           = "192.168.2.20";
-  openWebUiPath   = "/openwebui/";
+  # openWebUiPath   = "/openwebui/";
+  openWebUiPath   = "/";
+
   ollamaPath      = "/ollama/";
 
-  # Public (proxied) base URLs
+  # LAN (proxied) base URLs
   openWebUiBaseUrl = "http://${lanIp}${openWebUiPath}";
   ollamaBaseUrl    = "http://${lanIp}${ollamaPath}";
 
@@ -22,8 +25,7 @@ in
   # OLLAMA & OPENWEBUI
   services.ollama = {
     enable = true;
-    host = "[::]";
-    # host = OllamaHostAddr;
+    host = OllamaHostAddr;
     port = 11434;
     acceleration = "rocm";
     # openFirewall = true;

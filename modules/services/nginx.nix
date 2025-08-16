@@ -1,9 +1,13 @@
-{ ... }:
+{ pkgs,... }:
 
 {
+  environment.systemPackages =  [
+    pkgs.nginxStable
+  ];
+
   services.nginx = {
     enable = true;
-    # recommendedTlsSettings = true;
+    package = pkgs.nginxStable;
     # recommendedOptimisation = true;
     # recommendedGzipSettings = true;
     # recommendedProxySettings = true;
