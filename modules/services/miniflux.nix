@@ -1,5 +1,19 @@
 { ... }:
-
+let
+  # Local host settings
+  MinifluxHostAddr = "127.0.0.1";
+  MinifluxPort = 8080;
+  
+  # LAN exposure
+  lanIp = "192.168.2.20";
+  minifluxPath = "/miniflux/";
+  
+  # Public (proxied) base URLs
+  minifluxBaseUrl = "http://${lanIp}${minifluxPath}";
+  
+  # Internal upstreams
+  minifluxUpstream = "http://${MinifluxHostAddr}:${toString MinifluxPort}/";
+in
 {
   config = {
     sops.secrets = {
@@ -11,15 +25,15 @@
       adminCredentialsFile = "/etc/miniflux.env";
       config = {
         CLEANUP_FREQUENCY = 48;
-        LISTEN_ADDR = "127.0.0.1:8080";  # Changed back to localhost since nginx will proxy
+        LISTEN_ADDR ="${MinifluxHostAddr}:${toString MinifluxPort}";  # Changed back to localhost since nginx will proxy
     };  
   };
 
   # Enable nginx reverse proxy
   services.nginx = {
-    virtualHosts."192.168.2.20" = {
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8080";
+    virtualHosts."${lanIp}" = {
+      locations."${minifluxPath}" = {
+        proxyPass = minifluxUpstream;
         proxyWebsockets = true;
         extraConfig = ''
           proxy_set_header Host $host;
@@ -32,10 +46,10 @@
   };
 
   # Add custom hostname to /etc/hosts
-  networking.extraHosts = ''
-    127.0.0.1 miniflux.local
-    192.168.2.20 miniflux.local  
-  '';
+  # networking.extraHosts = ''
+  #   "${MinifluxHostAddr}:${toString MinifluxPort}" miniflux.local
+  #   "${lanIp}${minifluxPath}" miniflux.local  
+  # '';
 };
 
 }

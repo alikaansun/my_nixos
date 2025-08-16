@@ -21,7 +21,8 @@
       
       #Services
       # ../../modules/services/finance.nix
-      ../../modules/services/miniflux.nix
+      # ../../modules/services/miniflux.nix
+      ../../modules/services/localai.nix
       ../../modules/services/nginx.nix
 
     ];
@@ -74,6 +75,7 @@
     enable32Bit = true;
   };
 
+  nixpkgs.config.rocmSupport=true;
   services.xserver.videoDrivers = ["amdgpu"];
   # services.xserver.videoDrivers = ["nvidia"];
   # hardware.nvidia = {
