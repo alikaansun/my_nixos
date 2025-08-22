@@ -4,15 +4,20 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     stablenixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins = {
-      url = "github:hyprwm/Hyprland-Plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/Hyprland-Plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
     stylix.url = "github:danth/stylix";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    omarchy-nix = {
+        url = "github:henrysipp/omarchy-nix";
+        inputs.nixpkgs.follows = "nixpkgs";
+        inputs.home-manager.follows = "home-manager";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -64,6 +69,7 @@
             inputs.home-manager.nixosModules.default
             inputs.sops-nix.nixosModules.sops
             inputs.stylix.nixosModules.stylix
+            inputs.omarchy-nix.nixosModules.default
           ];
         };
 
@@ -75,6 +81,7 @@
             inputs.plasma-manager.homeManagerModules.plasma-manager
             inputs.nvf.homeManagerModules.default
             inputs.sops-nix.nixosModules.sops
+            inputs.omarchy-nix.homeManagerModules.default
             ./hosts/${hostname}/home.nix
             {
               home = {

@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   imports =
@@ -15,17 +15,46 @@
 #       ../../modules/networking.nix
 
       #DESKTOP-MODULES
-       ../../modules/desktop/kde.nix
+      # ../../modules/desktop/kde.nix
                         #../../modules/desktop/hypr.nix
       #  ../../modules/desktop/stylix.nix
 
       #SERVICES
-      ../../modules/services/kanata.nix
+      # ../../modules/services/kanata.nix
     ];
 
+  sops.secrets.git_email={};
+
+  omarchy = {
+    full_name = "alik";
+    email_address = config.sops.secrets.git_email.path;
+    theme = "gruvbox";
+    quick_app_bindings=[];
+    scale=1.25;
+    exclude_packages=with pkgs; [
+    lazydocker
+    lazygit
+    docker-compose
+    fastfetch
+    vlc
+    signal-desktop
+
+    # Commercial GUIs
+    typora
+    dropbox
+    spotify
+    
+    gh
+    github-desktop
+    ];
+    # theme_overrides = {
+    #   wallpaper_path =/home/alik/.dotfiles/modules/desktop/fav.jpg;
+    # };
+    # add other supported options here if desired
+  };
 
   services.mykanata = {
-    enable = true;
+    enable = false;
     deviceName = "/dev/input/event0";
   };
 
