@@ -69,7 +69,7 @@
             inputs.home-manager.nixosModules.default
             inputs.sops-nix.nixosModules.sops
             inputs.stylix.nixosModules.stylix
-            inputs.omarchy-nix.nixosModules.default
+            # inputs.omarchy-nix.nixosModules.default
           ];
         };
 
@@ -81,7 +81,7 @@
             inputs.plasma-manager.homeManagerModules.plasma-manager
             inputs.nvf.homeManagerModules.default
             inputs.sops-nix.nixosModules.sops
-            inputs.omarchy-nix.homeManagerModules.default
+            # inputs.omarchy-nix.homeManagerModules.default
             ./hosts/${hostname}/home.nix
             {
               home = {

@@ -28,14 +28,18 @@ in
     
     services.udev.extraRules = ''
       KERNEL=="uinput", GROUP="uinput", MODE="0660", OPTIONS+="static_node=uinput"
-      SUBSYSTEM=="input", GROUP="input", MODE="0664"
-      KERNEL=="event*", GROUP="input", MODE="0664"
     '';
     
-    # Ensure proper permissions on boot
+    # Ensure proper permissions on boot (optional; udev rule is usually enough)
     systemd.tmpfiles.rules = [
       "c /dev/uinput 0660 root uinput"
     ];
+
+    systemd.services."kanata-internalKeyboard".serviceConfig = {
+      # DynamicUser = false;
+      User = "alik";
+      SupplementaryGroups = [ "input" "uinput" ];
+    };
 
     services.kanata = {
       enable = true;
