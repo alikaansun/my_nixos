@@ -8,7 +8,7 @@
   services.avahi = {
     enable = true;
     package = pkgs.avahi;
-    nssmdns = true; # Integrate with system name resolution
+    nssmdns4 = true; # Integrate with system name resolution
     publish = {
       enable = true;
       addresses = true;

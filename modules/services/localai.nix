@@ -6,7 +6,7 @@ let
 
   # LAN exposure
   lanIp           = "192.168.2.20";
-  # openWebUiPath   = "/openwebui/";
+  # openWebUiPath   = "/ai/";
   openWebUiPath   = "/";
 
   ollamaPath      = "/ollama/";
