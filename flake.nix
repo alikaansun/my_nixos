@@ -68,20 +68,20 @@
             ./hosts/${hostname}/configuration.nix
             inputs.home-manager.nixosModules.default
             inputs.sops-nix.nixosModules.sops
-            inputs.stylix.nixosModules.stylix
+            # inputs.stylix.nixosModules.stylix
             # inputs.omarchy-nix.nixosModules.default
           ];
         };
 
       mkHome =
         hostname:
+        modulesExtra:
         home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { inherit system; };
           modules = [
-            inputs.plasma-manager.homeManagerModules.plasma-manager
+            # inputs.omarchy-nix.homeManagerModules.default
             inputs.nvf.homeManagerModules.default
             inputs.sops-nix.nixosModules.sops
-            # inputs.omarchy-nix.homeManagerModules.default
             ./hosts/${hostname}/home.nix
             {
               home = {
@@ -89,7 +89,7 @@
                 homeDirectory = "/home/${username}";
               };
             }
-          ];
+          ] ++ modulesExtra;
         };
 
       mkServer =
@@ -104,35 +104,22 @@
           ];
         };
 
-      mkServerHome =
-        hostname:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = import stablenixpkgs { inherit system; };
-          modules = [
-            inputs.nvf.homeManagerModules.default
-            inputs.sops-nix.nixosModules.sops
-            ./hosts/${hostname}/home.nix
-            {
-              home = {
-                inherit username;
-                homeDirectory = "/home/${username}";
-              };
-            }
-          ];
-        };
     in
     {
       nixosConfigurations = {
-        desktop = mkHost "desktop";
-        laptop = mkHost "laptop";
-        blade = mkServer "blade"; 
-        # nixos = mkHost "laptop";
+        arondil = mkHost "arondil";
+        reania  = mkHost "reania";
+        blade   = mkServer "blade"; 
       };
 
       homeConfigurations = {
-        "alik@desktop" = mkHome "desktop";
-        "alik@laptop" = mkHome "laptop";
-        "alik@blade" = mkServerHome "blade";
+        "alik@arondil" = mkHome "arondil" [
+          inputs.plasma-manager.homeManagerModules.plasma-manager
+        ];
+        "alik@reania" = mkHome "reania" [
+          inputs.plasma-manager.homeManagerModules.plasma-manager
+        ];
+        "alik@blade" = mkHome "blade" [ ];
       };
     };
 }

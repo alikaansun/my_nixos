@@ -45,7 +45,7 @@
   
   # Bridge network for nas
   networking = {
-    hostName = "desktop";
+    hostName = "arondil";
   #   interfaces.eno1 = {
   #   ipv4.addresses = [{
   #     address = "192.168.10.1";
