@@ -59,11 +59,13 @@
 
       username = "alik";
 
+      vars = import ./modules/vars.nix;
+
       mkHost =
         hostname:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs vars; };
           modules = [
             ./hosts/${hostname}/configuration.nix
             inputs.home-manager.nixosModules.default
@@ -77,7 +79,7 @@
         hostname:
         modulesExtra:
         home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { inherit system; };
+          pkgs = import nixpkgs { inherit system vars; };
           modules = [
             # inputs.omarchy-nix.homeManagerModules.default
             inputs.nvf.homeManagerModules.default
@@ -96,7 +98,7 @@
         hostname:
         stablenixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs vars; };
           modules = [
             ./hosts/${hostname}/configuration.nix
             inputs.home-manager.nixosModules.default

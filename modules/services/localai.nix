@@ -1,71 +1,57 @@
 { ... }:
-let 
+let
   OllamaHostAddr = "127.0.0.1";
-  OWebHostAddr   = "0.0.0.0";
-  # OWebHostAddr   = "127.0.0.1";
+  OWebHostAddr   = "127.0.0.1";  # bind only to localhost now
 
-  # LAN exposure
-  lanIp           = "192.168.2.20";
-  # openWebUiPath   = "/ai/";
-  openWebUiPath   = "/";
-
-  ollamaPath      = "/ollama/";
-
-  # LAN (proxied) base URLs
-  openWebUiBaseUrl = "http://${lanIp}${openWebUiPath}";
-  ollamaBaseUrl    = "http://${lanIp}${ollamaPath}";
-
-  # Internal upstreams
-  openWebUiUpstream = "http://${OWebHostAddr}:11111/";
-  ollamaUpstream    = "http://${OllamaHostAddr}:11434/";
-in 
+  # OpenWebUI and Ollama internal upstreams
+  openWebUiPort = 11111;
+  ollamaPort    = 11434;
+in
 {
-  networking.firewall.allowedTCPPorts = [ 11111 11434 ];
+  # No need to open these ports externally now (remove if previously set)
+  networking.firewall.allowedTCPPorts = [ ];
 
-  # OLLAMA & OPENWEBUI
   services.ollama = {
     enable = true;
     host = OllamaHostAddr;
-    port = 11434;
+    port = ollamaPort;
     acceleration = "rocm";
-    # openFirewall = true;
   };
 
   services.open-webui = {
     enable = true;
     host = OWebHostAddr;
-    port = 11111;
-    # stateDir = "/home/alik/AppData/open-webui";
-    environment ={
-      # OLLAMA_API_BASE_URL = ollamaBaseUrl;
-      # WEBUI_BASE_PATH = openWebUiPath;
+    port = openWebUiPort;
+    environment = {
       WEBUI_AUTH = "False";
     };
   };
-
+  
+  services.caddy.virtualHosts."ai.arondil.local".extraConfig = ''
+    tls internal
+    reverse_proxy 127.0.0.1:${toString openWebUiPort}
+  '';
   # Expose both services on your LAN IP via nginx (same vhost as Miniflux)
-  services.nginx.virtualHosts."${lanIp}" = {
-    # OpenWebUI at ${openWebUiBaseUrl}
-    locations."${openWebUiPath}" = {
-      proxyPass = openWebUiUpstream;
-      proxyWebsockets = true;
-      extraConfig = ''
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-Prefix ${openWebUiPath};
-        proxy_read_timeout 3600;
-        proxy_send_timeout 3600;
-        proxy_buffering off;
+  # services.nginx.virtualHosts."${lanIp}" = {
+  #   # OpenWebUI at ${openWebUiBaseUrl}
+  #   locations."${openWebUiPath}" = {
+  #     proxyPass = openWebUiUpstream;
+  #     proxyWebsockets = true;
+  #     extraConfig = ''
+  #       proxy_set_header Host $host;
+  #       proxy_set_header X-Real-IP $remote_addr;
+  #       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  #       proxy_set_header X-Forwarded-Proto $scheme;
+  #       proxy_set_header X-Forwarded-Prefix ${openWebUiPath};
+  #       proxy_read_timeout 3600;
+  #       proxy_send_timeout 3600;
+  #       proxy_buffering off;
         
-        # Rewrite paths correctly
-        rewrite ^${openWebUiPath}(.*) /$1 break;
-      '';
-    };
-
-
-  };
+  #       # Rewrite paths correctly
+  #       rewrite ^${openWebUiPath}(.*) /$1 break;
+  #     '';
+  #   };
+  # };
     # Add custom hostname to /etc/hosts
   # networking.extraHosts = ''
   #   127.0.0.1 miniflux.local
