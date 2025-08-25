@@ -1,22 +1,8 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, vars, ... }:
 let
-  # Local host settings
-  MinifluxHostAddr = "127.0.0.1";
-  MinifluxPort = 8080;
-
-  # Dedicated Miniflux hostname
-  hostName = "miniflux.arondil.local";
-
-  # Always root for Miniflux
-  minifluxPath = "/";
-
-  baseUrl = "https://${hostName}";
-  portStr = toString MinifluxPort;
-
-  caddyExtraConfig = ''
-    tls internal
-    reverse_proxy ${MinifluxHostAddr}:${portStr}
-  '';
+  hostName = vars.miniflux.hostName;
+  port     = vars.miniflux.port;
+  baseUrl  = "https://${hostName}";
 in
 {
   config = {
@@ -25,11 +11,14 @@ in
       adminCredentialsFile = "/etc/miniflux.env";
       config = {
         CLEANUP_FREQUENCY = 48;
-        LISTEN_ADDR = "${MinifluxHostAddr}:${portStr}";
+        LISTEN_ADDR = "127.0.0.1:${toString port}";
         BASE_URL = baseUrl;
       };
     };
 
-    services.caddy.virtualHosts."${hostName}".extraConfig = caddyExtraConfig;
+    services.caddy.virtualHosts."${hostName}".extraConfig = ''
+      tls internal
+      reverse_proxy 127.0.0.1:${toString port}
+    '';
   };
 }
