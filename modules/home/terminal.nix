@@ -40,6 +40,7 @@
 
     bash = {
       enable = true;
+      enableCompletion = true;
       initExtra = ''
         # Enable fzf keybindings
         [ -f ${pkgs.fzf}/share/fzf/key-bindings.bash ] && source ${pkgs.fzf}/share/fzf/key-bindings.bash

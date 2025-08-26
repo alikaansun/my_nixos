@@ -78,6 +78,7 @@
    sops
    git
    nvd#nixos package version diff tool
+   nix-output-monitor
    tldr
    nixd#nix language server
    nixfmt-rfc-style #nix formatter
