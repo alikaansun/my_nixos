@@ -37,7 +37,7 @@
     fastfetch
     # inputs.anifetch.packages.${pkgs.system}.default
     vesktop
-    spotify 
+    # spotify
     vlc
     parted
     nextcloud-client

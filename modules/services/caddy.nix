@@ -1,4 +1,4 @@
-{ pkgs,... }:
+{ pkgs,vars,... }:
 
 {
   environment.systemPackages =  [
@@ -16,9 +16,7 @@
     # systemd.services.caddy.wants = [ "network-online.target" ];
 
   networking.extraHosts = ''
-    127.0.0.1 miniflux.arondil.local ai.arondil.local
-    # Or map to LAN IP (uncomment and set correct IP):
-    # 192.168.2.20 miniflux.arondil.local ai.arondil.local
+    ${vars.miniflux.IP} miniflux.arondil.local ai.arondil.local ${vars.miniflux.tailscaleHostName} ${vars.openWebUI.tailscaleHostName}
   '';
   
 }
