@@ -20,7 +20,7 @@
         inputs.home-manager.follows = "home-manager";
     };
     omarchy-flake = {
-      url = "modules/omarchyf.nix";
+      url = "path:./modules/omarchy";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
       inputs.omarchy-nix.follows = "omarchy-nix";

@@ -1,5 +1,22 @@
 {
   description = "Omarchy function library";
+  
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    omarchy-nix = {
+      url = "github:henrysipp/omarchy-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 
   outputs = { nixpkgs, omarchy-nix, home-manager, sops-nix, ... }: 
     let
