@@ -36,11 +36,26 @@
     fsType = "ext4";
     options = [ "defaults" "rw" ];
   };
+  fileSystems."/mnt/storage" = {
+    device = "/dev/disk/by-uuid/d9fa4b2b-2319-4a8f-b84b-859182eaa719";
+    fsType = "ext4";
+    options = [ "defaults" "rw" "user" "exec" ];
+  };
+  
   system.activationScripts.setStoragePermissions = {
     text = ''
       mkdir -p /mnt/D
       chown alik /mnt/D
       chmod -R 777 /mnt/D
+      
+      mkdir -p /mnt/storage
+      mkdir -p /mnt/storage/AppData/openwebui
+      
+      # Set ownership for the mount point
+      chown alik:users /mnt/storage
+      chmod 755 /mnt/storage
+      chown alik:users /mnt/storage/AppData
+      chmod 755 /mnt/storage/AppData
     '';
     deps = [];
   };

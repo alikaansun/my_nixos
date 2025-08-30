@@ -14,17 +14,19 @@
     host = vars.openWebUI.IP;
     port = vars.openWebUI.port;
     environment.WEBUI_AUTH = "True";
+    # stateDir="/var/lib/open-webui";
   };
 
-  # Local access
-  services.caddy.virtualHosts."${vars.openWebUI.hostName}:${toString vars.openWebUI.port}".extraConfig = ''
+  # Create a symlink or bind mount to your storage
+  # systemd.tmpfiles.rules = [
+  #   "d /mnt/storage/AppData/openwebui 0777 - - -"
+  #   "L+ /var/lib/open-webui - - - - /mnt/storage/AppData/openwebui"
+  # ];
+
+  # Local access - Remove the port from the hostname
+  services.caddy.virtualHosts."${vars.openWebUI.hostName}".extraConfig = ''
     tls internal
     reverse_proxy ${vars.openWebUI.IP}:${toString vars.openWebUI.port}
   '';
 
-  # Tailscale access - simple reverse proxy
-  services.caddy.virtualHosts."${vars.openWebUI.tailscaleHostName}".extraConfig = ''
-    tls internal
-    reverse_proxy ${vars.openWebUI.IP}:${toString vars.openWebUI.port}
-  '';
 }
