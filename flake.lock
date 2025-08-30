@@ -713,6 +713,31 @@
         "type": "github"
       }
     },
+    "omarchy-flake": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "omarchy-nix": [
+          "omarchy-nix"
+        ],
+        "sops-nix": [
+          "sops-nix"
+        ]
+      },
+      "locked": {
+        "path": "./modules/omarchy",
+        "type": "path"
+      },
+      "original": {
+        "path": "./modules/omarchy",
+        "type": "path"
+      },
+      "parent": []
+    },
     "omarchy-nix": {
       "inputs": {
         "home-manager": [
@@ -790,6 +815,7 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nvf": "nvf",
+        "omarchy-flake": "omarchy-flake",
         "omarchy-nix": "omarchy-nix",
         "plasma-manager": "plasma-manager",
         "shad06_nixpkgs": "shad06_nixpkgs",
