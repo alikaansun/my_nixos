@@ -1,4 +1,4 @@
-{ ... }:
+{vars,config,pkgs, ... }:
 
 {
   config = {

@@ -19,6 +19,13 @@
         inputs.nixpkgs.follows = "nixpkgs";
         inputs.home-manager.follows = "home-manager";
     };
+    omarchy-flake = {
+      url = "modules/omarchyf.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+      inputs.omarchy-nix.follows = "omarchy-nix";
+      inputs.sops-nix.follows = "sops-nix";
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,6 +59,7 @@
       home-manager,
       plasma-manager,
       nvf,
+      omarchy-flake,
       ...
     }@inputs:
     let
@@ -60,6 +68,8 @@
       username = "alik";
 
       vars = import ./modules/vars.nix;
+
+      mkOmarchy = omarchy-flake.lib.mkOmarchy;
 
       mkHost =
         hostname:
@@ -111,6 +121,7 @@
       nixosConfigurations = {
         arondil = mkHost "arondil";
         reania  = mkHost "reania";
+        raikeh = mkOmarchy "raikeh";
         blade   = mkServer "blade"; 
       };
 
