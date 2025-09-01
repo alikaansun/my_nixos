@@ -121,7 +121,7 @@
       nixosConfigurations = {
         arondil = mkHost "arondil";
         reania  = mkHost "reania";
-        raikeh = mkOmarchy "raikeh";
+        raikeh = mkOmarchy "raikeh" "reania";
         blade   = mkServer "blade"; 
       };
 

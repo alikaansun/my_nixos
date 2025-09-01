@@ -1,14 +1,20 @@
 {
+  seafile={
+    hostName = "seafile.arondil.local";
+    IP="0.0.0.0";
+    port = 8080;
+
+  };
+    
   miniflux = {
     hostName = "miniflux.arondil.local";
-    tailscaleHostName = "miniflux.taild325e4.ts.net";  # Add port
     IP="0.0.0.0";
     port = 8080;
   };
 
   openWebUI = {
-    IP="0.0.0.0";
     hostName = "ai.arondil.local";
+    IP="0.0.0.0";
     port = 11111;
   };
 

@@ -26,6 +26,7 @@
       # ../../modules/services/nginx.nix
       ../../modules/services/caddy.nix
       ../../modules/services/tailscale.nix
+      ../../modules/services/seafile.nix
       # ../../modules/services/avahi.nix
 
     ];

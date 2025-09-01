@@ -23,7 +23,7 @@
       system = "x86_64-linux";
       username = "alik";
 
-      mkOmarchy = hostname: nixpkgs.lib.nixosSystem {
+      mkOmarchy = hostname: actualHost: nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { };
         modules = [
