@@ -1,8 +1,8 @@
 {
-  seafile={
-    hostName = "seafile.arondil.local";
-    IP="0.0.0.0";
-    port = 8080;
+  syncthing={
+    # guiAddress = "127.0.0.1:8385";
+    IP="127.0.0.1";
+    port = 8385;
 
   };
     
