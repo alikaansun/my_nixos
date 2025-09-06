@@ -10,7 +10,7 @@
       ../../modules/common.nix #Dont disable it 
       ../../modules/gc.nix #garbage collection and store opt
       ../../modules/gaming.nix 
-      ../../modules/virtualisation.nix 
+      # ../../modules/virtualisation.nix 
       
       #./modules/localai.nix
       #DESKTOP-MODULES
@@ -26,7 +26,8 @@
       # ../../modules/services/nginx.nix
       ../../modules/services/caddy.nix
       ../../modules/services/tailscale.nix
-      ../../modules/services/syncthing.nix
+      # ../../modules/services/syncthing.nix
+      ../../modules/services/seafile.nix
       # ../../modules/services/avahi.nix
 
     ];

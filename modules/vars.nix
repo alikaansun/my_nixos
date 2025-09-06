@@ -5,6 +5,13 @@
     port = 8385;
 
   };
+
+  seafile={
+    hostName = "seafile.arondil.local";
+    IP="0.0.0.0";
+    port = 8080;
+
+  };
     
   miniflux = {
     hostName = "miniflux.arondil.local";

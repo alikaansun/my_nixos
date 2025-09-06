@@ -2,7 +2,11 @@
 
 {
   config = {
-    sops.secrets.syncthing = {};
+    sops.secrets = {
+      synct_passwd = {};
+      synct_reania = {};
+      synct_phone = {};
+    };
 
   # systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder.  See https://wiki.nixos.org/wiki/Syncthing
   services.syncthing = {
@@ -11,52 +15,45 @@
     # I change the address SyncThing uses (which is also how you access the
     # browser UI).  This is to avoid conflicts with the other SyncThing instances
     # I have on the same machine.  Namely, from different WSL2 instances.
-    guiAddress = "${vars.syncthing.IP}:${toString vars.syncthing.port}";
-    user = "alika";
-    group = "users";
-    configDir = "/home/alika/.config/syncthing";
-    # Override all settings set from the GUI.  This is necessary if I don't want
-    # to have changes made from the GUI apply.
+    # guiAddress = "${vars.syncthing.IP}:${toString vars.syncthing.port}";
+    # configDir = "/home/alika/.config/syncthing";
     overrideDevices = true;
     overrideFolders = true;
     # Settings: this is where you set up devices and folders
     settings = {
-      gui = {
-            user = "alik";
-            password = config.sops.syncthing.passwd.path;
-          };
+      # gui = {
+            # user = "alik";
+            # password = config.sops.secrets.synct_passwd.path;
+          # };
       devices = {
-        "Reania" = {       # Name of SyncThing instance on other machine
-          id = config.sops.syncthing.devices.reania.path; # Elided for privacy
+        "Reania" = {       
+          id = config.sops.secrets.synct_reania.path; 
         };
-        "Phone" = {       # Name of SyncThing instance on mobile device
-          id = config.sops.syncthing.devices.phone.path; # Elided for privacy
+        "Phone" = {      
+          id = config.sops.secrets.synct_phone.path; 
         };
       };
   
       folders = {
-        "Zotero" = {           # The ID of a folder you'd like to sync
-          label = "Zotero";       # Optional device-specific folder name
+        "Zotero" = {           
+          label = "Zotero";       
           path = "/mnt/storage/AppData/Zotero";
-          # Share with these devices
           devices = [
             "Reania"
             "Phone"
           ];
         };
-        "Notes" = {           # The ID of a folder you'd like to sync
-          label = "Notes";        # Optional device-specific folder name
+        "Notes" = {         
+          label = "Notes";        
           path = "/mnt/storage/AppData/Notes";
-          # Share with these devices
           devices = [
             "Reania"
             "Phone"
           ];
         };
-        "Keep" = {           # The ID of a folder you'd like to sync
-          label = "Keep";        # Optional device-specific folder name
+        "Keep" = {           
+          label = "Keep";        
           path = "/mnt/storage/AppData/Keep";
-          # Share with these devices
           devices = [
             "Reania"
             "Phone"
