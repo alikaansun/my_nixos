@@ -10,10 +10,11 @@
 
   services.seafile = {
     enable = true;
-    # adminEmail = config.sops.secrets.seafile_email.path;
-    # initialAdminPassword = config.sops.secrets.seafile_adminpw.path;
+    adminEmail = config.sops.secrets.seafile_email.path;
+    initialAdminPassword = config.sops.secrets.seafile_adminpw.path;
     # user="seafile";
     # group="seafile";
+    ccnetSettings.General.SERVICE_URL = "http://localhost:8080";
     # ccnetSettings.general.service_url = "https://${vars.seafile.hostName}";
     # seafileSettings = {
     #   fileserver = {
