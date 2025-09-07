@@ -1,7 +1,7 @@
-{ pkgs,... }:
+{ pkgs, ... }:
 
 {
-  environment.systemPackages =  [
+  environment.systemPackages = [
     pkgs.avahi
   ];
 

@@ -4,7 +4,7 @@
   environment.systemPackages = with pkgs; [
     base16-schemes
   ];
-  stylix={
+  stylix = {
     enable = true;
     image = ./fav.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
@@ -14,7 +14,7 @@
       monospace = {
         package = pkgs.nerd-fonts.fira-code;
         name = "Fira Code Mono Nerd Font";
-        };
+      };
       serif = {
         package = pkgs.dejavu_fonts;
         name = "DejaVu Serif";
@@ -33,8 +33,8 @@
         desktop = 10;
         popups = 10;
       };
-  };
-      
+    };
+
     # };
   };
 }

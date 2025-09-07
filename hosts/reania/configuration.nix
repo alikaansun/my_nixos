@@ -1,29 +1,28 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix #Dont disable it
-      #CUSTOM-MODULES
-      # ../../modules/bootloader.nix #bootloader #Dont disable it
-      ../../modules/locale.nix #Dont disable it
-      ../../modules/common.nix #Dont disable it
-      ../../modules/gc.nix #garbage collection and store opt
-#       ../../modules/extrastorage.nix #extra storage
-      ../../modules/gaming.nix
-#       ../../modules/virtualisation.nix
-#       ../../modules/networking.nix
+  imports = [
+    ./hardware-configuration.nix # Dont disable it
+    #CUSTOM-MODULES
+    # ../../modules/bootloader.nix #bootloader #Dont disable it
+    ../../modules/locale.nix # Dont disable it
+    ../../modules/common.nix # Dont disable it
+    ../../modules/gc.nix # garbage collection and store opt
+    #       ../../modules/extrastorage.nix #extra storage
+    ../../modules/gaming.nix
+    #       ../../modules/virtualisation.nix
+    #       ../../modules/networking.nix
 
-      #DESKTOP-MODULES
-      ../../modules/desktop/kde.nix
-                        #../../modules/desktop/hypr.nix
-      #  ../../modules/desktop/stylix.nix
+    #DESKTOP-MODULES
+    ../../modules/desktop/kde.nix
+    #../../modules/desktop/hypr.nix
+    #  ../../modules/desktop/stylix.nix
 
-      #SERVICES
-      ../../modules/services/kanata.nix
-    ];
+    #SERVICES
+    ../../modules/services/kanata.nix
+  ];
 
-  sops.secrets.git_email={};
+  sops.secrets.git_email = { };
 
   # omarchy = {
   #   full_name = "alik";
@@ -43,7 +42,7 @@
   #   typora
   #   dropbox
   #   spotify
-    
+
   #   gh
   #   github-desktop
   #   ];
@@ -63,8 +62,8 @@
 
   networking.hostName = "reania"; # Define your hostname.
   networking.extraHosts = ''
-  192.168.2.20 miniflux.local
-  '';  
+    192.168.2.20 miniflux.local
+  '';
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -73,14 +72,12 @@
   #  enable32Bit = true;
   #};
 
-  
   # Enable automatic login for the user.services.displayManager.autoLogin
   services.displayManager.autoLogin.enable = false;
   # services.displayManager.autoLogin.user = "alik";
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

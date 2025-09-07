@@ -1,4 +1,4 @@
-{ pkgs,inputs, ... }:
+{ pkgs, inputs, ... }:
 
 let
   filler_panel = location: {
@@ -15,27 +15,27 @@ let
 in
 {
   imports = [
-  inputs.plasma-manager.homeManagerModules.plasma-manager
+    inputs.plasma-manager.homeManagerModules.plasma-manager
   ];
 
-  programs.plasma= { 
+  programs.plasma = {
     enable = true;
-    workspace = {  
-      theme="breeze-dark";
-      wallpaper="/home/alik/.dotfiles/modules/desktop/fav.jpg";
+    workspace = {
+      theme = "breeze-dark";
+      wallpaper = "/home/alik/.dotfiles/modules/desktop/fav.jpg";
       lookAndFeel = "org.kde.breezedark.desktop";
-      clickItemTo="select";
-      iconTheme="breeze-dark";
+      clickItemTo = "select";
+      iconTheme = "breeze-dark";
       cursor = {
         theme = "breeze_cursors";
         # size = 24;
       };
-    }; 
+    };
     kscreenlocker = {
       appearance = {
         wallpaper = "/home/alik/.dotfiles/modules/desktop/fav1.jpg";
         showMediaControls = true;
-        };
+      };
     };
 
     kwin = {
@@ -48,12 +48,17 @@ in
         mode = "times";
         temperature.day = 4900;
         temperature.night = 4100;
-        time.evening="20:00"; 
-        time.morning="06:30";
+        time.evening = "20:00";
+        time.morning = "06:30";
       };
       titlebarButtons = {
         left = [ "more-window-actions" ];
-        right = [ "keep-above-windows" "minimize" "maximize" "close" ];
+        right = [
+          "keep-above-windows"
+          "minimize"
+          "maximize"
+          "close"
+        ];
       };
       virtualDesktops = {
         number = 2;
@@ -64,10 +69,10 @@ in
         ];
       };
     };
-    krunner={
-      activateWhenTypingOnDesktop=true;
-      shortcuts.launch="Alt + Space";
-      };
+    krunner = {
+      activateWhenTypingOnDesktop = true;
+      shortcuts.launch = "Alt + Space";
+    };
 
     shortcuts = {
       kwin = {
@@ -85,11 +90,15 @@ in
         "Window One Desktop to the Right" = "Meta+Ctrl+Shift+Right";
         "Switch to Desktop 1" = "Ctrl+F1";
         "Switch to Desktop 2" = "Ctrl+F2";
-        "Window Close" = ["Meta+Q,Alt+F4,Alt+F4,Close Window"];
+        "Window Close" = [ "Meta+Q,Alt+F4,Alt+F4,Close Window" ];
       };
 
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
-      "ksmserver"."Lock Session" = ["Meta+L" "Screensaver,Meta+L" "Screensaver,Lock Session"];
+      "ksmserver"."Lock Session" = [
+        "Meta+L"
+        "Screensaver,Meta+L"
+        "Screensaver,Lock Session"
+      ];
 
       # Apps (converted from Hyprland)
       "services/kitty.desktop"."_launch" = "Meta+Return";
@@ -108,7 +117,7 @@ in
       "services/org.kde.spectacle.desktop"."_launch" = "Meta+Shift+S";
       "services/org.kde.spectacle.desktop"."CurrentMonitorScreenShot" = "Print";
       "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Ctrl+Print";
-    }; 
+    };
 
     configFile = {
       "kwinrc"."Plugins"."translucencyEnabled" = true;
@@ -129,7 +138,7 @@ in
 
       "kwalletrc"."Wallet"."First Use" = false;
     };
-    
+
     dataFile = {
       "dolphin/view_properties/global/.directory"."Dolphin"."SortRole" = "modificationtime";
       "dolphin/view_properties/global/.directory"."Dolphin"."ViewMode" = 1;
@@ -137,7 +146,7 @@ in
     };
 
     # panels = [
-    #   { 
+    #   {
     #   location= "top";
     #   alignment="center";
     #   height=36;
@@ -157,7 +166,7 @@ in
     #           normal = "Dock";
     #         };
     #       };
-    #     } 
+    #     }
     #     "org.kde.plasma.appmenu"
     #     "org.kde.plasma.panelspacer"
     #     {
@@ -210,7 +219,7 @@ in
     #   (filler_panel "left")
     #   (filler_panel "bottom")
     # ];
-    
+
   };
 
 }

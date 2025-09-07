@@ -1,7 +1,7 @@
-{ pkgs,config, ... }:
+{ pkgs, config, ... }:
 {
-        
-  sops.secrets.git_email={};
+
+  sops.secrets.git_email = { };
 
   programs.git = {
     enable = true;

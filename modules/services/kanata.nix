@@ -22,14 +22,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    
+
     boot.kernelModules = [ "uinput" ];
-    users.groups.uinput = {};
-    
+    users.groups.uinput = { };
+
     services.udev.extraRules = ''
       KERNEL=="uinput", GROUP="uinput", MODE="0660", OPTIONS+="static_node=uinput"
     '';
-    
+
     # Ensure proper permissions on boot (optional; udev rule is usually enough)
     systemd.tmpfiles.rules = [
       "c /dev/uinput 0660 root uinput"
@@ -38,7 +38,10 @@ in
     systemd.services."kanata-internalKeyboard".serviceConfig = {
       # DynamicUser = false;
       User = "alik";
-      SupplementaryGroups = [ "input" "uinput" ];
+      SupplementaryGroups = [
+        "input"
+        "uinput"
+      ];
     };
 
     services.kanata = {

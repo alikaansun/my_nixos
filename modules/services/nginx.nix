@@ -1,7 +1,7 @@
-{ pkgs,... }:
+{ pkgs, ... }:
 
 {
-  environment.systemPackages =  [
+  environment.systemPackages = [
     pkgs.nginxStable
   ];
 
@@ -11,7 +11,7 @@
     # recommendedOptimisation = true;
     # recommendedGzipSettings = true;
     # recommendedProxySettings = true;
-    
+
     # Global settings
     # appendHttpConfig = ''
     #   # Global nginx settings
@@ -21,5 +21,8 @@
   };
 
   # Open HTTP/HTTPS ports
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
 }

@@ -1,29 +1,27 @@
 { ... }:
 
-
 {
-  
-  imports =
-    [ 
-      ./hardware-configuration.nix #Dont disable it
-      #CUSTOM-MODULES
-      ../../modules/locale.nix #Dont disable it 
-    
-      #./modules/localai.nix
-      #DESKTOP-MODULES
-      # ./modules/desktop/hypr.nix
-      ./modules/desktop/xfce.nix
-      # ./modules/desktop/gnome.nix
-      
-      #Services
-      ../../modules/services/nginx.nix
-      # ../../modules/services/finance.nix
-      ../../modules/services/miniflux.nix
-      # ../../modules/services/nextcloud.nix
 
-    ];
-  
-  #Mount extra drive and make it 
+  imports = [
+    ./hardware-configuration.nix # Dont disable it
+    #CUSTOM-MODULES
+    ../../modules/locale.nix # Dont disable it
+
+    #./modules/localai.nix
+    #DESKTOP-MODULES
+    # ./modules/desktop/hypr.nix
+    ./modules/desktop/xfce.nix
+    # ./modules/desktop/gnome.nix
+
+    #Services
+    ../../modules/services/nginx.nix
+    # ../../modules/services/finance.nix
+    ../../modules/services/miniflux.nix
+    # ../../modules/services/nextcloud.nix
+
+  ];
+
+  #Mount extra drive and make it
   # fileSystems."/mnt/D" = {
   #   device = "/dev/disk/by-uuid/218ce1d4-70e8-4b81-aa2b-3abab153a6b4";
   #   fsType = "ext4";
@@ -37,38 +35,38 @@
   #   '';
   #   deps = [];
   # };
-  
+
   # Bridge network for nas
   networking = {
     hostName = "blade";
-  #   interfaces.eno1 = {
-  #   ipv4.addresses = [{
-  #     address = "192.168.10.1";
-  #     prefixLength = 24;
-  #   }];
-  # };
+    #   interfaces.eno1 = {
+    #   ipv4.addresses = [{
+    #     address = "192.168.10.1";
+    #     prefixLength = 24;
+    #   }];
+    # };
   };
 
   boot.loader = {
-  efi = {
-    canTouchEfiVariables = true;
-    # efiSysMountPoint = "/boot/efi";
+    efi = {
+      canTouchEfiVariables = true;
+      # efiSysMountPoint = "/boot/efi";
+    };
+    grub = {
+      efiSupport = true;
+      #efiInstallAsRemovable = true;
+      # device = "nodev";
+      fontSize = 30;
+      timeoutStyle = "hidden";
+    };
   };
-  grub = {
-    efiSupport = true;
-    #efiInstallAsRemovable = true;
-    # device = "nodev";
-    fontSize = 30;
-    timeoutStyle = "hidden";
-  };
-  };
- 
+
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
   # hardware.graphics = {
-    # enable = true;
-    # enable32Bit = true;
+  # enable = true;
+  # enable32Bit = true;
   # };
 
   # services.xserver.videoDrivers = ["amdgpu"];
@@ -81,7 +79,7 @@
   # Enable automatic login for the user.services.displayManager.autoLogin
   # services.displayManager.autoLogin.enable = true;
   # services.displayManager.autoLogin.user = "alik";
- 
+
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
@@ -104,5 +102,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
-  
+
 }

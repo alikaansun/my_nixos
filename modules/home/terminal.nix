@@ -1,4 +1,9 @@
-{ pkgs,inputs,config, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 
 {
   imports = [ inputs.nvf.homeManagerModules.default ];
@@ -16,8 +21,8 @@
             name = "gruvbox";
             style = "dark";
           };
-          languages={
-            
+          languages = {
+
             enableTreesitter = true;
             nix.enable = true;
             bash.enable = true;
@@ -31,7 +36,7 @@
       };
 
     };
-    
+
     oh-my-posh = {
       enable = true;
       useTheme = "emodipt-extend";
@@ -82,7 +87,7 @@
       };
     };
 
-    zoxide={
+    zoxide = {
       enable = true;
       enableBashIntegration = true;
     };
@@ -92,9 +97,9 @@
       enableBashIntegration = true;
     };
 
-    # alacritty = { 
+    # alacritty = {
     #   enable = true;
-    #   settings = { 
+    #   settings = {
     #     window = {
     #       opacity = 0.8;
     #       padding = { x = 10; y = 10; };
@@ -119,17 +124,16 @@
     #   };
     # };
 
-    kitty={
-      enable=true;
-      shellIntegration.enableBashIntegration=true;
+    kitty = {
+      enable = true;
+      shellIntegration.enableBashIntegration = true;
       font.name = "FiraCode Nerd Font";
       font.package = pkgs.nerd-fonts.fira-code;
       themeFile = "GruvboxMaterialDarkSoft";
-      settings={
-        background_opacity = 0.8 ;
+      settings = {
+        background_opacity = 0.8;
       };
     };
- 
 
   };
 

@@ -1,25 +1,29 @@
-{ config, pkgs,
-lib ,
-programs,inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  programs,
+  inputs,
+  ...
+}:
 
 {
 
-  imports =
-    [
+  imports = [
     #  ../../modules/desktop/hyprland.nix
-     
-      ../../modules/home/common.nix
-      ../../modules/home/terminal.nix
-      ../../modules/home/git.nix
-      # inputs.omarchy-nix.homeManagerModules.default
-      # inputs.plasma-manager.homeManagerModules.plasma-manager
-      ../../modules/home/plasma.nix
-#       ../../modules/creative.nix
 
-    ];
+    ../../modules/home/common.nix
+    ../../modules/home/terminal.nix
+    ../../modules/home/git.nix
+    # inputs.omarchy-nix.homeManagerModules.default
+    # inputs.plasma-manager.homeManagerModules.plasma-manager
+    ../../modules/home/plasma.nix
+    #       ../../modules/creative.nix
+
+  ];
 
   home.stateVersion = "25.05"; # Please read the comment before changing.
-  
+
   home.packages = with pkgs; [
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -34,7 +38,7 @@ programs,inputs, ... }:
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-  
+
   # home.backupFileExtension = "backup";
 
   home.file = {
@@ -47,12 +51,10 @@ programs,inputs, ... }:
     # ".config/kwinrulesrc".source = ./modules/.config/kwinrulesrc;
     # ".config/kcminputrc".source = ./modules/.config/kcminputrc;
 
-
     # ".config/kcminputrc" = {
     #   source = ./modules/.config/kcminputrc;
     #   force = true;
     # };
-
 
   };
 

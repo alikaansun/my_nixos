@@ -1,20 +1,19 @@
-{inputs,  pkgs,  ... }:
+{ inputs, pkgs, ... }:
 
 {
 
-  imports =
-    [
-      # ./modules/desktop/hyprland.nix
-      ../../modules/home/common.nix
-      ../../modules/home/terminal.nix
-      ../../modules/home/git.nix
-      ../../modules/home/plasma.nix
-      ../../modules/creative.nix
+  imports = [
+    # ./modules/desktop/hyprland.nix
+    ../../modules/home/common.nix
+    ../../modules/home/terminal.nix
+    ../../modules/home/git.nix
+    ../../modules/home/plasma.nix
+    ../../modules/creative.nix
 
-    ];
+  ];
 
   home.stateVersion = "24.11"; # Please read the comment before changing.
-  
+
   home.packages = with pkgs; [
     google-cloud-sdk
   ];

@@ -15,9 +15,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     omarchy-nix = {
-        url = "github:henrysipp/omarchy-nix";
-        inputs.nixpkgs.follows = "nixpkgs";
-        inputs.home-manager.follows = "home-manager";
+      url = "github:henrysipp/omarchy-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
     omarchy-flake = {
       url = "path:./modules/omarchy";
@@ -35,14 +35,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    nvf={
+    nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
-    };  
-    shad06_nixpkgs.url="github:nixos/nixpkgs/b95dd9da90309705b8a32f849b80fad1cca16620";
+    };
+    shad06_nixpkgs.url = "github:nixos/nixpkgs/b95dd9da90309705b8a32f849b80fad1cca16620";
     zen-browser = {
       # url="github:0xc000022070/zen-browser-flake";
-      url="github:youwen5/zen-browser-flake";
+      url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # anifetch = {
@@ -86,8 +86,7 @@
         };
 
       mkHome =
-        hostname:
-        modulesExtra:
+        hostname: modulesExtra:
         home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { inherit system vars; };
           modules = [
@@ -101,7 +100,8 @@
                 homeDirectory = "/home/${username}";
               };
             }
-          ] ++ modulesExtra;
+          ]
+          ++ modulesExtra;
         };
 
       mkServer =
@@ -120,9 +120,9 @@
     {
       nixosConfigurations = {
         arondil = mkHost "arondil";
-        reania  = mkHost "reania";
+        reania = mkHost "reania";
         raikeh = mkOmarchy "raikeh" "reania";
-        blade   = mkServer "blade"; 
+        blade = mkServer "blade";
       };
 
       homeConfigurations = {
@@ -134,5 +134,7 @@
         ];
         "alik@blade" = mkHome "blade" [ ];
       };
+
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
     };
 }

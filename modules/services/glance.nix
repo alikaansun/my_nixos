@@ -6,12 +6,10 @@
       # git_email = {};
     };
 
-    services.glance={
-
+    services.glance = {
 
     };
-  
-  
+
   };
 
 }
