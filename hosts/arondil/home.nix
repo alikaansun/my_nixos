@@ -8,7 +8,7 @@
     ../../modules/home/terminal.nix
     ../../modules/home/git.nix
     ../../modules/home/plasma.nix
-    ../../modules/creative.nix
+    # ../../modules/creative.nix
 
   ];
 
@@ -16,6 +16,18 @@
 
   home.packages = with pkgs; [
     google-cloud-sdk
+    # Creative apps
+    blender # 3D modeling and animation
+    gimp # Image editing
+    texliveFull
+    # kicad # Electronics design
+    # freecad # Parametric 3D CAD modeler
+    # ergogen # Keyboard PCB generator
+    # qmk
+    # ardour # Audio recording and editing
+    # godot
+    # davinci-resolve       # Video editor
+    # musescore      # Music notation software
   ];
 
   # programs.ssh = {

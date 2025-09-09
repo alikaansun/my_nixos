@@ -29,7 +29,6 @@
     # ../../modules/services/avahi.nix
 
   ];
-
   #Mount extra drive and make it
   fileSystems."/mnt/D" = {
     device = "/dev/disk/by-uuid/218ce1d4-70e8-4b81-aa2b-3abab153a6b4";

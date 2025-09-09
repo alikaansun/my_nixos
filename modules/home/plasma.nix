@@ -32,6 +32,9 @@ in
       };
     };
     kscreenlocker = {
+      lockOnStartup = true;
+      passwordRequired = true;
+      timeout = 5;
       appearance = {
         wallpaper = "/home/alik/.dotfiles/modules/desktop/fav1.jpg";
         showMediaControls = true;
@@ -42,6 +45,7 @@ in
       effects = {
         dimAdminMode.enable = true;
         snapHelper.enable = false;
+        shakeCursor.enable = true;
       };
       nightLight = {
         enable = true;
