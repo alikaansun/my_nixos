@@ -14,7 +14,7 @@
       "chrome-hnpfjngllnobngcgfapefoaidbinmjnm-Default"."1EB0FCA21D572C4EF2B6AF92DE0803AE-request_autotype" = [ ];
       "chrome-hnpfjngllnobngcgfapefoaidbinmjnm-Default"."1EB0FCA21D572C4EF2B6AF92DE0803AE-retrive_credentials_forced" = [ ];
       "chrome-hnpfjngllnobngcgfapefoaidbinmjnm-Default"."1EB0FCA21D572C4EF2B6AF92DE0803AE-save_credentials" = [ ];
-      "chrome-hnpfjngllnobngcgdfapefoaidbinmjnm-Default"."1EB0FCA21D572C4EF2B6AF92DE0803AE-show_password_generator" = [ ];
+      "chrome-hnpfjngllnobngcgfapefoaidbinmjnm-Default"."1EB0FCA21D572C4EF2B6AF92DE0803AE-show_password_generator" = [ ];
       "chrome-hnpfjngllnobngcgfapefoaidbinmjnm-Default"."B8245B19166943FAF4F1803A86035FEC-launch-element-picker" = [ ];
       "chrome-hnpfjngllnobngcgfapefoaidbinmjnm-Default"."B8245B19166943FAF4F1803A86035FEC-launch-element-zapper" = [ ];
       "chrome-hnpfjngllnobngcgfapefoaidbinmjnm-Default"."B8245B19166943FAF4F1803A86035FEC-launch-logger" = [ ];
@@ -50,7 +50,7 @@
       "kwin"."ExposeClassCurrentDesktop" = [ ];
       "kwin"."Grid View" = "Meta+G";
       "kwin"."Increase Opacity" = "none,,Increase Opacity of Active Window by 5%";
-      "kwin"."Kill Window" = ["Alt+F4" "Meta+Q" "Meta+Ctrl+Esc,Meta+Ctrl+Esc,Kill Window"];
+      "kwin"."Kill Window" = ["Meta+Ctrl+Esc" "Meta+Q,Meta+Ctrl+Esc,Kill Window"];
       "kwin"."Move Tablet to Next Output" = [ ];
       "kwin"."MoveMouseToCenter" = "Meta+F6";
       "kwin"."MoveMouseToFocus" = "Meta+F5";
@@ -109,15 +109,15 @@
       "kwin"."Toggle Window Raise/Lower" = "none,,Toggle Window Raise/Lower";
       "kwin"."Walk Through Windows" = ["Alt+Tab,Meta+Tab" "Alt+Tab,Walk Through Windows"];
       "kwin"."Walk Through Windows (Reverse)" = ["Alt+Shift+Tab,Meta+Shift+Tab" "Alt+Shift+Tab,Walk Through Windows (Reverse)"];
-      "kwin"."Walk Through Windows Alternative" = [ ];
-      "kwin"."Walk Through Windows Alternative (Reverse)" = [ ];
+      "kwin"."Walk Through Windows Alternative" = "Alt+Shift+Right,none,Walk Through Windows Alternative";
+      "kwin"."Walk Through Windows Alternative (Reverse)" = "Alt+Shift+Left,none,Walk Through Windows Alternative (Reverse)";
       "kwin"."Walk Through Windows of Current Application" = ["Alt+`,Meta+`" "Alt+`,Walk Through Windows of Current Application"];
       "kwin"."Walk Through Windows of Current Application (Reverse)" = ["Alt+~,Meta+~" "Alt+~,Walk Through Windows of Current Application (Reverse)"];
       "kwin"."Walk Through Windows of Current Application Alternative" = [ ];
       "kwin"."Walk Through Windows of Current Application Alternative (Reverse)" = [ ];
       "kwin"."Window Above Other Windows" = "none,,Keep Window Above Others";
       "kwin"."Window Below Other Windows" = "none,,Keep Window Below Others";
-      "kwin"."Window Close" = "none,Alt+F4,Close Window";
+      "kwin"."Window Close" = "Alt+F4";
       "kwin"."Window Custom Quick Tile Bottom" = "none,,Custom Quick Tile Window to the Bottom";
       "kwin"."Window Custom Quick Tile Left" = "none,,Custom Quick Tile Window to the Left";
       "kwin"."Window Custom Quick Tile Right" = "none,,Custom Quick Tile Window to the Right";
@@ -277,6 +277,7 @@
       "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize" = false;
       "dolphinrc"."KFileDialog Settings"."Places Icons Static Size" = 22;
       "dolphinrc"."PreviewSettings"."Plugins" = "appimagethumbnail,audiothumbnail,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,ffmpegthumbs";
+      "dolphinrc"."Search"."Location" = "Everywhere";
       "kactivitymanagerdrc"."activities"."9d648a0c-709f-44fd-bdbb-a3237e6ae531" = "Default";
       "kactivitymanagerdrc"."main"."currentActivity" = "9d648a0c-709f-44fd-bdbb-a3237e6ae531";
       "katerc"."General"."Days Meta Infos" = 30;
@@ -331,6 +332,8 @@
       "kdeglobals"."KFileDialog Settings"."Speedbar Width" = 138;
       "kdeglobals"."KFileDialog Settings"."View Style" = "DetailTree";
       "kdeglobals"."KScreen"."ScreenScaleFactors" = "DP-4=1;";
+      "kdeglobals"."Shortcuts"."DocumentBack" = "";
+      "kdeglobals"."Shortcuts"."DocumentForward" = "";
       "kdeglobals"."Shortcuts"."Quit" = "";
       "kdeglobals"."WM"."activeBackground" = "39,44,49";
       "kdeglobals"."WM"."activeBlend" = "252,252,252";
@@ -354,7 +357,9 @@
       "krunnerrc"."Plugins"."org.kde.datetimeEnabled" = false;
       "krunnerrc"."Plugins/Favorites"."plugins" = "krunner_services,krunner_systemsettings";
       "kscreenlockerrc"."Daemon"."Autolock" = false;
-      "kscreenlockerrc"."Daemon"."Timeout" = 0;
+      "kscreenlockerrc"."Daemon"."LockOnStart" = true;
+      "kscreenlockerrc"."Daemon"."RequirePassword" = true;
+      "kscreenlockerrc"."Daemon"."Timeout" = 5;
       "kscreenlockerrc"."Greeter"."WallpaperPlugin" = "org.kde.image";
       "kscreenlockerrc"."Greeter/LnF/General"."showMediaControls" = true;
       "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image" = "/home/alik/.dotfiles/modules/desktop/fav1.jpg";
@@ -405,6 +410,7 @@
       "kwinrc"."Plugins"."dimscreenEnabled" = true;
       "kwinrc"."Plugins"."eyeonscreenEnabled" = true;
       "kwinrc"."Plugins"."magnifierEnabled" = true;
+      "kwinrc"."Plugins"."shakecursorEnabled" = true;
       "kwinrc"."Plugins"."snaphelperEnabled" = false;
       "kwinrc"."Plugins"."translucencyEnabled" = true;
       "kwinrc"."Plugins"."windowapertureEnabled" = false;
@@ -495,13 +501,14 @@
       "plasmanotifyrc"."Applications/net.lutris.Lutris"."Seen" = true;
       "plasmanotifyrc"."Applications/thunderbird"."Seen" = true;
       "plasmanotifyrc"."Applications/vesktop"."Seen" = true;
+      "plasmanotifyrc"."Applications/zen"."Seen" = true;
       "plasmanotifyrc"."Notifications"."LowPriorityHistory" = true;
       "plasmanotifyrc"."Notifications"."PopupPosition" = "BottomRight";
       "plasmarc"."Theme"."name" = "breeze-dark";
       "plasmarc"."Wallpapers"."usersWallpapers" = "/home/alik/Pictures/fav.jpg";
       "spectaclerc"."Annotations"."annotationToolType" = 2;
       "spectaclerc"."ImageSave"."lastImageSaveAsLocation" = "file:///home/alik/Pictures/Screenshots/Screenshot_20250715_210553.png";
-      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/alik/Pictures/Screenshots/Screenshot_20250813_210050.png";
+      "spectaclerc"."ImageSave"."lastImageSaveLocation" = "file:///home/alik/Pictures/Screenshots/Screenshot_20250906_210941.png";
       "spectaclerc"."ImageSave"."translatedScreenshotsFolder" = "Screenshots";
       "spectaclerc"."VideoSave"."preferredVideoFormat" = 2;
       "spectaclerc"."VideoSave"."translatedScreencastsFolder" = "Screencasts";

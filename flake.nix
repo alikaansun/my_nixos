@@ -127,10 +127,10 @@
 
       homeConfigurations = {
         "alik@arondil" = mkHome "arondil" [
-          inputs.plasma-manager.homeManagerModules.plasma-manager
+          inputs.plasma-manager.homeModules.plasma-manager
         ];
         "alik@reania" = mkHome "reania" [
-          inputs.plasma-manager.homeManagerModules.plasma-manager
+          inputs.plasma-manager.homeModules.plasma-manager
         ];
         "alik@blade" = mkHome "blade" [ ];
       };

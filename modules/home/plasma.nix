@@ -94,7 +94,8 @@ in
         "Window One Desktop to the Right" = "Meta+Ctrl+Shift+Right";
         "Switch to Desktop 1" = "Ctrl+F1";
         "Switch to Desktop 2" = "Ctrl+F2";
-        "Window Close" = [ "Meta+Q,Alt+F4,Alt+F4,Close Window" ];
+        "Window Close" = "Alt+F4";
+        # "Window Close" = [ "Meta+Q,Alt+F4,Alt+F4,Close Window" ];
       };
 
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
