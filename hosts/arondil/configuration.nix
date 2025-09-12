@@ -26,6 +26,7 @@
     ../../modules/services/tailscale.nix
     # ../../modules/services/syncthing.nix
     # ../../modules/services/seafile.nix
+    ../../modules/services/rustdesk_server.nix
     # ../../modules/services/avahi.nix
 
   ];
