@@ -107,7 +107,8 @@ in
 
       # Apps (converted from Hyprland)
       "services/kitty.desktop"."_launch" = "Meta+Return";
-      "services/zen.desktop"."_launch" = "Meta+Space";
+      # "services/zen.desktop"."_launch" = "Meta+Space";
+      "services/chromium-browser.desktop"."new-window" = "Meta+Space";
       "services/code.desktop"."_launch" = "Ctrl+Alt+V";
       "services/vesktop.desktop"."_launch" = "Ctrl+Alt+D";
       "services/obsidian.desktop"."_launch" = "Ctrl+Alt+O";

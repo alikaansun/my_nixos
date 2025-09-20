@@ -204,6 +204,16 @@
       "mediacontrol"."playpausemedia" = "Media Play";
       "mediacontrol"."previousmedia" = "Media Previous";
       "mediacontrol"."stopmedia" = "Media Stop";
+      "org.chromium.Chromium"."1EB0FCA21D572C4EF2B6AF92DE0803AE-choose_credential_fields" = [ ];
+      "org.chromium.Chromium"."1EB0FCA21D572C4EF2B6AF92DE0803AE-fill_password" = [ ];
+      "org.chromium.Chromium"."1EB0FCA21D572C4EF2B6AF92DE0803AE-fill_totp" = [ ];
+      "org.chromium.Chromium"."1EB0FCA21D572C4EF2B6AF92DE0803AE-fill_username_password" = [ ];
+      "org.chromium.Chromium"."1EB0FCA21D572C4EF2B6AF92DE0803AE-redetect_fields" = [ ];
+      "org.chromium.Chromium"."1EB0FCA21D572C4EF2B6AF92DE0803AE-reload_extension" = [ ];
+      "org.chromium.Chromium"."1EB0FCA21D572C4EF2B6AF92DE0803AE-request_autotype" = [ ];
+      "org.chromium.Chromium"."1EB0FCA21D572C4EF2B6AF92DE0803AE-retrive_credentials_forced" = [ ];
+      "org.chromium.Chromium"."1EB0FCA21D572C4EF2B6AF92DE0803AE-save_credentials" = [ ];
+      "org.chromium.Chromium"."1EB0FCA21D572C4EF2B6AF92DE0803AE-show_password_generator" = [ ];
       "org_kde_powerdevil"."Decrease Keyboard Brightness" = "Keyboard Brightness Down";
       "org_kde_powerdevil"."Decrease Screen Brightness" = ["Monitor Brightness Down" "Meta+Alt+-,Monitor Brightness Down,Decrease Screen Brightness"];
       "org_kde_powerdevil"."Decrease Screen Brightness Small" = "Shift+Monitor Brightness Down";
@@ -246,6 +256,7 @@
       "plasmashell"."switch to previous activity" = "none,,Switch to Previous Activity";
       "plasmashell"."toggle do not disturb" = "none,,Toggle do not disturb";
       "services/Kitty.desktop"."New" = "Ctrl+Alt+T";
+      "services/chromium-browser.desktop"."new-window" = "Meta+Space";
       "services/code.desktop"."_launch" = "Ctrl+Alt+V";
       "services/discord.desktop"."_launch" = "Ctrl+Alt+D";
       "services/kitty.desktop"."_launch" = "Meta+Return";
@@ -262,7 +273,6 @@
       "services/vesktop.desktop"."_launch" = "Ctrl+Alt+D";
       "services/zen-beta.desktop"."_launch" = "Meta+Space";
       "services/zen.desktop"."_launch" = [ ];
-      "services/zen.desktop"."new-window" = "Meta+Space";
     };
     configFile = {
       "baloofilerc"."General"."dbVersion" = 2;
@@ -387,7 +397,7 @@
       "ktrashrc"."\\/home\\/alik\\/.local\\/share\\/Trash"."UseSizeLimit" = true;
       "ktrashrc"."\\/home\\/alik\\/.local\\/share\\/Trash"."UseTimeLimit" = false;
       "kwalletrc"."Wallet"."First Use" = false;
-      "kwinrc"."Activities/LastVirtualDesktop"."9d648a0c-709f-44fd-bdbb-a3237e6ae531" = "Desktop_1";
+      "kwinrc"."Activities/LastVirtualDesktop"."9d648a0c-709f-44fd-bdbb-a3237e6ae531" = "Desktop_2";
       "kwinrc"."Desktops"."Id_1" = "Desktop_1";
       "kwinrc"."Desktops"."Id_2" = "Desktop_2";
       "kwinrc"."Desktops"."Name_1" = "Desktop 1";
@@ -518,7 +528,8 @@
       "dolphin/view_properties/global/.directory"."Dolphin"."SortRole" = "modificationtime";
       "dolphin/view_properties/global/.directory"."Dolphin"."ViewMode" = 1;
       "dolphin/view_properties/global/.directory"."Settings"."HiddenFilesShown" = true;
-      "kate/anonymous.katesession"."Document 0"."URL" = "file:///home/alik/Documents/kdeconf.txt";
+      "kate/anonymous.katesession"."Document 0"."URL" = "file:///home/alik/Documents/Repos/imos-eopm-measurements/environment.yml";
+      "kate/anonymous.katesession"."Kate Plugins"."bookmarksplugin" = false;
       "kate/anonymous.katesession"."Kate Plugins"."cmaketoolsplugin" = false;
       "kate/anonymous.katesession"."Kate Plugins"."compilerexplorer" = false;
       "kate/anonymous.katesession"."Kate Plugins"."eslintplugin" = false;
@@ -569,7 +580,7 @@
       "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-Sidebar-3-Bar-0-TvList" = "output,diagnostics,kate_plugin_katesearch,kateprojectinfo,kate_private_plugin_katekonsoleplugin";
       "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-Sidebar-3-LastSize" = 204;
       "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-Sidebar-3-SectSizes" = 0;
-      "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-Sidebar-3-Splitter" = 552;
+      "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-Sidebar-3-Splitter" = 515;
       "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-Sidebar-Style" = 2;
       "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-Sidebar-Visible" = true;
       "kate/anonymous.katesession"."MainWindow0"."Kate-MDI-ToolView-diagnostics-Position" = 3;
