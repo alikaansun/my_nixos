@@ -6,37 +6,10 @@
 }:
 
 {
-  imports = [ inputs.nvf.homeManagerModules.default ];
+  imports = [./nvim.nix];
 
   programs = {
-    nvf = {
-      enable = true;
-      settings = {
-        ##################
-        vim = {
-          viAlias = false;
-          vimAlias = true;
-          theme = {
-            enable = true;
-            name = "gruvbox";
-            style = "dark";
-          };
-          languages = {
-
-            enableTreesitter = true;
-            nix.enable = true;
-            bash.enable = true;
-            python.enable = true;
-
-          };
-          statusline.lualine.enable = true;
-          telescope.enable = true;
-        };
-        ############
-      };
-
-    };
-
+    
     oh-my-posh = {
       enable = true;
       useTheme = "emodipt-extend";

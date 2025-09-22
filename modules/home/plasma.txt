@@ -256,7 +256,8 @@
       "plasmashell"."switch to previous activity" = "none,,Switch to Previous Activity";
       "plasmashell"."toggle do not disturb" = "none,,Toggle do not disturb";
       "services/Kitty.desktop"."New" = "Ctrl+Alt+T";
-      "services/chromium-browser.desktop"."new-window" = "Meta+Space";
+      "services/chromium-browser.desktop"."_launch" = "Meta+Space";
+      "services/chromium-browser.desktop"."new-window" = [ ];
       "services/code.desktop"."_launch" = "Ctrl+Alt+V";
       "services/discord.desktop"."_launch" = "Ctrl+Alt+D";
       "services/kitty.desktop"."_launch" = "Meta+Return";
@@ -272,7 +273,6 @@
       "services/thunderbird.desktop"."_launch" = "Ctrl+Alt+M";
       "services/vesktop.desktop"."_launch" = "Ctrl+Alt+D";
       "services/zen-beta.desktop"."_launch" = "Meta+Space";
-      "services/zen.desktop"."_launch" = [ ];
     };
     configFile = {
       "baloofilerc"."General"."dbVersion" = 2;
@@ -329,7 +329,6 @@
       "kdeglobals"."KFileDialog Settings"."Decoration position" = 2;
       "kdeglobals"."KFileDialog Settings"."LocationCombo Completionmode" = 5;
       "kdeglobals"."KFileDialog Settings"."PathCombo Completionmode" = 5;
-      "kdeglobals"."KFileDialog Settings"."Show Bookmarks" = false;
       "kdeglobals"."KFileDialog Settings"."Show Full Path" = false;
       "kdeglobals"."KFileDialog Settings"."Show Inline Previews" = true;
       "kdeglobals"."KFileDialog Settings"."Show Preview" = false;
@@ -397,7 +396,7 @@
       "ktrashrc"."\\/home\\/alik\\/.local\\/share\\/Trash"."UseSizeLimit" = true;
       "ktrashrc"."\\/home\\/alik\\/.local\\/share\\/Trash"."UseTimeLimit" = false;
       "kwalletrc"."Wallet"."First Use" = false;
-      "kwinrc"."Activities/LastVirtualDesktop"."9d648a0c-709f-44fd-bdbb-a3237e6ae531" = "Desktop_2";
+      "kwinrc"."Activities/LastVirtualDesktop"."9d648a0c-709f-44fd-bdbb-a3237e6ae531" = "Desktop_1";
       "kwinrc"."Desktops"."Id_1" = "Desktop_1";
       "kwinrc"."Desktops"."Id_2" = "Desktop_2";
       "kwinrc"."Desktops"."Name_1" = "Desktop 1";
