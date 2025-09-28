@@ -36,7 +36,7 @@ in
       passwordRequired = true;
       timeout = 5;
       appearance = {
-        wallpaper = "/home/alik/.dotfiles/modules/desktop/fav1.jpg";
+        wallpaper = "~/.dotfiles/modules/desktop/fav1.jpg";
         showMediaControls = true;
       };
     };

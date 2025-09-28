@@ -110,7 +110,7 @@ in
         "$mod, 5, workspace, 5"
 
         # App launching shortcuts (using mod key instead of ctrl+alt)
-        "$mod, SPACE, exec, zen" # Zen browser
+        # "$mod, SPACE, exec, zen" # Zen browser
         "$mod, V, exec, code" # VSCode
         "$mod, E, exec, dolphin" # VSCode
         "$mod, D, exec, vesktop" # Discord/Vesktop

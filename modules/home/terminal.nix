@@ -6,10 +6,10 @@
 }:
 
 {
-  imports = [./nvim.nix];
+  imports = [ ./nvim.nix ];
 
   programs = {
-    
+
     oh-my-posh = {
       enable = true;
       useTheme = "emodipt-extend";
@@ -46,8 +46,6 @@
       '';
 
       shellAliases = {
-        cdrepos = "cd ~/Documents/Repos";
-        cdflakes = "cd ~/Documents/Repos/my_nix_flakes";
         nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#$(hostname)";
         ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10  
         sudo nix-collect-garbage";

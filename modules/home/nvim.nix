@@ -1,8 +1,8 @@
-{inputs,...}:
+{ inputs, ... }:
 {
   imports = [ inputs.nvf.homeManagerModules.default ];
-  nvf = {
-    
+  programs.nvf = {
+
     enable = true;
     settings = {
       ##################
@@ -19,6 +19,7 @@
           nix.enable = true;
           bash.enable = true;
           python.enable = true;
+          clang.enable = true;
         };
         statusline.lualine.enable = true;
         telescope.enable = true;

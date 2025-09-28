@@ -39,16 +39,22 @@
             omarchy-nix.nixosModules.default
             home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
+
+            (../../hosts/${actualHost}/hardware-configuration.nix)
+            ../../modules/locale.nix
+            ../../modules/gc.nix
+            ../../modules/gaming.nix
+            ../../modules/services/kanata.nix
             {
               # Basic system configuration
               boot.loader.systemd-boot.enable = true;
               boot.loader.efi.canTouchEfiVariables = true;
 
-              networking.hostName = hostname;
+              networking.hostName = actualHost;
               networking.networkmanager.enable = true;
 
-              time.timeZone = "Europe/Berlin";
-              i18n.defaultLocale = "en_US.UTF-8";
+              # time.timeZone = "Europe/Berlin";
+              # i18n.defaultLocale = "en_US.UTF-8";
 
               users.users.${username} = {
                 isNormalUser = true;
@@ -60,15 +66,21 @@
               };
 
               # SOPS configuration
-              sops.defaultSopsFile = ./secrets/secrets.yaml;
+              sops.defaultSopsFile = ../secrets/secrets.yaml;
               sops.age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
               sops.secrets.git_email = { };
 
+              services.mykanata = {
+                enable = true;
+              };
               # Configure omarchy
               omarchy = {
                 full_name = username;
                 email_address = "lol@lol.com";
                 theme = "gruvbox";
+                # theme_overrides = {
+                #   wallpaper_path = /home/alik/.dotfiles/modules/desktop/fav.jpg;
+                # };
                 scale = 1;
                 exclude_packages = with nixpkgs.legacyPackages.${system}; [
                   lazydocker
@@ -82,6 +94,22 @@
                   spotify
                   gh
                   github-desktop
+                ];
+                quick_app_bindings = [
+                  "SUPER, Y, exec, $webapp=https://youtube.com/"
+                  "SUPER SHIFT, G, exec, $webapp=https://web.whatsapp.com/"
+                  "SUPER, X, exec, $webapp=https://x.com/"
+                  "SUPER SHIFT, X, exec, $webapp=https://x.com/compose/post"
+
+                  "SUPER, return, exec, $terminal"
+                  "SUPER, F, exec, $fileManager"
+                  "SUPER, B, exec, $browser"
+                  "SUPER, M, exec, $music"
+                  "SUPER, N, exec, $terminal -e nvim"
+                  "SUPER, T, exec, $terminal -e btop"
+                  "SUPER, D, exec, $terminal -e lazydocker"
+                  "SUPER, G, exec, $messenger"
+                  "SUPER, O, exec, obsidian -disable-gpu"
                 ];
               };
 
