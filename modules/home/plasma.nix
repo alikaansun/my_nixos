@@ -15,14 +15,14 @@ let
 in
 {
   imports = [
-    inputs.plasma-manager.homeManagerModules.plasma-manager
+    inputs.plasma-manager.homeModules.plasma-manager
   ];
 
   programs.plasma = {
     enable = true;
     workspace = {
       theme = "breeze-dark";
-      wallpaper = "/home/alik/.dotfiles/modules/desktop/fav.jpg";
+      # wallpaper = "/home/alik/.dotfiles/modules/desktop/fav.jpg";
       lookAndFeel = "org.kde.breezedark.desktop";
       clickItemTo = "select";
       iconTheme = "breeze-dark";
@@ -36,7 +36,7 @@ in
       passwordRequired = true;
       timeout = 5;
       appearance = {
-        wallpaper = "~/.dotfiles/modules/desktop/fav1.jpg";
+        # wallpaper = "/home/alik/.dotfiles/modules/desktop/fav1.jpg";
         showMediaControls = true;
       };
     };

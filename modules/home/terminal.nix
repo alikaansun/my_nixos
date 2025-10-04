@@ -31,6 +31,10 @@
           git push
         }
 
+        nixdev() {
+        nix develop ~/Documents/Repos/my_nix_flakes/$1
+        }
+
         # Auto-add all SSH keys
         if [ -z "$SSH_AUTH_SOCK" ]; then
           eval $(ssh-agent -s) > /dev/null 2>&1

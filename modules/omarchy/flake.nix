@@ -53,6 +53,15 @@
               networking.hostName = actualHost;
               networking.networkmanager.enable = true;
 
+              nix.settings.experimental-features = [
+                "nix-command"
+                "flakes"
+              ];
+
+              nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; # Good thing to have for LSP
+
+              nixpkgs.config.allowUnfree = true;
+              nixpkgs.config.allowUnfreePredicate = pkg: true;
               # time.timeZone = "Europe/Berlin";
               # i18n.defaultLocale = "en_US.UTF-8";
 

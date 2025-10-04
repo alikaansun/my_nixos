@@ -20,7 +20,7 @@
     #Services
     # ../../modules/services/finance.nix
     ../../modules/services/miniflux.nix
-    ../../modules/services/localai.nix
+    #../../modules/services/localai.nix
     # ../../modules/services/nginx.nix
     ../../modules/services/caddy.nix
     ../../modules/services/tailscale.nix

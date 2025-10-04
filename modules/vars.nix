@@ -7,11 +7,11 @@
 
   };
 
-  seafile = {
-    hostName = "seafile.arondil.local";
-    IP = "0.0.0.0";
-    port = 8088;
-
+nextcloud = {
+    hostName = "nextcloud.arondil.local";
+    IP = "127.0.0.1";
+    port = 80;
+    
   };
 
   miniflux = {
