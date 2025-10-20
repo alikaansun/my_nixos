@@ -27,7 +27,7 @@
   boot.extraModulePackages = [ ];
 
   hardware.amdgpu.opencl.enable = true;
-  hardware.amdgpu.amdvlk.enable = true;
+  # hardware.amdgpu.amdvlk.enable = true;
   nixpkgs.config.rocmSupport = true;
 
   fileSystems."/" = {

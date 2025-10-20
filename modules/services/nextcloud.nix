@@ -81,7 +81,10 @@
         timeout = 1.5;
       };
 
-      trusted_domains = [ vars.nextcloud.hostName "localhost" ];
+      trusted_domains = [
+        vars.nextcloud.hostName
+        "localhost"
+      ];
     };
 
     caching = {

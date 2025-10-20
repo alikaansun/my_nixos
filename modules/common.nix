@@ -105,6 +105,7 @@
     eduvpn-client
     lm_sensors
     pciutils
+    usbutils
     nfs-utils
     cifs-utils
     trezor-suite

@@ -5,11 +5,11 @@
 
   programs.git = {
     enable = true;
-    userName = "alik";
-    userEmail = config.sops.secrets.git_email.path;
-    extraConfig = {
-      init.defaultBranch = "main";
+    settings = {
+      user.name = "alik";
+      user.email = config.sops.secrets.git_email.path;
       pull.rebase = "true";
+      init.defaultBranch = "main";
       # safe.directory="/etc/nixos";
       # url = {
       #   "ssh://git@github.com/" = {
