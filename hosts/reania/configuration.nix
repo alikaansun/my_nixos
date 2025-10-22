@@ -74,7 +74,7 @@
 
   # Enable automatic login for the user.services.displayManager.autoLogin
   services.displayManager.autoLogin.enable = false;
-  # services.displayManager.autoLogin.user = "alik";
+  services.displayManager.autoLogin.user = "alik";
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
