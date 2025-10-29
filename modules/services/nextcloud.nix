@@ -5,115 +5,65 @@
   ...
 }:
 {
-  # Set up the user in case you need consistent UIDs and GIDs. And also to make
-  # sure we can write out the secrets file with the proper permissions.
-  users.groups.nextcloud = { };
-  users.users.nextcloud = {
-    isSystemUser = true;
-    group = "nextcloud";
-  };
+  systemd.tmpfiles.rules = [
+    "d /mnt/storage/AppData 0755 root root -"
+    "d /mnt/storage/AppData/nextcloud 0770 nextcloud nextcloud -"
+  ];
 
   # Set up secrets using your existing sops configuration
   sops.secrets = {
-    nextcloud-admin-password = {
-      mode = "0600";
-      owner = "nextcloud";
-      group = "nextcloud";
+    nextcloud_admin_pw = {
+      # mode = "0400";
+      # owner = "nextcloud";
+      # group = "nextcloud";
     };
-
-    nextcloud-db-password = {
-      mode = "0600";
-      owner = "nextcloud";
-      group = "nextcloud";
-    };
-
-    nextcloud-secrets = {
-      mode = "0600";
-      owner = "nextcloud";
-      group = "nextcloud";
+    nextcloud_db_pw = {
+      # mode = "0400";
+      # owner = "nextcloud";
+      # group = "nextcloud";
     };
   };
 
-  # Set up MySQL for Nextcloud
-  services.mysql = {
-    enable = true;
-    package = pkgs.mariadb;
-    ensureDatabases = [ "nextcloud" ];
-    ensureUsers = [
-      {
-        name = "nextcloud";
-        ensurePermissions = {
-          "nextcloud.*" = "ALL PRIVILEGES";
-        };
-      }
-    ];
-  };
-
-  # Set up Nextcloud
+  environment.etc."nextcloud-admin-pass".text = config.sops.secrets.nextcloud_db_pw.path;
+  # environment.etc."nextcloud-admin-pass".text = "Alksjfks77!fa";
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud31;
-    https = true;
+    package = pkgs.nextcloud32;
     hostName = vars.nextcloud.hostName;
-    secretFile = config.sops.secrets.nextcloud-secrets.path;
-
-    phpOptions."opcache.interned_strings_buffer" = "13";
-
     config = {
-      dbtype = "mysql";
-      dbname = "nextcloud";
-      dbhost = "localhost";
-      dbpassFile = config.sops.secrets.nextcloud-db-password.path;
-
+      adminpassFile = "/etc/nextcloud-admin-pass";
       adminuser = "admin";
-      adminpassFile = config.sops.secrets.nextcloud-admin-password.path;
+      dbtype = "sqlite";
     };
-
     settings = {
-      maintenance_window_start = 2; # 02:00
-      default_phone_region = "DE";
-      filelocking.enabled = true;
-
-      redis = {
-        host = config.services.redis.servers.nextcloud.bind;
-        port = config.services.redis.servers.nextcloud.port;
-        dbindex = 0;
-        timeout = 1.5;
-      };
-
       trusted_domains = [
-        vars.nextcloud.hostName
+        "0.0.0.0"
+        # config.sops.secrets.arondil_ipv4.path
+        "127.0.0.1"
         "localhost"
+        "192.168.*.*"
       ];
+      # trusted_proxies = [
+      #   "127.0.0.1"
+      # ];
     };
-
-    caching = {
-      redis = true;
-      memcached = true;
-    };
-
+    https = true;
+    # Let NixOS install and configure the database automatically.
+    database.createLocally = true;
+    # Let NixOS install and configure Redis caching automatically.
+    configureRedis = true;
+    # Increase the maximum file upload size to avoid problems uploading videos.
+    maxUploadSize = "16G";
     # Use your storage mount for data
-    datadir = "/mnt/storage/AppData/nextcloud";
+    # datadir = "/mnt/storage/AppData/nextcloud";
   };
-
-  # Set up Redis for caching
-  services.redis.servers.nextcloud = {
-    enable = true;
-    bind = "127.0.0.1";
-    port = 6379;
-  };
-
   # Open firewall port
   networking.firewall.allowedTCPPorts = [ vars.nextcloud.port ];
 
-  # Set up Caddy virtual host (using your existing Caddy configuration pattern)
-  services.caddy.virtualHosts."${vars.nextcloud.hostName}".extraConfig = ''
-    tls internal
-    reverse_proxy ${vars.nextcloud.IP}:${toString vars.nextcloud.port}
-  '';
 
-  # Create the data directory with proper permissions
-  systemd.tmpfiles.rules = [
-    "d /mnt/storage/AppData/nextcloud 0770 nextcloud nextcloud -"
-  ];
+  # # Set up Caddy virtual host (using your existing Caddy configuration pattern)
+  # services.caddy.virtualHosts."${vars.nextcloud.hostName}".extraConfig = ''
+  #   tls internal
+  #   reverse_proxy ${vars.nextcloud.IP}:${toString vars.nextcloud.port}
+  # '';
 }

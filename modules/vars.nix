@@ -9,8 +9,8 @@
 
   nextcloud = {
     hostName = "nextcloud.arondil.local";
-    IP = "127.0.0.1";
-    port = 80;
+    IP = "0.0.0.0";
+    port = 10081;
 
   };
 
