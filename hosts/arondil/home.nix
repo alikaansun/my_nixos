@@ -24,7 +24,7 @@
     # freecad # Parametric 3D CAD modeler
     # ergogen # Keyboard PCB generator
     # qmk
-    # ardour # Audio recording and editing
+    ardour # Audio recording and editing
     # godot
     # davinci-resolve       # Video editor
     # musescore      # Music notation software

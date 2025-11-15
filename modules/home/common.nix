@@ -42,7 +42,7 @@
     zotero
     tor-browser
     rustdesk
-    libreoffice-qt6
+    onlyoffice-bin
     obs-studio
     foliate # ebook
     klayout

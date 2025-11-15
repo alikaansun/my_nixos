@@ -31,7 +31,8 @@
     package = pkgs.nextcloud32;
     hostName = vars.nextcloud.hostName;
     config = {
-      adminpassFile = "/etc/nextcloud-admin-pass";
+      # adminpassFile = "/etc/nextcloud-admin-pass";
+      adminpassFile = "/etc/nc_admin_pass";
       adminuser = "admin";
       dbtype = "sqlite";
     };
