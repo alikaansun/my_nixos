@@ -24,33 +24,6 @@
 
   sops.secrets.git_email = { };
 
-  # omarchy = {
-  #   full_name = "alik";
-  #   email_address = config.sops.secrets.git_email.path;
-  #   theme = "gruvbox";
-  #   quick_app_bindings=[];
-  #   scale=1;
-  #   exclude_packages=with pkgs; [
-  #   lazydocker
-  #   lazygit
-  #   docker-compose
-  #   fastfetch
-  #   vlc
-  #   signal-desktop
-
-  #   # Commercial GUIs
-  #   typora
-  #   dropbox
-  #   spotify
-
-  #   gh
-  #   github-desktop
-  #   ];
-  #   # theme_overrides = {
-  #   #   wallpaper_path =/home/alik/.dotfiles/modules/desktop/fav.jpg;
-  #   # };
-  #   # add other supported options here if desired
-  # };
 
   services.mykanata = {
     enable = true;
@@ -73,7 +46,7 @@
   #};
 
   # Enable automatic login for the user.services.displayManager.autoLogin
-  services.displayManager.autoLogin.enable = false;
+  services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "alik";
 
   # Enable the OpenSSH daemon.
