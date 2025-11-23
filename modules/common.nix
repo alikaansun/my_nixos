@@ -105,6 +105,7 @@
     eduvpn-client
     lm_sensors
     pciutils
+    exfatprogs
     usbutils
     nfs-utils
     cifs-utils
