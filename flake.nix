@@ -14,18 +14,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    omarchy-nix = {
-      url = "github:henrysipp/omarchy-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-    myomarchy-flake = {
-      url = "path:./modules/omarchy";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-      inputs.omarchy-nix.follows = "omarchy-nix";
-      inputs.sops-nix.follows = "sops-nix";
-    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,7 +47,6 @@
       home-manager,
       plasma-manager,
       nvf,
-      myomarchy-flake,
       ...
     }@inputs:
     let
@@ -68,8 +55,6 @@
       username = "alik";
 
       vars = import ./modules/vars.nix;
-
-      mkOmarchy = myomarchy-flake.lib.mkOmarchy;
 
       mkHost =
         hostname:
@@ -90,7 +75,6 @@
         home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { inherit system vars; };
           modules = [
-            # inputs.omarchy-nix.homeManagerModules.default
             inputs.nvf.homeManagerModules.default
             inputs.sops-nix.nixosModules.sops
             ./hosts/${hostname}/home.nix
@@ -121,7 +105,6 @@
       nixosConfigurations = {
         arondil = mkHost "arondil";
         reania = mkHost "reania";
-        raikeh = mkOmarchy "raikeh" "reania";
         blade = mkServer "blade";
       };
 

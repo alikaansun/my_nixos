@@ -15,7 +15,6 @@
     ../../modules/home/common.nix
     ../../modules/home/terminal.nix
     ../../modules/home/git.nix
-    # inputs.omarchy-nix.homeManagerModules.default
     # inputs.plasma-manager.homeManagerModules.plasma-manager
     ../../modules/home/plasma.nix
     #       ../../modules/creative.nix
