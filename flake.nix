@@ -65,8 +65,6 @@
             ./hosts/${hostname}/configuration.nix
             inputs.home-manager.nixosModules.default
             inputs.sops-nix.nixosModules.sops
-            # inputs.stylix.nixosModules.stylix
-            # inputs.omarchy-nix.nixosModules.default
           ];
         };
 
@@ -105,7 +103,7 @@
       nixosConfigurations = {
         arondil = mkHost "arondil";
         reania = mkHost "reania";
-        blade = mkServer "blade";
+        # blade = mkServer "blade";
       };
 
       homeConfigurations = {
@@ -115,7 +113,7 @@
         "alik@reania" = mkHome "reania" [
           inputs.plasma-manager.homeModules.plasma-manager
         ];
-        "alik@blade" = mkHome "blade" [ ];
+        # "alik@blade" = mkHome "blade" [ ];
       };
 
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
