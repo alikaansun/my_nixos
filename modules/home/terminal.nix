@@ -86,6 +86,17 @@
       enableBashIntegration = true;
     };
 
+    yazi = { 
+      enable = true; 
+      enableBashIntegration = true;
+      extraPackages = with pkgs; [
+        glow
+        ouch
+        fzf
+        zoxide
+    ]
+
+    }; 
     # alacritty = {
     #   enable = true;
     #   settings = {

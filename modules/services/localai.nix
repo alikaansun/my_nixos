@@ -17,6 +17,8 @@
     # stateDir="/var/lib/open-webui";
   };
 
+  #Check opencode
+
   # Create a symlink or bind mount to your storage
   # systemd.tmpfiles.rules = [
   #   "d /mnt/storage/AppData/openwebui 0777 - - -"
