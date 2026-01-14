@@ -70,6 +70,7 @@
   #   enable = true;
   #   wayland.enable = true;
   # };
+  programs.firefox.enable = true;
 
   programs.chromium = {
     enable = true;
@@ -93,7 +94,7 @@
     nix-output-monitor
     tldr
     nixd # nix language server
-    nixfmt-rfc-style # nix formatter
+    nixfmt # nix formatter
     nixfmt-tree # treefmt
     nerd-fonts.fira-code
     nerd-fonts.meslo-lg

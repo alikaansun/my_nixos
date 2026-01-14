@@ -30,6 +30,7 @@
     keepassxc
     thunderbird
     vscode
+    zed-editor
     obsidian
     fastfetch
     # inputs.anifetch.packages.${pkgs.system}.default

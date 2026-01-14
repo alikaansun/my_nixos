@@ -51,7 +51,7 @@
 
       shellAliases = {
         nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#$(hostname)";
-        ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10  
+        ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10
         sudo nix-collect-garbage";
         nixupp = "sudo nix flake update --flake ~/.dotfiles";
         e = "nohup dolphin --new-window . > /dev/null 2>&1 &";
@@ -86,17 +86,16 @@
       enableBashIntegration = true;
     };
 
-    yazi = { 
-      enable = true; 
+    yazi = {
+      enable = true;
       enableBashIntegration = true;
       extraPackages = with pkgs; [
         glow
         ouch
         fzf
         zoxide
-    ]
-
-    }; 
+      ];
+    };
     # alacritty = {
     #   enable = true;
     #   settings = {
