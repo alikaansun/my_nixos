@@ -24,7 +24,6 @@
 
   sops.secrets.git_email = { };
 
-
   services.mykanata = {
     enable = true;
     deviceName = "/dev/input/event0";

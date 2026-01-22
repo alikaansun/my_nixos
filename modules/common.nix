@@ -94,6 +94,7 @@
     nix-output-monitor
     tldr
     nixd # nix language server
+    nil
     nixfmt # nix formatter
     nixfmt-tree # treefmt
     nerd-fonts.fira-code

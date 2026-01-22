@@ -2,6 +2,10 @@
 {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
+    ./zed.nix
+    ./git.nix
+    ./terminal.nix
+
   ];
   home.username = "alik";
   home.homeDirectory = "/home/alik";
@@ -30,7 +34,7 @@
     keepassxc
     thunderbird
     vscode
-    zed-editor
+    github-copilot-cli
     obsidian
     fastfetch
     # inputs.anifetch.packages.${pkgs.system}.default

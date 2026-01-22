@@ -6,8 +6,9 @@
     # ./modules/desktop/hyprland.nix
     ../../modules/home/common.nix
     ../../modules/home/terminal.nix
-    ../../modules/home/git.nix
+    # ../../modules/home/git.nix
     ../../modules/home/plasma.nix
+    # ../../modules/home/zed.nix
     # ../../modules/creative.nix
 
   ];

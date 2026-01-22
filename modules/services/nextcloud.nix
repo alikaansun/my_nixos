@@ -61,7 +61,6 @@
   # Open firewall port
   networking.firewall.allowedTCPPorts = [ vars.nextcloud.port ];
 
-
   # # Set up Caddy virtual host (using your existing Caddy configuration pattern)
   # services.caddy.virtualHosts."${vars.nextcloud.hostName}".extraConfig = ''
   #   tls internal
