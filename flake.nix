@@ -72,6 +72,7 @@
         hostname: modulesExtra:
         home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { inherit system vars; };
+          extraSpecialArgs = { inherit hostname; };
           modules = [
             inputs.nvf.homeManagerModules.default
             inputs.sops-nix.nixosModules.sops

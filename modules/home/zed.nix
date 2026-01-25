@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ hostname, ... }:
 {
 
   programs.zed-editor = {
@@ -83,11 +83,11 @@
             };
             options = {
               # Host configs
-              "nixos-arondil" = {
-                expr = "(builtins.getFlake \"/home/alik/.dotfiles/flake.nix\").nixosConfigurations.arondil.options";
+              "nixos-${hostname}" = {
+                expr = "(builtins.getFlake \"/home/alik/.dotfiles/flake.nix\").nixosConfigurations.${hostname}.options";
               };
-              "home-manager-arondil" = {
-                expr = "(builtins.getFlake \"/home/alik/.dotfiles/flake.nix\").homeConfigurations.alik@arondil.options";
+              "home-manager-${hostname}" = {
+                expr = "(builtins.getFlake \"/home/alik/.dotfiles/flake.nix\").homeConfigurations.alik@${hostname}.options";
               };
             };
           };

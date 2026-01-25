@@ -37,6 +37,7 @@
     # hashedPasswordFile = "/etc/passwdfile";
     isNormalUser = true;
     description = "alik";
+    shell = pkgs.zsh;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -47,9 +48,13 @@
     ];
     # packages = with pkgs; [];
   };
+  programs.zsh.enable = true; 
   # home-manager
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit inputs;
+      hostname = config.networking.hostName;
+    };
     users = {
       "alik" = import ../hosts/${config.networking.hostName}/home.nix;
     };
