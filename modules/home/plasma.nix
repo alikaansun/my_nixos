@@ -1,22 +1,22 @@
-{ pkgs, inputs, ... }:
-
-let
-  filler_panel = location: {
-    location = location;
-    alignment = "center";
-    height = 8;
-    hiding = "normalpanel";
-    opacity = "translucent";
-    floating = false;
-    # widgets = [
-    #   "luisbocanegra.panel.colorizer"
-    # ];
-  };
-in
 {
-  imports = [
-    inputs.plasma-manager.homeModules.plasma-manager
-  ];
+  flake.homeModules.plasma = { pkgs, inputs, ... }:
+    let
+      filler_panel = location: {
+        location = location;
+        alignment = "center";
+        height = 8;
+        hiding = "normalpanel";
+        opacity = "translucent";
+        floating = false;
+        # widgets = [
+        #   "luisbocanegra.panel.colorizer"
+        # ];
+      };
+    in
+    {
+      imports = [
+        inputs.plasma-manager.homeModules.plasma-manager
+      ];
 
   programs.plasma = {
     enable = true;
@@ -227,5 +227,5 @@ in
     # ];
 
   };
-
+};
 }

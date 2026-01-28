@@ -1,17 +1,22 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 let
   cfg = config.services.mykanata;
-  
+
   # Platform detection
   isDarwin = pkgs.stdenv.isDarwin;
   isAarch64 = pkgs.stdenv.hostPlatform.isAarch64;
-  
+
   # M-chip Mac detection
   isMmac = isDarwin && isAarch64;
-  
+
   # Shared Kanata configuration
   kanataConfig = ''
     (defsrc
@@ -92,7 +97,7 @@ in
     # M-chip Mac (aarch64-darwin) configuration
     (mkIf isMmac {
       environment.etc."kanata/config.kbd".text = kanataConfig;
-      
+
       launchd.user.agents.kanata = {
         command = "${pkgs.kanata}/bin/kanata -c /etc/kanata/config.kbd";
         serviceConfig = {

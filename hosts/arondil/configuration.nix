@@ -1,34 +1,37 @@
 {
+  self,
   ...
 }:
 
 {
   imports = [
     ./hardware-configuration.nix # Dont disable it
-    #CUSTOM-MODULES
-    ../../modules/locale.nix # Dont disable it
-    ../../modules/common.nix # Dont disable it
-    ../../modules/gc.nix # garbage collection and store opt
-    ../../modules/gaming.nix
-    ../../modules/virtualisation.nix
 
-    #./modules/localai.nix
+    #CUSTOM-MODULES
+    self.nixosModules.locale # Dont disable it
+    self.nixosModules.common # Dont disable it
+    self.nixosModules.gc # garbage collection and store opt
+    self.nixosModules.gaming
+    self.nixosModules.virtualisation
+
+    #self.nixosModules.localai
+
     #DESKTOP-MODULES
-    ../../modules/desktop/kde.nix
-    # ./modules/desktop/hypr.nix
-    # ./modules/desktop/xfce.nix
-    # ./modules/desktop/gnome.nix
+    self.nixosModules.kde
+    # self.nixosModules.hypr
+    # self.nixosModules.xfce
+    # self.nixosModules.gnome
 
     #Services
-    # ../../modules/services/miniflux.nix
-    #../../modules/services/localai.nix
-    # ../../modules/services/nginx.nix
-    ../../modules/services/caddy.nix
-    ../../modules/services/tailscale.nix
-    # ../../modules/services/syncthing.nix
-    ../../modules/services/nextcloud.nix
-    # ../../modules/services/rustdesk_server.nix
-    # ../../modules/services/avahi.nix
+    # self.nixosModules.miniflux
+    # self.nixosModules.localai
+    # self.nixosModules.nginx
+    self.nixosModules.caddy
+    self.nixosModules.tailscale
+    # self.nixosModules.syncthing
+    self.nixosModules.nextcloud
+    # self.nixosModules.rustdesk-server
+    # self.nixosModules.avahi
 
   ];
 

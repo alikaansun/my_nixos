@@ -1,11 +1,15 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
-    ./zed.nix
-    ./git.nix
-    ./terminal.nix
-
+    (import ./zed.nix).flake.homeModules.zed
+    (import ./terminal.nix).flake.homeModules.terminal
+    (import ./nvim.nix).flake.homeModules.nvim
+    (import ./git.nix).flake.homeModules.git
   ];
   home.username = "alik";
   home.homeDirectory = "/home/alik";

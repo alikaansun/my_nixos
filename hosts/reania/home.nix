@@ -4,6 +4,7 @@
   lib,
   programs,
   inputs,
+  self,
   ...
 }:
 
@@ -11,12 +12,12 @@
 
   imports = [
     #  ../../modules/desktop/hyprland.nix
-
+    self.homeModules.git
     ../../modules/home/common.nix
     ../../modules/home/terminal.nix
-    ../../modules/home/git.nix
+    # ../../modules/home/git.nix
     # inputs.plasma-manager.homeManagerModules.plasma-manager
-    ../../modules/home/plasma.nix
+    (import ../../modules/home/plasma.nix).flake.homeModules.plasma
     #       ../../modules/creative.nix
 
   ];
