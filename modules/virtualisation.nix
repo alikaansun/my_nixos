@@ -10,5 +10,8 @@
   # Add virtiofsd to system packages
   environment.systemPackages = with pkgs; [
     virtiofsd
+    docker-client
   ];
+
+  virtualisation.docker.enable = true;
 }

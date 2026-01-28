@@ -10,7 +10,7 @@
     ../../modules/common.nix # Dont disable it
     ../../modules/gc.nix # garbage collection and store opt
     ../../modules/gaming.nix
-    # ../../modules/virtualisation.nix
+    ../../modules/virtualisation.nix
 
     #./modules/localai.nix
     #DESKTOP-MODULES
