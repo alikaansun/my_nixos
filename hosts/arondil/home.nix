@@ -1,11 +1,15 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, self, ... }:
 
 {
 
   imports = [
-    # ./modules/desktop/hyprland.nix
-    (import ../../modules/home/common.nix).flake.homeModules.common
-    (import ../../modules/home/plasma.nix).flake.homeModules.plasma
+    # self.homeModules.hyprland
+    self.homeModules.common
+    self.homeModules.plasma
+    self.homeModules.zed
+    self.homeModules.terminal
+    self.homeModules.nvim
+    self.homeModules.git
     # ../../modules/creative.nix
 
   ];

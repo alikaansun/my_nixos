@@ -3,6 +3,7 @@
     pkgs,
     inputs,
     config,
+    self,
     ...
   }: {
 
@@ -51,7 +52,7 @@
   # home-manager
   home-manager = {
     extraSpecialArgs = {
-      inherit inputs;
+      inherit inputs self;
       hostname = config.networking.hostName;
     };
     users = {

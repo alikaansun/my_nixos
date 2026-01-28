@@ -40,7 +40,10 @@
     inputs@{ self, flake-parts, ... }:
     let
       username = "alik";
-      vars = (import ./modules/vars.nix).flake.vars;
+      
+      # First load the modules to get vars
+      moduleOutputs = inputs.import-tree ./modules;
+      vars = moduleOutputs.flake.vars or (import ./modules/vars.nix);
 
       helpers = import ./lib/flakehelpers.nix {
         inherit
@@ -70,7 +73,7 @@
 
         flake = {
           # NixOS configurations
-          nixosConfigurations = {
+        nixosConfigurations = {
             arondil = mkHost "arondil" "x86_64-linux";
             reania = mkHost "reania" "x86_64-linux";
             blade = mkServer "blade" "x86_64-linux";
