@@ -1,11 +1,9 @@
-{ ... }:
-
 {
-
-  #Enabling hyprlnd on NixOS
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
+  flake.nixosModules.hypr = { ... }: {
+    #Enabling hyprlnd on NixOS
+    programs.hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
   };
-
 }

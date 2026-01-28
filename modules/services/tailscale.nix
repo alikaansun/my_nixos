@@ -1,16 +1,17 @@
-{ pkgs, config, ... }:
 {
-  environment.systemPackages = [
-    pkgs.tailscale
-  ];
+  flake.nixosModules.tailscale = { pkgs, config, ... }: {
+    environment.systemPackages = [
+      pkgs.tailscale
+    ];
 
-  services.tailscale = {
-    enable = true;
-    package = pkgs.tailscale;
-    useRoutingFeatures = "both";
+    services.tailscale = {
+      enable = true;
+      package = pkgs.tailscale;
+      useRoutingFeatures = "both";
+    };
+
+    networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
+    # Allow Tailscale traffic
+    networking.firewall.trustedInterfaces = [ "tailscale0" ];
   };
-
-  networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
-  # Allow Tailscale traffic
-  networking.firewall.trustedInterfaces = [ "tailscale0" ];
 }

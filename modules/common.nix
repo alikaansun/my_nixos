@@ -1,13 +1,12 @@
 {
-  pkgs,
-  inputs,
-  config,
-  ...
-}:
+  flake.nixosModules.common = {
+    pkgs,
+    inputs,
+    config,
+    ...
+  }: {
 
-{
-
-  nix.settings.experimental-features = [
+    nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
@@ -129,4 +128,5 @@
     # inputs.zen-browser.packages."${system}".default
   ];
 
+  };
 }

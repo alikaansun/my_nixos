@@ -1,10 +1,10 @@
 {
-  pkgs,
-  inputs,
-  osConfig,
-  ...
-}:
-let
+  flake.homeModules.hyprland = {
+    pkgs,
+    inputs,
+    osConfig,
+    ...
+  }: let
   hostname = osConfig.networking.hostName;
 
   monitorConfigs = {
@@ -220,7 +220,7 @@ in
 
   };
 
-}
+};
 # programs.hyprpanel = {
 #   # package=pkgs.hyprpanel;
 #   # Configure and theme almost all options from the GUI.
@@ -259,4 +259,5 @@ in
 #       size = "14px";
 #     };
 #   };
-# };
+# };  };
+}

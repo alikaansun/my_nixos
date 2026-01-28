@@ -1,12 +1,10 @@
 {
-  pkgs,
-  vars,
-  config,
-  ...
-}:
-
-{
-  config = {
+  flake.nixosModules.rustdesk-server = {
+    pkgs,
+    vars,
+    config,
+    ...
+  }: {
     sops.secrets = {
       arondil_ipv4 = { };
     };
@@ -19,5 +17,4 @@
       # signal.extraArgs=["-k" "_"];
     };
   };
-
 }

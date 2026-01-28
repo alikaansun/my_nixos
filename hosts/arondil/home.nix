@@ -4,7 +4,7 @@
 
   imports = [
     # ./modules/desktop/hyprland.nix
-    ../../modules/home/common.nix
+    (import ../../modules/home/common.nix).flake.homeModules.common
     (import ../../modules/home/plasma.nix).flake.homeModules.plasma
     # ../../modules/creative.nix
 

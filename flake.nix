@@ -14,7 +14,6 @@
     };
     import-tree = {
       url = "github:vic/import-tree";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix.url = "github:danth/stylix";
     home-manager = {
@@ -41,7 +40,7 @@
     inputs@{ self, flake-parts, ... }:
     let
       username = "alik";
-      vars = import ./modules/vars.nix;
+      vars = (import ./modules/vars.nix).flake.vars;
 
       helpers = import ./lib/flakehelpers.nix {
         inherit
@@ -60,64 +59,22 @@
         mkServer
         ;
     in
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [
-        # "x86_64-linux"
-        "aarch64-darwin"
-      ];
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      inputs.import-tree ./modules
+      // 
+      {
+        systems = [
+          "x86_64-linux"
+          "aarch64-darwin"
+        ];
 
-      flake = {
-        # Expose modules for clear, explicit imports
-        nixosModules = {
-          # Base modules
-          common = import ./modules/common.nix;
-          locale = (import ./modules/locale.nix).flake.nixosModules.locale;
-          gc = (import ./modules/gc.nix).flake.nixosModules.gc;
-          gaming = import ./modules/gaming.nix;
-          virtualisation = import ./modules/virtualisation.nix;
-          
-          # Desktop environments
-          kde = import ./modules/desktop/kde.nix;
-          hypr = import ./modules/desktop/hypr.nix;
-          hyprland = import ./modules/desktop/hyprland.nix;
-          stylix = import ./modules/desktop/stylix.nix;
-          
-          # Services
-          avahi = import ./modules/services/avahi.nix;
-          caddy = import ./modules/services/caddy.nix;
-          glance = import ./modules/services/glance.nix;
-          kanata = import ./modules/services/kanata.nix;
-          localai = import ./modules/services/localai.nix;
-          miniflux = import ./modules/services/miniflux.nix;
-          nextcloud = import ./modules/services/nextcloud.nix;
-          nginx = import ./modules/services/nginx.nix;
-          paperless = import ./modules/services/paperless.nix;
-          rustdesk-server = import ./modules/services/rustdesk_server.nix;
-          syncthing = import ./modules/services/syncthing.nix;
-          tailscale = import ./modules/services/tailscale.nix;
-        };
-        
-        # Home manager modules
-        homeModules = {
-          git = (import ./modules/home/git.nix).flake.homeModules.git;
-          nvim = (import ./modules/home/nvim.nix).flake.homeModules.nvim;
-          terminal = (import ./modules/home/terminal.nix).flake.homeModules.terminal;
-          zed = (import ./modules/home/zed.nix).flake.homeModules.zed;
-          plasma = (import ./modules/home/plasma.nix).flake.homeModules.plasma;
-          common = import ./modules/home/common.nix;
-        };
-        
-        # Darwin modules
-        darwinModules = {
-          gc = (import ./modules/gc.nix).flake.darwinModules.gc;
-        };
-        
-        # NixOS configurations
-        nixosConfigurations = {
-          arondil = mkHost "arondil" "x86_64-linux";
-          reania = mkHost "reania" "x86_64-linux";
-          blade = mkServer "blade" "x86_64-linux";
-        };
+        flake = {
+          # NixOS configurations
+          nixosConfigurations = {
+            arondil = mkHost "arondil" "x86_64-linux";
+            reania = mkHost "reania" "x86_64-linux";
+            blade = mkServer "blade" "x86_64-linux";
+          };
 
         # Darwin configurations
         darwinConfigurations = {
@@ -134,9 +91,9 @@
           ];
           "alik@leona" = mkHome "leona" "aarch64-darwin" [ ];
         };
-      };
+        };
 
-      perSystem =
+        perSystem =
         {
           config,
           self',
@@ -153,5 +110,6 @@
           # packages = { };
           # devShells = { };
         };
-    };
+      }
+    );
 }

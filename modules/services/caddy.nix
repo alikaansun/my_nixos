@@ -1,19 +1,19 @@
-{ pkgs, vars, ... }:
-
 {
-  environment.systemPackages = [
-    pkgs.caddy
-  ];
+  flake.nixosModules.caddy = { pkgs, vars, ... }: {
+    environment.systemPackages = [
+      pkgs.caddy
+    ];
 
-  services.caddy = {
-    enable = true;
-    package = pkgs.caddy;
+    services.caddy = {
+      enable = true;
+      package = pkgs.caddy;
+    };
+
+    # Open HTTP/HTTPS ports
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
+
   };
-
-  # Open HTTP/HTTPS ports
-  networking.firewall.allowedTCPPorts = [
-    80
-    443
-  ];
-
 }

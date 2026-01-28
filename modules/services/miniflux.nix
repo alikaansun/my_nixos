@@ -1,11 +1,10 @@
 {
-  pkgs,
-  lib,
-  vars,
-  ...
-}:
-{
-  config = {
+  flake.nixosModules.miniflux = {
+    pkgs,
+    lib,
+    vars,
+    ...
+  }: {
     networking.firewall.allowedTCPPorts = [ vars.miniflux.port ];
 
     services.miniflux = {
@@ -23,6 +22,5 @@
       tls internal
       reverse_proxy ${vars.miniflux.IP}:${toString vars.miniflux.port}
     '';
-
   };
 }

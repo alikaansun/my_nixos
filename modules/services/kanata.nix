@@ -1,21 +1,18 @@
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+  flake.nixosModules.kanata = {
+    config,
+    lib,
+    pkgs,
+    ...
+  }: with lib; let
+    cfg = config.services.mykanata;
 
-with lib;
+    # Platform detection
+    isDarwin = pkgs.stdenv.isDarwin;
+    isAarch64 = pkgs.stdenv.hostPlatform.isAarch64;
 
-let
-  cfg = config.services.mykanata;
-
-  # Platform detection
-  isDarwin = pkgs.stdenv.isDarwin;
-  isAarch64 = pkgs.stdenv.hostPlatform.isAarch64;
-
-  # M-chip Mac detection
-  isMmac = isDarwin && isAarch64;
+    # M-chip Mac detection
+    isMmac = isDarwin && isAarch64;
 
   # Shared Kanata configuration
   kanataConfig = ''
@@ -109,4 +106,5 @@ in
       };
     })
   ]);
+  };
 }

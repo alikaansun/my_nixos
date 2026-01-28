@@ -1,11 +1,11 @@
 {
-  vars,
-  config,
-  pkgs,
-  ...
-}:
-{
-  systemd.tmpfiles.rules = [
+  flake.nixosModules.nextcloud = {
+    vars,
+    config,
+    pkgs,
+    ...
+  }: {
+    systemd.tmpfiles.rules = [
     "d /mnt/storage/AppData 0755 root root -"
     "d /mnt/storage/AppData/nextcloud 0770 nextcloud nextcloud -"
   ];
@@ -66,4 +66,5 @@
   #   tls internal
   #   reverse_proxy ${vars.nextcloud.IP}:${toString vars.nextcloud.port}
   # '';
+  };
 }
