@@ -11,27 +11,38 @@
 
     modules = [
       self.nixosModules.hostArondil
-
       inputs.home-manager.nixosModules.home-manager
       {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
+        # home-manager = {
+        #   useGlobalPkgs = true;
+        #   useUserPackages = true;
 
-          extraSpecialArgs = {
-            inherit inputs;
-            hostname = "arondil";
-          };
+        #   extraSpecialArgs = {
+        #     inherit inputs;
+        #     hostname = "arondil";
+        #   };
 
-          users = {
-            alik = ./hosts/arondil/home.nix;
-          };
+        #   users = {
+        #     alik = ./hosts/arondil/home.nix;
+        #   };
 
-          backupFileExtension = "backup";
-        };
+        #   backupFileExtension = "backup";
+        # };
       }
     ];
   };
+
+  #Homeconfig
+  flake.homeConfigurations."alik@arondil" = inputs.home-manager.lib.homeManagerConfiguration{
+
+
+
+    
+  };
+
+
+
+
 
   # Define the actual configuration module
   flake.nixosModules.hostArondil =
@@ -41,7 +52,7 @@
         # ./hardware-configuration.nix # Dont disable it
 
         # Core system modules
-        inputs.home-manager.nixosModules.default
+        inputs.home-manager.nixosModules.home-manager
         inputs.sops-nix.nixosModules.sops
 
         #CUSTOM-MODULES
@@ -60,6 +71,21 @@
         self.nixosModules.nextcloud
 
       ];
+      home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+
+          extraSpecialArgs = {
+            inherit inputs;
+            hostname = "arondil";
+          };
+
+          users = {
+            alik = import ./hosts/arondil/home.nix;
+          };
+
+          backupFileExtension = "backup";
+        };
 
       #Mount extra drive and make it
       fileSystems."/mnt/D" = {

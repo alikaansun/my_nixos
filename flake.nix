@@ -45,8 +45,12 @@
           "x86_64-linux"
           "aarch64-darwin"
         ];
+        imports = [
+        inputs.home-manager.flakeModules.home-manager
+        ];
 
         flake = {
+          homeConfigurations
           # Host configurations are defined in modules/hosts/*/configuration.nix
         };
 

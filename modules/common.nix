@@ -118,6 +118,12 @@
           # ];
           # }
         )
+        blender # 3D modeling and animation
+        gimp # Image editing
+        texliveFull
+        onlyoffice-desktopeditors
+        tor-browser
+        ardour # Audio recording and editing
         # inputs.zen-browser.packages."${system}".default
       ];
 
