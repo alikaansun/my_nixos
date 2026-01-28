@@ -1,9 +1,11 @@
 {
-  flake.nixosModules.kde = { config, pkgs, ... }: {
+  flake.nixosModules.kde =
+    { config, pkgs, ... }:
+    {
 
-    services.desktopManager.plasma6.enable = true;
+      services.desktopManager.plasma6.enable = true;
 
-    programs.kdeconnect.enable = true;
+      programs.kdeconnect.enable = true;
 
-  };
+    };
 }

@@ -38,57 +38,35 @@
 
   outputs =
     inputs@{ self, flake-parts, ... }:
-    let
-      username = "alik";
-      vars = (import ./modules/vars.nix).flake.vars;
-
-      helpers = import ./lib/flakehelpers.nix {
-        inherit
-          self
-          inputs
-          vars
-          username
-          ;
-        inherit (inputs) nixpkgs stablenixpkgs;
-      };
-
-      inherit (helpers)
-        mkHost
-        mkHome
-        mkDarwin
-        mkServer
-        ;
-    in
     flake-parts.lib.mkFlake { inherit inputs; } (
       inputs.import-tree ./modules
-      // 
-      {
+      // {
         systems = [
           "x86_64-linux"
           "aarch64-darwin"
         ];
 
         flake = {
-      
+          # Host configurations are defined in modules/hosts/*/configuration.nix
+        };
 
         perSystem =
-        {
-          config,
-          self',
-          inputs',
-          pkgs,
-          system,
-          ...
-        }:
-        {
-          # Formatters per system
-          formatter = pkgs.nixfmt-tree;
+          {
+            config,
+            self',
+            inputs',
+            pkgs,
+            system,
+            ...
+          }:
+          {
+            # Formatters per system
+            formatter = pkgs.nixfmt-tree;
 
-          # Optional: define packages, devShells, checks, etc. per system
-          # packages = { };
-          # devShells = { };
-        };
-        };
+            # Optional: define packages, devShells, checks, etc. per system
+            # packages = { };
+            # devShells = { };
+          };
       }
     );
 }

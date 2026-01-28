@@ -1,5 +1,6 @@
 {
-  flake.nixosModules.gaming = { inputs, pkgs, ... }:
+  flake.nixosModules.gaming =
+    { inputs, pkgs, ... }:
     # let
     #   oldPkgs = import inputs.shad06_nixpkgs { system = pkgs.system; };
     # in
