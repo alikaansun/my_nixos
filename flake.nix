@@ -69,29 +69,7 @@
         ];
 
         flake = {
-          # NixOS configurations
-          nixosConfigurations = {
-            arondil = mkHost "arondil" "x86_64-linux";
-            reania = mkHost "reania" "x86_64-linux";
-            blade = mkServer "blade" "x86_64-linux";
-          };
-
-        # Darwin configurations
-        darwinConfigurations = {
-          leona = mkDarwin "leona" "aarch64-darwin";
-        };
-
-        # Home Manager configurations
-        homeConfigurations = {
-          "alik@arondil" = mkHome "arondil" "x86_64-linux" [
-            inputs.plasma-manager.homeModules.plasma-manager
-          ];
-          "alik@reania" = mkHome "reania" "x86_64-linux" [
-            inputs.plasma-manager.homeModules.plasma-manager
-          ];
-          "alik@leona" = mkHome "leona" "aarch64-darwin" [ ];
-        };
-        };
+      
 
         perSystem =
         {
@@ -109,6 +87,7 @@
           # Optional: define packages, devShells, checks, etc. per system
           # packages = { };
           # devShells = { };
+        };
         };
       }
     );

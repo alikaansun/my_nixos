@@ -1,39 +1,56 @@
 {
+  inputs,
   self,
   ...
-}:
+}: {
+  # Define the nixosConfiguration for this host
+  flake.nixosConfigurations.arondil = inputs.nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    specialArgs = {
+      inherit inputs self;
+      vars = (import ../../modules/vars.nix).flake.vars;
+    };
+    modules = [
+      self.nixosModules.hostArondil
+    ];
+  };
 
-{
-  imports = [
-    ./hardware-configuration.nix # Dont disable it
+  # Define the actual configuration module
+  flake.nixosModules.hostArondil = {pkgs, ...}: {
+    imports = [
+      ./hardware-configuration.nix # Dont disable it
+      
+      # Core system modules
+      inputs.home-manager.nixosModules.default
+      inputs.sops-nix.nixosModules.sops
 
-    #CUSTOM-MODULES
-    self.nixosModules.locale # Dont disable it
-    self.nixosModules.common # Dont disable it
-    self.nixosModules.gc # garbage collection and store opt
-    self.nixosModules.gaming
-    self.nixosModules.virtualisation
+      #CUSTOM-MODULES
+      self.nixosModules.locale # Dont disable it
+      self.nixosModules.common # Dont disable it
+      self.nixosModules.gc # garbage collection and store opt
+      self.nixosModules.gaming
+      self.nixosModules.virtualisation
 
-    #self.nixosModules.localai
+      #self.nixosModules.localai
 
-    #DESKTOP-MODULES
-    self.nixosModules.kde
-    # self.nixosModules.hypr
-    # self.nixosModules.xfce
-    # self.nixosModules.gnome
+      #DESKTOP-MODULES
+      self.nixosModules.kde
+      # self.nixosModules.hypr
+      # self.nixosModules.xfce
+      # self.nixosModules.gnome
 
-    #Services
-    # self.nixosModules.miniflux
-    # self.nixosModules.localai
-    # self.nixosModules.nginx
-    self.nixosModules.caddy
-    self.nixosModules.tailscale
-    # self.nixosModules.syncthing
-    self.nixosModules.nextcloud
-    # self.nixosModules.rustdesk-server
-    # self.nixosModules.avahi
+      #Services
+      # self.nixosModules.miniflux
+      # self.nixosModules.localai
+      # self.nixosModules.nginx
+      self.nixosModules.caddy
+      self.nixosModules.tailscale
+      # self.nixosModules.syncthing
+      self.nixosModules.nextcloud
+      # self.nixosModules.rustdesk-server
+      # self.nixosModules.avahi
 
-  ];
+    ];
 
   #Mount extra drive and make it
   fileSystems."/mnt/D" = {
@@ -136,4 +153,5 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 
+};
 }
