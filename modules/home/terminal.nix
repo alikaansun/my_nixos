@@ -66,7 +66,7 @@
 
           shellAliases = {
             nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#$(hostname)";
-            drs = "darwin-rebuild switch --flake ~/.dotfiles#$(hostname)";
+            drs = "sudo darwin-rebuild switch --flake ~/.dotfiles#$(hostname)";
             ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-collect-garbage";
             nixupp = "sudo nix flake update --flake ~/.dotfiles";
             e = "nohup dolphin --new-window . > /dev/null 2>&1 &";
@@ -118,7 +118,7 @@
           enable = true;
           shellIntegration.enableZshIntegration = true;
           shellIntegration.enableBashIntegration = false;
-          font.name = "FiraCode Nerd Font";
+          font.name = "FiraCode Nerd Font Mono";
           font.package = pkgs.nerd-fonts.fira-code;
           themeFile = "GruvboxMaterialDarkSoft";
           settings = {

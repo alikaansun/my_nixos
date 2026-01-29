@@ -4,10 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     stablenixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    darwin = {
-      url = "github:nix-darwin/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -24,6 +20,20 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+        nix-darwin={
+    url = "github:nix-darwin/nix-darwin/master";
+    inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+    # Optional: Declarative tap management
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,33 +48,6 @@
 
   outputs =
     inputs@{ self, flake-parts, ... }:
-<<<<<<< HEAD
-    let
-      username = "alik";
-      
-      # First load the modules to get vars
-      moduleOutputs = inputs.import-tree ./modules;
-      vars = moduleOutputs.flake.vars or (import ./modules/vars.nix);
-
-      helpers = import ./lib/flakehelpers.nix {
-        inherit
-          self
-          inputs
-          vars
-          username
-          ;
-        inherit (inputs) nixpkgs stablenixpkgs;
-      };
-
-      inherit (helpers)
-        mkHost
-        mkHome
-        mkDarwin
-        mkServer
-        ;
-    in
-=======
->>>>>>> fixflake
     flake-parts.lib.mkFlake { inherit inputs; } (
       let
         tree = inputs.import-tree ./modules;
@@ -79,32 +62,7 @@
         ];
 
         flake = {
-<<<<<<< HEAD
-          # NixOS configurations
-        nixosConfigurations = {
-            arondil = mkHost "arondil" "x86_64-linux";
-            reania = mkHost "reania" "x86_64-linux";
-            blade = mkServer "blade" "x86_64-linux";
-          };
-
-        # Darwin configurations
-        darwinConfigurations = {
-          leona = mkDarwin "leona" "aarch64-darwin";
-        };
-
-        # Home Manager configurations
-        homeConfigurations = {
-          "alik@arondil" = mkHome "arondil" "x86_64-linux" [
-            inputs.plasma-manager.homeModules.plasma-manager
-          ];
-          "alik@reania" = mkHome "reania" "x86_64-linux" [
-            inputs.plasma-manager.homeModules.plasma-manager
-          ];
-          "alik@leona" = mkHome "leona" "aarch64-darwin" [ ];
-        };
-=======
           # Host configurations are defined in modules/hosts/*/configuration.nix
->>>>>>> fixflake
         };
 
         perSystem =

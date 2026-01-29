@@ -14,47 +14,8 @@
 
     modules = [
       self.nixosModules.hostArondil
-      # inputs.home-manager.nixosModules.home-manager
-      {
-        # home-manager = {
-        #   useGlobalPkgs = true;
-        #   useUserPackages = true;
-
-        #   extraSpecialArgs = {
-        #     inherit inputs;
-        #     hostname = "arondil";
-        #   };
-
-        #   users = {
-        #     alik = ./hosts/arondil/home.nix;
-        #   };
-
-        #   backupFileExtension = "backup";
-        # };
-      }
     ];
   };
-
-  # #Homeconfig
-  # flake.homeConfigurations."alik@arondil" = inputs.home-manager.lib.homeManagerConfiguration {
-  #   pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
-  #   extraSpecialArgs = { 
-  #     inherit inputs self;
-  #     hostname = "arondil"; 
-  #   };
-  #   modules = [
-  #     inputs.nvf.homeManagerModules.default
-  #     inputs.sops-nix.homeManagerModules.sops
-  #     inputs.plasma-manager.homeManagerModules.plasma-manager
-  #     ./home.nix
-  #     {
-  #       home = {
-  #         username = "alik";
-  #         homeDirectory = "/home/alik";
-  #       };
-  #     }
-  #   ];
-  # };
 
   # Define the actual configuration module
   flake.nixosModules.hostArondil =
