@@ -7,11 +7,14 @@
 {
   # Define the nixosConfiguration for this host
   flake.nixosConfigurations.arondil = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit inputs self; };
+    specialArgs = { 
+      inherit inputs self;
+      vars = self.vars;
+    };
 
     modules = [
       self.nixosModules.hostArondil
-      inputs.home-manager.nixosModules.home-manager
+      # inputs.home-manager.nixosModules.home-manager
       {
         # home-manager = {
         #   useGlobalPkgs = true;
@@ -32,24 +35,33 @@
     ];
   };
 
-  #Homeconfig
-  flake.homeConfigurations."alik@arondil" = inputs.home-manager.lib.homeManagerConfiguration{
-
-
-
-    
-  };
-
-
-
-
+  # #Homeconfig
+  # flake.homeConfigurations."alik@arondil" = inputs.home-manager.lib.homeManagerConfiguration {
+  #   pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
+  #   extraSpecialArgs = { 
+  #     inherit inputs self;
+  #     hostname = "arondil"; 
+  #   };
+  #   modules = [
+  #     inputs.nvf.homeManagerModules.default
+  #     inputs.sops-nix.homeManagerModules.sops
+  #     inputs.plasma-manager.homeManagerModules.plasma-manager
+  #     ./home.nix
+  #     {
+  #       home = {
+  #         username = "alik";
+  #         homeDirectory = "/home/alik";
+  #       };
+  #     }
+  #   ];
+  # };
 
   # Define the actual configuration module
   flake.nixosModules.hostArondil =
     { pkgs, ... }:
     {
       imports = [
-        # ./hardware-configuration.nix # Dont disable it
+        ./_files/hardware-configuration.nix
 
         # Core system modules
         inputs.home-manager.nixosModules.home-manager
@@ -76,12 +88,12 @@
           useUserPackages = true;
 
           extraSpecialArgs = {
-            inherit inputs;
+            inherit inputs self;
             hostname = "arondil";
           };
 
           users = {
-            alik = import ./hosts/arondil/home.nix;
+            alik = import ./_files/home.nix;
           };
 
           backupFileExtension = "backup";
