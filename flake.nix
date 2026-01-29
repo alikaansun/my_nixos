@@ -38,6 +38,7 @@
 
   outputs =
     inputs@{ self, flake-parts, ... }:
+<<<<<<< HEAD
     let
       username = "alik";
       
@@ -62,16 +63,23 @@
         mkServer
         ;
     in
+=======
+>>>>>>> fixflake
     flake-parts.lib.mkFlake { inherit inputs; } (
-      inputs.import-tree ./modules
-      // 
+      let
+        tree = inputs.import-tree ./modules;
+      in
       {
         systems = [
           "x86_64-linux"
           "aarch64-darwin"
         ];
+        imports = tree.imports ++ [
+          inputs.home-manager.flakeModules.home-manager
+        ];
 
         flake = {
+<<<<<<< HEAD
           # NixOS configurations
         nixosConfigurations = {
             arondil = mkHost "arondil" "x86_64-linux";
@@ -94,25 +102,28 @@
           ];
           "alik@leona" = mkHome "leona" "aarch64-darwin" [ ];
         };
+=======
+          # Host configurations are defined in modules/hosts/*/configuration.nix
+>>>>>>> fixflake
         };
 
         perSystem =
-        {
-          config,
-          self',
-          inputs',
-          pkgs,
-          system,
-          ...
-        }:
-        {
-          # Formatters per system
-          formatter = pkgs.nixfmt-tree;
+          {
+            config,
+            self',
+            inputs',
+            pkgs,
+            system,
+            ...
+          }:
+          {
+            # Formatters per system
+            formatter = pkgs.nixfmt-tree;
 
-          # Optional: define packages, devShells, checks, etc. per system
-          # packages = { };
-          # devShells = { };
-        };
+            # Optional: define packages, devShells, checks, etc. per system
+            # packages = { };
+            # devShells = { };
+          };
       }
     );
 }
