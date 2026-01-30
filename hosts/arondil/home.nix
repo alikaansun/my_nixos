@@ -1,4 +1,9 @@
-{ inputs, pkgs, self, ... }:
+{
+  inputs,
+  pkgs,
+  self,
+  ...
+}:
 
 {
 

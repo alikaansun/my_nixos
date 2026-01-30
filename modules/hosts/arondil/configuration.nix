@@ -7,7 +7,7 @@
 {
   # Define the nixosConfiguration for this host
   flake.nixosConfigurations.arondil = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = { 
+    specialArgs = {
       inherit inputs self;
       vars = self.vars;
     };
@@ -45,20 +45,20 @@
 
       ];
       home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
+        useGlobalPkgs = true;
+        useUserPackages = true;
 
-          extraSpecialArgs = {
-            inherit inputs self;
-            hostname = "arondil";
-          };
-
-          users = {
-            alik = import ./_files/home.nix;
-          };
-
-          backupFileExtension = "backup";
+        extraSpecialArgs = {
+          inherit inputs self;
+          hostname = "arondil";
         };
+
+        users = {
+          alik = import ./_files/home.nix;
+        };
+
+        backupFileExtension = "backup";
+      };
 
       #Mount extra drive and make it
       fileSystems."/mnt/D" = {

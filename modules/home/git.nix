@@ -8,7 +8,7 @@
         enable = true;
         settings = {
           user.name = "alik";
-          user.email = "asunnetcoglu@gmail.com";#config.sops.secrets.git_email.path;
+          user.email = "asunnetcoglu@gmail.com"; # config.sops.secrets.git_email.path;
           pull.rebase = "true";
           init.defaultBranch = "main";
           # safe.directory="/etc/nixos";

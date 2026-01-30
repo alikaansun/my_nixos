@@ -7,7 +7,7 @@
 {
   # Define the darwinConfiguration for this host
   flake.darwinConfigurations.Leona = inputs.nix-darwin.lib.darwinSystem {
-    specialArgs = { 
+    specialArgs = {
       inherit inputs self;
       vars = self.vars;
     };
@@ -51,6 +51,23 @@
         vscode
         keepassxc
         raycast
+        brave
+        zotero
+        spotify
+        github-copilot-cli
+        nix-output-monitor
+        tldr
+        nixd # nix language server
+        nil
+        nixfmt # nix formatter
+        nixfmt-tree # treefmt
+        nerd-fonts.fira-code
+        age
+        sops
+        klayout
+        # vesktop
+        fastfetch
+        docker-client
       ];
 
       # Nix settings
@@ -87,12 +104,15 @@
           "microsoft-excel"
           "microsoft-word"
           "onedrive"
-          "chromium"
           "nextcloud"
           "whatsapp"
           "obsidian"
         ];
         onActivation.cleanup = "zap";
+        masApps={
+          # "eduvpn" = 1317704208;
+          # "Xcode"  = 497799835;
+        };
       };
 
       # macOS System Defaults
@@ -104,5 +124,7 @@
         loginwindow.LoginwindowText = "AliKaanSun";
         screencapture.location = "~/Pictures/screenshots";
       };
+
+      security.pam.services.sudo_local.touchIdAuth = true;
     };
 }
