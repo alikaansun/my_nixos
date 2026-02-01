@@ -59,6 +59,15 @@
         ];
         imports = tree.imports ++ [
           inputs.home-manager.flakeModules.home-manager
+          inputs.nix-darwin.flakeModules.default
+          # Declare darwinModules option (not provided by nix-darwin flakeModule)
+          {
+            options.flake.darwinModules = inputs.nixpkgs.lib.mkOption {
+              type = inputs.nixpkgs.lib.types.lazyAttrsOf inputs.nixpkgs.lib.types.raw;
+              default = { };
+              description = "Darwin modules to be exported from this flake.";
+            };
+          }
         ];
 
         flake = {

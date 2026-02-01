@@ -13,6 +13,7 @@
     };
     modules = [
       self.darwinModules.hostLeona
+      self.darwinModules.kanata
     ];
   };
 
@@ -24,6 +25,7 @@
         inputs.nix-homebrew.darwinModules.nix-homebrew
         inputs.home-manager.darwinModules.home-manager
         inputs.sops-nix.darwinModules.sops
+        
       ];
       home-manager = {
         useGlobalPkgs = true;
@@ -116,13 +118,13 @@
           "obsidian"
           #macspesificstuff
           "betterdisplay" # external display
-          "aldente" # batteryhealth
           "rectangle" # window snap
-          "keka" # sleep prevention
+          "keka" # winrar
           "linearmouse"
           "keyclu" # command to see shortcuts
           "vanilla" # hide menubar icons
           "yoink"
+          "karabiner-elements" # Required for kanata
         ];
         onActivation.cleanup = "zap";
         onActivation.autoUpdate = true;
@@ -157,6 +159,7 @@
 
       # };
       services.trezord.enable = true;
+      services.mykanata.enable = true;
       security.pam.services.sudo_local.touchIdAuth = true;
 
       documentation.enable = true;
