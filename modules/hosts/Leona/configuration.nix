@@ -23,6 +23,7 @@
       imports = [
         inputs.nix-homebrew.darwinModules.nix-homebrew
         inputs.home-manager.darwinModules.home-manager
+        inputs.sops-nix.darwinModules.sops
       ];
       home-manager = {
         useGlobalPkgs = true;
@@ -42,6 +43,9 @@
         name = "alik";
         home = "/Users/alik";
       };
+      # networking.computerName = "leona";
+      # networking.hostName = "leona";
+      networking.wakeOnLan.enable = true;
 
       # System packages
       system.primaryUser = "alik";
@@ -69,7 +73,10 @@
         fastfetch
         docker-client
       ];
-
+      fonts.packages = with pkgs; [
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.fira-code
+      ];
       # Nix settings
       nix.settings.experimental-features = "nix-command flakes";
       nixpkgs.config.allowUnfree = true;
@@ -109,6 +116,7 @@
           "obsidian"
         ];
         onActivation.cleanup = "zap";
+        onActivation.autoUpdate = true;
         masApps={
           # "eduvpn" = 1317704208;
           # "Xcode"  = 497799835;
@@ -117,13 +125,29 @@
 
       # macOS System Defaults
       system.defaults = {
-        dock.autohide = true;
-        dock.mru-spaces = false;
-        finder.AppleShowAllExtensions = true;
-        finder.FXPreferredViewStyle = "clmv";
+        controlcenter = { 
+        BatteryShowPercentage = true;
+        Bluetooth = true;
+        };
+        dock ={
+        autohide = true;
+        mru-spaces = false;
+        };
+        finder={
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles =true;
+        ShowPathbar = true;
+        FXPreferredViewStyle = "clmv";
+        FXRemoveOldTrashItems =true;
+        };
         loginwindow.LoginwindowText = "AliKaanSun";
         screencapture.location = "~/Pictures/screenshots";
       };
+
+      # programs.ssh.knownHosts = { 
+
+
+      # }; 
 
       security.pam.services.sudo_local.touchIdAuth = true;
     };
