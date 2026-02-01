@@ -69,7 +69,7 @@
         age
         sops
         klayout
-        # vesktop
+        discord
         fastfetch
         docker-client
       ];
@@ -114,10 +114,19 @@
           "nextcloud"
           "whatsapp"
           "obsidian"
+          #macspesificstuff
+          "betterdisplay" # external display
+          "aldente" # batteryhealth
+          "rectangle" # window snap
+          "keka" # sleep prevention
+          "linearmouse"
+          "keyclu" # command to see shortcuts
+          "vanilla" # hide menubar icons
+          "yoink"
         ];
         onActivation.cleanup = "zap";
         onActivation.autoUpdate = true;
-        masApps={
+        masApps = {
           # "eduvpn" = 1317704208;
           # "Xcode"  = 497799835;
         };
@@ -125,30 +134,33 @@
 
       # macOS System Defaults
       system.defaults = {
-        controlcenter = { 
-        BatteryShowPercentage = true;
-        Bluetooth = true;
+        controlcenter = {
+          BatteryShowPercentage = true;
+          Bluetooth = true;
         };
-        dock ={
-        autohide = true;
-        mru-spaces = false;
+        dock = {
+          autohide = true;
+          mru-spaces = false;
         };
-        finder={
-        AppleShowAllExtensions = true;
-        AppleShowAllFiles =true;
-        ShowPathbar = true;
-        FXPreferredViewStyle = "clmv";
-        FXRemoveOldTrashItems =true;
+        finder = {
+          AppleShowAllExtensions = true;
+          AppleShowAllFiles = true;
+          ShowPathbar = true;
+          FXPreferredViewStyle = "clmv";
+          FXRemoveOldTrashItems = true;
         };
         loginwindow.LoginwindowText = "AliKaanSun";
         screencapture.location = "~/Pictures/screenshots";
       };
 
-      # programs.ssh.knownHosts = { 
+      # programs.ssh.knownHosts = {
 
-
-      # }; 
-
+      # };
+      services.trezord.enable = true;
       security.pam.services.sudo_local.touchIdAuth = true;
+
+      documentation.enable = true;
+      documentation.man.enable = true;
+      documentation.info.enable = true;
     };
 }
