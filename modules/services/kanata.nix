@@ -30,7 +30,8 @@ let
     )
   '';
 
-  commonOptions = { lib, ... }:
+  commonOptions =
+    { lib, ... }:
     with lib;
     {
       options.services.mykanata = {
@@ -50,7 +51,12 @@ let
 in
 {
   flake.nixosModules.kanata =
-    { config, lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     with lib;
     let
       cfg = config.services.mykanata;
@@ -92,13 +98,18 @@ in
     };
 
   flake.darwinModules.kanata =
-    { config, lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     with lib;
     let
       cfg = config.services.mykanata;
-      
+
       # Create an app bundle with actual binary copy for macOS permissions
-      kanataApp = pkgs.runCommand "Kanata.app" {} ''
+      kanataApp = pkgs.runCommand "Kanata.app" { } ''
         mkdir -p $out/Contents/MacOS
         cat > $out/Contents/Info.plist << EOF
         <?xml version="1.0" encoding="UTF-8"?>
@@ -128,7 +139,7 @@ in
 
       config = mkIf cfg.enable {
         environment.etc."kanata/config.kbd".text = kanataConfig;
-        
+
         # Install app bundle to /Applications
         # After rebuild, grant permissions:
         # 1. System Settings → Privacy & Security → Input Monitoring

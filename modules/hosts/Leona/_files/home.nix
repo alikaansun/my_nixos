@@ -13,6 +13,7 @@
     # self.homeModules.zed
     self.homeModules.git
     self.homeModules.nvim
+    # self.homeModules.skhd
   ];
   home.username = "alik";
   home.homeDirectory = "/Users/alik";
