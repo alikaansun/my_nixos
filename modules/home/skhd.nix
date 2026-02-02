@@ -9,34 +9,45 @@
       services.skhd = {
         enable = true;
 
-        skhdConfig = ''
+        config = ''
           # Application launcher shortcuts (matching plasma config)
-          cmd - return : open -a "kitty"
-          cmd - space : open -a "brave"
+          cmd - return : open -a "Kitty"
+          cmd - space : open -a "Brave-Browser"
           ctrl + alt - v : open -a "Visual Studio Code"
           ctrl + alt - d : open -a "Discord"
           ctrl + alt - o : open -a "Obsidian"
           ctrl + alt - k : open -a "KeePassXC"
 
-          # Screenshots
-          cmd + shift - s : screencapture -i -c
-          cmd + shift - 3 : screencapture -c
-          cmd + shift - 4 : screencapture -i ~/Desktop/screenshot_$(date +%Y%m%d_%H%M%S).png
-
           # Lock screen
           cmd - l : pmset displaysleepnow
-
-          # Mission Control and desktop switching
-          ctrl - left : osascript -e 'tell application "System Events" to key code 123 using control down'
-          ctrl - right : osascript -e 'tell application "System Events" to key code 124 using control down'
-          ctrl - up : osascript -e 'tell application "System Events" to key code 126 using control down'
-
-          # Show desktop
-          fn - f11 : osascript -e 'tell application "System Events" to key code 103'
-
-          # Quit application
-          cmd - q : osascript -e 'tell application "System Events" to keystroke "q" using command down'
         '';
       };
+    };
+
+  # Darwin module for skhd .app wrapper (needed for Accessibility permissions)
+  flake.darwinModules.skhd =
+    { pkgs, config, ... }:
+    {
+      # Create .app wrapper for skhd so it can be added to Accessibility permissions
+      system.activationScripts.postActivation.text = ''
+        mkdir -p /Applications/skhd.app/Contents/MacOS
+        cat > /Applications/skhd.app/Contents/Info.plist << 'EOF'
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+        <plist version="1.0">
+        <dict>
+            <key>CFBundleExecutable</key>
+            <string>skhd</string>
+            <key>CFBundleIdentifier</key>
+            <string>com.koekeishiya.skhd</string>
+            <key>CFBundleName</key>
+            <string>skhd</string>
+            <key>CFBundleVersion</key>
+            <string>1.0</string>
+        </dict>
+        </plist>
+        EOF
+        ln -sf /etc/profiles/per-user/alik/bin/skhd /Applications/skhd.app/Contents/MacOS/skhd
+      '';
     };
 }

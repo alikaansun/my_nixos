@@ -83,13 +83,17 @@
             system,
             ...
           }:
+          let
+            pythonEnv = import ./modules/_files/pythonEnv.nix { inherit pkgs; };
+          in
           {
             # Formatters per system
             formatter = pkgs.nixfmt-tree;
 
-            # Optional: define packages, devShells, checks, etc. per system
-            # packages = { };
-            # devShells = { };
+            packages.pythonEnv = pythonEnv;
+            devShells.python = pkgs.mkShell {
+              packages = [ pythonEnv ];
+            };
           };
       }
     );

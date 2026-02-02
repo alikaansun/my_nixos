@@ -14,6 +14,7 @@
     modules = [
       self.darwinModules.hostLeona
       self.darwinModules.kanata
+      self.darwinModules.skhd
     ];
   };
 
@@ -25,8 +26,11 @@
         inputs.nix-homebrew.darwinModules.nix-homebrew
         inputs.home-manager.darwinModules.home-manager
         inputs.sops-nix.darwinModules.sops
-
       ];
+      services.mykanata.enable = false;
+
+      security.pam.services.sudo_local.touchIdAuth = true;
+
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
@@ -50,8 +54,8 @@
       networking.wakeOnLan.enable = true;
 
       # System packages
-      system.primaryUser = "alik";
-
+      nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs.config.allowUnfree = true;
       environment.systemPackages = with pkgs; [
         vim
         git
@@ -81,13 +85,59 @@
         nerd-fonts.fira-code
       ];
       # Nix settings
-      nix.settings.experimental-features = "nix-command flakes";
-      nixpkgs.config.allowUnfree = true;
 
       # System configuration
+      nix.settings.experimental-features = "nix-command flakes";
       nix.enable = false;
+
+      # macOS System
+      system.primaryUser = "alik";
       system.stateVersion = 6;
-      nixpkgs.hostPlatform = "aarch64-darwin";
+      system.defaults = {
+        controlcenter = {
+          BatteryShowPercentage = true;
+          Bluetooth = true;
+        };
+        dock = {
+          autohide = true;
+          mru-spaces = false;
+        };
+        finder = {
+          AppleShowAllExtensions = true;
+          AppleShowAllFiles = true;
+          ShowPathbar = true;
+          FXPreferredViewStyle = "clmv";
+          FXRemoveOldTrashItems = true;
+        };
+        loginwindow.LoginwindowText = "AliKaanSun";
+        screencapture.location = "~/Pictures/screenshots";
+
+        CustomUserPreferences = {
+          "com.apple.symbolichotkeys" = {
+            AppleSymbolicHotKeys = {
+              # "60" = {
+              #   # Disable '^ + Space' for selecting the previous input source
+              #   enabled = false;
+              # };
+              # "61" = {
+              #   # Disable '^ + Option + Space' for selecting the next input source
+              #   enabled = false;
+              # };
+              # Disable 'Cmd + Space' for Spotlight Search
+              "64" = {
+                enabled = false;
+              };
+              # Disable 'Cmd + Alt + Space' for Finder search window
+              "65" = {
+                # Set to false to disable
+                enabled = true;
+              };
+            };
+          };
+        };
+      };
+
+      # programs.ssh.knownHosts = {
 
       # Homebrew configuration
       nix-homebrew = {
@@ -135,60 +185,11 @@
         };
       };
 
-      # macOS System Defaults
-      system.defaults = {
-        controlcenter = {
-          BatteryShowPercentage = true;
-          Bluetooth = true;
-        };
-        dock = {
-          autohide = true;
-          mru-spaces = false;
-        };
-        finder = {
-          AppleShowAllExtensions = true;
-          AppleShowAllFiles = true;
-          ShowPathbar = true;
-          FXPreferredViewStyle = "clmv";
-          FXRemoveOldTrashItems = true;
-        };
-        loginwindow.LoginwindowText = "AliKaanSun";
-        screencapture.location = "~/Pictures/screenshots";
-
-        CustomUserPreferences = {
-          "com.apple.symbolichotkeys" = {
-            AppleSymbolicHotKeys = {
-              # "60" = {
-              #   # Disable '^ + Space' for selecting the previous input source
-              #   enabled = false;
-              # };
-              # "61" = {
-              #   # Disable '^ + Option + Space' for selecting the next input source
-              #   enabled = false;
-              # };
-              # Disable 'Cmd + Space' for Spotlight Search
-              "64" = {
-                enabled = false;
-              };
-              # Disable 'Cmd + Alt + Space' for Finder search window
-              "65" = {
-                # Set to false to disable
-                enabled = true;
-              };
-        };
-      };
-      };
-
-      # programs.ssh.knownHosts = {
-
-      # };
-      services.trezord.enable = true;
-      services.mykanata.enable = false;
-
-      security.pam.services.sudo_local.touchIdAuth = true;
+      
 
       documentation.enable = true;
       documentation.man.enable = true;
       documentation.info.enable = true;
-    };
-}
+
+    };#Flake output
+}#File output
