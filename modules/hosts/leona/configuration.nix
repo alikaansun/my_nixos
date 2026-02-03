@@ -36,7 +36,7 @@
         useUserPackages = true;
         extraSpecialArgs = {
           inherit inputs self;
-          hostname = "Leona";
+          hostname = "leona";
         };
         users = {
           alik = import ./_files/home.nix;
@@ -50,7 +50,7 @@
         home = "/Users/alik";
       };
       # networking.computerName = "leona";
-      # networking.hostName = "leona";
+      networking.hostName = "leona";
       networking.wakeOnLan.enable = true;
 
       # System packages
@@ -167,7 +167,8 @@
           "nextcloud"
           "whatsapp"
           "obsidian"
-          #macspesificstuff
+          "rustdesk"
+          #mac spesific stuff
           "betterdisplay" # external display
           "rectangle" # window snap
           "keka" # winrar

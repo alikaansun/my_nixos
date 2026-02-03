@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.rustdesk-server =
+  flake.nixosModules.rustdeskServer =
     {
       pkgs,
       vars,
