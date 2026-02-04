@@ -108,22 +108,8 @@
         nfs-utils
         cifs-utils
         trezor-suite
-        (
-          chromium
-          #  .override {commandLineArgs = [
-          # "--force-device-scale-factor=1"
-          # "--disable-features=UseOzonePlatform"
-          #"--enable-features=VaapiVideoDecoder"
-          # "--ozone-platform=wayland"  # or "x11" if you prefer
-          # ];
-          # }
-        )
-        blender # 3D modeling and animation
-        gimp # Image editing
+        brave
         texliveFull
-        onlyoffice-desktopeditors
-        tor-browser
-        ardour # Audio recording and editing
         # inputs.zen-browser.packages."${system}".default
       ];
 

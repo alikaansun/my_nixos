@@ -121,7 +121,7 @@
           shellIntegration.enableBashIntegration = false;
           font.name = "FiraCode Nerd Font Mono";
           font.package = pkgs.nerd-fonts.fira-code;
-          font.size = 14;
+          font.size = if pkgs.stdenv.isDarwin then 14 else 10;
           themeFile = "GruvboxMaterialDarkSoft";
           settings = {
             background_opacity = 0.8;

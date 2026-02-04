@@ -81,22 +81,25 @@
         ];
       };
 
-      system.activationScripts.setStoragePermissions = {
-        text = ''
+      # Use systemd to set permissions after mount
+      systemd.services.setStoragePermissions = {
+        description = "Set permissions on /mnt/storage after mount";
+        after = [ "mnt-storage.mount" ];
+        requires = [ "mnt-storage.mount" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+        };
+        script = ''
+          mkdir -p /mnt/storage/AppData
+          chown -R alik:users /mnt/storage/AppData
+          chmod -R 755 /mnt/storage/AppData
+          
           mkdir -p /mnt/D
-          chown alik /mnt/D
+          chown alik:users /mnt/D
           chmod -R 777 /mnt/D
-
-          mkdir -p /mnt/storage
-          mkdir -p /mnt/storage/AppData/openwebui
-
-          # Set ownership for the mount point
-          chown alik:users /mnt/storage
-          chmod 755 /mnt/storage
-          chown alik:users /mnt/storage/AppData
-          chmod 755 /mnt/storage/AppData
         '';
-        deps = [ ];
       };
 
       # Bridge network for nas
