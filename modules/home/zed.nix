@@ -85,7 +85,7 @@
                 options = {
                   # Host configs
                   "nixos-${hostname}" = {
-                    expr = "(builtins.getFlake \"/home/alik/.dotfiles/flake.nix\").nixosConfigurations.${hostname}.options";
+                    expr = "(builtins.getFlake \"git+file:///home/alik/.dotfiles\").nixosConfigurations.${hostname}.options";
                   };
                   "home-manager-${hostname}" = {
                     expr = "(builtins.getFlake \"/home/alik/.dotfiles/flake.nix\").homeConfigurations.alik@${hostname}.options";

@@ -20,14 +20,14 @@ let
       ;; mod-tap behavior (no PERMISSIVE_HOLD, no HOLD_ON_OTHER_KEY_PRESS).
       ;; The quick-tap parameter allows fast key repeat when double-tapping,
       ;; matching QMK's QUICK_TAP_TERM.
-      a (tap-hold-release-keys $tap-time $hold-time (multi a) lsft () $quick-tap)
-      s (tap-hold-release-keys $tap-time $hold-time (multi s) lalt () $quick-tap)
-      d (tap-hold-release-keys $tap-time $hold-time (multi d) lmet () $quick-tap)
-      f (tap-hold-release-keys $tap-time $hold-time (multi f) lctl () $quick-tap)
-      j (tap-hold-release-keys $tap-time $hold-time (multi j) rctl () $quick-tap)
-      k (tap-hold-release-keys $tap-time $hold-time (multi k) rmet () $quick-tap)
-      l (tap-hold-release-keys $tap-time $hold-time (multi l) ralt () $quick-tap)
-      ; (tap-hold-release-keys $tap-time $hold-time (multi ;) rsft () $quick-tap)
+      a (tap-hold-release-keys $tap-time $hold-time a lsft ())
+      s (tap-hold-release-keys $tap-time $hold-time s lalt ())
+      d (tap-hold-release-keys $tap-time $hold-time d lmet ())
+      f (tap-hold-release-keys $tap-time $hold-time f lctl ())
+      j (tap-hold-release-keys $tap-time $hold-time j rctl ())
+      k (tap-hold-release-keys $tap-time $hold-time k rmet ())
+      l (tap-hold-release-keys $tap-time $hold-time l ralt ())
+      ; (tap-hold-release-keys $tap-time $hold-time ; rsft ())
     )
     
     (deflayer base

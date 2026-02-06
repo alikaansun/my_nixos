@@ -27,7 +27,7 @@
         inputs.home-manager.darwinModules.home-manager
         inputs.sops-nix.darwinModules.sops
       ];
-      services.mykanata.enable = true;
+      services.mykanata.enable = false;
 
       security.pam.services.sudo_local.touchIdAuth = true;
 
@@ -60,7 +60,7 @@
         vim
         git
         vscode
-        keepassxc
+        # keepassxc
         raycast
         brave
         zotero
@@ -169,6 +169,7 @@
           "whatsapp"
           "obsidian"
           "rustdesk"
+          "keepassxc"
           #mac spesific stuff
           "aldente"
           "betterdisplay" # external display
@@ -187,12 +188,10 @@
           # "Xcode"  = 497799835;
         };
       };
-
-      
-
-      documentation.enable = true;
-      documentation.man.enable = true;
-      documentation.info.enable = true;
+    
+      # documentation.enable = true;
+      # documentation.man.enable = true;
+      # documentation.info.enable = true;
 
     };#Flake output
 }#File output

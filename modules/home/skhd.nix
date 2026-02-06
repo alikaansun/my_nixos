@@ -12,7 +12,7 @@
         config = ''
           # Application launcher shortcuts (matching plasma config)
           cmd - return : open -a "Kitty"
-          cmd - space : open -a "Brave sBrowser"
+          cmd - space : open -a "Brave Browser"
           ctrl + alt - v : open -a "Visual Studio Code"
           ctrl + alt - d : open -a "Discord"
           ctrl + alt - o : open -a "Obsidian"
@@ -21,6 +21,32 @@
           # Lock screen
           cmd - l : pmset displaysleepnow
         '';
+      };
+
+      # Override the launchd agent to add a retry wrapper that handles
+      # "secure keyboard entry" errors gracefully instead of crashing in a loop
+      launchd.agents.skhd = {
+        enable = true;
+        config = {
+          Label = "org.nix-community.home.skhd";
+          ProgramArguments = [
+            "/bin/bash"
+            "-c"
+            ''
+              /bin/wait4path /nix/store && while true; do
+                /etc/profiles/per-user/alik/bin/skhd 2>&1
+                echo "skhd exited with $?, restarting in 5s..."
+                sleep 5
+              done
+            ''
+          ];
+          RunAtLoad = true;
+          KeepAlive = true;
+          StandardErrorPath = "/Users/alik/Library/Logs/skhd/skhd.err.log";
+          StandardOutPath = "/Users/alik/Library/Logs/skhd/skhd.out.log";
+          ProcessType = "Interactive";
+          ThrottleInterval = 5;
+        };
       };
     };
       

@@ -21,7 +21,6 @@ in
   home.username = "alik";
   home.homeDirectory = "/Users/alik";
   home.stateVersion = "24.11";
-
   home.packages = [
     pythonEnv
   ];
