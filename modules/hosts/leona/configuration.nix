@@ -6,7 +6,7 @@
 }:
 {
   # Define the darwinConfiguration for this host
-  flake.darwinConfigurations.Leona = inputs.nix-darwin.lib.darwinSystem {
+  flake.darwinConfigurations.leona = inputs.nix-darwin.lib.darwinSystem {
     specialArgs = {
       inherit inputs self;
       vars = self.vars;
@@ -27,7 +27,7 @@
         inputs.home-manager.darwinModules.home-manager
         inputs.sops-nix.darwinModules.sops
       ];
-      services.mykanata.enable = false;
+      services.mykanata.enable = true;
 
       security.pam.services.sudo_local.touchIdAuth = true;
 
@@ -75,6 +75,7 @@
         nerd-fonts.fira-code
         age
         sops
+        macmon
         klayout
         discord
         fastfetch
@@ -169,6 +170,7 @@
           "obsidian"
           "rustdesk"
           #mac spesific stuff
+          "aldente"
           "betterdisplay" # external display
           "rectangle" # window snap
           "keka" # winrar

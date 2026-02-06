@@ -12,7 +12,7 @@
         config = ''
           # Application launcher shortcuts (matching plasma config)
           cmd - return : open -a "Kitty"
-          cmd - space : open -a "Brave-Browser"
+          cmd - space : open -a "Brave sBrowser"
           ctrl + alt - v : open -a "Visual Studio Code"
           ctrl + alt - d : open -a "Discord"
           ctrl + alt - o : open -a "Obsidian"
@@ -23,7 +23,7 @@
         '';
       };
     };
-
+      
   # Darwin module for skhd .app wrapper (needed for Accessibility permissions)
   flake.darwinModules.skhd =
     { pkgs, config, ... }:

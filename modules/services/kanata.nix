@@ -4,27 +4,32 @@ let
     (defsrc
       caps a s d f j k l ;
     )
+    
     (defvar
-      tap-time 150
-      hold-time 300
-      ;; Require another key press during hold to trigger modifier
-      ;; This prevents accidental modifier activation during fast typing
+      ;; Match QMK's default TAPPING_TERM of 200ms
+      tap-time 200
+      hold-time 200
+      ;; Match QMK's default QUICK_TAP_TERM (same as TAPPING_TERM)
+      quick-tap 200
     )
-
+    
     (defalias
-      escctrl (tap-hold 100 150 esc lctl)
-      ;; tap-hold-press: tap action on quick release, hold action only when
-      ;; another key is pressed while holding - much better for fast typing
-      a (tap-hold-press $tap-time $hold-time a lsft)
-      s (tap-hold-press $tap-time $hold-time s lalt)
-      d (tap-hold-press $tap-time $hold-time d lmet)
-      f (tap-hold-press $tap-time $hold-time f lctl)
-      j (tap-hold-press $tap-time $hold-time j rctl)
-      k (tap-hold-press $tap-time $hold-time k rmet)
-      l (tap-hold-press $tap-time $hold-time l ralt)
-      ; (tap-hold-press $tap-time $hold-time ; rsft)
+      escctrl (tap-hold 100 200 esc lctl)
+      ;; tap-hold-release-keys: hold triggers only after hold-time expires,
+      ;; NOT on any intermediate key press. This matches QMK's default
+      ;; mod-tap behavior (no PERMISSIVE_HOLD, no HOLD_ON_OTHER_KEY_PRESS).
+      ;; The quick-tap parameter allows fast key repeat when double-tapping,
+      ;; matching QMK's QUICK_TAP_TERM.
+      a (tap-hold-release-keys $tap-time $hold-time (multi a) lsft () $quick-tap)
+      s (tap-hold-release-keys $tap-time $hold-time (multi s) lalt () $quick-tap)
+      d (tap-hold-release-keys $tap-time $hold-time (multi d) lmet () $quick-tap)
+      f (tap-hold-release-keys $tap-time $hold-time (multi f) lctl () $quick-tap)
+      j (tap-hold-release-keys $tap-time $hold-time (multi j) rctl () $quick-tap)
+      k (tap-hold-release-keys $tap-time $hold-time (multi k) rmet () $quick-tap)
+      l (tap-hold-release-keys $tap-time $hold-time (multi l) ralt () $quick-tap)
+      ; (tap-hold-release-keys $tap-time $hold-time (multi ;) rsft () $quick-tap)
     )
-
+    
     (deflayer base
       @escctrl @a @s @d @f @j @k @l @;
     )
