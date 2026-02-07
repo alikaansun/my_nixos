@@ -6,7 +6,9 @@
   self,
   ...
 }:
-
+let
+  pythonEnv = import ../../../_files/pythonEnv.nix { inherit pkgs; };
+in
 {
 
   imports = [
@@ -24,6 +26,7 @@
 
   home.packages = with pkgs; [
     # Creative apps
+    pythonEnv
     blender # 3D modeling and animation
     gimp # Image editing
     texliveFull

@@ -43,7 +43,7 @@
         };
         backupFileExtension = "backup";
       };
-
+      
       # Define the user so home-manager can get homeDirectory
       users.users.alik = {
         name = "alik";
@@ -78,9 +78,7 @@
         klayout
         discord
         fastfetch
-        docker-client
       ];
-
       # Nix settings
 
       # System configuration
@@ -166,6 +164,7 @@
           "obsidian"
           "rustdesk"
           "keepassxc"
+          "uv"
           #mac spesific stuff
           "aldente"
           "betterdisplay" # external display
