@@ -76,7 +76,7 @@
         SDL_VIDEODRIVER = "wayland";
         _JAVA_AWT_WM_NONREPARENTING = "1";
       };
-
+      
       # Configure Qt scaling
       qt = {
         enable = true;
