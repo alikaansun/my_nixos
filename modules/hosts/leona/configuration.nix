@@ -72,7 +72,6 @@
         nil
         nixfmt # nix formatter
         nixfmt-tree # treefmt
-        nerd-fonts.fira-code
         age
         sops
         macmon
@@ -81,10 +80,7 @@
         fastfetch
         docker-client
       ];
-      fonts.packages = with pkgs; [
-        nerd-fonts.jetbrains-mono
-        nerd-fonts.fira-code
-      ];
+
       # Nix settings
 
       # System configuration

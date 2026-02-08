@@ -43,6 +43,7 @@
           "whatsapp"
           "obsidian"
           "rustdesk"
+          "font-fira-code-nerd-font"
           #mac spesific stuff
           "betterdisplay" # external display
           "rectangle" # window snap
