@@ -27,7 +27,6 @@
         mutableTaps = false;
       };
 
-      # homebrew configuration
       homebrew = {
         enable = true;
         taps = builtins.attrNames config.nix-homebrew.taps;
@@ -43,8 +42,13 @@
           "whatsapp"
           "obsidian"
           "rustdesk"
+          "keepassxc"
+          "docker-desktop"
+          "trezor-suite"
+          "steam"
           "font-fira-code-nerd-font"
           #mac spesific stuff
+          # "aldente"
           "betterdisplay" # external display
           "rectangle" # window snap
           "keka" # winrar

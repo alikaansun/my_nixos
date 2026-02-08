@@ -14,6 +14,7 @@
     modules = [
       self.darwinModules.hostLeona
       self.darwinModules.kanata
+      self.darwinModules.homebrew
       self.darwinModules.skhd
     ];
   };
@@ -23,14 +24,12 @@
     { pkgs, config, ... }:
     {
       imports = [
-        inputs.nix-homebrew.darwinModules.nix-homebrew
         inputs.home-manager.darwinModules.home-manager
         inputs.sops-nix.darwinModules.sops
       ];
       services.mykanata.enable = false;
-
+      
       security.pam.services.sudo_local.touchIdAuth = true;
-
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
@@ -60,7 +59,7 @@
         vim
         git
         vscode
-        # keepassxc
+        uv
         raycast
         brave
         zotero
@@ -85,6 +84,14 @@
       nix.settings.experimental-features = "nix-command flakes";
       nix.enable = false;
 
+      # Launch agents for apps to start at login
+      launchd.user.agents.vanilla = {
+        serviceConfig = {
+          ProgramArguments = [ "/Applications/Vanilla.app/Contents/MacOS/Vanilla" ];
+          RunAtLoad = true;
+        };
+      };
+
       # macOS System
       system.primaryUser = "alik";
       system.stateVersion = 6;
@@ -97,6 +104,11 @@
           autohide = true;
           mru-spaces = false;
         };
+        # NSGlobalDomain = {
+        #   AppleWindowTabbingMode = "manual";
+        #   # Enable focus-follows-mouse (hover to focus)
+        #   "com.apple.mouse.focusFollowsMouse" = true;
+        # };
         finder = {
           AppleShowAllExtensions = true;
           AppleShowAllFiles = true;
@@ -105,7 +117,7 @@
           FXRemoveOldTrashItems = true;
         };
         loginwindow.LoginwindowText = "AliKaanSun";
-        screencapture.location = "~/Pictures/screenshots";
+        screencapture.location = "/Users/alik/Nextcloud/ScreenShots";
 
         CustomUserPreferences = {
           "com.apple.symbolichotkeys" = {
@@ -133,56 +145,6 @@
       };
 
       # programs.ssh.knownHosts = {
-
-      # Homebrew configuration
-      nix-homebrew = {
-        enable = true;
-        enableRosetta = true;
-        user = "alik";
-
-        taps = {
-          "homebrew/homebrew-core" = inputs.homebrew-core;
-          "homebrew/homebrew-cask" = inputs.homebrew-cask;
-        };
-
-        mutableTaps = false;
-      };
-
-      homebrew = {
-        enable = true;
-        taps = builtins.attrNames config.nix-homebrew.taps;
-        casks = [
-          "microsoft-teams"
-          "microsoft-outlook"
-          "microsoft-onenote"
-          "microsoft-powerpoint"
-          "microsoft-excel"
-          "microsoft-word"
-          "onedrive"
-          "nextcloud"
-          "whatsapp"
-          "obsidian"
-          "rustdesk"
-          "keepassxc"
-          "uv"
-          #mac spesific stuff
-          "aldente"
-          "betterdisplay" # external display
-          "rectangle" # window snap
-          "keka" # winrar
-          "linearmouse"
-          "keyclu" # command to see shortcuts
-          "vanilla" # hide menubar icons
-          "yoink"
-          "karabiner-elements" # Required for kanata
-        ];
-        onActivation.cleanup = "zap";
-        onActivation.autoUpdate = true;
-        masApps = {
-          # "eduvpn" = 1317704208;
-          # "Xcode"  = 497799835;
-        };
-      };
     
       # documentation.enable = true;
       # documentation.man.enable = true;
