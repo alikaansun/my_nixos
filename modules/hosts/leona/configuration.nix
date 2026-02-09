@@ -100,7 +100,9 @@
           BatteryShowPercentage = true;
           Bluetooth = true;
         };
+        WindowManager.EnableStandardClickToShowDesktop = false;
         dock = {
+          mouse-over-hilite-stack = true;
           autohide = true;
           mru-spaces = false;
         };
