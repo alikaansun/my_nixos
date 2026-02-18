@@ -46,6 +46,7 @@
           "docker-desktop"
           "trezor-suite"
           "steam"
+          "tor-browser"
           "font-fira-code-nerd-font"
           #mac spesific stuff
           # "aldente"
@@ -61,6 +62,7 @@
         onActivation.cleanup = "zap";
         onActivation.autoUpdate = true;
         masApps = {
+          # "pdfgear" = 6469021132;
           # "eduvpn" = 1317704208;
           # "Xcode"  = 497799835;
         };
