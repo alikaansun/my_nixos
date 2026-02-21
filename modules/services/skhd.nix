@@ -7,7 +7,7 @@
         enable = true;
         skhdConfig = ''
           # --- Application launchers (matching your plasma config)
-          cmd - return : open -a "Kitty"
+          cmd - return : open -a "Alacritty"
           cmd - space  : open -a "Brave Browser"
           ctrl + alt - v : open -a "Visual Studio Code"
           ctrl + alt - d : open -a "Discord"

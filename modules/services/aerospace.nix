@@ -1,27 +1,23 @@
 {
-
   flake.darwinModules.aerospace =
     { pkgs, ... }:
     {
       services.aerospace = {
         enable = true;
         settings = {
-          persistent-workspaces = [
-            "1"
-            "2"
-            "3"
-            "4"
-            "5"
-          ];
-          on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
+          on-focused-monitor-changed = ["move-mouse window-lazy-center"];
           enable-normalization-flatten-containers = true;
           enable-normalization-opposite-orientation-for-nested-containers = true;
+          key-mapping.preset="qwerty";
+          automatically-unhide-macos-hidden-apps = true;
           # exec-on-workspace-change = ["/bin/bash c sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE"];
           gaps = {
             outer.left = 8;
             outer.bottom = 8;
             outer.top = 8;
             outer.right = 8;
+            inner.horizontal = 4;
+            inner.vertical = 4;
           };
           mode.main.binding = {
             alt-j = "focus left";
@@ -29,44 +25,55 @@
             alt-l = "focus up";
             alt-p = "focus right";
 
+            alt-shift-j = "join-with left";
+            alt-shift-k = "join-with down";
+            alt-shift-l = "join-with up";
+            alt-shift-p = "join-with right";
+            
             alt-1 = "workspace 1";
             alt-2 = "workspace 2";
             alt-3 = "workspace 3";
             alt-4 = "workspace 4";
-            alt-5 = "workspace 5";
+            # alt-5 = "workspace 5";
 
-            cmd-h = ""; # Disable "hide application"
-            cmd-alt-h = ""; # Disable "hide others"
+            alt-shift-1 = "move-node-to-workspace 1";
+            alt-shift-2 = "move-node-to-workspace 2";
+            alt-shift-3 = "move-node-to-workspace 3";
+            alt-shift-4 = "move-node-to-workspace 4";
+            # alt-shift-5 = "move-node-to-workspace 5";
 
+            alt-shift-tab = "move-workspace-to-monitor --wrap-around next";
+
+            # cmd-h = ""; # Disable "hide application"
+            # cmd-alt-h = ""; # Disable "hide others"
+
+            alt-minus = "resize smart -50";
+            alt-equal = "resize smart +50";
+
+            alt-slash = "layout tiles horizontal vertical";
+            alt-period = "layout accordion horizontal vertical";
+            
+            #App Bindings
+            cmd-enter = "exec-and-forget open -b org.alacritty";
+            cmd-space = "exec-and-forget open -b com.brave.Browser";
+
+            ctrl-alt-v = "exec-and-forget open -b com.microsoft.VSCode";
+            ctrl-alt-d = "exec-and-forget open -b com.hnc.Discord";
+            ctrl-alt-o = "exec-and-forget open -b md.obsidian";
+            ctrl-alt-k = "exec-and-forget open -b org.keepassxc.keepassxc";
             #modes
-            alt-r = "mode resize";
+            alt-m = "mode monitor";
+            alt-shift-f = "layout floating tiling";
           };
-          mode.service.binding = {
+
+          mode.monitor.binding = {
             alt-shift-j = [
-              "join-with left"
-              "mode main"
-            ];
-            alt-shift-k = [
-              "join-with down"
-              "mode main"
-            ];
-            alt-shift-l = [
-              "join-with up"
-              "mode main"
-            ];
-            alt-shift-p = [
-              "join-with right"
-              "mode main"
-            ];
-            f = [
-              "layout floating tiling"
+              "move-node-to-monitor --focus-follows-window --wrap-around next"
               "mode main"
             ];
           };
-          # on-window-detected = [];
+          };
         };
-
-      };
-
     };
 }
+

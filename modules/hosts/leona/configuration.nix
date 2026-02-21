@@ -15,7 +15,8 @@
       self.darwinModules.hostLeona
       self.darwinModules.kanata
       self.darwinModules.homebrew
-      self.darwinModules.skhd
+      # self.darwinModules.skhd
+      self.darwinModules.aerospace
     ];
   };
 
