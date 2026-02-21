@@ -60,7 +60,7 @@
 
         backupFileExtension = "backup";
       };
-      
+
       #Mount extra drive and make it
       fileSystems."/mnt/D" = {
         device = "/dev/disk/by-uuid/218ce1d4-70e8-4b81-aa2b-3abab153a6b4";
@@ -95,7 +95,7 @@
           mkdir -p /mnt/storage/AppData
           chown -R alik:users /mnt/storage/AppData
           chmod -R 755 /mnt/storage/AppData
-          
+
           mkdir -p /mnt/D
           chown alik:users /mnt/D
           chmod -R 777 /mnt/D

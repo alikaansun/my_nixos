@@ -1,6 +1,8 @@
 { pkgs }:
 pkgs.python313.withPackages (
-  ps: with ps; [
+  ps:
+  with ps;
+  [
     decorator
     ipython
     ipympl
@@ -24,7 +26,8 @@ pkgs.python313.withPackages (
     pyclipper
     pyyaml
     openpyxl
-  ] ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+  ]
+  ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
     pyautogui
   ]
 )

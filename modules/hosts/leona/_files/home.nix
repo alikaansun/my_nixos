@@ -40,13 +40,12 @@ in
           fi
         done
       fi
-      '';
-    
+    '';
+
     # yabai-reloader = ''
     #   run yabai --restart-service
     #   run sudo yabai --load-sa
     #   '';
-      
 
   };
 

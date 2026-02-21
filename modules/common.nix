@@ -21,7 +21,7 @@
       sops.defaultSopsFile = ./secrets/secrets.yaml;
       # sops.defaultSopsFormat = "yaml";
       sops.age.keyFile = "/home/alik/.config/sops/age/keys.txt";
-    
+
       networking.networkmanager.enable = true;
 
       # Enable sound with pipewire.
@@ -68,8 +68,6 @@
       #   wayland.enable = true;
       # };
       programs.firefox.enable = true;
-
-
 
       environment.systemPackages = with pkgs; [
         wget

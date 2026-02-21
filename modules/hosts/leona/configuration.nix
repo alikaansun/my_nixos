@@ -28,7 +28,7 @@
         inputs.sops-nix.darwinModules.sops
       ];
       services.mykanata.enable = false;
-      
+
       security.pam.services.sudo_local.touchIdAuth = true;
       home-manager = {
         useGlobalPkgs = true;
@@ -42,7 +42,7 @@
         };
         backupFileExtension = "backup";
       };
-      
+
       # Define the user so home-manager can get homeDirectory
       users.users.alik = {
         name = "alik";
@@ -101,6 +101,7 @@
           Bluetooth = true;
         };
         WindowManager.EnableStandardClickToShowDesktop = false;
+        NSGlobalDomain.NSAutomaticWindowAnimationsEnabled = false;
         dock = {
           mouse-over-hilite-stack = true;
           autohide = true;
@@ -147,10 +148,10 @@
       };
 
       # programs.ssh.knownHosts = {
-    
+
       # documentation.enable = true;
       # documentation.man.enable = true;
       # documentation.info.enable = true;
 
-    };#Flake output
-}#File output
+    }; # Flake output
+} # File output

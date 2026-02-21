@@ -4,7 +4,7 @@ let
     (defsrc
       caps a s d f j k l ;
     )
-    
+
     (defvar
       ;; Match QMK's default TAPPING_TERM of 200ms
       tap-time 200
@@ -12,7 +12,7 @@ let
       ;; Match QMK's default QUICK_TAP_TERM (same as TAPPING_TERM)
       quick-tap 200
     )
-    
+
     (defalias
       escctrl (tap-hold 100 200 esc lctl)
       ;; tap-hold-release-keys: hold triggers only after hold-time expires,
@@ -29,7 +29,7 @@ let
       l (tap-hold-release-keys $tap-time $hold-time l ralt ())
       ; (tap-hold-release-keys $tap-time $hold-time ; rsft ())
     )
-    
+
     (deflayer base
       @escctrl @a @s @d @f @j @k @l @;
     )

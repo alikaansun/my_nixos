@@ -19,7 +19,7 @@ in
     self.homeModules.nvim
     self.homeModules.git
   ];
-  
+
   home.username = "alik";
   home.homeDirectory = "/home/alik";
   home.stateVersion = "24.11"; # Please read the comment before changing.
@@ -42,10 +42,8 @@ in
   # home.sessionVariables = {
   #   # EDITOR = "emacs";
   # };
-  
-  
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
 
 }
