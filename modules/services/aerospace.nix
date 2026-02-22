@@ -5,6 +5,20 @@
       services.aerospace = {
         enable = true;
         settings = {
+          after-startup-command = [
+            # Before starting everything up, kill dependent apps so they can refresh configs
+            # ... this is killing things started below so no bueno...
+            #'exec-and-forget killall -q sketchybar borders',
+        
+            # JankyBorders has a built-in detection of already running process,
+            # so it won't be run twice on AeroSpace restart
+            # "exec-and-forget BORDERSBIN active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0"
+            # "exec-and-forget SKETCHYBARBIN -c NIXPATHTOSKETCHYCONFIG"
+            # "exec-and-forget SKETCHYBARBIN --trigger aerospace_started"
+            ];
+
+
+          # start-at-login = true;
           on-focused-monitor-changed = ["move-mouse window-lazy-center"];
           enable-normalization-flatten-containers = true;
           enable-normalization-opposite-orientation-for-nested-containers = true;
@@ -54,10 +68,10 @@
             alt-period = "layout accordion horizontal vertical";
             
             #App Bindings
-            cmd-enter = "exec-and-forget open -b org.alacritty";
-            cmd-space = "exec-and-forget open -b com.brave.Browser";
+            cmd-enter = "exec-and-forget open -n -b org.alacritty";
+            cmd-space = "exec-and-forget open -n -b com.brave.Browser";
 
-            ctrl-alt-v = "exec-and-forget open -b com.microsoft.VSCode";
+            ctrl-alt-v = "exec-and-forget open -n -b com.microsoft.VSCode";
             ctrl-alt-d = "exec-and-forget open -b com.hnc.Discord";
             ctrl-alt-o = "exec-and-forget open -b md.obsidian";
             ctrl-alt-k = "exec-and-forget open -b org.keepassxc.keepassxc";
@@ -74,6 +88,13 @@
           };
           };
         };
-    };
+
+
+        services.sketchybar={
+          enable=true;
+        
+
+          };
+    };##output
 }
 

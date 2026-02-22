@@ -63,6 +63,7 @@
         uv
         raycast
         brave
+        blender
         zotero
         spotify
         github-copilot-cli
