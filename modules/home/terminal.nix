@@ -106,6 +106,7 @@
         yazi = {
           enable = true;
           enableBashIntegration = false;
+          shellWrapperName = "y";
           enableZshIntegration = true;
           extraPackages = with pkgs; [
             glow
@@ -114,56 +115,68 @@
             zoxide
           ];
         };
-        alacritty = { 
+        alacritty = {
           enable = true;
-          settings = { 
+          settings = {
             window = {
               opacity = 0.8;
-              padding = { x = 10; y = 10; };
+              padding = {
+                x = 10;
+                y = 10;
+              };
               decorations = "full";
               dynamic_title = true;
             };
-              colors = {
-                primary = {
-                  background = "#32302f";
-                  foreground = "#d4be98";
-                };
-                normal = {
-                  black =   "#282828";
-                  red =     "#ea6962";
-                  green =   "#a9b665";
-                  yellow =  "#d8a657";
-                  blue =    "#7daea3";
-                  magenta = "#d3869b";
-                  cyan =    "#89b482";
-                  white =   "#d4be98";
-                };
-                bright = {
-                  black =   "#32302f";
-                  red =     "#ea6962";
-                  green =   "#a9b665";
-                  yellow =  "#d8a657";
-                  blue =    "#7daea3";
-                  magenta = "#d3869b";
-                  cyan =    "#89b482";
-                  white =   "#d4be98";
-                };
-                cursor = {
-                  text = "#32302f";
-                  cursor = "#d4be98";
-                };
-                selection = {
-                  text = "#32302f";
-                  background = "#d4be98";
-                };
+            colors = {
+              primary = {
+                background = "#32302f";
+                foreground = "#d4be98";
               };
+              normal = {
+                black = "#282828";
+                red = "#ea6962";
+                green = "#a9b665";
+                yellow = "#d8a657";
+                blue = "#7daea3";
+                magenta = "#d3869b";
+                cyan = "#89b482";
+                white = "#d4be98";
+              };
+              bright = {
+                black = "#32302f";
+                red = "#ea6962";
+                green = "#a9b665";
+                yellow = "#d8a657";
+                blue = "#7daea3";
+                magenta = "#d3869b";
+                cyan = "#89b482";
+                white = "#d4be98";
+              };
+              cursor = {
+                text = "#32302f";
+                cursor = "#d4be98";
+              };
+              selection = {
+                text = "#32302f";
+                background = "#d4be98";
+              };
+            };
             cursor = {
               style = "Beam";
             };
             font = {
-              normal = { family = "FiraCode Nerd Font Mono"; style = "Regular"; };
-              bold = { family = "FiraCode Nerd Font Mono"; style = "Bold"; };
-              italic = { family = "FiraCode Nerd Font Mono"; style = "Italic"; };
+              normal = {
+                family = "FiraCode Nerd Font Mono";
+                style = "Regular";
+              };
+              bold = {
+                family = "FiraCode Nerd Font Mono";
+                style = "Bold";
+              };
+              italic = {
+                family = "FiraCode Nerd Font Mono";
+                style = "Italic";
+              };
               size = 13;
             };
           };

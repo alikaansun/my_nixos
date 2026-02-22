@@ -5,24 +5,21 @@
       services.aerospace = {
         enable = true;
         settings = {
-          after-startup-command = [
-            # Before starting everything up, kill dependent apps so they can refresh configs
-            # ... this is killing things started below so no bueno...
-            #'exec-and-forget killall -q sketchybar borders',
-        
-            # JankyBorders has a built-in detection of already running process,
-            # so it won't be run twice on AeroSpace restart
-            # "exec-and-forget BORDERSBIN active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0"
-            # "exec-and-forget SKETCHYBARBIN -c NIXPATHTOSKETCHYCONFIG"
-            # "exec-and-forget SKETCHYBARBIN --trigger aerospace_started"
-            ];
+          # after-startup-command = [
+          #   "exec-and-forget sketchybar --trigger aerospace_started"
+          # ];
 
+          # exec-on-workspace-change = [
+          #   "/bin/bash"
+          #   "-c"
+          #   "sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE"
+          # ];
 
           # start-at-login = true;
-          on-focused-monitor-changed = ["move-mouse window-lazy-center"];
+          on-focused-monitor-changed = [ "move-mouse window-lazy-center" ];
           enable-normalization-flatten-containers = true;
           enable-normalization-opposite-orientation-for-nested-containers = true;
-          key-mapping.preset="qwerty";
+          key-mapping.preset = "qwerty";
           automatically-unhide-macos-hidden-apps = true;
           # exec-on-workspace-change = ["/bin/bash c sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE"];
           gaps = {
@@ -43,18 +40,18 @@
             alt-shift-k = "join-with down";
             alt-shift-l = "join-with up";
             alt-shift-p = "join-with right";
-            
+
             alt-1 = "workspace 1";
             alt-2 = "workspace 2";
             alt-3 = "workspace 3";
             alt-4 = "workspace 4";
-            # alt-5 = "workspace 5";
+            alt-5 = "workspace 5";
 
             alt-shift-1 = "move-node-to-workspace 1";
             alt-shift-2 = "move-node-to-workspace 2";
             alt-shift-3 = "move-node-to-workspace 3";
             alt-shift-4 = "move-node-to-workspace 4";
-            # alt-shift-5 = "move-node-to-workspace 5";
+            alt-shift-5 = "move-node-to-workspace 5";
 
             alt-shift-tab = "move-workspace-to-monitor --wrap-around next";
 
@@ -66,7 +63,7 @@
 
             alt-slash = "layout tiles horizontal vertical";
             alt-period = "layout accordion horizontal vertical";
-            
+
             #App Bindings
             cmd-enter = "exec-and-forget open -n -b org.alacritty";
             cmd-space = "exec-and-forget open -n -b com.brave.Browser";
@@ -86,15 +83,54 @@
               "mode main"
             ];
           };
-          };
         };
+      };
+      system.defaults.NSGlobalDomain._HIHideMenuBar = false;
+      # services.sketchybar = {
+      #   enable = true;
+      #   extraPackages = [ pkgs.aerospace ];
+      #   config =
+      #     let
+      #       aerospacePlugin = pkgs.writeShellScript "aerospace.sh" ''
+      #         if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
+      #           sketchybar --set $NAME background.drawing=on
+      #         else
+      #           sketchybar --set $NAME background.drawing=off
+      #         fi
+      #       '';
+      #     in
+      #     ''
+      #       #!/usr/bin/env bash
 
+      #       sketchybar --bar \
+      #         height=32 \
+      #         position=top \
+      #         display=all \
+      #         padding_left=10 \
+      #         padding_right=10 \
+      #         color=0xff1c1e26 \
+      #         shadow=off \
+      #         border_width=0 \
+      #         # topmost=on
 
-        services.sketchybar={
-          enable=true;
-        
+      #       sketchybar --add event aerospace_workspace_change
 
-          };
-    };##output
+      #       for sid in $(aerospace list-workspaces --all); do
+      #         sketchybar --add item space.$sid left \
+      #           --subscribe space.$sid aerospace_workspace_change \
+      #           --set space.$sid \
+      #             background.color=0x44ffffff \
+      #             background.corner_radius=5 \
+      #             background.height=20 \
+      #             background.drawing=off \
+      #             label="$sid" \
+      #             label.color=0xffe1e3e4 \
+      #             click_script="aerospace workspace $sid" \
+      #             script="${aerospacePlugin} $sid"
+      #       done
+
+      #       sketchybar --update
+      #     '';
+      # };
+    }; # #output
 }
-

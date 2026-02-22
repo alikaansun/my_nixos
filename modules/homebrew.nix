@@ -46,6 +46,7 @@
           "docker-desktop"
           "trezor-suite"
           "steam"
+          "blender"
           "tor-browser"
           "font-fira-code-nerd-font"
           #mac spesific stuff
@@ -55,7 +56,6 @@
           "keka" # winrar
           "linearmouse"
           "keyclu" # command to see shortcuts
-          "vanilla" # hide menubar icons
           "yoink"
           "karabiner-elements" # Required for kanata
         ];
