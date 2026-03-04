@@ -53,7 +53,7 @@
             alt-shift-4 = "move-node-to-workspace 4";
             alt-shift-5 = "move-node-to-workspace 5";
 
-            alt-shift-tab = "move-workspace-to-monitor --wrap-around next";
+            # alt-shift-tab = "move-workspace-to-monitor --wrap-around next";
 
             # cmd-h = ""; # Disable "hide application"
             # cmd-alt-h = ""; # Disable "hide others"
@@ -82,6 +82,9 @@
               "move-node-to-monitor --focus-follows-window --wrap-around next"
               "mode main"
             ];
+            alt-j=[
+              "focus-monitor --wrap-around next"
+              "mode main"];
           };
         };
       };
