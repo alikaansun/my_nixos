@@ -16,4 +16,18 @@
       # Allow Tailscale traffic
       networking.firewall.trustedInterfaces = [ "tailscale0" ];
     };
+
+  flake.darwinModules.tailscale =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = [
+        pkgs.tailscale
+      ];
+
+      services.tailscale = {
+        enable = true;
+        package = pkgs.tailscale;
+      };
+
+    };
 }
