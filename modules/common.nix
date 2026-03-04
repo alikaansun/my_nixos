@@ -97,6 +97,7 @@
         trezor-suite
         brave
         texliveFull
+        protonmail-desktop
         # inputs.zen-browser.packages."${system}".default
       ];
 

@@ -17,6 +17,7 @@
       self.darwinModules.homebrew
       # self.darwinModules.skhd
       self.darwinModules.aerospace
+      self.darwinModules.tailscale
     ];
   };
 
@@ -78,6 +79,7 @@
         klayout
         discord
         fastfetch
+        protonmail-desktop
       ];
       # Nix settings
 
