@@ -68,8 +68,8 @@
             nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#$(hostname)";
             drs = "sudo darwin-rebuild switch --flake ~/.dotfiles#$(hostname)";
             ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-collect-garbage";
-            dgc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10 && nix-collect-garbage -d";
-            nixupp = "sudo nix flake update --flake ~/.dotfiles";
+            # dgc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-collect-garbage -d";
+            nixupp = "nix flake update --flake $HOME/.dotfiles";
             e = if pkgs.stdenv.isDarwin then "open $1" else "nohup dolphin --new-window $1 > /dev/null 2>&1 &";
             freecad-x11 = "QT_QPA_PLATFORM=xcb freecad";
             rc2nix = "nix run github:nix-community/plasma-manager > ~/.dotfiles/modules/home/plasma.txt";

@@ -79,7 +79,7 @@
         klayout
         discord
         fastfetch
-        protonmail-desktop
+        # protonmail-desktop
       ];
       # Nix settings
 
