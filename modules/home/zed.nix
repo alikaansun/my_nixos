@@ -1,6 +1,12 @@
 {
   flake.homeModules.zed =
-    { hostname, ... }:
+    { hostname, pkgs, ... }:
+    let
+      isDarwin = pkgs.stdenv.isDarwin;
+      flakePath = if isDarwin then "/Users/alik/.dotfiles" else "/home/alik/.dotfiles";
+      osConfigName = if isDarwin then "darwinConfigurations" else "nixosConfigurations";
+      osName = if isDarwin then "darwin" else "nixos";
+    in
     {
       programs.zed-editor = {
         enable = true;
@@ -84,11 +90,11 @@
                 };
                 options = {
                   # Host configs
-                  "nixos-${hostname}" = {
-                    expr = "(builtins.getFlake \"git+file:///home/alik/.dotfiles\").nixosConfigurations.${hostname}.options";
+                  "${osName}-${hostname}" = {
+                    expr = "(builtins.getFlake \"git+file://${flakePath}\").${osConfigName}.${hostname}.options";
                   };
                   "home-manager-${hostname}" = {
-                    expr = "(builtins.getFlake \"/home/alik/.dotfiles/flake.nix\").homeConfigurations.alik@${hostname}.options";
+                    expr = "(builtins.getFlake \"${flakePath}/flake.nix\").homeConfigurations.alik@${hostname}.options";
                   };
                 };
               };
