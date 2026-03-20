@@ -41,7 +41,7 @@
         self.nixosModules.kde
         self.nixosModules.caddy
         self.nixosModules.tailscale
-        self.nixosModules.nextcloud
+        # self.nixosModules.nextcloud
         self.nixosModules.rustdeskServer
 
       ];

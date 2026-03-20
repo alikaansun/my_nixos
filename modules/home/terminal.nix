@@ -177,7 +177,7 @@
                 family = "FiraCode Nerd Font Mono";
                 style = "Italic";
               };
-              size = 13;
+              size = if pkgs.stdenv.isDarwin then 13 else 10;
             };
           };
         };
