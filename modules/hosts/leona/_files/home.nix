@@ -20,8 +20,9 @@ in
   home.username = "alik";
   home.homeDirectory = "/Users/alik";
   home.stateVersion = "24.11";
-  home.packages = [
+  home.packages = with pkgs; [
     pythonEnv
+    typst
   ];
 
   home.activation = {

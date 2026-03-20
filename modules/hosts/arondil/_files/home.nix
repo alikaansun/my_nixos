@@ -30,6 +30,7 @@ in
     blender # 3D modeling and animation
     gimp # Image editing
     texliveFull
+    typst
     onlyoffice-desktopeditors
     tor-browser
     ardour # Audio recording and editing

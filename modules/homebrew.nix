@@ -56,7 +56,6 @@
           "keka" # winrar
           "linearmouse"
           "keyclu" # command to see shortcuts
-          "yoink"
           "karabiner-elements" # Required for kanata
         ];
         onActivation.cleanup = "zap";

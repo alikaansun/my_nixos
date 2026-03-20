@@ -29,7 +29,6 @@
         inputs.sops-nix.nixosModules.sops
 
         #CUSTOM-MODULES
-        self.nixosModules.locale # Dont disable it
         self.nixosModules.common # Dont disable it
         self.nixosModules.gc # garbage collection and store opt
         self.nixosModules.gaming
