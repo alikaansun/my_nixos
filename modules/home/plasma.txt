@@ -32,7 +32,7 @@
       kmix.mic_mute = ["Microphone Mute" "Meta+Volume Mute"];
       kmix.mute = "Volume Mute";
       ksmserver."Halt Without Confirmation" = [ ];
-      ksmserver."Lock Session" = ["Meta+L" "" "Screensaver\\, "];
+      ksmserver."Lock Session" = ["Meta+L" "Screensaver\\,Meta+L" "Screensaver\\,Lock Session"];
       ksmserver."Log Out" = "Ctrl+Alt+Del";
       ksmserver."Log Out Without Confirmation" = [ ];
       ksmserver.LogOut = [ ];
@@ -258,7 +258,9 @@
       plasmashell."switch to next activity" = [ ];
       plasmashell."switch to previous activity" = [ ];
       plasmashell."toggle do not disturb" = [ ];
+      "services/Alacritty.desktop"._launch = "Meta+Return";
       "services/Kitty.desktop".New = "Ctrl+Alt+T";
+      "services/alacritty.desktop"._launch = "Meta+Return";
       "services/brave-browser.desktop".new-window = "Meta+Space";
       "services/code.desktop"._launch = "Ctrl+Alt+V";
       "services/discord.desktop"._launch = "Ctrl+Alt+D";
@@ -266,7 +268,7 @@
       "services/obsidian.desktop"._launch = "Ctrl+Alt+O";
       "services/org.kde.konsole.desktop"._launch = [ ];
       "services/org.kde.krunner.desktop".RunClipboard = [ ];
-      "services/org.kde.krunner.desktop"._launch = "Alt+Space";
+      "services/org.kde.krunner.desktop"._launch = "Alt + Space";
       "services/org.kde.spectacle.desktop".CurrentMonitorScreenShot = "Print";
       "services/org.kde.spectacle.desktop".RectangularRegionScreenShot = "Ctrl+Print";
       "services/org.kde.spectacle.desktop"._launch = "Meta+Shift+S";
@@ -411,6 +413,9 @@
       kwinrc.MouseBindings.CommandTitlebarWheel = "Previous/Next Desktop";
       kwinrc.NightColor.Active = true;
       kwinrc.NightColor.DayTemperature = 4900;
+      kwinrc.NightColor.EveningBeginFixed = 2000;
+      kwinrc.NightColor.Mode = "Times";
+      kwinrc.NightColor.MorningBeginFixed = 0630;
       kwinrc.NightColor.NightTemperature = 4100;
       kwinrc.Plugins.dimscreenEnabled = true;
       kwinrc.Plugins.eyeonscreenEnabled = true;
@@ -499,6 +504,7 @@
       plasma-localerc.Formats.LC_MEASUREMENT = "en_150.UTF-8";
       plasma-localerc.Formats.LC_MONETARY = "nl_NL.UTF-8";
       plasma-localerc.Formats.LC_TIME = "nl_NL.UTF-8";
+      plasmanotifyrc."Applications/brave-browser".Seen = true;
       plasmanotifyrc."Applications/chromium-browser".Seen = true;
       plasmanotifyrc."Applications/com.nextcloud.desktopclient.nextcloud".Seen = true;
       plasmanotifyrc."Applications/discord".Seen = true;
@@ -516,14 +522,14 @@
       spectaclerc.Annotations.freehandStrokeWidth = 8;
       spectaclerc.Annotations.rectangleFillColor = "0,0,0";
       spectaclerc.ImageSave.lastImageSaveAsLocation = "file:///home/alik/Documents/Repos/updk-training/assets/osa.png";
-      spectaclerc.ImageSave.lastImageSaveLocation = "file:///home/alik/Pictures/Screenshots/Screenshot_20260124_225610.png";
+      spectaclerc.ImageSave.lastImageSaveLocation = "file:///home/alik/Pictures/Screenshots/Screenshot_20260208_213407.png";
       spectaclerc.ImageSave.translatedScreenshotsFolder = "Screenshots";
       spectaclerc.VideoSave.preferredVideoFormat = 2;
       spectaclerc.VideoSave.translatedScreencastsFolder = "Screencasts";
       systemsettingsrc.systemsettings_sidebar_mode.HighlightNonDefaultSettings = true;
     };
     dataFile = {
-      "kate/anonymous.katesession"."Document 0".URL = "file:///home/alik/Nextcloud/Notes/TO DO.md";
+      "kate/anonymous.katesession"."Document 0".URL = "file:///mnt/storage/AppData/my_notes/.trash/To learn.md";
       "kate/anonymous.katesession"."Kate Plugins".bookmarksplugin = false;
       "kate/anonymous.katesession"."Kate Plugins".cmaketoolsplugin = false;
       "kate/anonymous.katesession"."Kate Plugins".compilerexplorer = false;
@@ -575,7 +581,7 @@
       "kate/anonymous.katesession".MainWindow0.Kate-MDI-Sidebar-3-Bar-0-TvList = "output,diagnostics,kate_plugin_katesearch,kateprojectinfo,kate_private_plugin_katekonsoleplugin";
       "kate/anonymous.katesession".MainWindow0.Kate-MDI-Sidebar-3-LastSize = 204;
       "kate/anonymous.katesession".MainWindow0.Kate-MDI-Sidebar-3-SectSizes = 0;
-      "kate/anonymous.katesession".MainWindow0.Kate-MDI-Sidebar-3-Splitter = 558;
+      "kate/anonymous.katesession".MainWindow0.Kate-MDI-Sidebar-3-Splitter = 483;
       "kate/anonymous.katesession".MainWindow0.Kate-MDI-Sidebar-Style = 2;
       "kate/anonymous.katesession".MainWindow0.Kate-MDI-Sidebar-Visible = true;
       "kate/anonymous.katesession".MainWindow0.Kate-MDI-ToolView-diagnostics-Position = 3;

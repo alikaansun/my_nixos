@@ -94,7 +94,7 @@
           ];
 
           # Apps (converted from Hyprland)
-          "services/alacritty.desktop"."_launch" = "Meta+Return";
+          "services/Alacritty.desktop"."_launch" = "Meta+Return";
           # "services/zen.desktop"."_launch" = "Meta+Space";
           "services/brave-browser.desktop"."new-window" = "Meta+Space";
           "services/code.desktop"."_launch" = "Ctrl+Alt+V";

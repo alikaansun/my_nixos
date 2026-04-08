@@ -13,7 +13,7 @@
         # oldPkgs.shadps4
         shadps4
         gamemode
-        wineWowPackages.full
+        wineWow64Packages.full
         # wine-staging
         mangohud
       ];
