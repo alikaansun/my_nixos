@@ -76,11 +76,7 @@
 
         perSystem =
           {
-            config,
-            self',
-            inputs',
             pkgs,
-            system,
             ...
           }:
           let
@@ -89,7 +85,6 @@
           {
             # Formatters per system
             formatter = pkgs.nixfmt-tree;
-
             packages.pythonEnv = pythonEnv;
             devShells.python = pkgs.mkShell {
               packages = [ pythonEnv ];

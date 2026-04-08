@@ -3,8 +3,6 @@
     {
       pkgs,
       inputs,
-      config,
-      self,
       ...
     }:
     {
@@ -20,6 +18,7 @@
 
       sops.defaultSopsFile = ./secrets/secrets.yaml;
       # sops.defaultSopsFormat = "yaml";
+
       sops.age.keyFile = "/home/alik/.config/sops/age/keys.txt";
 
       networking.networkmanager.enable = true;

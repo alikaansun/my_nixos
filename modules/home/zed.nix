@@ -26,7 +26,7 @@
           agent = {
             default_model = {
               provider = "copilot_chat";
-              model = "claude-haiku-4.5";
+              model = "claude-sonnet-4.6";
             };
             model_parameters = [ ];
           };
@@ -61,18 +61,18 @@
           show_edit_predictions = false;
 
           icon_theme = {
-            mode = "light";
+            mode = "dark";
             light = "Material Icon Theme";
-            dark = "Zed (Default)";
+            dark = "Material Icon Theme";
           };
 
-          ui_font_size = 16;
+          ui_font_size = 17;
           buffer_font_size = 15;
 
           theme = {
             mode = "dark";
             light = "Gruvbox Light Hard";
-            dark = "Ayu Mirage";
+            dark = "Gruvbox Dark Hard";
           };
 
           lsp = {
@@ -85,24 +85,28 @@
             };
             nixd = {
               settings = {
-                diagnostics = {
+                diagnostic = {
                   suppress = [ "sema-extra-with" ];
                 };
-                options = {
-                  # Host configs
-                  "${osName}-${hostname}" = {
-                    expr = "(builtins.getFlake \"git+file://${flakePath}\").${osConfigName}.${hostname}.options";
-                  };
-                  "home-manager-${hostname}" = {
-                    expr = "(builtins.getFlake \"${flakePath}/flake.nix\").homeConfigurations.alik@${hostname}.options";
-                  };
-                };
+                # options = {
+                #   # Host configs
+                #   nixos = {
+                #     expr = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.arondil.options";
+                #   };
+                #   nix-darwin = {
+                #     expr = "(builtins.getFlake \"${flakePath}\").darwinConfigurations.leona.options";
+                #   };
+                #   home-manager = {
+                #     expr = "(builtins.getFlake \"${flakePath}\").darwinConfigurations.leona.options.home-manager.users.type.getSubOptions []";
+                #   };
+                # };
               };
             };
           };
 
           languages = {
             Nix = {
+              language_servers = [ "nixd" "nil" ];
               format_on_save = "on";
               formatter = {
                 external = {

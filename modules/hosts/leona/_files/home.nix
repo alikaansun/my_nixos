@@ -13,7 +13,7 @@ in
 {
   imports = [
     self.homeModules.terminal
-    # self.homeModules.zed
+    self.homeModules.zed
     self.homeModules.git
     self.homeModules.nvim
   ];

@@ -1,7 +1,6 @@
 {
   inputs,
   self,
-  config,
   ...
 }:
 {
@@ -23,7 +22,7 @@
 
   # Define the actual configuration module
   flake.darwinModules.hostLeona =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     {
       imports = [
         inputs.home-manager.darwinModules.home-manager
@@ -79,6 +78,7 @@
         klayout
         discord
         fastfetch
+        # lingot
         # protonmail-desktop
       ];
       # Nix settings
@@ -124,7 +124,6 @@
         };
         loginwindow.LoginwindowText = "AliKaanSun";
         screencapture.location = "/Users/alik/Nextcloud/ScreenShots";
-
         CustomUserPreferences = {
           "com.apple.symbolichotkeys" = {
             AppleSymbolicHotKeys = {

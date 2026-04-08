@@ -43,8 +43,8 @@
           "obsidian"
           "rustdesk"
           "keepassxc"
-          "docker-desktop"
-          "trezor-suite"
+          # "docker-desktop"
+          # "trezor-suite"`
           "steam"
           "blender"
           "tor-browser"

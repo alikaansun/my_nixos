@@ -34,6 +34,7 @@ in
     onlyoffice-desktopeditors
     tor-browser
     ardour # Audio recording and editing
+    lingot
     # musescore      # Music notation software
   ];
 
