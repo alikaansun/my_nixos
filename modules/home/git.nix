@@ -11,6 +11,7 @@
           user.email = "asunnetcoglu@gmail.com"; # config.sops.secrets.git_email.path;
           pull.rebase = "true";
           init.defaultBranch = "main";
+          signing.format = "";
           # safe.directory="/etc/nixos";
           # url = {
           #   "ssh://git@github.com/" = {
