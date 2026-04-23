@@ -66,7 +66,7 @@
 
           shellAliases = {
             nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#$(hostname)";
-            drs = "sudo darwin-rebuild switch --flake ~/.dotfiles#$(hostname)";
+            drs = "ulimit -n 10240 && nix flake update --flake $HOME/.dotfiles && sudo darwin-rebuild switch --flake ~/.dotfiles#$(hostname)";
             ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-collect-garbage";
             # dgc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-collect-garbage -d";
             nixupp = "nix flake update --flake $HOME/.dotfiles";

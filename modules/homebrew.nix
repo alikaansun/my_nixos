@@ -43,6 +43,7 @@
           "obsidian"
           "rustdesk"
           "keepassxc"
+          "anydesk"
           # "docker-desktop"
           # "trezor-suite"`
           "steam"
