@@ -106,7 +106,10 @@
 
           languages = {
             Nix = {
-              language_servers = [ "nixd" "nil" ];
+              language_servers = [
+                "nixd"
+                "nil"
+              ];
               format_on_save = "on";
               formatter = {
                 external = {

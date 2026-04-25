@@ -19,6 +19,7 @@
           on-focused-monitor-changed = [ "move-mouse window-lazy-center" ];
           enable-normalization-flatten-containers = true;
           enable-normalization-opposite-orientation-for-nested-containers = true;
+          accordion-padding = 30;
           key-mapping.preset = "qwerty";
           automatically-unhide-macos-hidden-apps = true;
           # exec-on-workspace-change = ["/bin/bash c sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE"];
@@ -30,28 +31,49 @@
             inner.horizontal = 4;
             inner.vertical = 4;
           };
+
+          # App specific behavior
+          on-window-detected = [
+            {
+              "if".app-id = "com.apple.finder";
+              run = [ "layout floating" ];
+            }
+            {
+              "if".app-id = "com.apple.systempreferences";
+              run = [ "layout floating" ];
+            }
+            {
+              "if".app-id = "com.apple.ActivityMonitor";
+              run = [ "layout floating" ];
+            }
+          ];
+
           mode.main.binding = {
             alt-j = "focus left";
             alt-k = "focus down";
             alt-l = "focus up";
             alt-p = "focus right";
+            alt-semicolon = "focus right";
 
             alt-shift-j = "join-with left";
             alt-shift-k = "join-with down";
             alt-shift-l = "join-with up";
             alt-shift-p = "join-with right";
+            alt-shift-semicolon = "join-with right";
 
             alt-1 = "workspace 1";
             alt-2 = "workspace 2";
             alt-3 = "workspace 3";
             alt-4 = "workspace 4";
             alt-5 = "workspace 5";
+            alt-m = "workspace m";
 
             alt-shift-1 = "move-node-to-workspace 1";
             alt-shift-2 = "move-node-to-workspace 2";
             alt-shift-3 = "move-node-to-workspace 3";
             alt-shift-4 = "move-node-to-workspace 4";
             alt-shift-5 = "move-node-to-workspace 5";
+            alt-shift-m = "move-node-to-workspace m";
 
             # alt-shift-tab = "move-workspace-to-monitor --wrap-around next";
 
@@ -73,18 +95,46 @@
             ctrl-alt-o = "exec-and-forget open -b md.obsidian";
             ctrl-alt-k = "exec-and-forget open -b org.keepassxc.keepassxc";
             #modes
-            alt-m = "mode monitor";
+            alt-tab = "mode monitor";
+            # alt-tab = "workspace-back-and-forth";
             alt-shift-f = "layout floating tiling";
           };
 
           mode.monitor.binding = {
-            alt-shift-j = [
-              "move-node-to-monitor --focus-follows-window --wrap-around next"
+            # Focus monitor (no alt needed, you're already in monitor mode)
+            j = "focus left";
+            k = "focus down";
+            l = "focus up";
+            p = "focus right";
+            semicolon = "focus right";
+
+            alt-j = [
+              "focus-monitor --wrap-around left"
               "mode main"
             ];
-            alt-j=[
-              "focus-monitor --wrap-around next"
-              "mode main"];
+            alt-k = [
+              "focus-monitor --wrap-around down"
+              "mode main"
+            ];
+            alt-l = [
+              "focus-monitor --wrap-around up"
+              "mode main"
+            ];
+            alt-p = [
+              "focus-monitor --wrap-around right"
+              "mode main"
+            ];
+            alt-semicolon = [
+              "focus-monitor --wrap-around right"
+              "mode main"
+            ];
+
+            # Move app to monitor
+            alt-shift-j = [ "move-node-to-monitor --focus-follows-window --wrap-around left" ];
+            alt-shift-p = [ "move-node-to-monitor --focus-follows-window --wrap-around right" ];
+            alt-shift-semicolon = [ "move-node-to-monitor --focus-follows-window --wrap-around right" ];
+
+            esc = "mode main";
           };
         };
       };

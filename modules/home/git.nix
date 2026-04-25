@@ -6,12 +6,12 @@
       # sops.secrets.git_email = { };
       programs.git = {
         enable = true;
+        signing.format = null;
         settings = {
           user.name = "alik";
           user.email = "asunnetcoglu@gmail.com"; # config.sops.secrets.git_email.path;
           pull.rebase = "true";
           init.defaultBranch = "main";
-          signing.format = "";
           # safe.directory="/etc/nixos";
           # url = {
           #   "ssh://git@github.com/" = {

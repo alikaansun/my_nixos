@@ -31,9 +31,7 @@
         enable = true;
         taps = builtins.attrNames config.nix-homebrew.taps;
         casks = [
-          "microsoft-teams"
           "microsoft-outlook"
-          "microsoft-onenote"
           "microsoft-powerpoint"
           "microsoft-excel"
           "microsoft-word"
@@ -59,8 +57,11 @@
           "keyclu" # command to see shortcuts
           "karabiner-elements" # Required for kanata
         ];
-        onActivation.cleanup = "zap";
-        onActivation.autoUpdate = true;
+        onActivation = {
+          cleanup = "uninstall";
+          upgrade = true;
+          autoUpdate = true;
+        };
         masApps = {
           # "pdfgear" = 6469021132;
           # "eduvpn" = 1317704208;
