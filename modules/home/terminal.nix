@@ -76,7 +76,7 @@
           };
         };
 
-        tmux= {
+        tmux = {
           enable = true;
           keyMode = "vi";
           shell = "${pkgs.zsh}/bin/zsh";
@@ -108,16 +108,15 @@
           enable = true;
           enableBashIntegration = false;
           enableZshIntegration = true;
-          tmux=
-            {
-              enableShellIntegration = true;
-              # shellIntegrationOptions = {
-                # "ctrl-t"; # Filesystem search
-                # "ctrl-r"; # Command history search
-                # "ctrl-i"; # Hostname search
-              # };
-            
-            };
+          tmux = {
+            enableShellIntegration = true;
+            # shellIntegrationOptions = {
+            # "ctrl-t"; # Filesystem search
+            # "ctrl-r"; # Command history search
+            # "ctrl-i"; # Hostname search
+            # };
+
+          };
         };
 
         yazi = {
@@ -130,77 +129,99 @@
             ouch
             fzf
             zoxide
+            _7zz-rar
           ];
-        };
-
-        alacritty = {
-          enable = true;
           settings = {
-            window = {
-              opacity = 0.8;
-              padding = {
-                x = 10;
-                y = 10;
-              };
-              decorations = "full";
-              dynamic_title = true;
+            preview = {
+              # image_filter = "lanczos3";
+              # image_quality = 90;
+              tab_size = 1;
+              max_width = 600;
+              max_height = 900;
+              cache_dir = "";
+              ueberzug_scale = 1;
+              ueberzug_offset = [
+                0
+                0
+                0
+                0
+              ];
             };
-            colors = {
-              primary = {
-                background = "#32302f";
-                foreground = "#d4be98";
-              };
-              normal = {
-                black = "#282828";
-                red = "#ea6962";
-                green = "#a9b665";
-                yellow = "#d8a657";
-                blue = "#7daea3";
-                magenta = "#d3869b";
-                cyan = "#89b482";
-                white = "#d4be98";
-              };
-              bright = {
-                black = "#32302f";
-                red = "#ea6962";
-                green = "#a9b665";
-                yellow = "#d8a657";
-                blue = "#7daea3";
-                magenta = "#d3869b";
-                cyan = "#89b482";
-                white = "#d4be98";
-              };
-              cursor = {
-                text = "#32302f";
-                cursor = "#d4be98";
-              };
-              selection = {
-                text = "#32302f";
-                background = "#d4be98";
-              };
+            yazi = {
+              ratio = [
+                1
+                4
+                3
+              ];
+              sort_by = "natural";
+              sort_sensitive = true;
+              sort_reverse = false;
+              sort_dir_first = true;
+              linemode = "none";
+              show_hidden = true;
+              show_symlink = true;
             };
-            cursor = {
-              style = "Beam";
-            };
-            font = {
-              normal = {
-                family = "FiraCode Nerd Font Mono";
-                style = "Regular";
-              };
-              bold = {
-                family = "FiraCode Nerd Font Mono";
-                style = "Bold";
-              };
-              italic = {
-                family = "FiraCode Nerd Font Mono";
-                style = "Italic";
-              };
-              size = if pkgs.stdenv.isDarwin then 13 else 10;
+            opener = {
+              edit = [
+                {
+                  run = "nvim $@";
+                  block = true;
+                }
+              ];
             };
           };
         };
-        
 
+        ghostty = {
+          enable = true;
+          package = pkgs.ghostty-bin;
+          enableZshIntegration = true;
+          settings = {
+            # Window
+            background-opacity = 0.8;
+            window-padding-x = 10;
+            window-padding-y = 10;
+            title = "Ghostty";
+
+            # Font
+            font-family = "FiraCode Nerd Font Mono";
+            font-size = if pkgs.stdenv.isDarwin then 13 else 10;
+
+            # Cursor
+            cursor-style = "bar";
+
+            # Colors (Gruvbox Material Dark)
+            background = "32302f";
+            foreground = "d4be98";
+
+            palette = [
+              # Normal
+              "0=282828" # black
+              "1=ea6962" # red
+              "2=a9b665" # green
+              "3=d8a657" # yellow
+              "4=7daea3" # blue
+              "5=d3869b" # magenta
+              "6=89b482" # cyan
+              "7=d4be98" # white
+              # Bright
+              "8=32302f" # bright black
+              "9=ea6962" # bright red
+              "10=a9b665" # bright green
+              "11=d8a657" # bright yellow
+              "12=7daea3" # bright blue
+              "13=d3869b" # bright magenta
+              "14=89b482" # bright cyan
+              "15=d4be98" # bright white
+            ];
+
+            cursor-color = "d4be98";
+            cursor-text = "32302f";
+            selection-background = "d4be98";
+            selection-foreground = "32302f";
+
+          };
+        };
       };
 
     };

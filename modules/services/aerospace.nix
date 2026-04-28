@@ -20,7 +20,7 @@
         alt-shift-f = "layout floating tiling";
 
         #App Bindings
-        cmd-enter = "exec-and-forget open -n -b org.alacritty";
+        cmd-enter = "exec-and-forget open -n -b com.mitchellh.ghostty";
         cmd-space = "exec-and-forget open -n -b com.brave.Browser";
         cmd-e = "exec-and-forget open ~"; # finder home director
         ctrl-alt-v = "exec-and-forget open -n -b com.microsoft.VSCode";
@@ -167,8 +167,7 @@
         };
       };
 
-
-      services.jankyborders= {
+      services.jankyborders = {
         enable = true;
         active_color = "0xfffabd2f"; # gruvbox dark yellow
         # width = 6.0;
@@ -176,8 +175,6 @@
         order = "above";
       };
 
-
-      system.defaults.NSGlobalDomain._HIHideMenuBar = false;
       # services.sketchybar = {
       #   enable = true;
       #   extraPackages = [ pkgs.aerospace ];

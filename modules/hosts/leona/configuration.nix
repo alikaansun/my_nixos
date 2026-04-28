@@ -27,7 +27,7 @@
       imports = [
         inputs.home-manager.darwinModules.home-manager
         inputs.sops-nix.darwinModules.sops
-        
+
       ];
       services.mykanata.enable = false;
 
@@ -98,6 +98,8 @@
       # macOS System
       system.primaryUser = "alik";
       system.stateVersion = 6;
+      system.keyboard.enableKeyMapping = true;
+      system.keyboard.remapCapsLockToEscape = true;
       system.defaults = {
         controlcenter = {
           BatteryShowPercentage = true;
@@ -105,6 +107,9 @@
         };
         WindowManager.EnableStandardClickToShowDesktop = false;
         NSGlobalDomain.NSAutomaticWindowAnimationsEnabled = false;
+        NSGlobalDomain._HIHideMenuBar = false;
+        NSGlobalDomain.NSWindowShouldDragOnGesture = true;
+
         dock = {
           mouse-over-hilite-stack = true;
           autohide = true;

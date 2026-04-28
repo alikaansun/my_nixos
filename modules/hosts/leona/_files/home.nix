@@ -30,8 +30,8 @@ in
   ##Spicetify
   programs.spicetify = {
     enable = true;
-    spicetifyPackage=pkgs.spicetify-cli;
-    spotifyPackage=pkgs.spotify;
+    spicetifyPackage = pkgs.spicetify-cli;
+    spotifyPackage = pkgs.spotify;
     enabledExtensions = with spicePkgs.extensions; [
       adblockify
       hidePodcasts
@@ -44,25 +44,25 @@ in
 
   };
 
-home.activation = {
-  linkNixApps = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    for nix_apps in "/Applications/Nix Apps" "$HOME/Applications/Home Manager Apps" "$HOME/Applications"; do
-      if [ -d "$nix_apps" ]; then
-        find "$nix_apps" -maxdepth 1 -name '*.app' -print0 | while IFS= read -r -d "" app; do
-          name="$(basename "$app")"
-          target="/Applications/$name"
-          if [ -L "$target" ]; then
-            rm "$target"
-          fi
-          if [ ! -e "$target" ]; then
-            ln -s "$app" "$target"
-            echo "  Linked $name" >&2
-          fi
-        done
-      fi
-    done
-  '';
-};
+  home.activation = {
+    linkNixApps = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+      for nix_apps in "/Applications/Nix Apps" "$HOME/Applications/Home Manager Apps" "$HOME/Applications"; do
+        if [ -d "$nix_apps" ]; then
+          find "$nix_apps" -maxdepth 1 -name '*.app' -print0 | while IFS= read -r -d "" app; do
+            name="$(basename "$app")"
+            target="/Applications/$name"
+            if [ -L "$target" ]; then
+              rm "$target"
+            fi
+            if [ ! -e "$target" ]; then
+              ln -s "$app" "$target"
+              echo "  Linked $name" >&2
+            fi
+          done
+        fi
+      done
+    '';
+  };
 
   programs.home-manager.enable = true;
 }
