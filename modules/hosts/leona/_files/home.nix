@@ -10,7 +10,6 @@
 let
   pythonEnv = import ../../../_files/pythonEnv.nix { inherit pkgs; };
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
-
 in
 {
   imports = [

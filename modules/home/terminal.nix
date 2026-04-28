@@ -76,6 +76,13 @@
           };
         };
 
+        tmux= {
+          enable = true;
+          keyMode = "vi";
+          shell = "${pkgs.zsh}/bin/zsh";
+          historyLimit = 10000;
+        };
+
         bat = {
           enable = true;
           themes = {
@@ -101,6 +108,16 @@
           enable = true;
           enableBashIntegration = false;
           enableZshIntegration = true;
+          tmux=
+            {
+              enableShellIntegration = true;
+              # shellIntegrationOptions = {
+                # "ctrl-t"; # Filesystem search
+                # "ctrl-r"; # Command history search
+                # "ctrl-i"; # Hostname search
+              # };
+            
+            };
         };
 
         yazi = {
@@ -115,6 +132,7 @@
             zoxide
           ];
         };
+
         alacritty = {
           enable = true;
           settings = {
@@ -181,18 +199,7 @@
             };
           };
         };
-        # kitty = {
-        #   enable = true;
-        #   shellIntegration.enableZshIntegration = true;
-        #   shellIntegration.enableBashIntegration = false;
-        #   font.name = "FiraCode Nerd Font Mono";
-        #   font.package = pkgs.nerd-fonts.fira-code;
-        #   font.size = if pkgs.stdenv.isDarwin then 14 else 10;
-        #   themeFile = "GruvboxMaterialDarkSoft";
-        #   settings = {
-        #     background_opacity = 0.8;
-        #   };
-        # };
+        
 
       };
 

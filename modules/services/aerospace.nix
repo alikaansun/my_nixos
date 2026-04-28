@@ -57,8 +57,8 @@
             outer.bottom = 8;
             outer.top = 8;
             outer.right = 8;
-            inner.horizontal = 4;
-            inner.vertical = 4;
+            inner.horizontal = 6;
+            inner.vertical = 6;
           };
 
           # App specific behavior
@@ -166,6 +166,17 @@
           // commonBindings;
         };
       };
+
+
+      services.jankyborders= {
+        enable = true;
+        active_color = "0xfffabd2f"; # gruvbox dark yellow
+        # width = 6.0;
+        hidpi = true;
+        order = "above";
+      };
+
+
       system.defaults.NSGlobalDomain._HIHideMenuBar = false;
       # services.sketchybar = {
       #   enable = true;
