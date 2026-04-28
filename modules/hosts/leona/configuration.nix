@@ -27,6 +27,7 @@
       imports = [
         inputs.home-manager.darwinModules.home-manager
         inputs.sops-nix.darwinModules.sops
+        
       ];
       services.mykanata.enable = false;
 
@@ -64,7 +65,6 @@
         raycast
         brave
         zotero
-        spotify
         github-copilot-cli
         nix-output-monitor
         tldr
@@ -81,8 +81,8 @@
         # lingot
         # protonmail-desktop
       ];
-      # Nix settings
 
+      # Nix settings
       # System configuration
       nix.settings.experimental-features = "nix-command flakes";
       nix.enable = false;

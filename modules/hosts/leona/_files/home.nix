@@ -9,6 +9,8 @@
 
 let
   pythonEnv = import ../../../_files/pythonEnv.nix { inherit pkgs; };
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+
 in
 {
   imports = [
@@ -16,6 +18,7 @@ in
     # self.homeModules.zed
     self.homeModules.git
     self.homeModules.nvim
+    inputs.spicetify-nix.homeManagerModules.spicetify
   ];
   home.username = "alik";
   home.homeDirectory = "/Users/alik";
@@ -25,11 +28,28 @@ in
     typst
   ];
 
-  home.activation = {
-    linkNixApps = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-      nix_apps="/Applications/Nix Apps"
+  ##Spicetify
+  programs.spicetify = {
+    enable = true;
+    spicetifyPackage=pkgs.spicetify-cli;
+    spotifyPackage=pkgs.spotify;
+    enabledExtensions = with spicePkgs.extensions; [
+      adblockify
+      hidePodcasts
+      shuffle # shuffle+ (special characters are sanitized out of extension names)
+    ];
+    theme = spicePkgs.themes.dribbblish;
+    colorScheme = "gruvbox-material-dark";
+    # theme = spicePkgs.themes.onepunch;
+    # colorScheme = "dark";
+
+  };
+
+home.activation = {
+  linkNixApps = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    for nix_apps in "/Applications/Nix Apps" "$HOME/Applications/Home Manager Apps" "$HOME/Applications"; do
       if [ -d "$nix_apps" ]; then
-        find "$nix_apps" -maxdepth 1 -name '*.app' | while read -r app; do
+        find "$nix_apps" -maxdepth 1 -name '*.app' -print0 | while IFS= read -r -d "" app; do
           name="$(basename "$app")"
           target="/Applications/$name"
           if [ -L "$target" ]; then
@@ -41,14 +61,9 @@ in
           fi
         done
       fi
-    '';
-
-    # yabai-reloader = ''
-    #   run yabai --restart-service
-    #   run sudo yabai --load-sa
-    #   '';
-
-  };
+    done
+  '';
+};
 
   programs.home-manager.enable = true;
 }

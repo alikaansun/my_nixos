@@ -1,6 +1,35 @@
 {
   flake.darwinModules.aerospace =
     { pkgs, ... }:
+    let
+      commonBindings = {
+        alt-1 = "workspace 1";
+        alt-2 = "workspace 2";
+        alt-3 = "workspace 3";
+        alt-4 = "workspace 4";
+        alt-5 = "workspace 5";
+        alt-m = "workspace m";
+
+        alt-shift-1 = "move-node-to-workspace 1";
+        alt-shift-2 = "move-node-to-workspace 2";
+        alt-shift-3 = "move-node-to-workspace 3";
+        alt-shift-4 = "move-node-to-workspace 4";
+        alt-shift-5 = "move-node-to-workspace 5";
+        alt-shift-m = "move-node-to-workspace m";
+
+        alt-shift-f = "layout floating tiling";
+
+        #App Bindings
+        cmd-enter = "exec-and-forget open -n -b org.alacritty";
+        cmd-space = "exec-and-forget open -n -b com.brave.Browser";
+        cmd-e = "exec-and-forget open ~"; # finder home director
+        ctrl-alt-v = "exec-and-forget open -n -b com.microsoft.VSCode";
+        ctrl-alt-d = "exec-and-forget open -b com.hnc.Discord";
+        ctrl-alt-o = "exec-and-forget open -b md.obsidian";
+        ctrl-alt-k = "exec-and-forget open -b org.keepassxc.keepassxc";
+        ctrl-alt-m = "exec-and-forget open -b com.spotify.client";
+      };
+    in
     {
       services.aerospace = {
         enable = true;
@@ -19,7 +48,7 @@
           on-focused-monitor-changed = [ "move-mouse window-lazy-center" ];
           enable-normalization-flatten-containers = true;
           enable-normalization-opposite-orientation-for-nested-containers = true;
-          accordion-padding = 30;
+          accordion-padding = 70;
           key-mapping.preset = "qwerty";
           automatically-unhide-macos-hidden-apps = true;
           # exec-on-workspace-change = ["/bin/bash c sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE"];
@@ -46,6 +75,22 @@
               "if".app-id = "com.apple.ActivityMonitor";
               run = [ "layout floating" ];
             }
+            {
+              "if".app-id = "com.microsoft.VSCode";
+              run = [ "move-node-to-workspace 2" ];
+            }
+            {
+              "if".app-id = "com.microsoft.teams2";
+              run = [ "move-node-to-workspace 5" ];
+            }
+            {
+              "if".app-id = "com.microsoft.teams";
+              run = [ "move-node-to-workspace 5" ];
+            }
+            {
+              "if".app-id = "com.microsoft.Outlook";
+              run = [ "move-node-to-workspace 5" ];
+            }
           ];
 
           mode.main.binding = {
@@ -61,20 +106,6 @@
             alt-shift-p = "join-with right";
             alt-shift-semicolon = "join-with right";
 
-            alt-1 = "workspace 1";
-            alt-2 = "workspace 2";
-            alt-3 = "workspace 3";
-            alt-4 = "workspace 4";
-            alt-5 = "workspace 5";
-            alt-m = "workspace m";
-
-            alt-shift-1 = "move-node-to-workspace 1";
-            alt-shift-2 = "move-node-to-workspace 2";
-            alt-shift-3 = "move-node-to-workspace 3";
-            alt-shift-4 = "move-node-to-workspace 4";
-            alt-shift-5 = "move-node-to-workspace 5";
-            alt-shift-m = "move-node-to-workspace m";
-
             # alt-shift-tab = "move-workspace-to-monitor --wrap-around next";
 
             # cmd-h = ""; # Disable "hide application"
@@ -86,19 +117,11 @@
             alt-slash = "layout tiles horizontal vertical";
             alt-period = "layout accordion horizontal vertical";
 
-            #App Bindings
-            cmd-enter = "exec-and-forget open -n -b org.alacritty";
-            cmd-space = "exec-and-forget open -n -b com.brave.Browser";
-
-            ctrl-alt-v = "exec-and-forget open -n -b com.microsoft.VSCode";
-            ctrl-alt-d = "exec-and-forget open -b com.hnc.Discord";
-            ctrl-alt-o = "exec-and-forget open -b md.obsidian";
-            ctrl-alt-k = "exec-and-forget open -b org.keepassxc.keepassxc";
             #modes
             alt-tab = "mode monitor";
-            # alt-tab = "workspace-back-and-forth";
-            alt-shift-f = "layout floating tiling";
-          };
+
+          }
+          // commonBindings;
 
           mode.monitor.binding = {
             # Focus monitor (no alt needed, you're already in monitor mode)
@@ -131,11 +154,16 @@
 
             # Move app to monitor
             alt-shift-j = [ "move-node-to-monitor --focus-follows-window --wrap-around left" ];
+            alt-shift-k = [ "move-node-to-monitor --focus-follows-window --wrap-around down" ];
+            alt-shift-l = [ "move-node-to-monitor --focus-follows-window --wrap-around up" ];
             alt-shift-p = [ "move-node-to-monitor --focus-follows-window --wrap-around right" ];
             alt-shift-semicolon = [ "move-node-to-monitor --focus-follows-window --wrap-around right" ];
 
+            #Main
+            alt-tab = "mode main";
             esc = "mode main";
-          };
+          }
+          // commonBindings;
         };
       };
       system.defaults.NSGlobalDomain._HIHideMenuBar = false;
