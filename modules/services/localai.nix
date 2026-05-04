@@ -1,14 +1,15 @@
 {
   flake.nixosModules.localai =
-    { vars, ... }:
+    { vars, pkgs,... }:
     {
       networking.firewall.allowedTCPPorts = [ vars.openWebUI.port ];
 
       services.ollama = {
         enable = true;
+        package = pkgs.ollama-rocm;
         host = vars.ollama.IP;
         port = vars.ollama.port;
-        acceleration = "rocm";
+        # acceleration = "rocm";
       };
 
       services.open-webui = {

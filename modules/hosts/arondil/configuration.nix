@@ -34,7 +34,7 @@
         self.nixosModules.gaming
         self.nixosModules.virtualisation
 
-        #self.nixosModules.localai
+        self.nixosModules.localai
 
         #DESKTOP-MODULES
         self.nixosModules.kde
@@ -134,7 +134,6 @@
         enable32Bit = true;
       };
 
-      nixpkgs.config.rocmSupport = true;
       services.xserver.videoDrivers = [ "amdgpu" ];
       # services.xserver.videoDrivers = ["nvidia"];
       # hardware.nvidia = {

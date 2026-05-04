@@ -12,7 +12,6 @@
 
       home.username = "alik";
       home.homeDirectory = "/home/alik";
-      nixpkgs.config.allowUnfree = true;
       home.enableNixpkgsReleaseCheck = false;
       # Add SOPS configuration for home-manager
       sops.defaultSopsFile = ../../modules/secrets/secrets.yaml;
@@ -38,6 +37,7 @@
         thunderbird
         vscode
         github-copilot-cli
+        claude-code
         obsidian
         fastfetch
         # inputs.anifetch.packages.${pkgs.system}.default
