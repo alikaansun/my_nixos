@@ -7,7 +7,7 @@
     {
       environment.systemPackages = with pkgs; [
         protonup-ng
-        lutris
+        # lutris
         heroic
         hmcl # minecraft
         # oldPkgs.shadps4

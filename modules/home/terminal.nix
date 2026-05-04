@@ -174,14 +174,14 @@
 
         ghostty = {
           enable = true;
-          package = pkgs.ghostty-bin;
+          package = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
           enableZshIntegration = true;
           settings = {
             # Window
             background-opacity = 0.8;
             window-padding-x = 10;
             window-padding-y = 10;
-            title = "Ghostty";
+            # title = "Ghostty";
 
             # Font
             font-family = "FiraCode Nerd Font Mono";

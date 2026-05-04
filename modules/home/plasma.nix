@@ -82,7 +82,7 @@
             "Window One Desktop to the Right" = "Meta+Ctrl+Shift+Right";
             "Switch to Desktop 1" = "Ctrl+F1";
             "Switch to Desktop 2" = "Ctrl+F2";
-            "Window Close" = "Alt+F4";
+            "Window Close" = "Meta+W";
             # "Window Close" = [ "Meta+Q,Alt+F4,Alt+F4,Close Window" ];
           };
 
@@ -94,7 +94,7 @@
           ];
 
           # Apps (converted from Hyprland)
-          "services/Alacritty.desktop"."_launch" = "Meta+Return";
+          "services/com.mitchellh.ghostty.desktop"."_launch" = "Meta+Return";
           # "services/zen.desktop"."_launch" = "Meta+Space";
           "services/brave-browser.desktop"."new-window" = "Meta+Space";
           "services/code.desktop"."_launch" = "Ctrl+Alt+V";
