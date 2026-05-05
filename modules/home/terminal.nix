@@ -31,7 +31,7 @@
       ]);
 
       programs = {
-        bluetui.enable = true;
+        bluetuith.enable = true;
 
         oh-my-posh = {
           enable = true;

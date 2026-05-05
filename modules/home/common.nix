@@ -26,15 +26,6 @@
 
       programs.ssh = {
         enable = true;
-        enableDefaultConfig = false;
-        # addKeysToAgent = "yes";
-        matchBlocks = {
-          "*" = {
-            extraConfig = ''
-              IdentitiesOnly no
-            '';
-          };
-        };
       };
 
       home.packages = with pkgs; [
