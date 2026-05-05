@@ -9,10 +9,26 @@
     {
       imports = [ ];
       home.packages = with pkgs; [
-        nvtopPackages.full
         btop
+        github-copilot-cli
+        fastfetch
+        ffmpeg
+        wget
+        nvd
+        nix-output-monitor
+        tldr
+        unrar
+      ] ++ (pkgs.lib.optionals pkgs.stdenv.isLinux [
+        parted
+        lm_sensors
+        pciutils
+        exfatprogs
         impala
-      ];
+        nvtopPackages.full
+      ])
+      ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin [
+        macmon
+      ]);
 
       programs = {
         bluetui.enable = true;
@@ -52,6 +68,15 @@
               git add --all
               git commit -m "$1"
               git push
+            }
+
+            gitac() {
+              git add --all
+              git commit -m "$1"
+            }
+
+            gita() {
+              git add --all
             }
 
             nixdev() {

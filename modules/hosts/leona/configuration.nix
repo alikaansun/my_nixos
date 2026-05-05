@@ -71,7 +71,6 @@
         nixfmt-tree # treefmt
         age
         sops
-        macmon
         klayout
         discord
         fastfetch
