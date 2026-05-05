@@ -8,8 +8,14 @@
     }:
     {
       imports = [ ];
+      home.packages = with pkgs; [
+        nvtopPackages.full
+        btop
+        impala
+      ];
 
       programs = {
+        bluetui.enable = true;
 
         oh-my-posh = {
           enable = true;

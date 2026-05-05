@@ -20,5 +20,21 @@
           # };
         };
       };
+
+      programs.lazygit = {
+        enable = true;
+        enableZshIntegration = true;
+        settings = {
+          gui.theme = {
+            lightTheme = false;
+            activeBorderColor = [ "#a9b665" "bold" ];
+            inactiveBorderColor = [ "#a89984" ];
+            optionsTextColor = [ "#7daea3" ];
+            selectedLineBgColor = [ "#32302f" ];
+            unstagedChangesColor = [ "#ea6962" ];
+            defaultFgColor = [ "#d4be98" ];
+          };
+        };
+      };
     };
 }

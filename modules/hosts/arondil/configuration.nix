@@ -40,8 +40,10 @@
         self.nixosModules.kde
         self.nixosModules.caddy
         self.nixosModules.tailscale
+        self.nixosModules.audiobookshelf
+        self.nixosModules.miniflux
         # self.nixosModules.nextcloud
-        self.nixosModules.rustdeskServer
+        # self.nixosModules.rustdeskServer
 
       ];
       home-manager = {

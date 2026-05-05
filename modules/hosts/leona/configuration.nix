@@ -65,9 +65,6 @@
         raycast
         brave
         zotero
-        github-copilot-cli
-        nix-output-monitor
-        tldr
         nixd # nix language server
         nil
         nixfmt # nix formatter

@@ -69,27 +69,18 @@
       programs.firefox.enable = true;
 
       environment.systemPackages = with pkgs; [
-        wget
         age
         sops
         git
-        nvd # nixos package version diff tool
-        nix-output-monitor
-        tldr
         nixd # nix language server
         nil
         nixfmt # nix formatter
         nixfmt-tree # treefmt
         nerd-fonts.fira-code
         nerd-fonts.meslo-lg
-        unrar
         gparted
-        nvtopPackages.full
         kdePackages.filelight
         eduvpn-client
-        lm_sensors
-        pciutils
-        exfatprogs
         usbutils
         nfs-utils
         cifs-utils

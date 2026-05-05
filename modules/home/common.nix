@@ -26,27 +26,27 @@
 
       programs.ssh = {
         enable = true;
+        enableDefaultConfig = false;
         # addKeysToAgent = "yes";
-        extraConfig = ''
-          IdentitiesOnly no
-        '';
+        matchBlocks = {
+          "*" = {
+            extraConfig = ''
+              IdentitiesOnly no
+            '';
+          };
+        };
       };
 
       home.packages = with pkgs; [
         keepassxc
         thunderbird
         vscode
-        github-copilot-cli
-        claude-code
         obsidian
-        fastfetch
         # inputs.anifetch.packages.${pkgs.system}.default
         vesktop
         spotify
         vlc
-        parted
         nextcloud-client
-        ffmpeg
         zotero
         tor-browser
         rustdesk
