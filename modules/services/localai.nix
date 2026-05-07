@@ -1,6 +1,6 @@
 {
   flake.nixosModules.localai =
-    { vars, pkgs,... }:
+    { vars, pkgs, ... }:
     {
       networking.firewall.allowedTCPPorts = [ vars.openWebUI.port ];
 

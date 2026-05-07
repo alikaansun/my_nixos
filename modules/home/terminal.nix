@@ -8,27 +8,30 @@
     }:
     {
       imports = [ ];
-      home.packages = with pkgs; [
-        btop
-        github-copilot-cli
-        fastfetch
-        ffmpeg
-        wget
-        nvd
-        nix-output-monitor
-        tldr
-        unrar
-      ] ++ (pkgs.lib.optionals pkgs.stdenv.isLinux [
-        parted
-        lm_sensors
-        pciutils
-        exfatprogs
-        impala
-        nvtopPackages.full
-      ])
-      ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin [
-        macmon
-      ]);
+      home.packages =
+        with pkgs;
+        [
+          btop
+          github-copilot-cli
+          fastfetch
+          ffmpeg
+          wget
+          nvd
+          nix-output-monitor
+          tldr
+          unrar
+        ]
+        ++ (pkgs.lib.optionals pkgs.stdenv.isLinux [
+          parted
+          lm_sensors
+          pciutils
+          exfatprogs
+          impala
+          nvtopPackages.full
+        ])
+        ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin [
+          macmon
+        ]);
 
       programs = {
         bluetuith.enable = if pkgs.stdenv.isLinux then true else false;
@@ -236,7 +239,7 @@
               "6=89b482" # cyan
               "7=d4be98" # white
               # Bright
-              "8=32302f" # bright black
+              "8=7c6f64" # bright black
               "9=ea6962" # bright red
               "10=a9b665" # bright green
               "11=d8a657" # bright yellow

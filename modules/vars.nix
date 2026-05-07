@@ -1,6 +1,6 @@
 {
   flake.vars = {
-    
+
     nextcloud = {
       hostName = "nextcloud.arondil.local";
       IP = "0.0.0.0";
