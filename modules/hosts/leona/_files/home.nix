@@ -24,7 +24,6 @@ in
   home.stateVersion = "24.11";
   home.packages = with pkgs; [
     pythonEnv
-    typst
   ];
 
   ##Spicetify
@@ -41,7 +40,6 @@ in
     colorScheme = "gruvbox-material-dark";
     # theme = spicePkgs.themes.onepunch;
     # colorScheme = "dark";
-
   };
 
   home.activation = {

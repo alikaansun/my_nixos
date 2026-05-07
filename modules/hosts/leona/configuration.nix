@@ -58,7 +58,6 @@
       nixpkgs.hostPlatform = "aarch64-darwin";
       nixpkgs.config.allowUnfree = true;
       environment.systemPackages = with pkgs; [
-        vim
         git
         vscode
         uv

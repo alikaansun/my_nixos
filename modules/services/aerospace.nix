@@ -20,7 +20,7 @@
         alt-shift-f = "layout floating tiling";
 
         #App Bindings
-        cmd-enter = "exec-and-forget open -n -b com.mitchellh.ghostty";
+        cmd-enter = "exec-and-forget open -b com.mitchellh.ghostty";
         cmd-space = "exec-and-forget open -n -b com.brave.Browser";
         cmd-e = "exec-and-forget open ~"; # finder home director
         ctrl-alt-v = "exec-and-forget open -n -b com.microsoft.VSCode";

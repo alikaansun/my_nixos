@@ -31,7 +31,7 @@
       ]);
 
       programs = {
-        bluetuith.enable = true;
+        bluetuith.enable = if pkgs.stdenv.isLinux then true else false;
 
         oh-my-posh = {
           enable = true;
