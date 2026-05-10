@@ -9,18 +9,45 @@
           FOCUSED_WORKSPACE=$(${aerospaceBin} list-workspaces --focused)
         fi
 
-        if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
+        WORKSPACE=$1
+
+        APPS=$(${aerospaceBin} list-windows --workspace "$WORKSPACE" --format "%{app-name}" | sort -u)
+        
+        ICON_STR=""
+        if [ -n "$APPS" ]; then
+          while IFS= read -r app; do
+            case "$app" in
+              "Brave Browser"|"Brave") ICON=$'\uf268' ;;
+              "Ghostty") ICON=$'\uf120' ;;
+              "Code"|"VSCode") ICON=$'\uf121' ;;
+              "Discord") ICON=$'\uf392' ;;
+              "Obsidian") ICON=$'\uf044' ;;
+              "KeePassXC") ICON=$'\uf084' ;;
+              "Spotify") ICON=$'\uf1bc' ;;
+              "Finder") ICON=$'\uf07b' ;;
+              "Microsoft Outlook"|"Outlook") ICON=$'\uf0e0' ;;
+              "Microsoft Teams"|"Teams"|"teams") ICON=$'\uf0c0' ;;
+              "Zotero") ICON=$'\uf02d' ;;
+              *) ICON=$'\uf2d0' ;;
+            esac
+            ICON_STR+=" $ICON"
+          done <<< "$APPS"
+        fi
+
+        if [ "$WORKSPACE" = "$FOCUSED_WORKSPACE" ]; then
           sketchybar --set $NAME \
             background.drawing=on \
             background.color=0x443c3836 \
             background.border_width=2 \
             background.border_color=0xfffabd2f \
-            label.color=0xfffabd2f
+            label.color=0xfffabd2f \
+            label="$WORKSPACE$ICON_STR"
         else
           sketchybar --set $NAME \
             background.drawing=off \
             background.border_width=0 \
-            label.color=0xffa89984
+            label.color=0xffa89984 \
+            label="$WORKSPACE$ICON_STR"
         fi
       '';
 
@@ -76,9 +103,11 @@
 
           for sid in $(${aerospaceBin} list-workspaces --all); do
             sketchybar --add item space.$sid left \
-              --subscribe space.$sid aerospace_workspace_change \
+              --subscribe space.$sid aerospace_workspace_change front_app_switched \
               --set space.$sid \
+                update_freq=10 \
                 label="$sid" \
+                label.font="FiraCode Nerd Font:Regular:16.0" \
                 label.color=0xffebdbb2 \
                 label.padding_left=12 \
                 label.padding_right=12 \

@@ -90,6 +90,14 @@
               "if".app-id = "com.microsoft.Outlook";
               run = [ "move-node-to-workspace 5" ];
             }
+            {
+              "if".app-id = "md.obsidian";
+              run = [ "move-node-to-workspace 3" ];
+            }
+            {
+              "if".app-id = "org.zotero.zotero";
+              run = [ "move-node-to-workspace 3" ];
+            }
           ];
 
           mode.main.binding = {
