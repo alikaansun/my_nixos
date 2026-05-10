@@ -16,6 +16,7 @@
       self.darwinModules.homebrew
       # self.darwinModules.skhd
       self.darwinModules.aerospace
+      self.darwinModules.sketchy
       self.darwinModules.tailscale
     ];
   };
