@@ -20,7 +20,7 @@
         alt-shift-f = "layout floating tiling";
 
         #App Bindings
-        cmd-enter = "exec-and-forget open -b com.mitchellh.ghostty";
+        cmd-enter = "exec-and-forget open -n -b com.mitchellh.ghostty";
         cmd-space = "exec-and-forget open -n -b com.brave.Browser";
         cmd-e = "exec-and-forget open ~"; # finder home director
         ctrl-alt-v = "exec-and-forget open -n -b com.microsoft.VSCode";
@@ -182,51 +182,6 @@
         order = "above";
       };
 
-      # services.sketchybar = {
-      #   enable = true;
-      #   extraPackages = [ pkgs.aerospace ];
-      #   config =
-      #     let
-      #       aerospacePlugin = pkgs.writeShellScript "aerospace.sh" ''
-      #         if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
-      #           sketchybar --set $NAME background.drawing=on
-      #         else
-      #           sketchybar --set $NAME background.drawing=off
-      #         fi
-      #       '';
-      #     in
-      #     ''
-      #       #!/usr/bin/env bash
-
-      #       sketchybar --bar \
-      #         height=32 \
-      #         position=top \
-      #         display=all \
-      #         padding_left=10 \
-      #         padding_right=10 \
-      #         color=0xff1c1e26 \
-      #         shadow=off \
-      #         border_width=0 \
-      #         # topmost=on
-
-      #       sketchybar --add event aerospace_workspace_change
-
-      #       for sid in $(aerospace list-workspaces --all); do
-      #         sketchybar --add item space.$sid left \
-      #           --subscribe space.$sid aerospace_workspace_change \
-      #           --set space.$sid \
-      #             background.color=0x44ffffff \
-      #             background.corner_radius=5 \
-      #             background.height=20 \
-      #             background.drawing=off \
-      #             label="$sid" \
-      #             label.color=0xffe1e3e4 \
-      #             click_script="aerospace workspace $sid" \
-      #             script="${aerospacePlugin} $sid"
-      #       done
-
-      #       sketchybar --update
-      #     '';
-      # };
-    }; # #output
+  
+    }; 
 }

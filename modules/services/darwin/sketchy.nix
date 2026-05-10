@@ -8,6 +8,7 @@
         if [ -z "$FOCUSED_WORKSPACE" ]; then
           FOCUSED_WORKSPACE=$(${aerospaceBin} list-workspaces --focused)
         fi
+        FOCUSED_APP=$(${aerospaceBin} list-windows --focused --format "%{app-name}" 2>/dev/null || true)
 
         WORKSPACE=$1
 
@@ -30,7 +31,13 @@
               "Zotero") ICON=$'\uf02d' ;;
               *) ICON=$'\uf2d0' ;;
             esac
-            ICON_STR+=" $ICON"
+            
+            if [ "$app" = "$FOCUSED_APP" ] && [ "$WORKSPACE" = "$FOCUSED_WORKSPACE" ]; then
+              # Highlight the active app with brackets
+              ICON_STR+=" [ $ICON ]"
+            else
+              ICON_STR+=" $ICON"
+            fi
           done <<< "$APPS"
         fi
 
@@ -40,14 +47,18 @@
             background.color=0x443c3836 \
             background.border_width=2 \
             background.border_color=0xfffabd2f \
-            label.color=0xfffabd2f \
-            label="$WORKSPACE$ICON_STR"
+            icon=$WORKSPACE \
+            icon.color=0xfffabd2f \
+            label="$ICON_STR " \
+            label.color=0xfffabd2f
         else
           sketchybar --set $NAME \
             background.drawing=off \
             background.border_width=0 \
-            label.color=0xffa89984 \
-            label="$WORKSPACE$ICON_STR"
+            icon=$WORKSPACE \
+            icon.color=0xffa89984 \
+            label="$ICON_STR " \
+            label.color=0xffa89984
         fi
       '';
 
@@ -106,11 +117,12 @@
               --subscribe space.$sid aerospace_workspace_change front_app_switched \
               --set space.$sid \
                 update_freq=10 \
-                label="$sid" \
-                label.font="FiraCode Nerd Font:Regular:16.0" \
-                label.color=0xffebdbb2 \
-                label.padding_left=12 \
-                label.padding_right=12 \
+                icon="$sid" \
+                icon.font="FiraCode Nerd Font Mono:Bold:16.0" \
+                icon.padding_left=12 \
+                label="" \
+                label.font="FiraCode Nerd Font Mono:Regular:16.0" \
+                label.padding_right=16 \
                 background.color=0x44ffffff \
                 background.corner_radius=6 \
                 background.drawing=off \
@@ -125,17 +137,20 @@
             --subscribe front_app front_app_switched \
             --set front_app \
               script="sketchybar --set \$NAME label=\"\$INFO\"" \
-              label.color=0xffebdbb2 \
-              background.drawing=off
+              label.color=0xfffabd2f \
+              label.font="FiraCode Nerd Font Mono:Regular:16.0" \
+              background.drawing=off \
+              padding_left=5 \
+              padding_right=5
 
           sketchybar --add item clock right \
             --set clock \
               update_freq=10 \
               icon=$'\uf017' \
-              icon.font="FiraCode Nerd Font:Regular:16.0" \
+              icon.font="FiraCode Nerd Font Mono:Regular:16.0" \
               icon.color=0xffebdbb2 \
               icon.padding_right=4 \
-              label.font="FiraCode Nerd Font:Regular:16.0" \
+              label.font="FiraCode Nerd Font Mono:Regular:16.0" \
               label.color=0xffebdbb2 \
               padding_right=8 \
               script="sketchybar --set \$NAME label=\"\$(date '+%H:%M')\""
@@ -144,10 +159,10 @@
             --subscribe battery system_woke power_source_change \
             --set battery \
               update_freq=120 \
-              icon.font="FiraCode Nerd Font:Regular:16.0" \
+              icon.font="FiraCode Nerd Font Mono:Regular:16.0" \
               icon.color=0xffebdbb2 \
               icon.padding_right=4 \
-              label.font="FiraCode Nerd Font:Regular:16.0" \
+              label.font="FiraCode Nerd Font Mono:Regular:16.0" \
               label.color=0xffebdbb2 \
               padding_right=8 \
               script="${batteryPlugin}"
