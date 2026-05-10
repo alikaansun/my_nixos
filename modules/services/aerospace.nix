@@ -1,6 +1,6 @@
 {
   flake.darwinModules.aerospace =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     let
       commonBindings = {
         alt-1 = "workspace 1";
@@ -34,15 +34,16 @@
       services.aerospace = {
         enable = true;
         settings = {
-          # after-startup-command = [
-          #   "exec-and-forget sketchybar --trigger aerospace_started"
-          # ];
+          
+          after-startup-command = if config.services.sketchybar.enable then [
+            "exec-and-forget sketchybar --trigger aerospace_started"
+          ] else [];
 
-          # exec-on-workspace-change = [
-          #   "/bin/bash"
-          #   "-c"
-          #   "sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE"
-          # ];
+          exec-on-workspace-change = if config.services.sketchybar.enable then [
+            "/bin/bash"
+            "-c"
+            "sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE"
+          ] else [];
 
           # start-at-login = true;
           on-focused-monitor-changed = [ "move-mouse window-lazy-center" ];
@@ -51,7 +52,6 @@
           accordion-padding = 70;
           key-mapping.preset = "qwerty";
           automatically-unhide-macos-hidden-apps = true;
-          # exec-on-workspace-change = ["/bin/bash c sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE"];
           gaps = {
             outer.left = 8;
             outer.bottom = 8;
