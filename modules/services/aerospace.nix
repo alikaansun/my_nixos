@@ -1,6 +1,6 @@
 {
   flake.darwinModules.aerospace =
-    { pkgs, config, ... }:
+    { lib, config, pkgs, ... }:
     let
       commonBindings = {
         alt-1 = "workspace 1";
@@ -34,16 +34,15 @@
       services.aerospace = {
         enable = true;
         settings = {
-          
-          after-startup-command = if config.services.sketchybar.enable then [
-            "exec-and-forget sketchybar --trigger aerospace_started"
-          ] else [];
+          after-startup-command = [
+            "exec-and-forget ${pkgs.sketchybar}/bin/sketchybar"
+          ];
 
-          exec-on-workspace-change = if config.services.sketchybar.enable then [
+          exec-on-workspace-change = [
             "/bin/bash"
             "-c"
-            "sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE"
-          ] else [];
+            "${pkgs.sketchybar}/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"
+          ];
 
           # start-at-login = true;
           on-focused-monitor-changed = [ "move-mouse window-lazy-center" ];
