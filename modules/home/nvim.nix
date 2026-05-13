@@ -1,8 +1,13 @@
 {
   flake.homeModules.nvim =
-    { inputs, ... }:
+    { inputs, pkgs, ... }:
     {
       imports = [ inputs.nvf.homeManagerModules.default ];
+      
+      home.packages = with pkgs; [
+        tree-sitter-cli
+      ];
+
       programs.nvf = {
 
         enable = true;
