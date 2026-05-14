@@ -13,7 +13,7 @@
         WORKSPACE=$1
 
         APPS=$(${aerospaceBin} list-windows --workspace "$WORKSPACE" --format "%{app-name}" | sort -u)
-        
+
         ICON_STR=""
         if [ -n "$APPS" ]; then
           while IFS= read -r app; do
@@ -172,4 +172,3 @@
       };
     };
 }
-

@@ -96,25 +96,22 @@
                 ssh-add "$key" 2>/dev/null
               fi
             done
+
+            e() {
+              local target="''${1:-$HOME/input}"
+              ${pkgs.yazi}/bin/yazi "$target"
+            }
           '';
 
           shellAliases = {
             nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#$(hostname)";
             drs = "ulimit -n 10240 && sudo darwin-rebuild switch --flake ~/.dotfiles#$(hostname)";
             ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-collect-garbage";
-            # dgc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-collect-garbage -d";
             nixupp = "ulimit -n 10240 && nix flake update --flake $HOME/.dotfiles";
-            e = if pkgs.stdenv.isDarwin then "open $1" else "nohup dolphin --new-window $1 > /dev/null 2>&1 &";
+            # `e` implemented as a shell function in `zsh.initContent` above
             freecad-x11 = "QT_QPA_PLATFORM=xcb freecad";
             rc2nix = "nix run github:nix-community/plasma-manager > ~/.dotfiles/modules/home/plasma.txt";
           };
-        };
-
-        tmux = {
-          enable = true;
-          keyMode = "vi";
-          shell = "${pkgs.zsh}/bin/zsh";
-          historyLimit = 10000;
         };
 
         bat = {
@@ -142,15 +139,6 @@
           enable = true;
           enableBashIntegration = false;
           enableZshIntegration = true;
-          tmux = {
-            enableShellIntegration = true;
-            # shellIntegrationOptions = {
-            # "ctrl-t"; # Filesystem search
-            # "ctrl-r"; # Command history search
-            # "ctrl-i"; # Hostname search
-            # };
-
-          };
         };
 
         yazi = {
@@ -158,13 +146,16 @@
           enableBashIntegration = false;
           shellWrapperName = "y";
           enableZshIntegration = true;
-          extraPackages = with pkgs; [
-            glow
-            ouch
-            fzf
-            zoxide
-            _7zz-rar
-          ];
+          extraPackages =
+            with pkgs;
+            [
+              glow
+              ouch
+              fzf
+              zoxide
+              _7zz-rar
+            ];
+            
           settings = {
             preview = {
               # image_filter = "lanczos3";

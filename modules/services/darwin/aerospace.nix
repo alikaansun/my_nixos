@@ -1,6 +1,11 @@
 {
   flake.darwinModules.aerospace =
-    { lib, config, pkgs, ... }:
+    {
+      lib,
+      config,
+      pkgs,
+      ...
+    }:
     let
       commonBindings = {
         alt-1 = "workspace 1";
@@ -22,7 +27,7 @@
         #App Bindings
         cmd-enter = "exec-and-forget open -n -b com.mitchellh.ghostty";
         cmd-space = "exec-and-forget open -n -b com.brave.Browser";
-        cmd-e = "exec-and-forget open ~"; # finder home director
+        cmd-e = "exec-and-forget open -n -b com.mitchellh.ghostty --args -e ${pkgs.yazi}/bin/yazi \"$HOME\"";
         ctrl-alt-v = "exec-and-forget open -n -b com.microsoft.VSCode";
         ctrl-alt-d = "exec-and-forget open -b com.hnc.Discord";
         ctrl-alt-o = "exec-and-forget open -b md.obsidian";
@@ -182,6 +187,5 @@
         order = "above";
       };
 
-  
-    }; 
+    };
 }

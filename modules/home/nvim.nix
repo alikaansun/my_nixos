@@ -3,9 +3,9 @@
     { inputs, pkgs, ... }:
     {
       imports = [ inputs.nvf.homeManagerModules.default ];
-      
+
       home.packages = with pkgs; [
-        tree-sitter-cli
+        tree-sitter
       ];
 
       programs.nvf = {
