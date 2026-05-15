@@ -193,6 +193,18 @@
                   block = true;
                 }
               ];
+              klayout = [
+                {
+                  run = if pkgs.stdenv.isDarwin then "open -a klayout \"$@\"" else "klayout \"$@\"";
+                  orphan = true; # Ensures the GUI app detaches from the terminal
+                  desc = "Open in KLayout";
+                }
+              ];
+            };
+            open = {
+              rules = [
+                { name = "*.gds"; use = "klayout"; }
+              ];
             };
           };
         };
