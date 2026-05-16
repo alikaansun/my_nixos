@@ -14,7 +14,6 @@ in
   imports = [
     self.homeModules.common
     self.homeModules.plasma
-    self.homeModules.zed
     self.homeModules.terminal
     self.homeModules.nvim
     self.homeModules.git
