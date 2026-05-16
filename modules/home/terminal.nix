@@ -21,6 +21,8 @@
             nix-output-monitor
             tldr
             unrar
+            xclip
+            xsel
           ]
           ++ (pkgs.lib.optionals pkgs.stdenv.isLinux [
             parted
@@ -29,6 +31,7 @@
             exfatprogs
             impala
             nvtopPackages.full
+            wl-clipboard
           ])
           ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin [
             macmon
@@ -162,6 +165,14 @@
                 rev = "8ce55413976ebd1922dbc4fc27ced9776823df54";
                 hash = "sha256-oB9DkNWvUDbSAPnxtv56frlWWYz5vtu2BJVvWH/Uags=";
               };
+            }
+            // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
+              clipboard = pkgs.fetchFromGitHub {
+                owner = "XYenon";
+                repo = "clipboard.yazi";
+                rev = "68b506d9a9c2c5dde01a078a589520f551d05fe5";
+                sha256 = "1377hqip0cbp0zr3y091k8fvpcnarr27x30lx1cjxxjvq68p1l4c";
+              };
             };
             keymap = {
               mgr = {
@@ -179,17 +190,23 @@
                   {
                     on = [
                       "c"
-                      "r"
+                      "y"
                     ];
-                    run = "plugin clippy";
-                    desc = "Copy to system clipboard";
+                    run = ["yank"
+                     "plugin clippy"];
+                    desc = "Yank and Copy to system clipboard";
                   }
+                ]
+                ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
                   {
                     on = [
                       "c"
                       "y"
                     ];
-                    run = "yank; plugin clippy";
+                    run = [
+                      "yank"
+                      "plugin clipboard -- --action=copy"
+                    ];
                     desc = "Yank and Copy to system clipboard";
                   }
                 ];
