@@ -246,7 +246,7 @@
                   {
                     run =
                       if pkgs.stdenv.isDarwin then
-                        "open -b com.yourcompany.klayout %1"
+                        "open -a klayout %1"
                       else
                         "klayout %1"; 
                     orphan = true;
@@ -255,7 +255,7 @@
                 ];
               };
               open = {
-                append_rules = [
+                prepend_rules = [
                   {
                     url = "*.gds";
                     use = "klayout";
