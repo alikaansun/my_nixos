@@ -14,28 +14,17 @@
           shellWrapperName = "y";
           enableZshIntegration = true;
           plugins = {
-            lazygit = pkgs.fetchFromGitHub {
-              owner = "Lil-Dank";
-              repo = "lazygit.yazi";
-              rev = "e73fd74c2af3300368b33da1cfbab6a8649a41a8";
-              hash = "sha256-KPvjXjYE0W4Q2xZiVfMwZbtalHt0FbgLtEK4sUWbYOI=";
-            };
+            lazygit = inputs.yazi-lazygit;
+            nbpreview = inputs.yazi-nbpreview;
           }
           // pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
-            clippy = pkgs.fetchFromGitHub {
-              owner = "gallardo994";
-              repo = "clippy.yazi";
-              rev = "8ce55413976ebd1922dbc4fc27ced9776823df54";
-              hash = "sha256-oB9DkNWvUDbSAPnxtv56frlWWYz5vtu2BJVvWH/Uags=";
-            };
+            clippy = inputs.yazi-clippy;
           }
           // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
-            clipboard = pkgs.fetchFromGitHub {
-              owner = "XYenon";
-              repo = "clipboard.yazi";
-              rev = "68b506d9a9c2c5dde01a078a589520f551d05fe5";
-              sha256 = "1377hqip0cbp0zr3y091k8fvpcnarr27x30lx1cjxxjvq68p1l4c";
-            };
+            clipboard = inputs.yazi-clipboard;
+          };
+          flavors = {
+            kanagawa_dragon = inputs.yazi-kanagawa_dragon;
           };
           keymap = {
             mgr = {
@@ -55,8 +44,10 @@
                     "c"
                     "y"
                   ];
-                  run = ["yank"
-                   "plugin clippy"];
+                  run = [
+                    "yank"
+                    "plugin clippy"
+                  ];
                   desc = "Yank and Copy to system clipboard";
                 }
               ]
@@ -84,8 +75,20 @@
             exiftool
             imagemagick
           ];
-
+          theme = {
+            flavor = {
+              dark = "kanagawa_dragon";
+            };
+          };
           settings = {
+            plugin = {
+              prepend_previewers = [
+                {
+                  name = "*.ipynb";
+                  run = "nbpreview";
+                }
+              ];
+            };
             preview = {
               # image_filter = "lanczos3";
               # image_quality = 90;
@@ -118,17 +121,13 @@
             opener = {
               edit = [
                 {
-                  run = "nvim %s"; 
+                  run = "nvim %s";
                   block = true;
                 }
               ];
               klayout = [
                 {
-                  run =
-                    if pkgs.stdenv.isDarwin then
-                      "open -a klayout %1"
-                    else
-                      "klayout %1"; 
+                  run = if pkgs.stdenv.isDarwin then "open -a klayout %1" else "klayout %1";
                   orphan = true;
                   desc = "Open in KLayout";
                 }

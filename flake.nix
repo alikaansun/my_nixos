@@ -44,6 +44,26 @@
     };
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     shad06_nixpkgs.url = "github:nixos/nixpkgs/b95dd9da90309705b8a32f849b80fad1cca16620";
+    yazi-lazygit = {
+      url = "github:Lil-Dank/lazygit.yazi";
+      flake = false;
+    };
+    yazi-clippy = {
+      url = "github:gallardo994/clippy.yazi";
+      flake = false;
+    };
+    yazi-clipboard = {
+      url = "github:XYenon/clipboard.yazi";
+      flake = false;
+    };
+    yazi-nbpreview = {
+      url = "github:AnirudhG07/nbpreview.yazi";
+      flake = false;
+    };
+    yazi-kanagawa_dragon = {
+      url = "github:marcosvnmelo/kanagawa-dragon.yazi";
+      flake = false;
+    };
   };
 
   outputs =

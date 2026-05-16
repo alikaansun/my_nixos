@@ -7,7 +7,7 @@
         ...
       }:
       {
-        imports = [self.homeModules.yazi];
+        imports = [ self.homeModules.yazi ];
         home.packages =
           with pkgs;
           [
