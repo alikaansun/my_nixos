@@ -30,6 +30,9 @@
       homebrew = {
         enable = true;
         taps = builtins.attrNames config.nix-homebrew.taps;
+        brews = [
+          "clippy"
+        ];
         casks = [
           "microsoft-outlook"
           "microsoft-powerpoint"
@@ -41,7 +44,7 @@
           "obsidian"
           "rustdesk"
           "keepassxc"
-          "anydesk"
+          # "anydesk"
           # "docker-desktop"
           # "trezor-suite"`
           "steam"

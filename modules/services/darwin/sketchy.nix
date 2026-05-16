@@ -21,7 +21,7 @@
               "Brave Browser"|"Brave") ICON=$'\uf268' ;;
               "Ghostty") ICON=$'\uf120' ;;
               "Code"|"VSCode") ICON=$'\uf121' ;;
-              "Discord") ICON=$'\uf392' ;;
+              "Discord") ICON=$'\U000f066f' ;;
               "Obsidian") ICON=$'\uf044' ;;
               "KeePassXC") ICON=$'\uf084' ;;
               "Spotify") ICON=$'\uf1bc' ;;
