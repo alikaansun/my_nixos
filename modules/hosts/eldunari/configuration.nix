@@ -33,7 +33,25 @@
 
       wsl.enable = true;
       wsl.defaultUser = "nixos";
+      nix.settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      nixpkgs.config.allowUnfree = true ;
+      networking.hostName = "eldunari";
+      users.users.alik.home = "/home/alik";
 
+      environment.systemPackages = with pkgs; [
+        age
+        sops
+        git
+        nixd # nix language server
+        nil
+        nixfmt # nix formatter
+        nixfmt-tree # treefmt
+        nerd-fonts.fira-code
+        nerd-fonts.meslo-lg
+      ];
       # This value determines the NixOS release from which the default
       # settings for stateful data, like file locations and database versions
       # on your system were taken. It's perfectly fine and recommended to leave
