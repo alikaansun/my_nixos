@@ -23,15 +23,16 @@
       config,
       lib,
       pkgs,
-      inputs,...
+      inputs,
+      ...
     }:
     {
       imports = [
-        # 
+        #
         #<nixos-wsl/modules> #before the flake input
-	      inputs.nixos-wsl.nixosModules.default
+        inputs.nixos-wsl.nixosModules.default
         inputs.home-manager.nixosModules.home-manager
-        
+
         # Custom modules
         self.nixosModules.gc
       ];
@@ -51,8 +52,8 @@
       networking.hostName = "eldunari";
       networking.resolvconf.enable = false;
       users.users.alik.isNormalUser = true;
-      users.users.alik.home = "/home/alik"; 
-      
+      users.users.alik.home = "/home/alik";
+
       environment.systemPackages = with pkgs; [
         age
         sops
@@ -63,11 +64,11 @@
         nixfmt-tree # treefmt
         nerd-fonts.fira-code
         nerd-fonts.meslo-lg
-      	wget
-	];
+        wget
+      ];
 
       programs.nix-ld.enable = true;
-      
+
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
@@ -83,7 +84,6 @@
 
         backupFileExtension = "backup";
       };
-
 
       # This value determines the NixOS release from which the default
       # settings for stateful data, like file locations and database versions

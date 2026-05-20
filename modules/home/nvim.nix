@@ -24,7 +24,7 @@
               mapleader = " ";
               maplocalleader = " ";
             };
-            
+
             # --- 2. UI & Theming ---
             theme = {
               enable = true;
@@ -43,7 +43,7 @@
             };
 
             statusline.lualine.enable = true;
-            
+
             # Show open buffers as tabs for easy switching in the same session
             tabline.nvimBufferline.enable = true;
 
@@ -52,7 +52,7 @@
 
             terminal.toggleterm = {
               enable = true;
-              lazygit.enable = true; 
+              lazygit.enable = true;
               mappings = {
                 open = "<c-t>";
               };
@@ -71,9 +71,9 @@
 
             lsp = {
               enable = true;
-              # lsp-signature is EXCELLENT! 
+              # lsp-signature is EXCELLENT!
               # It shows a popup with the function arguments you are typing.
-              lspSignature.enable = true; 
+              lspSignature.enable = true;
             };
 
             # --- 6. Specific Language Support ---
@@ -88,7 +88,7 @@
                   type = "treefmt";
                 };
               };
-              
+
               bash.enable = true;
               python.enable = true;
               clang.enable = true;

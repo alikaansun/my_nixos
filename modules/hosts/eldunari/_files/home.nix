@@ -13,12 +13,12 @@
     self.homeModules.terminal
     self.homeModules.nvim
     self.homeModules.git
-    
+
   ];
 
   home.username = "alik";
   home.homeDirectory = "/home/alik";
-  home.stateVersion = "25.11"; 
+  home.stateVersion = "25.11";
 
   home.packages = with pkgs; [
 
