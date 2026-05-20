@@ -52,7 +52,7 @@
 
         extraSpecialArgs = {
           inherit inputs self;
-          hostname = "arondil";
+          hostname = config.networking.hostName;
         };
 
         users = {

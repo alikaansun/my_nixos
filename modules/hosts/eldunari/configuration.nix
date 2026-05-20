@@ -23,24 +23,36 @@
       config,
       lib,
       pkgs,
-      ...
+      inputs,...
     }:
     {
       imports = [
-        # include NixOS-WSL modules
-        <nixos-wsl/modules>
+        # 
+        #<nixos-wsl/modules> #before the flake input
+	      inputs.nixos-wsl.nixosModules.default
+        inputs.home-manager.nixosModules.home-manager
+        
+        # Custom modules
+        self.nixosModules.gc
       ];
 
       wsl.enable = true;
-      wsl.defaultUser = "nixos";
+      wsl.defaultUser = "alik";
+      wsl.wslConf.interop.appendWindowsPath = true;
+      wsl.useWindowsDriver = true;
+      wsl.startMenuLaunchers = true;
+
       nix.settings.experimental-features = [
         "nix-command"
         "flakes"
       ];
-      nixpkgs.config.allowUnfree = true ;
+      nixpkgs.config.allowUnfree = true;
+      nixpkgs.hostPlatform = "x86_64-linux";
       networking.hostName = "eldunari";
-      users.users.alik.home = "/home/alik";
-
+      networking.resolvconf.enable = false;
+      users.users.alik.isNormalUser = true;
+      users.users.alik.home = "/home/alik"; 
+      
       environment.systemPackages = with pkgs; [
         age
         sops
@@ -51,7 +63,28 @@
         nixfmt-tree # treefmt
         nerd-fonts.fira-code
         nerd-fonts.meslo-lg
-      ];
+      	wget
+	];
+
+      programs.nix-ld.enable = true;
+      
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+
+        extraSpecialArgs = {
+          inherit inputs self;
+          hostname = config.networking.hostName;
+        };
+
+        users = {
+          alik = import ./_files/home.nix;
+        };
+
+        backupFileExtension = "backup";
+      };
+
+
       # This value determines the NixOS release from which the default
       # settings for stateful data, like file locations and database versions
       # on your system were taken. It's perfectly fine and recommended to leave
