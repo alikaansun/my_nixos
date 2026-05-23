@@ -85,7 +85,7 @@
               nix = {
                 enable = true;
                 format = {
-                  type = "treefmt";
+                  type = "nixfmt";
                 };
               };
 
