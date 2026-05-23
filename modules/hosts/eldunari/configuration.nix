@@ -53,7 +53,8 @@
       networking.resolvconf.enable = false;
       users.users.alik.isNormalUser = true;
       users.users.alik.home = "/home/alik";
-
+      users.users.alik.shell = pkgs.zsh;
+      programs.zsh.enable = true;
       environment.systemPackages = with pkgs; [
         age
         sops
