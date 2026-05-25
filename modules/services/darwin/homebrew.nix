@@ -45,14 +45,11 @@
           "rustdesk"
           "keepassxc"
           "anydesk"
-          # "docker-desktop"
-          # "trezor-suite"`
+          ""
           "steam"
           "blender"
-          "tor-browser"
           "font-fira-code-nerd-font"
           #mac spesific stuff
-          # "aldente"
           "betterdisplay" # external display
           # "rectangle" # window snap
           "keka" # winrar

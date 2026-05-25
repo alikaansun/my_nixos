@@ -72,7 +72,8 @@
         age
         sops
         klayout
-        discord
+        # discord
+        vesktop
         fastfetch
         # lingot
         # protonmail-desktop

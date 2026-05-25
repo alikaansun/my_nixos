@@ -6,7 +6,12 @@
 
       home.packages = with pkgs; [
         tree-sitter
-
+        imagemagick
+        ghostscript
+        ripgrep
+        fd
+        mermaid-cli
+        tectonic
       ];
 
       programs.nvf = {
@@ -47,6 +52,28 @@
             # Show open buffers as tabs for easy switching in the same session
             tabline.nvimBufferline.enable = true;
 
+            extraPlugins = {
+              smear-cursor = {
+                package = pkgs.vimPlugins.smear-cursor-nvim;
+                setup = ''
+                  require("smear_cursor").setup({
+                    cursor_color = "#fbf1c7",
+                  })
+                '';
+              };
+              snacks-nvim = {
+                package = pkgs.vimPlugins.snacks-nvim;
+                setup = ''
+                  require("snacks").setup({
+                    indent = { enabled = true },
+                    notifier = { enabled = true },
+                    scroll = { enabled = true },
+                    statuscolumn = { enabled = true },
+                  })
+                '';
+              };
+            };
+
             # --- 3. Navigation & Terminal ---
             telescope.enable = true; # Fuzzy finder for files, ripgrep, etc.
 
@@ -67,6 +94,20 @@
 
             treesitter = {
               enable = true;
+              grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+                css
+                html
+                javascript
+                latex
+                scss
+                svelte
+                tsx
+                typst
+                vue
+                regex
+              ] ++ [
+                pkgs.tree-sitter-grammars.tree-sitter-norg
+              ];
             };
 
             lsp = {
@@ -85,7 +126,7 @@
               nix = {
                 enable = true;
                 format = {
-                  type = "nixfmt";
+                  type = ["nixfmt"];
                 };
               };
 

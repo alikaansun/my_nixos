@@ -161,6 +161,7 @@
 
               # Cursor
               cursor-style = "bar";
+              cursor-style-blink = true;
 
               # Colors (Gruvbox Material Dark)
               background = "32302f";
@@ -187,8 +188,9 @@
                 "15=d4be98" # bright white
               ];
 
-              cursor-color = "d4be98";
+              cursor-color = "fbf1c7";
               cursor-text = "32302f";
+              adjust-cursor-thickness = 1;
               selection-background = "d4be98";
               selection-foreground = "32302f";
 
