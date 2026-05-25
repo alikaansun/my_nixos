@@ -27,7 +27,7 @@
         #App Bindings
         cmd-enter = "exec-and-forget open -n -b com.mitchellh.ghostty";
         cmd-space = "exec-and-forget open -n -b com.brave.Browser";
-        cmd-e = "exec-and-forget open -n -b com.mitchellh.ghostty --args -e ${pkgs.yazi}/bin/yazi";
+        cmd-e = "exec-and-forget open -n -b com.mitchellh.ghostty --args -e sh -l -c 'exec ${pkgs.yazi}/bin/yazi'";
         ctrl-cmd-e = "exec-and-forget open ~";
         ctrl-alt-v = "exec-and-forget open -n -b com.microsoft.VSCode";
         ctrl-alt-d = "exec-and-forget open -b com.hnc.Discord";
@@ -60,7 +60,7 @@
           gaps = {
             outer.left = 8;
             outer.bottom = 8;
-            outer.top = 12;
+            outer.top = 8;
             outer.right = 8;
             inner.horizontal = 6;
             inner.vertical = 6;

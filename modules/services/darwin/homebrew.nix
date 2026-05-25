@@ -44,7 +44,7 @@
           "obsidian"
           "rustdesk"
           "keepassxc"
-          # "anydesk"
+          "anydesk"
           # "docker-desktop"
           # "trezor-suite"`
           "steam"
@@ -64,6 +64,9 @@
           cleanup = "uninstall";
           upgrade = true;
           autoUpdate = true;
+          extraFlags = [
+            "|| true" # ignores failed package updates instead of aborting the whole activation
+          ];
         };
         masApps = {
           # "pdfgear" = 6469021132;

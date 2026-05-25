@@ -24,7 +24,7 @@
             clipboard = inputs.yazi-clipboard;
           };
           flavors = {
-            kanagawa_dragon = inputs.yazi-kanagawa_dragon;
+            kanagawa-dragon = inputs.yazi-kanagawa_dragon;
           };
           keymap = {
             mgr = {
@@ -77,7 +77,7 @@
           ];
           theme = {
             flavor = {
-              dark = "kanagawa_dragon";
+              dark = "kanagawa-dragon";
             };
           };
           settings = {
