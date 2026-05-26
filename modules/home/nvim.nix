@@ -63,25 +63,38 @@
               };
               snacks-nvim = {
                 package = pkgs.vimPlugins.snacks-nvim;
-               setup = ''
+                setup = ''
                   require("snacks").setup({
                     indent = { enabled = true },
                     notifier = { enabled = true },
                     scroll = { enabled = true },
                     statuscolumn = { enabled = true },
+                    dashboard = {
+                      enabled = true,
+                      sections = {
+                        { section = "header" },
+                        { section = "keys", gap = 1 },
+                        { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = { 2, 2 } },
+                        { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
+                      },
+                    },
                   })
                 '';
               };
               csvview-nvim = {
                 package = pkgs.vimPlugins.csvview-nvim;
-                setup = ''require('csvview').setup()'';
+                setup = "require('csvview').setup()";
               };
             };
-            #vim.filetype.add({
-                                                #  extension = {
-                                                #dat = 'json', 
-                                               #}
-                                                #})    
+
+            luaConfigRC.datFileType = ''
+              vim.filetype.add {
+                extension = {
+                  dat = "csv"
+                }
+              }
+            '';
+
             # --- 3. Navigation & Terminal ---
             telescope.enable = true; # Fuzzy finder for files, ripgrep, etc.
 
@@ -96,6 +109,10 @@
             # --- 4. Utilities & Git ---
             binds.whichKey.enable = true; # Keybind helper popups
             git.enable = true;
+
+            notes.obsidian = {
+              enable = true;
+            };
 
             # --- 5. LSP, Autocomplete & Core Language Features ---
             autocomplete.nvim-cmp.enable = true;
@@ -123,15 +140,22 @@
 
             lsp = {
               enable = true;
-              # lsp-signature is EXCELLENT!
-              # It shows a popup with the function arguments you are typing.
               lspSignature.enable = true;
+              servers.nil = {
+                settings.nil = {
+                  nix = {
+                    flake = {
+                      autoArchive = true;
+                    };
+                  };
+                };
+              };
             };
 
             # --- 6. Specific Language Support ---
             languages = {
               enableFormat = true;
-              enableTreesitter = true; # Relies on the core treesitter enabled above
+              enableTreesitter = true;
               enableExtraDiagnostics = true;
 
               nix = {
@@ -145,6 +169,8 @@
               python.enable = true;
               clang.enable = true;
             };
+
+            #End of Vim
           };
           ############
         };

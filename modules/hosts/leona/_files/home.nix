@@ -14,7 +14,6 @@ in
 {
   imports = [
     self.homeModules.terminal
-    # self.homeModules.zed
     self.homeModules.git
     self.homeModules.nvim
     inputs.spicetify-nix.homeManagerModules.spicetify
@@ -34,7 +33,7 @@ in
     enabledExtensions = with spicePkgs.extensions; [
       adblockify
       hidePodcasts
-      shuffle # shuffle+ (special characters are sanitized out of extension names)
+      shuffle
     ];
     theme = spicePkgs.themes.dribbblish;
     colorScheme = "gruvbox-material-dark";
