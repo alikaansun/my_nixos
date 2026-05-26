@@ -63,7 +63,7 @@
               };
               snacks-nvim = {
                 package = pkgs.vimPlugins.snacks-nvim;
-                setup = ''
+               setup = ''
                   require("snacks").setup({
                     indent = { enabled = true },
                     notifier = { enabled = true },
@@ -72,8 +72,16 @@
                   })
                 '';
               };
+              csvview-nvim = {
+                package = pkgs.vimPlugins.csvview-nvim;
+                setup = ''require('csvview').setup()'';
+              };
             };
-
+            #vim.filetype.add({
+                                                #  extension = {
+                                                #dat = 'json', 
+                                               #}
+                                                #})    
             # --- 3. Navigation & Terminal ---
             telescope.enable = true; # Fuzzy finder for files, ripgrep, etc.
 
@@ -94,20 +102,23 @@
 
             treesitter = {
               enable = true;
-              grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-                css
-                html
-                javascript
-                latex
-                scss
-                svelte
-                tsx
-                typst
-                vue
-                regex
-              ] ++ [
-                pkgs.tree-sitter-grammars.tree-sitter-norg
-              ];
+              grammars =
+                with pkgs.vimPlugins.nvim-treesitter.builtGrammars;
+                [
+                  css
+                  html
+                  javascript
+                  latex
+                  scss
+                  svelte
+                  tsx
+                  typst
+                  vue
+                  regex
+                ]
+                ++ [
+                  pkgs.tree-sitter-grammars.tree-sitter-norg
+                ];
             };
 
             lsp = {
@@ -126,7 +137,7 @@
               nix = {
                 enable = true;
                 format = {
-                  type = ["nixfmt"];
+                  type = [ "nixfmt" ];
                 };
               };
 

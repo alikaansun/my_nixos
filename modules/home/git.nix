@@ -12,7 +12,7 @@
           user.email = "asunnetcoglu@gmail.com"; # config.sops.secrets.git_email.path;
           pull.rebase = "true";
           init.defaultBranch = "main";
-          core.editor = "nvim"; 
+          core.editor = "nvim";
           # safe.directory="/etc/nixos";
           # url = {
           #   "ssh://git@github.com/" = {
