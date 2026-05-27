@@ -29,7 +29,10 @@
               mapleader = " ";
               maplocalleader = " ";
             };
-
+            options = {
+              smartindent = false;
+              autoindent = false;
+            };
             # --- 2. UI & Theming ---
             theme = {
               enable = true;
