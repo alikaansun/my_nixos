@@ -66,7 +66,6 @@
         nerd-fonts.fira-code
         nerd-fonts.meslo-lg
         wget
-        typst
       ];
 
       programs.nix-ld.enable = true;

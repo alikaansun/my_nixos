@@ -7,12 +7,12 @@
       home.packages = with pkgs; [
         tree-sitter
         imagemagick
-
         ghostscript
         ripgrep
         fd
         mermaid-cli
         tectonic
+        trash-cli
       ];
 
       programs.nvf = {
@@ -96,16 +96,6 @@
             };
 
             luaConfigRC = {
-              treefmtOnSave = ''
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                  pattern = "*",
-                  callback = function()
-                    local file = vim.fn.expand("%:p")
-                    vim.fn.system("treefmt " .. file)
-                  end,
-                })
-              '';
-
               datFileType = ''
                 vim.filetype.add {
                   extension = {
@@ -139,6 +129,7 @@
 
             treesitter = {
               enable = true;
+              indent.enable = false;
               grammars =
                 with pkgs.vimPlugins.nvim-treesitter.builtGrammars;
                 [
@@ -176,7 +167,7 @@
             languages = {
               enableFormat = true;
               enableTreesitter = true;
-              enableExtraDiagnostics = true;
+              # enableExtraDiagnostics = true;
 
               nix = {
                 enable = true;
