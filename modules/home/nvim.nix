@@ -7,6 +7,7 @@
       home.packages = with pkgs; [
         tree-sitter
         imagemagick
+
         ghostscript
         ripgrep
         fd
@@ -56,6 +57,10 @@
             tabline.nvimBufferline.enable = true;
 
             extraPlugins = {
+              nvim-surround = {
+                package = pkgs.vimPlugins.nvim-surround;
+                setup = "require('nvim-surround').setup()";
+              };
               smear-cursor = {
                 package = pkgs.vimPlugins.smear-cursor-nvim;
                 setup = ''
@@ -90,13 +95,25 @@
               };
             };
 
-            luaConfigRC.datFileType = ''
-              vim.filetype.add {
-                extension = {
-                  dat = "csv"
+            luaConfigRC = {
+              treefmtOnSave = ''
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                  pattern = "*",
+                  callback = function()
+                    local file = vim.fn.expand("%:p")
+                    vim.fn.system("treefmt " .. file)
+                  end,
+                })
+              '';
+
+              datFileType = ''
+                vim.filetype.add {
+                  extension = {
+                    dat = "csv"
+                  }
                 }
-              }
-            '';
+              '';
+            };
 
             # --- 3. Navigation & Terminal ---
             telescope.enable = true; # Fuzzy finder for files, ripgrep, etc.
@@ -171,6 +188,13 @@
               bash.enable = true;
               python.enable = true;
               clang.enable = true;
+              typst = {
+                enable = true;
+                extensions.typst-preview-nvim.enable = true;
+                format.enable = true;
+                lsp.enable = true;
+                treesitter.enable = true;
+              };
             };
 
             #End of Vim
