@@ -26,6 +26,7 @@ pkgs.python313.withPackages (
     pyclipper
     pyyaml
     openpyxl
+    manim
   ]
   ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
     pyautogui
