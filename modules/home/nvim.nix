@@ -103,6 +103,17 @@
                   }
                 }
               '';
+              nixIndent = ''
+                vim.api.nvim_create_autocmd("FileType", {
+                  pattern = "nix",
+                  callback = function()
+                    vim.keymap.set("i", "<CR>", function()
+                      local col = vim.fn.col(".") - 1
+                      return "<CR>" .. string.rep(" ", col)
+                    end, { buffer = true, expr = true })
+                  end
+                })
+              '';
             };
 
             # --- 3. Navigation & Terminal ---

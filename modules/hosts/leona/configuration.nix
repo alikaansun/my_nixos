@@ -64,7 +64,7 @@
         uv
         raycast
         brave
-        zotero
+        # zotero
         nixd # nix language server
         nil
         nixfmt # nix formatter

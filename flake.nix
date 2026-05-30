@@ -43,6 +43,7 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+   hermes-agent.url = "github:NousResearch/hermes-agent"; 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     shad06_nixpkgs.url = "github:nixos/nixpkgs/b95dd9da90309705b8a32f849b80fad1cca16620";
     yazi-lazygit = {
@@ -65,6 +66,7 @@
       url = "github:marcosvnmelo/kanagawa-dragon.yazi";
       flake = false;
     };
+        
   };
 
   outputs =
