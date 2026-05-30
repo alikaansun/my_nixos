@@ -23,9 +23,6 @@
           // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
             clipboard = inputs.yazi-clipboard;
           };
-          flavors = {
-            kanagawa-dragon = inputs.yazi-kanagawa_dragon;
-          };
           keymap = {
             mgr = {
               prepend_keymap = [
@@ -75,16 +72,11 @@
             exiftool
             imagemagick
           ];
-          theme = {
-            flavor = {
-              dark = "kanagawa-dragon";
-            };
-          };
           settings = {
             plugin = {
               prepend_previewers = [
                 {
-                  name = "*.ipynb";
+                  url = "*.ipynb";
                   run = "nbpreview";
                 }
               ];

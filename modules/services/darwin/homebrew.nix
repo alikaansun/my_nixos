@@ -32,7 +32,6 @@
         taps = builtins.attrNames config.nix-homebrew.taps;
         brews = [
           "clippy"
-          "hermes-agent"
         ];
         casks = [
           "microsoft-outlook"
@@ -46,7 +45,6 @@
           "rustdesk"
           "keepassxc"
           "anydesk"
-          ""
           "steam"
           "blender"
           "font-fira-code-nerd-font"
