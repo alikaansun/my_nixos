@@ -16,7 +16,7 @@
       self.darwinModules.homebrew
       # self.darwinModules.skhd
       self.darwinModules.aerospace
-      self.darwinModules.sketchy
+      # self.darwinModules.sketchy
       self.darwinModules.tailscale
     ];
   };
@@ -64,7 +64,6 @@
         uv
         raycast
         brave
-        # zotero
         nixd # nix language server
         nil
         nixfmt # nix formatter
@@ -72,11 +71,8 @@
         age
         sops
         klayout
-        # discord
         vesktop
         fastfetch
-        # lingot
-        # protonmail-desktop
       ];
 
       # Nix settings

@@ -97,6 +97,14 @@
               run = [ "move-node-to-workspace 5" ];
             }
             {
+              "if".app-id = "com.spotify.client";
+              run = [ "move-node-to-workspace m" ];
+            }
+            {
+              "if".app-id = "net.whatsapp.WhatsApp";
+              run = [ "move-node-to-workspace m" ];
+            }
+            {
               "if".app-id = "md.obsidian";
               run = [ "move-node-to-workspace 3" ];
             }

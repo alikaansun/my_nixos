@@ -27,7 +27,10 @@
 
   ];
 
-  # Let Home Manager install and manage itself.
+  manual.manpages.enable = false;
+  manual.html.enable = false;
+  manual.json.enable = false;
+
   programs.home-manager.enable = true;
 
 }

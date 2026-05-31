@@ -111,6 +111,13 @@
               show_symlink = true;
             };
             opener = {
+              vlc = [
+                {
+                  run = if pkgs.stdenv.isDarwin then "open -a VLC %1" else "vlc %1";
+                  orphan = true;
+                  desc = "Open in VLC";
+                }
+              ];
               edit = [
                 {
                   run = "nvim %s";
@@ -127,6 +134,14 @@
             };
             open = {
               prepend_rules = [
+                {
+                  mime = "video/*";
+                  use = "vlc";
+                }
+                {
+                  mime = "audio/*";
+                  use = "vlc";
+                }
                 {
                   url = "*.gds";
                   use = "klayout";

@@ -42,11 +42,13 @@
           "nextcloud"
           "whatsapp"
           "obsidian"
+          "zotero"
           "rustdesk"
           "keepassxc"
           "anydesk"
           "steam"
           "blender"
+          "vlc"
           "font-fira-code-nerd-font"
           #mac spesific stuff
           "betterdisplay" # external display

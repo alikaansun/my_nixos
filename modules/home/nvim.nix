@@ -103,17 +103,6 @@
                   }
                 }
               '';
-              nixIndent = ''
-                vim.api.nvim_create_autocmd("FileType", {
-                  pattern = "nix",
-                  callback = function()
-                    vim.keymap.set("i", "<CR>", function()
-                      local col = vim.fn.col(".") - 1
-                      return "<CR>" .. string.rep(" ", col)
-                    end, { buffer = true, expr = true })
-                  end
-                })
-              '';
             };
 
             # --- 3. Navigation & Terminal ---
@@ -163,15 +152,6 @@
             lsp = {
               enable = true;
               lspSignature.enable = true;
-              servers.nil = {
-                settings.nil = {
-                  nix = {
-                    flake = {
-                      autoArchive = true;
-                    };
-                  };
-                };
-              };
             };
 
             # --- 6. Specific Language Support ---
@@ -183,8 +163,11 @@
               nix = {
                 enable = true;
                 format = {
+                  enable = true;
                   type = [ "nixfmt" ];
                 };
+                lsp.enable = true;
+                lsp.servers = [ "nixd" ];
               };
 
               bash.enable = true;

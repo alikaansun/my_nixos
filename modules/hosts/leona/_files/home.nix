@@ -42,6 +42,10 @@ in
     # colorScheme = "dark";
   };
 
+  manual.manpages.enable = false;
+  manual.html.enable = false;
+  manual.json.enable = false;
+
   home.activation = {
     linkNixApps = config.lib.dag.entryAfter [ "writeBoundary" ] ''
       for nix_apps in "/Applications/Nix Apps" "$HOME/Applications/Home Manager Apps" "$HOME/Applications"; do

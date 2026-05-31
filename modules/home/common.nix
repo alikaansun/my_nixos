@@ -13,7 +13,11 @@
       home.username = "alik";
       home.homeDirectory = "/home/alik";
       home.enableNixpkgsReleaseCheck = false;
-      # Add SOPS configuration for home-manager
+      
+      manual.manpages.enable = false;
+      manual.html.enable = false;
+      manual.json.enable = false;
+
       sops.defaultSopsFile = ../../modules/secrets/secrets.yaml;
       sops.defaultSopsFormat = "yaml";
       sops.age.keyFile = "/home/alik/.config/sops/age/keys.txt";
@@ -33,7 +37,6 @@
         thunderbird
         vscode
         obsidian
-        # inputs.anifetch.packages.${pkgs.system}.default
         vesktop
         spotify
         vlc
@@ -43,7 +46,7 @@
         rustdesk
         onlyoffice-desktopeditors
         obs-studio
-        foliate # ebook
+        foliate 
         klayout
         alarm-clock-applet
       ];
