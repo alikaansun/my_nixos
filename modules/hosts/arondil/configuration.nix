@@ -33,15 +33,16 @@
         self.nixosModules.gc # garbage collection and store opt
         self.nixosModules.gaming
         self.nixosModules.virtualisation
-
-        self.nixosModules.localai
+        self.nixosModules.tailscale
 
         #DESKTOP-MODULES
         self.nixosModules.kde
-        self.nixosModules.caddy
-        self.nixosModules.tailscale
-        self.nixosModules.audiobookshelf
-        self.nixosModules.miniflux
+
+        #SERVER-MODULES
+        # self.nixosModules.localai
+        # self.nixosModules.caddy
+        # self.nixosModules.audiobookshelf
+        # self.nixosModules.miniflux
         # self.nixosModules.nextcloud
         # self.nixosModules.rustdeskServer
 

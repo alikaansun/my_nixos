@@ -13,7 +13,7 @@
         enable = true;
         port = vars.audiobookshelf.port;
         host = vars.audiobookshelf.IP;
-        dataDir = "media/audiobookshelf";
+        dataDir = "media/audiobookshelf";#to do: change with nc folder
         openFirewall = true;
 
       };
