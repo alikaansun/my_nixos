@@ -30,5 +30,11 @@
       IP = "0.0.0.0";
       port = 13378;
     };
+
+    paperless = {
+      hostName = "paperless.arondil.local";
+      IP = "0.0.0.0";
+      port = 3169;
+    };
   };
 }

@@ -13,7 +13,7 @@
       home.username = "alik";
       home.homeDirectory = "/home/alik";
       home.enableNixpkgsReleaseCheck = false;
-      
+
       manual.manpages.enable = false;
       manual.html.enable = false;
       manual.json.enable = false;
@@ -43,10 +43,10 @@
         nextcloud-client
         zotero
         tor-browser
-        rustdesk
+        # rustdesk
         onlyoffice-desktopeditors
         obs-studio
-        foliate 
+        foliate
         klayout
         alarm-clock-applet
       ];
