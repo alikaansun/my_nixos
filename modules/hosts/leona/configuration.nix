@@ -17,6 +17,7 @@
       # self.darwinModules.skhd
       self.darwinModules.aerospace
       # self.darwinModules.sketchy
+      self.darwinModules.hermes
       self.darwinModules.tailscale
     ];
   };
