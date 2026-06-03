@@ -34,6 +34,7 @@ in
     tor-browser
     ardour # Audio recording and editing
     lingot
+    element-desktop
     # musescore      # Music notation software
   ];
 
