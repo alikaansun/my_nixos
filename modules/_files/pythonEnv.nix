@@ -14,6 +14,7 @@ pkgs.python313.withPackages (
     matplotlib
     matplotlib-inline
     numpy
+    anthropic
     numpy-stl
     pandas
     pip
