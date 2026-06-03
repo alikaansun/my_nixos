@@ -1,9 +1,11 @@
 keys:
   - &desktop age1pjr4x6h245g3cj40xy5wfauyu24c4m4794j4humgue0z0anhf3sq2qu052
   - &laptop age1luachqmth6nqnpnkz4d88f7vl5957klkhnu3h3d85zz3ghmhf9as2ru9hd
+  - &leona age1exg7nykkhthkv0frqqvctm6a8lhrr4tk8xh4egwjrteafzw0wvaqc0d7fu
 creation_rules:
   - path_regex: ^modules/secrets/
     key_groups:
     - age:
       - *desktop
       - *laptop
+      - *leona
