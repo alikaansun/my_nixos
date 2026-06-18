@@ -55,7 +55,7 @@
           # "rectangle" # window snap
           "keka" # winrar
           "linearmouse"
-          "keyclu" # command to see shortcuts
+          "keyclu"
           "karabiner-elements" # Required for kanata
         ];
         onActivation = {

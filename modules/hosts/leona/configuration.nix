@@ -71,6 +71,7 @@
         nixfmt-tree # treefmt
         age
         sops
+        wireguard-tools
         klayout
         vesktop
         fastfetch

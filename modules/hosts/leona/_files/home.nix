@@ -24,6 +24,7 @@ in
   home.packages = with pkgs; [
     pythonEnv
     typst
+    zotero
   ];
 
   ##Spicetify

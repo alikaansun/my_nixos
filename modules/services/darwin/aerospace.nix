@@ -27,10 +27,10 @@
         #App Bindings
         cmd-enter = "exec-and-forget open -n -b com.mitchellh.ghostty";
         cmd-space = "exec-and-forget open -n -b com.brave.Browser";
-        cmd-e = "exec-and-forget open -n -b com.mitchellh.ghostty --args -e sh -l -c 'exec ${pkgs.yazi}/bin/yazi'";
+        cmd-e = "exec-and-forget open ~"; ## cmd-e = "exec-and-forget open -n -b com.mitchellh.ghostty --args -e sh -l -c 'exec ${pkgs.yazi}/bin/yazi'";
         ctrl-cmd-e = "exec-and-forget open ~";
         ctrl-alt-v = "exec-and-forget open -n -b com.microsoft.VSCode";
-        ctrl-alt-d = "exec-and-forget open -b com.hnc.Discord";
+        ctrl-alt-d = "exec-and-forget open -b dev.vencord.vesktop";
         ctrl-alt-o = "exec-and-forget open -b md.obsidian";
         ctrl-alt-k = "exec-and-forget open -b org.keepassxc.keepassxc";
         ctrl-alt-m = "exec-and-forget open -b com.spotify.client";

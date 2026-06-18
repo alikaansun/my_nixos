@@ -60,7 +60,6 @@
                 "python"
                 "sudo" # Press ESC twice to add sudo
                 "history" # History search shortcuts
-                "dirhistory" # Alt+Left/Right to navigate dirs
               ];
             };
 
@@ -101,8 +100,8 @@
               done
 
               e() {
-                local target="''${1:-$HOME/input}"
-                ${pkgs.yazi}/bin/yazi "$target"
+                local target="''${1:-.}"
+                ${if pkgs.stdenv.isDarwin then "open" else "xdg-open"} "$target"
               }
             '';
 
@@ -111,7 +110,7 @@
               drs = "ulimit -n 10240 && sudo darwin-rebuild switch --flake ~/.dotfiles#$(hostname)";
               ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-collect-garbage";
               nixupp = "ulimit -n 10240 && nix flake update --flake $HOME/.dotfiles";
-              # `e` implemented as a shell function in `zsh.initContent` above
+              # `e` opens Finder (darwin) or xdg-open/Dolphin (linux) — defined as a shell function in zsh.initContent above
               freecad-x11 = "QT_QPA_PLATFORM=xcb freecad";
               rc2nix = "nix run github:nix-community/plasma-manager > ~/.dotfiles/modules/home/plasma.txt";
             };
@@ -143,6 +142,7 @@
             enableBashIntegration = false;
             enableZshIntegration = true;
           };
+
 
           ghostty = {
             enable = true;
