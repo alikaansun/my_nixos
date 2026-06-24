@@ -27,7 +27,7 @@
         #App Bindings
         cmd-enter = "exec-and-forget open -n -b com.mitchellh.ghostty";
         cmd-space = "exec-and-forget open -n -b com.brave.Browser";
-        cmd-e = "exec-and-forget open ~"; ## cmd-e = "exec-and-forget open -n -b com.mitchellh.ghostty --args -e sh -l -c 'exec ${pkgs.yazi}/bin/yazi'";
+        cmd-e = "exec-and-forget open ~"; # # cmd-e = "exec-and-forget open -n -b com.mitchellh.ghostty --args -e sh -l -c 'exec ${pkgs.yazi}/bin/yazi'";
         ctrl-cmd-e = "exec-and-forget open ~";
         ctrl-alt-v = "exec-and-forget open -n -b com.microsoft.VSCode";
         ctrl-alt-d = "exec-and-forget open -b dev.vencord.vesktop";
@@ -54,14 +54,14 @@
           on-focused-monitor-changed = [ "move-mouse window-lazy-center" ];
           enable-normalization-flatten-containers = true;
           enable-normalization-opposite-orientation-for-nested-containers = true;
-          accordion-padding = 70;
+          accordion-padding = 50;
           key-mapping.preset = "qwerty";
           automatically-unhide-macos-hidden-apps = true;
           gaps = {
-            outer.left = 8;
-            outer.bottom = 8;
-            outer.top = 8;
-            outer.right = 8;
+            outer.left = 2;
+            outer.bottom = 2;
+            outer.top = 2;
+            outer.right = 2;
             inner.horizontal = 6;
             inner.vertical = 6;
           };

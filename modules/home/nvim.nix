@@ -93,6 +93,10 @@
                 package = pkgs.vimPlugins.csvview-nvim;
                 setup = "require('csvview').setup()";
               };
+              claudecode-nvim = {
+                package = pkgs.vimPlugins.claudecode-nvim;
+                setup = "require('claudecode').setup()";
+              };
             };
 
             luaConfigRC = {

@@ -18,6 +18,10 @@ in
     self.homeModules.nvim
     inputs.spicetify-nix.homeManagerModules.spicetify
   ];
+
+  sops.secrets.ssh_work_hostname = { };
+  sops.secrets.ssh_work_user = { };
+
   home.username = "alik";
   home.homeDirectory = "/Users/alik";
   home.stateVersion = "24.11";
@@ -70,4 +74,14 @@ in
   home.sessionVariables.SOPS_AGE_KEY_FILE = "$HOME/.config/sops/age/keys.txt";
 
   programs.home-manager.enable = true;
+
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      work = {
+        hostname = config.sops.secrets.ssh_work_hostname.path;
+        user = config.sops.secrets.ssh_work_user.path;
+      };
+    };
+  };
 }
