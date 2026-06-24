@@ -100,6 +100,12 @@
             };
 
             luaConfigRC = {
+              claudecode = ''
+                vim.keymap.set("n", "<leader>ac", "<cmd>ClaudeCode<cr>", { desc = "Toggle Claude" })
+                vim.keymap.set({ "n", "v" }, "<leader>as", "<cmd>ClaudeCodeSend<cr>", { desc = "Send to Claude" })
+                vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", { desc = "Accept diff" })
+                vim.keymap.set({ "n", "v" }, "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", { desc = "Deny diff" })
+              '';
               datFileType = ''
                 vim.filetype.add {
                   extension = {

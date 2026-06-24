@@ -17,7 +17,11 @@ in
     self.homeModules.git
     self.homeModules.nvim
     inputs.spicetify-nix.homeManagerModules.spicetify
+    inputs.sops-nix.homeManagerModules.sops
   ];
+
+  sops.age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+  sops.defaultSopsFile = ../../../secrets/secrets.yaml;
 
   sops.secrets.ssh_work_hostname = { };
   sops.secrets.ssh_work_user = { };
@@ -77,10 +81,11 @@ in
 
   programs.ssh = {
     enable = true;
-    matchBlocks = {
-      work = {
-        hostname = config.sops.secrets.ssh_work_hostname.path;
-        user = config.sops.secrets.ssh_work_user.path;
+    enableDefaultConfig = false;
+    settings = {
+      "work" = {
+        HostName = config.sops.secrets.ssh_work_hostname.path;
+        User = config.sops.secrets.ssh_work_user.path;
       };
     };
   };
