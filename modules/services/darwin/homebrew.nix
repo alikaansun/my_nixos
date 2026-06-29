@@ -41,6 +41,7 @@
           "onedrive"
           "nextcloud"
           "whatsapp"
+          "claude"
           "obsidian"
           "zotero"
           "rustdesk"

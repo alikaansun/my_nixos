@@ -193,6 +193,10 @@
               selection-background = "d4be98";
               selection-foreground = "32302f";
 
+              keybind = [
+                "ctrl+g=text:lazygit\\n"
+              ];
+
             };
           };
         };

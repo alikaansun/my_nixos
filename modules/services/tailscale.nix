@@ -10,6 +10,7 @@
         enable = true;
         package = pkgs.tailscale;
         useRoutingFeatures = "both";
+        extraSetFlags = [ "--accept-routes" ];
       };
 
       networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
@@ -27,6 +28,7 @@
       services.tailscale = {
         enable = true;
         package = pkgs.tailscale;
+        # extraSetFlags = [ "--accept-routes" ];
       };
 
     };

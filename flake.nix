@@ -44,6 +44,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hermes-agent.url = "github:NousResearch/hermes-agent";
+    herdr = {
+      # Omit tag to track master; pin to a release for stability, e.g.
+      #   url = "github:ogulcancelik/herdr/v0.x.y";
+      url = "github:ogulcancelik/herdr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     shad06_nixpkgs.url = "github:nixos/nixpkgs/b95dd9da90309705b8a32f849b80fad1cca16620";
     yazi-lazygit = {

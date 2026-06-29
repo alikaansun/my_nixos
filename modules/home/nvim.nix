@@ -82,8 +82,8 @@
                       sections = {
                         { section = "header" },
                         { section = "keys", gap = 1 },
-                        { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = { 2, 2 } },
-                        { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
+                        { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = { 2, 2 } },
+                        { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 2 },
                       },
                     },
                   })
@@ -100,12 +100,6 @@
             };
 
             luaConfigRC = {
-              claudecode = ''
-                vim.keymap.set("n", "<leader>ac", "<cmd>ClaudeCode<cr>", { desc = "Toggle Claude" })
-                vim.keymap.set({ "n", "v" }, "<leader>as", "<cmd>ClaudeCodeSend<cr>", { desc = "Send to Claude" })
-                vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", { desc = "Accept diff" })
-                vim.keymap.set({ "n", "v" }, "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", { desc = "Deny diff" })
-              '';
               datFileType = ''
                 vim.filetype.add {
                   extension = {
@@ -191,6 +185,46 @@
                 treesitter.enable = true;
               };
             };
+
+            keymaps = [
+              {
+                key = "<leader>ac";
+                action = "<cmd>ClaudeCode<cr>";
+                mode = "n";
+                desc = "Toggle Claude";
+                silent = true;
+              }
+              {
+                key = "<leader>as";
+                action = "<cmd>ClaudeCodeSend<cr>";
+                mode = [
+                  "n"
+                  "v"
+                ];
+                desc = "Send to Claude";
+                silent = true;
+              }
+              {
+                key = "<leader>aa";
+                action = "<cmd>ClaudeCodeDiffAccept<cr>";
+                mode = [
+                  "n"
+                  "v"
+                ];
+                desc = "Accept diff";
+                silent = true;
+              }
+              {
+                key = "<leader>ad";
+                action = "<cmd>ClaudeCodeDiffDeny<cr>";
+                mode = [
+                  "n"
+                  "v"
+                ];
+                desc = "Deny diff";
+                silent = true;
+              }
+            ];
 
             #End of Vim
           };

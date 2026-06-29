@@ -16,6 +16,7 @@ in
     self.homeModules.terminal
     self.homeModules.git
     self.homeModules.nvim
+    self.homeModules.herdr
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.sops-nix.homeManagerModules.sops
   ];
@@ -26,6 +27,14 @@ in
   sops.secrets.ssh_work_hostname = { };
   sops.secrets.ssh_work_user = { };
 
+  sops.templates."ssh-work-config".content = ''
+    Host work
+      HostName ${config.sops.placeholder.ssh_work_hostname}
+      User ${config.sops.placeholder.ssh_work_user}
+      RequestTTY yes
+      RemoteCommand pwsh -NoLogo -NoExit
+  '';
+
   home.username = "alik";
   home.homeDirectory = "/Users/alik";
   home.stateVersion = "24.11";
@@ -35,21 +44,7 @@ in
     zotero
   ];
 
-  ##Spicetify
-  programs.spicetify = {
-    enable = true;
-    spicetifyPackage = pkgs.spicetify-cli;
-    spotifyPackage = pkgs.spotify;
-    enabledExtensions = with spicePkgs.extensions; [
-      adblockify
-      hidePodcasts
-      shuffle
-    ];
-    theme = spicePkgs.themes.dribbblish;
-    colorScheme = "gruvbox-material-dark";
-    # theme = spicePkgs.themes.onepunch;
-    # colorScheme = "dark";
-  };
+  programs.obsidian.cli.enable = true;
 
   manual.manpages.enable = false;
   manual.html.enable = false;
@@ -82,11 +77,6 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    settings = {
-      "work" = {
-        HostName = config.sops.secrets.ssh_work_hostname.path;
-        User = config.sops.secrets.ssh_work_user.path;
-      };
-    };
+    includes = [ config.sops.templates."ssh-work-config".path ];
   };
 }
