@@ -33,6 +33,9 @@
             options = {
               smartindent = false;
               autoindent = false;
+              # Open all folds when a file loads (no collapsed markdown headers)
+              foldlevel = 99;
+              foldlevelstart = 99;
             };
             # --- 2. UI & Theming ---
             theme = {

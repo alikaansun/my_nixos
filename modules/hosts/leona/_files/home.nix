@@ -46,6 +46,16 @@ in
 
   programs.obsidian.cli.enable = true;
 
+  # Point Claude Code's per-project memory dir back at this repo so memory
+  # writes land in the git tree. mkOutOfStoreSymlink keeps it editable
+  # (a plain home.file would copy into the read-only nix store).
+  home.file.".claude/projects/-Users-alik--dotfiles/memory".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/modules/home/_files/memory";
+
+  # Global skill-usage instructions, tracked in this repo.
+  home.file.".claude/CLAUDE.md".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/modules/home/_files/CLAUDE.md";
+
   manual.manpages.enable = false;
   manual.html.enable = false;
   manual.json.enable = false;

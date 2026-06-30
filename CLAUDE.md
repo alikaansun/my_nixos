@@ -50,6 +50,68 @@ rc2nix
 
 ## Architecture
 
+### Repository Layout
+
+```
+.
+├── flake.nix                          # flake-parts entry; feeds import-tree ./modules
+├── flake.lock
+├── .sops.yaml                         # age-key → secret-path access rules
+├── README.md
+└── modules/
+    ├── common.nix                     # shared NixOS base (sops, pipewire, user, locale)
+    ├── gaming.nix
+    ├── gc.nix                         # weekly garbage collection
+    ├── hypr.nix
+    ├── kde.nix
+    ├── stylix.nix                     # system-wide theming (Gruvbox Dark, Fira Code)
+    ├── vars.nix                       # shared variables → flake.vars
+    ├── virtualisation.nix
+    ├── _files/
+    │   └── pythonEnv.nix              # reusable Python env exposed as a flake package
+    ├── desktop/
+    │   ├── fav.jpg
+    │   └── fav1.jpg
+    ├── home/                          # Home Manager modules
+    │   ├── common.nix
+    │   ├── git.nix
+    │   ├── herdr.nix
+    │   ├── hyprland.nix
+    │   ├── nvim.nix
+    │   ├── plasma.nix
+    │   ├── plasma.txt                 # plasma-manager capture output
+    │   ├── terminal.nix
+    │   ├── yazi.nix
+    │   └── zed.nix
+    ├── hosts/
+    │   ├── arondil/                   # NixOS x86_64, AMD GPU (KDE Plasma)
+    │   │   ├── configuration.nix
+    │   │   └── _files/{hardware-configuration.nix, home.nix}
+    │   ├── eldunari/                  # NixOS x86_64, WSL2
+    │   │   ├── configuration.nix
+    │   │   └── _files/home.nix
+    │   └── leona/                     # macOS aarch64 (nix-darwin)
+    │       ├── configuration.nix
+    │       └── _files/home.nix
+    ├── secrets/
+    │   └── secrets.yaml               # sops-encrypted secrets
+    └── services/                      # opt-in service modules
+        ├── audiobookshelf.nix
+        ├── caddy.nix
+        ├── hermes.nix
+        ├── kanata.nix
+        ├── localai.nix
+        ├── miniflux.nix
+        ├── nextcloud.nix
+        ├── paperless.nix
+        ├── rustdeskServer.nix
+        ├── tailscale.nix
+        └── darwin/                    # macOS-only services
+            ├── aerospace.nix
+            ├── homebrew.nix
+            └── sketchy.nix
+```
+
 ### Module Auto-Discovery
 
 `flake.nix` passes `import-tree ./modules` to flake-parts. Every `.nix` file under `modules/` is automatically imported and merged. Modules export their configuration under `flake.nixosModules.<name>`, `flake.homeModules.<name>`, or `flake.darwinModules.<name>`.

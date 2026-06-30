@@ -29,7 +29,7 @@
         };
 
         ui = {
-          sidebar_width = 32;
+          sidebar_width = 26;
           confirm_close = true;
           agent_panel_sort = "priority"; # roll workspaces up by most urgent agent state
 
@@ -39,15 +39,16 @@
           };
 
           sound = {
-            enabled = true;
+            enabled = false;
             # Per-agent sound: "default" | "on" | "off"
-            agents.claude = "on";
+            # agents.claude = "on";
           };
         };
 
         # Native session restore for Claude Code (and Codex, Copilot CLI, etc.)
         # when you start running agents inside herdr.
         session.resume_agents_on_restore = true;
+
       };
     in
     {
@@ -55,7 +56,6 @@
         inputs.herdr.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
 
-      xdg.configFile."herdr/config.toml".source =
-        tomlFormat.generate "herdr-config.toml" settings;
+      xdg.configFile."herdr/config.toml".source = tomlFormat.generate "herdr-config.toml" settings;
     };
 }
