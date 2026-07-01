@@ -42,7 +42,7 @@
           "nextcloud"
           "whatsapp"
           "claude"
-          "obsidian"
+          # "obsidian"
           "zotero"
           "rustdesk"
           "keepassxc"

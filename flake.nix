@@ -45,8 +45,6 @@
     };
     hermes-agent.url = "github:NousResearch/hermes-agent";
     herdr = {
-      # Omit tag to track master; pin to a release for stability, e.g.
-      #   url = "github:ogulcancelik/herdr/v0.x.y";
       url = "github:ogulcancelik/herdr";
       inputs.nixpkgs.follows = "nixpkgs";
     };

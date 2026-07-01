@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal NixOS / nix-darwin dotfiles using a flake-parts + import-tree architecture. All `.nix` files under `modules/` are automatically discovered and merged via `import-tree` — no manual registration is needed when adding new modules.
 
+Keep everything inside the Nix / home-manager declarative model. Do **not** introduce off-nix workarounds (hand-written plugin/script files dropped on disk, imperative config edits, tools managed outside the flake). Reach for upstream/home-manager options and proper flake inputs (e.g. yazi plugins added as flake inputs like `yazi-lazygit`) instead.
+
 ## Key Commands
 
 Apply configuration on NixOS:

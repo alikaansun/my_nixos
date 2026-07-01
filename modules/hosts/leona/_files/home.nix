@@ -44,7 +44,10 @@ in
     zotero
   ];
 
-  programs.obsidian.cli.enable = true;
+  programs.obsidian = {
+    enable = true;
+    cli.enable = true;
+  };
 
   # Point Claude Code's per-project memory dir back at this repo so memory
   # writes land in the git tree. mkOutOfStoreSymlink keeps it editable

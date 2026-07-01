@@ -31,8 +31,8 @@
               maplocalleader = " ";
             };
             options = {
-              smartindent = false;
-              autoindent = false;
+              smartindent = true;
+              autoindent = true;
               # Open all folds when a file loads (no collapsed markdown headers)
               foldlevel = 99;
               foldlevelstart = 99;
@@ -136,7 +136,7 @@
 
             treesitter = {
               enable = true;
-              indent.enable = false;
+              indent.enable = true;
               grammars =
                 with pkgs.vimPlugins.nvim-treesitter.builtGrammars;
                 [
