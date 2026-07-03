@@ -59,6 +59,10 @@ in
   home.file.".claude/CLAUDE.md".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/modules/home/_files/CLAUDE.md";
 
+  # Personal Claude Code skills, tracked in this repo.
+  home.file.".claude/skills/keybind-audit".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/modules/home/_files/skills/keybind-audit";
+
   manual.manpages.enable = false;
   manual.html.enable = false;
   manual.json.enable = false;

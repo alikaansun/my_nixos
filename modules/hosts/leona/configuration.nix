@@ -59,6 +59,9 @@
       # System packages
       nixpkgs.hostPlatform = "aarch64-darwin";
       nixpkgs.config.allowUnfree = true;
+      # vesktop's build pins pnpm-10.29.2, flagged insecure after a nixpkgs bump.
+      # pnpm is a build-time tool here (not shipped in the app), so permit it.
+      nixpkgs.config.permittedInsecurePackages = [ "pnpm-10.29.2" ];
       environment.systemPackages = with pkgs; [
         git
         vscode

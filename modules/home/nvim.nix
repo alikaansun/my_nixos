@@ -189,45 +189,54 @@
               };
             };
 
-            keymaps = [
-              {
-                key = "<leader>ac";
-                action = "<cmd>ClaudeCode<cr>";
+            keymaps =
+              # <leader>b<N> jumps to the Nth buffer in the bufferline
+              (builtins.genList (i: {
+                key = "<leader>b${toString (i + 1)}";
+                action = "<cmd>BufferLineGoToBuffer ${toString (i + 1)}<cr>";
                 mode = "n";
-                desc = "Toggle Claude";
+                desc = "Go to buffer ${toString (i + 1)}";
                 silent = true;
-              }
-              {
-                key = "<leader>as";
-                action = "<cmd>ClaudeCodeSend<cr>";
-                mode = [
-                  "n"
-                  "v"
-                ];
-                desc = "Send to Claude";
-                silent = true;
-              }
-              {
-                key = "<leader>aa";
-                action = "<cmd>ClaudeCodeDiffAccept<cr>";
-                mode = [
-                  "n"
-                  "v"
-                ];
-                desc = "Accept diff";
-                silent = true;
-              }
-              {
-                key = "<leader>ad";
-                action = "<cmd>ClaudeCodeDiffDeny<cr>";
-                mode = [
-                  "n"
-                  "v"
-                ];
-                desc = "Deny diff";
-                silent = true;
-              }
-            ];
+              }) 9)
+              ++ [
+                {
+                  key = "<leader>ac";
+                  action = "<cmd>ClaudeCode<cr>";
+                  mode = "n";
+                  desc = "Toggle Claude";
+                  silent = true;
+                }
+                {
+                  key = "<leader>as";
+                  action = "<cmd>ClaudeCodeSend<cr>";
+                  mode = [
+                    "n"
+                    "v"
+                  ];
+                  desc = "Send to Claude";
+                  silent = true;
+                }
+                {
+                  key = "<leader>aa";
+                  action = "<cmd>ClaudeCodeDiffAccept<cr>";
+                  mode = [
+                    "n"
+                    "v"
+                  ];
+                  desc = "Accept diff";
+                  silent = true;
+                }
+                {
+                  key = "<leader>ad";
+                  action = "<cmd>ClaudeCodeDiffDeny<cr>";
+                  mode = [
+                    "n"
+                    "v"
+                  ];
+                  desc = "Deny diff";
+                  silent = true;
+                }
+              ];
 
             #End of Vim
           };

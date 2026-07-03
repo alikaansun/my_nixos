@@ -26,7 +26,7 @@
   flake.darwinModules.hermes =
     { pkgs, inputs, ... }:
     let
-      hermesAgentPkg = inputs.hermes-agent.packages.${pkgs.system}.default;
+      hermesAgentPkg = inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default;
       # hermes-agent-env (Python 3.12) has all of anthropic's deps except
       # anthropic itself and docstring-parser. Inject them via PYTHONPATH.
       missingPythonPkgs = with pkgs.python312Packages; [

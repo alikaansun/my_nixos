@@ -49,6 +49,21 @@
         # when you start running agents inside herdr.
         session.resume_agents_on_restore = true;
 
+        keys = {
+          prefix = "ctrl+space"; # default is "ctrl+b"
+          # Direct tab switch without the prefix. Uses ctrl+1..9 (herdr's documented
+          # reliable direct chord) rather than cmd/super, which the terminal/WM grabs
+          # before herdr ever sees them.
+          switch_tab = "ctrl+1..9";
+
+          # Cycle between agent rows in the sidebar (unset by default).
+          next_agent = "prefix+shift+j";
+          previous_agent = "prefix+shift+k";
+          # Jump straight to an agent by index, e.g. prefix then 1.
+          # (Not alt+1..9 — Aerospace grabs alt+number globally on macOS.)
+          # focus_agent = "prefix+1..9";
+        };
+
       };
     in
     {
