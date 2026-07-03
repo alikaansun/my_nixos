@@ -17,6 +17,8 @@ in
     self.homeModules.git
     self.homeModules.nvim
     self.homeModules.herdr
+    self.homeModules.obs
+    self.homeModules.sym
     inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.sops-nix.homeManagerModules.sops
   ];
@@ -44,24 +46,9 @@ in
     zotero
   ];
 
-  programs.obsidian = {
-    enable = true;
-    cli.enable = true;
-  };
-
-  # Point Claude Code's per-project memory dir back at this repo so memory
-  # writes land in the git tree. mkOutOfStoreSymlink keeps it editable
-  # (a plain home.file would copy into the read-only nix store).
-  home.file.".claude/projects/-Users-alik--dotfiles/memory".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/modules/home/_files/memory";
-
-  # Global skill-usage instructions, tracked in this repo.
-  home.file.".claude/CLAUDE.md".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/modules/home/_files/CLAUDE.md";
-
-  # Personal Claude Code skills, tracked in this repo.
-  home.file.".claude/skills/keybind-audit".source =
-    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/modules/home/_files/skills/keybind-audit";
+  # Obsidian (programs.obsidian + vault target) is configured in obs.nix.
+  # Claude Code config/memory/skills live in the vault and are symlinked into
+  # ~/.claude by sym.nix. Both imported above.
 
   manual.manpages.enable = false;
   manual.html.enable = false;

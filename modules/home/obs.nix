@@ -1,11 +1,12 @@
 {
   flake.homeModules.obs =
-    { ... }:
+    { vars, ... }:
     {
       programs.obsidian = {
         enable = true;
+        cli.enable = true;
 
-        vaults.ObsNotes.target = "Documents/ObsNotes";
+        vaults.ObsNotes.target = vars.obsidian.vault;
 
         defaultSettings = {
           app.alwaysUpdateLinks = true;

@@ -39,6 +39,7 @@
         useUserPackages = true;
         extraSpecialArgs = {
           inherit inputs self;
+          vars = self.vars;
           hostname = "leona";
         };
         users = {

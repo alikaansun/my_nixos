@@ -1,6 +1,12 @@
 {
   flake.vars = {
 
+    obsidian = {
+      # Vault path relative to $HOME. Consumed by obs.nix (vault target) and
+      # sym.nix (source of the ~/.claude symlinks, under <vault>/_claude).
+      vault = "Documents/ObsNotes";
+    };
+
     nextcloud = {
       hostName = "nextcloud.arondil.local";
       IP = "0.0.0.0";
