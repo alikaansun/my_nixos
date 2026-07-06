@@ -17,7 +17,7 @@
       # self.darwinModules.skhd
       self.darwinModules.aerospace
       # self.darwinModules.sketchy
-      self.darwinModules.hermes
+      # self.darwinModules.hermes
       self.darwinModules.tailscale
     ];
   };
@@ -189,9 +189,11 @@
 
       # programs.ssh.knownHosts = {
 
-      # documentation.enable = true;
-      # documentation.man.enable = true;
-      # documentation.info.enable = true;
+      # Skip the Darwin HTML manual: nix-darwin still passes render-docs'
+      # removed `--toc-depth`. The uninstaller bundles its own manual-building
+      # system, so it must be dropped too.
+      documentation.doc.enable = false;
+      system.tools.darwin-uninstaller.enable = false;
 
     }; # Flake output
 } # File output

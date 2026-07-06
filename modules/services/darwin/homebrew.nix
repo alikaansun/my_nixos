@@ -50,6 +50,7 @@
           "steam"
           "blender"
           "vlc"
+          "spotify"
           "font-fira-code-nerd-font"
           #mac spesific stuff
           "betterdisplay" # external display

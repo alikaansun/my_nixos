@@ -36,6 +36,18 @@
                   run = "plugin lazygit";
                   desc = "Run lazygit";
                 }
+                {
+                  on = "-";
+                  run = "plugin zoom -1";
+                  desc = "Zoom out hovered file";
+                }
+                {
+                  on = "+";
+                  run = "plugin zoom 1";
+                  desc = "Zoom in hovered file";
+                }
+
+
               ]
               ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
                 {
@@ -81,25 +93,14 @@
                   url = "*.ipynb";
                   run = "nbpreview";
                 }
-                {
-                  on = "-";
-                  run = "plugin zoom -1";
-                  desc = "Zoom out hovered file";
-                }
-                {
-                  on = "+";
-                  run = "plugin zoom 1";
-                  desc = "Zoom in hovered file";
-                }
-
               ];
             };
             preview = {
               # image_filter = "lanczos3";
               # image_quality = 90;
               tab_size = 1;
-              max_width = 600;
-              max_height = 900;
+              max_width = 1200;
+              max_height = 1800;
               cache_dir = "";
               ueberzug_scale = 1;
               ueberzug_offset = [

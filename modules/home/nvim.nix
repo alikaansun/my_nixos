@@ -224,6 +224,13 @@
                   silent = true;
                 }
                 {
+                  key = "<leader>?";
+                  action = "<cmd>Telescope keymaps<cr>";
+                  mode = "n";
+                  desc = "Search keymaps";
+                  silent = true;
+                }
+                {
                   key = "<leader>e";
                   action = "<cmd>lua Snacks.explorer()<cr>";
                   mode = "n";
