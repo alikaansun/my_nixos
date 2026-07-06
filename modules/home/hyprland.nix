@@ -104,7 +104,7 @@
             "$mod SHIFT, E, exit"
             "$mod, T, togglefloating" # Terminal (alternative)
             "$mod, F, fullscreen"
-            # Add workspace switching
+            # Workspace switching
             "$mod, 1, workspace, 1"
             "$mod, 2, workspace, 2"
             "$mod, 3, workspace, 3"

@@ -714,7 +714,8 @@
         "yazi-clipboard": "yazi-clipboard",
         "yazi-clippy": "yazi-clippy",
         "yazi-lazygit": "yazi-lazygit",
-        "yazi-nbpreview": "yazi-nbpreview"
+        "yazi-nbpreview": "yazi-nbpreview",
+        "yazi-zoom": "yazi-zoom"
       }
     },
     "shad06_nixpkgs": {
@@ -1038,6 +1039,24 @@
       "original": {
         "owner": "AnirudhG07",
         "repo": "nbpreview.yazi",
+        "type": "github"
+      }
+    },
+    "yazi-zoom": {
+      "flake": false,
+      "locked": {
+        "dir": "zoom.yazi",
+        "lastModified": 1783246245,
+        "narHash": "sha256-f4y952sUF/lrHMX6enQts/obk2DeatqAcaVHfjTD65k=",
+        "owner": "yazi-rs",
+        "repo": "plugins",
+        "rev": "8cd50c622898d3ace3ca821f540241965308289a",
+        "type": "github"
+      },
+      "original": {
+        "dir": "zoom.yazi",
+        "owner": "yazi-rs",
+        "repo": "plugins",
         "type": "github"
       }
     }

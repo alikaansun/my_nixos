@@ -16,6 +16,8 @@
           plugins = {
             lazygit = inputs.yazi-lazygit;
             nbpreview = inputs.yazi-nbpreview;
+            zoom = inputs.yazi-zoom;
+
           }
           // pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
             clippy = inputs.yazi-clippy;
@@ -79,6 +81,17 @@
                   url = "*.ipynb";
                   run = "nbpreview";
                 }
+                {
+                  on = "-";
+                  run = "plugin zoom -1";
+                  desc = "Zoom out hovered file";
+                }
+                {
+                  on = "+";
+                  run = "plugin zoom 1";
+                  desc = "Zoom in hovered file";
+                }
+
               ];
             };
             preview = {

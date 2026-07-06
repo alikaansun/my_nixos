@@ -66,6 +66,10 @@
       url = "github:AnirudhG07/nbpreview.yazi";
       flake = false;
     };
+    yazi-zoom = {
+      url = "github:yazi-rs/plugins?dir=zoom.yazi";
+      flake = false;
+    };
 
   };
 

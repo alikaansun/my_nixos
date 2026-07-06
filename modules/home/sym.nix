@@ -21,6 +21,7 @@
         ".claude/CLAUDE.md".source = link "${claudeDir}/CLAUDE.md";
         ".claude/settings.json".source = link "${claudeDir}/settings.json";
         ".claude/skills".source = link "${claudeDir}/skills";
+        ".claude/hooks".source = link "${claudeDir}/hooks";
         # Claude Code's per-project memory dir for this repo.
         ".claude/projects/-Users-alik--dotfiles/memory".source = link "${claudeDir}/memory";
       };

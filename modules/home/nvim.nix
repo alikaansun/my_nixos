@@ -31,8 +31,8 @@
               maplocalleader = " ";
             };
             options = {
-              smartindent = true;
-              autoindent = true;
+              smartindent = false;
+              autoindent = false;
               # Open all folds when a file loads (no collapsed markdown headers)
               foldlevel = 99;
               foldlevelstart = 99;
@@ -76,6 +76,9 @@
                 package = pkgs.vimPlugins.snacks-nvim;
                 setup = ''
                   require("snacks").setup({
+                    image = { enabled = true },
+                    explorer = { enabled = true },
+                    picker = { enabled = true },
                     indent = { enabled = true },
                     notifier = { enabled = true },
                     scroll = { enabled = true },
@@ -95,6 +98,10 @@
               csvview-nvim = {
                 package = pkgs.vimPlugins.csvview-nvim;
                 setup = "require('csvview').setup()";
+              };
+              render-markdown-nvim = {
+                package = pkgs.vimPlugins.render-markdown-nvim;
+                setup = "require('render-markdown').setup()";
               };
               claudecode-nvim = {
                 package = pkgs.vimPlugins.claudecode-nvim;
@@ -144,12 +151,15 @@
                   html
                   javascript
                   latex
+                  markdown
+                  markdown_inline
                   scss
                   svelte
                   tsx
                   typst
                   vue
                   regex
+                  yaml
                 ]
                 ++ [
                   pkgs.tree-sitter-grammars.tree-sitter-norg
@@ -200,6 +210,27 @@
               }) 9)
               ++ [
                 {
+                  key = "<leader>bx";
+                  action = "<cmd>lua Snacks.bufdelete()<cr>";
+                  mode = "n";
+                  desc = "Close buffer";
+                  silent = true;
+                }
+                {
+                  key = "<leader>bt";
+                  action = "<cmd>enew<cr>";
+                  mode = "n";
+                  desc = "New buffer";
+                  silent = true;
+                }
+                {
+                  key = "<leader>e";
+                  action = "<cmd>lua Snacks.explorer()<cr>";
+                  mode = "n";
+                  desc = "Toggle file tree";
+                  silent = true;
+                }
+                {
                   key = "<leader>ac";
                   action = "<cmd>ClaudeCode<cr>";
                   mode = "n";
@@ -234,6 +265,41 @@
                     "v"
                   ];
                   desc = "Deny diff";
+                  silent = true;
+                }
+                {
+                  key = "<leader>yp";
+                  action = "<cmd>let @+ = expand('%:p')<cr>";
+                  mode = "n";
+                  desc = "Yank absolute file path";
+                  silent = true;
+                }
+                {
+                  key = "<leader>yr";
+                  action = "<cmd>let @+ = expand('%:.')<cr>";
+                  mode = "n";
+                  desc = "Yank relative file path";
+                  silent = true;
+                }
+                {
+                  key = "<leader>y";
+                  action = "\"+y";
+                  mode = "v";
+                  desc = "Yank selection to clipboard";
+                  silent = true;
+                }
+                {
+                  key = "<leader>yy";
+                  action = "\"+yy";
+                  mode = "n";
+                  desc = "Yank line to clipboard";
+                  silent = true;
+                }
+                {
+                  key = "<leader>ya";
+                  action = "<cmd>%y+<cr>";
+                  mode = "n";
+                  desc = "Yank whole file to clipboard";
                   silent = true;
                 }
               ];

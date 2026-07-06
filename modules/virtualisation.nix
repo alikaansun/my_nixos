@@ -8,7 +8,6 @@
       # Enable waydroid
       # virtualisation.waydroid.enable = true;
 
-      # Add virtiofsd to system packages
       environment.systemPackages = with pkgs; [
         virtiofsd
         docker-client
