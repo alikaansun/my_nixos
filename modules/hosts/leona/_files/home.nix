@@ -18,7 +18,7 @@ in
     self.homeModules.herdr
     self.homeModules.obs
     self.homeModules.sym
-    inputs.spicetify-nix.homeManagerModules.spicetify
+    # inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.sops-nix.homeManagerModules.sops
   ];
 
@@ -42,12 +42,9 @@ in
   home.packages = with pkgs; [
     pythonEnv
     typst
-    zotero
+    # zotero
+    claude-code
   ];
-
-  # Obsidian (programs.obsidian + vault target) is configured in obs.nix.
-  # Claude Code config/memory/skills live in the vault and are symlinked into
-  # ~/.claude by sym.nix. Both imported above.
 
   manual.manpages.enable = false;
   manual.html.enable = false;

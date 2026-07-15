@@ -1,6 +1,6 @@
 {
   flake.homeModules.nvim =
-    { inputs, pkgs, ... }:
+    { inputs, pkgs, lib, ... }:
     {
       imports = [ inputs.nvf.homeManagerModules.default ];
 
@@ -139,7 +139,16 @@
             };
 
             # --- 5. LSP, Autocomplete & Core Language Features ---
-            autocomplete.nvim-cmp.enable = true;
+            autocomplete.nvim-cmp = {
+              enable = true;
+              # Drop cmp-buffer: it suggests any token in the buffer (numbers,
+              # words inside strings/comments) with no syntax awareness.
+              # Keep completion LSP-driven, like VSCode.
+              setupOpts.sources = lib.mkForce (map (name: { inherit name; }) [
+                "nvim_lsp"
+                "path"
+              ]);
+            };
 
             treesitter = {
               enable = true;
@@ -188,7 +197,17 @@
               };
 
               bash.enable = true;
-              python.enable = true;
+              python = {
+                enable = true;
+                format = {
+                  enable = true;
+                  type = [ "ruff-fix" ];
+                };
+                lsp = {
+                  enable = true;
+                  servers = [ "basedpyright" ];
+                };
+              };
               clang.enable = true;
               typst = {
                 enable = true;
@@ -221,6 +240,13 @@
                   action = "<cmd>enew<cr>";
                   mode = "n";
                   desc = "New buffer";
+                  silent = true;
+                }
+                {
+                  key = "<leader>tp";
+                  action = "<cmd>TypstPreviewToggle<cr>";
+                  mode = "n";
+                  desc = "Toggle Typst preview";
                   silent = true;
                 }
                 {

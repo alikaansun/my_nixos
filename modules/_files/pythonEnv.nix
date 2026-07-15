@@ -28,6 +28,7 @@ pkgs.python313.withPackages (
     pyyaml
     openpyxl
     manim
+    markitdown
   ]
   ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
     pyautogui

@@ -191,7 +191,7 @@
       services.jankyborders = {
         enable = true;
         active_color = "0xfffabd2f"; # gruvbox dark yellow
-        # width = 6.0;
+        width = 3.0;
         hidpi = true;
         order = "above";
       };
