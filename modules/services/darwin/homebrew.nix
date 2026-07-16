@@ -46,7 +46,7 @@
           "zotero"
           "rustdesk"
           "keepassxc"
-          "anydesk"
+          # "anydesk"
           "steam"
           "blender"
           "vlc"

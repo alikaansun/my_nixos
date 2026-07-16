@@ -242,6 +242,19 @@
                   desc = "New buffer";
                   silent = true;
                 }
+              ]
+              # <C-h/j/k/l> window navigation; mode "t" makes it work from
+              # inside terminal buffers (toggleterm, Claude) without <C-\><C-n>
+              ++ (map
+                (dir: {
+                  key = "<C-${dir}>";
+                  action = "<cmd>wincmd ${dir}<cr>";
+                  mode = [ "n" "t" ];
+                  desc = "Window ${dir}";
+                  silent = true;
+                })
+                [ "h" "j" "k" "l" ])
+              ++ [
                 {
                   key = "<leader>tp";
                   action = "<cmd>TypstPreviewToggle<cr>";

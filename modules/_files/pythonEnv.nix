@@ -27,7 +27,7 @@ pkgs.python313.withPackages (
     pyclipper
     pyyaml
     openpyxl
-    manim
+    # manim
     markitdown
   ]
   ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
