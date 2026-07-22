@@ -31,13 +31,13 @@ in
     pythonEnv
     blender # 3D modeling and animation
     gimp # Image editing
-    texliveFull
-    typst
+    # texliveFull
+    typst 
     onlyoffice-desktopeditors
     tor-browser
     ardour # Audio recording and editing
-    lingot
-    element-desktop
+    lingot #tuner
+    element-desktop #matrix chat 
     # musescore      # Music notation software
   ];
 
