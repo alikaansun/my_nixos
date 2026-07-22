@@ -86,6 +86,7 @@
         cifs-utils
         trezor-suite
         brave
+        claude-code
         # texliveFull
         # protonmail-desktop
         # inputs.zen-browser.packages."${system}".default

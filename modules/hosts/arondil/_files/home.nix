@@ -15,8 +15,11 @@ in
     self.homeModules.common
     self.homeModules.plasma
     self.homeModules.terminal
+    self.homeModules.sym
+    self.homeModules.obs
     self.homeModules.nvim
     self.homeModules.git
+    self.homeModules.herdr
   ];
 
   home.username = "alik";

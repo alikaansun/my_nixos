@@ -54,6 +54,7 @@
         extraSpecialArgs = {
           inherit inputs self;
           hostname = config.networking.hostName;
+          vars = self.vars;
         };
 
         users = {

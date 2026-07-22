@@ -47,7 +47,6 @@
                   desc = "Zoom in hovered file";
                 }
 
-
               ]
               ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
                 {

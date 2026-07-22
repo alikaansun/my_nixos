@@ -1,6 +1,11 @@
 {
   flake.homeModules.nvim =
-    { inputs, pkgs, lib, ... }:
+    {
+      inputs,
+      pkgs,
+      lib,
+      ...
+    }:
     {
       imports = [ inputs.nvf.homeManagerModules.default ];
 
@@ -144,10 +149,12 @@
               # Drop cmp-buffer: it suggests any token in the buffer (numbers,
               # words inside strings/comments) with no syntax awareness.
               # Keep completion LSP-driven, like VSCode.
-              setupOpts.sources = lib.mkForce (map (name: { inherit name; }) [
-                "nvim_lsp"
-                "path"
-              ]);
+              setupOpts.sources = lib.mkForce (
+                map (name: { inherit name; }) [
+                  "nvim_lsp"
+                  "path"
+                ]
+              );
             };
 
             treesitter = {
@@ -249,11 +256,20 @@
                 (dir: {
                   key = "<C-${dir}>";
                   action = "<cmd>wincmd ${dir}<cr>";
-                  mode = [ "n" "t" ];
+                  mode = [
+                    "n"
+                    "t"
+                  ];
                   desc = "Window ${dir}";
                   silent = true;
                 })
-                [ "h" "j" "k" "l" ])
+                [
+                  "h"
+                  "j"
+                  "k"
+                  "l"
+                ]
+              )
               ++ [
                 {
                   key = "<leader>tp";
