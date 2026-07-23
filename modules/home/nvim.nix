@@ -4,8 +4,17 @@
       inputs,
       pkgs,
       lib,
+      config,
+      hostname,
       ...
     }:
+    let
+      # Point nixd at this host's actual flake outputs so hover shows real
+      # option descriptions/types/defaults instead of generic Nix syntax.
+      dotfilesFlake = "${config.home.homeDirectory}/.dotfiles";
+      systemAttr = if pkgs.stdenv.isDarwin then "darwinConfigurations" else "nixosConfigurations";
+      flakeRef = "(builtins.getFlake \"${dotfilesFlake}\")";
+    in
     {
       imports = [ inputs.nvf.homeManagerModules.default ];
 
@@ -122,6 +131,20 @@
                   }
                 }
               '';
+              # Treesitter's nix indent queries misjudge let/in and attrsets,
+              # producing erratic indentation on <CR> that other filetypes'
+              # grammars don't suffer from. Fall back to plain autoindent
+              # (copy previous line) for nix; nixfmt fixes real formatting
+              # on save anyway.
+              nixIndentFix = ''
+                vim.api.nvim_create_autocmd("FileType", {
+                  pattern = "nix",
+                  callback = function()
+                    vim.opt_local.indentexpr = ""
+                    vim.opt_local.autoindent = true
+                  end,
+                })
+              '';
             };
 
             # --- 3. Navigation & Terminal ---
@@ -185,6 +208,15 @@
             lsp = {
               enable = true;
               lspSignature.enable = true;
+            };
+
+            lsp.servers.nixd.settings = {
+              nixpkgs.expr = "import ${flakeRef}.inputs.nixpkgs { }";
+              formatting.command = [ "nixfmt" ];
+              options = {
+                nixos.expr = "${flakeRef}.${systemAttr}.${hostname}.options";
+                home-manager.expr = "${flakeRef}.${systemAttr}.${hostname}.options.home-manager.users.type.getSubOptions []";
+              };
             };
 
             # --- 6. Specific Language Support ---

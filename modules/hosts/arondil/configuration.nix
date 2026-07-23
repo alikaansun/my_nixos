@@ -19,7 +19,7 @@
 
   # Define the actual configuration module
   flake.nixosModules.hostArondil =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       imports = [
         ./_files/hardware-configuration.nix

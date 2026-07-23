@@ -32,12 +32,12 @@ in
     blender # 3D modeling and animation
     gimp # Image editing
     # texliveFull
-    typst 
+    typst
     onlyoffice-desktopeditors
     tor-browser
     ardour # Audio recording and editing
-    lingot #tuner
-    element-desktop #matrix chat 
+    lingot # tuner
+    element-desktop # matrix chat
     # musescore      # Music notation software
   ];
 
