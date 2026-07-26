@@ -114,6 +114,17 @@
         #     prefixLength = 24;
         #   }];
         # };
+
+        networkmanager.ensureProfiles.profiles.eno1 = {
+          connection = {
+            id = "eno1";
+            type = "ethernet";
+            interface-name = "eno1";
+            autoconnect = true;
+          };
+          ipv4.method = "auto";
+          ipv6.method = "auto";
+        };
       };
 
       boot.loader = {
