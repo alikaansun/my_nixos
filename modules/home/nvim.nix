@@ -5,14 +5,14 @@
       pkgs,
       lib,
       config,
+      hostname,
       ...
     }:
     let
-      # src dirs of first-party Python libraries kept in sibling repos, made
-      # globally resolvable by basedpyright so imports like
-      # `from rf_analyzer.tl import ...` get hover and go-to-definition from any
-      # project. Add a lib's src/ here to expose it everywhere; paths absent on a
-      # given host are silently ignored.
+      dotfilesFlake = "${config.home.homeDirectory}/.dotfiles";
+      systemAttr = if pkgs.stdenv.isDarwin then "darwinConfigurations" else "nixosConfigurations";
+      flakeRef = "(builtins.getFlake \"${dotfilesFlake}\")";
+
       pythonExtraPaths = [
         "${config.home.homeDirectory}/Documents/Repos/rf_analyzer/src"
         "${config.home.homeDirectory}/Documents/Repos/Imodulator/src"

@@ -16,7 +16,7 @@ pkgs.python313.withPackages (
     numpy
     anthropic
     numpy-stl
-    pandas
+    # pandas
     pip
     scipy
     setuptools

@@ -36,9 +36,9 @@ Format Nix files:
 nix fmt
 ```
 
-Garbage collect (keep last 10 generations):
+Garbage collect (keep last 3 generations):
 ```bash
-sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-collect-garbage
+sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +3 && sudo nix-collect-garbage
 # or via alias:
 ngc
 ```

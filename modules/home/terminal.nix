@@ -112,7 +112,7 @@
             shellAliases = {
               nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles#$(hostname)";
               drs = "ulimit -n 10240 && sudo darwin-rebuild switch --flake ~/.dotfiles#$(hostname)";
-              ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10 && sudo nix-collect-garbage";
+              ngc = "sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +3 && sudo nix-collect-garbage";
               nixupp = "ulimit -n 10240 && nix flake update --flake $HOME/.dotfiles";
               # `e` opens Finder (darwin) or xdg-open/Dolphin (linux) — defined as a shell function in zsh.initContent above
               freecad-x11 = "QT_QPA_PLATFORM=xcb freecad";
