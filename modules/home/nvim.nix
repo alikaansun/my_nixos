@@ -5,15 +5,18 @@
       pkgs,
       lib,
       config,
-      hostname,
       ...
     }:
     let
-      # Point nixd at this host's actual flake outputs so hover shows real
-      # option descriptions/types/defaults instead of generic Nix syntax.
-      dotfilesFlake = "${config.home.homeDirectory}/.dotfiles";
-      systemAttr = if pkgs.stdenv.isDarwin then "darwinConfigurations" else "nixosConfigurations";
-      flakeRef = "(builtins.getFlake \"${dotfilesFlake}\")";
+      # src dirs of first-party Python libraries kept in sibling repos, made
+      # globally resolvable by basedpyright so imports like
+      # `from rf_analyzer.tl import ...` get hover and go-to-definition from any
+      # project. Add a lib's src/ here to expose it everywhere; paths absent on a
+      # given host are silently ignored.
+      pythonExtraPaths = [
+        "${config.home.homeDirectory}/Documents/Repos/rf_analyzer/src"
+        "${config.home.homeDirectory}/Documents/Repos/Imodulator/src"
+      ];
     in
     {
       imports = [ inputs.nvf.homeManagerModules.default ];
@@ -83,6 +86,11 @@
                 setup = ''
                   require("smear_cursor").setup({
                     cursor_color = "#fbf1c7",
+                    stiffness = 0.8,
+                    trailing_stiffness = 0.6,
+                    stiffness_insert_mode = 0.9,
+                    trailing_stiffness_insert_mode = 0.7,
+                    distance_stop_animating = 0.5,
                   })
                 '';
               };
@@ -208,6 +216,7 @@
             lsp = {
               enable = true;
               lspSignature.enable = true;
+              servers.basedpyright.settings.basedpyright.analysis.extraPaths = pythonExtraPaths;
             };
 
             lsp.servers.nixd.settings = {
@@ -394,6 +403,16 @@
                   action = "<cmd>%y+<cr>";
                   mode = "n";
                   desc = "Yank whole file to clipboard";
+                  silent = true;
+                }
+                {
+                  key = "<leader>p";
+                  action = "\"+p";
+                  mode = [
+                    "n"
+                    "v"
+                  ];
+                  desc = "Paste from clipboard";
                   silent = true;
                 }
               ];
