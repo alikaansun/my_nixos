@@ -17,6 +17,7 @@
             lazygit = inputs.yazi-lazygit;
             nbpreview = inputs.yazi-nbpreview;
             zoom = inputs.yazi-zoom;
+            smart-enter = inputs.yazi-smart-enter;
 
           }
           // pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
@@ -28,6 +29,11 @@
           keymap = {
             mgr = {
               prepend_keymap = [
+                {
+                  on = "<Enter>";
+                  run = "plugin smart-enter";
+                  desc = "Enter directory or open file";
+                }
                 {
                   on = [
                     "g"
@@ -144,6 +150,14 @@
                   desc = "Open in KLayout";
                 }
               ];
+              excel = [
+                {
+                  run =
+                    if pkgs.stdenv.isDarwin then "open -a 'Microsoft Excel' %1" else "onlyoffice-desktopeditors %1";
+                  orphan = true;
+                  desc = if pkgs.stdenv.isDarwin then "Open in Microsoft Excel" else "Open in OnlyOffice";
+                }
+              ];
             };
             open = {
               prepend_rules = [
@@ -158,6 +172,10 @@
                 {
                   url = "*.gds";
                   use = "klayout";
+                }
+                {
+                  url = "*.xlsx";
+                  use = "excel";
                 }
               ];
             };

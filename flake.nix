@@ -70,6 +70,10 @@
       url = "github:yazi-rs/plugins?dir=zoom.yazi";
       flake = false;
     };
+    yazi-smart-enter = {
+      url = "github:yazi-rs/plugins?dir=smart-enter.yazi";
+      flake = false;
+    };
 
   };
 

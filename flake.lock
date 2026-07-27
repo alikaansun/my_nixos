@@ -511,6 +511,7 @@
         "yazi-clippy": "yazi-clippy",
         "yazi-lazygit": "yazi-lazygit",
         "yazi-nbpreview": "yazi-nbpreview",
+        "yazi-smart-enter": "yazi-smart-enter",
         "yazi-zoom": "yazi-zoom"
       }
     },
@@ -758,6 +759,24 @@
       "original": {
         "owner": "AnirudhG07",
         "repo": "nbpreview.yazi",
+        "type": "github"
+      }
+    },
+    "yazi-smart-enter": {
+      "flake": false,
+      "locked": {
+        "dir": "smart-enter.yazi",
+        "lastModified": 1785033839,
+        "narHash": "sha256-XakVwNsH/OUCHftW8kTL/VNmVnY/S9xjpMXI79GXZPA=",
+        "owner": "yazi-rs",
+        "repo": "plugins",
+        "rev": "4c63ed34bae678b0dfaae44c33bf3fbb5fdda5a6",
+        "type": "github"
+      },
+      "original": {
+        "dir": "smart-enter.yazi",
+        "owner": "yazi-rs",
+        "repo": "plugins",
         "type": "github"
       }
     },

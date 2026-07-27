@@ -12,7 +12,7 @@
     };
     modules = [
       self.darwinModules.hostLeona
-      self.darwinModules.gc
+      # self.darwinModules.gc
       self.darwinModules.kanata
       self.darwinModules.homebrew
       # self.darwinModules.skhd

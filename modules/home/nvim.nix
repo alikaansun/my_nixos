@@ -74,7 +74,10 @@
             statusline.lualine.enable = true;
 
             # Show open buffers as tabs for easy switching in the same session
-            tabline.nvimBufferline.enable = true;
+            tabline.nvimBufferline = {
+              enable = true;
+              setupOpts.options.diagnostics = false;
+            };
 
             extraPlugins = {
               nvim-surround = {
