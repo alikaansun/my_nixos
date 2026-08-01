@@ -3,13 +3,13 @@
   flake.homeModules.git =
     { pkgs, config, ... }:
     {
-      # sops.secrets.git_email = { };
+      sops.secrets.git_email = { };
       programs.git = {
         enable = true;
         signing.format = null;
         settings = {
           user.name = "alik";
-          user.email = "asunnetcoglu@gmail.com"; # config.sops.secrets.git_email.path;
+          user.email =  config.sops.secrets.git_email.path;
           pull.rebase = "true";
           init.defaultBranch = "main";
           core.editor = "nvim";

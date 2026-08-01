@@ -43,6 +43,11 @@
                   desc = "Run lazygit";
                 }
                 {
+                  on = "A";
+                  run = ''shell 'read -rp "New folder: " name && mkdir -p "$name"' --block'';
+                  desc = "Create a folder";
+                }
+                {
                   on = "-";
                   run = "plugin zoom -1";
                   desc = "Zoom out hovered file";

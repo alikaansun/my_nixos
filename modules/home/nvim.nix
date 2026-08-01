@@ -230,11 +230,10 @@
               mappings.format = null;
             };
 
-            # nvf's ruff formatter preset passes `--config "format.indent-width = ..."`,
-            # but current ruff moved indent-width out of the [format] table to the
-            # top level, so that flag is rejected. indent-style and quote-style are
-            # still valid [format] keys, so we pass those explicitly.
-            formatter.conform-nvim.setupOpts.formatters.ruff.args = [
+            # nvf's ruff preset passes `--config "format.indent-width = ..."`, which
+            # current ruff rejects (indent-width is no longer a [format] key). The
+            # preset also defines these args itself, hence mkForce to override it.
+            formatter.conform-nvim.setupOpts.formatters.ruff.args = lib.mkForce [
               "format"
               "--config"
               "format.indent-style = 'tab'"
