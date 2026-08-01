@@ -8,7 +8,7 @@
         enable = true;
         signing.format = null;
         settings = {
-          user.name = "alik";
+          user.name = "alikaansun";
           user.email =  config.sops.secrets.git_email.path;
           pull.rebase = "true";
           init.defaultBranch = "main";
