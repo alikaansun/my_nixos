@@ -16,7 +16,7 @@
           with pkgs;
           [
             btop
-            github-copilot-cli
+            github-cli
             fastfetch
             ffmpeg
             wget

@@ -50,6 +50,7 @@
         keys = {
           prefix = "ctrl+b";
 
+          new_tab = "prefix+t";
           rename_tab = "prefix+r";
           next_workspace = "prefix+shift+n";
           previous_workspace = "prefix+shift+p";
@@ -57,7 +58,7 @@
 
           resize_mode = "";
           reload_config = "";
-          new_workspace = "prefix+shift+w";
+          new_workspace = "prefix+shift+t";
           rename_pane = "prefix+shift+e";
 
           next_agent = "prefix+shift+j";

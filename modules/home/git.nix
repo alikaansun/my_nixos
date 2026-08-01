@@ -13,6 +13,7 @@
           pull.rebase = "true";
           init.defaultBranch = "main";
           core.editor = "nvim";
+          push.autoSetupRemote = "true";
         };
       };
 

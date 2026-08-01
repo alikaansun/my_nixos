@@ -80,6 +80,9 @@
             };
 
             extraPlugins = {
+              kanagawa = {
+                package = pkgs.vimPlugins.kanagawa-nvim;
+              };
               nvim-surround = {
                 package = pkgs.vimPlugins.nvim-surround;
                 setup = "require('nvim-surround').setup()";
@@ -220,7 +223,28 @@
               enable = true;
               lspSignature.enable = true;
               servers.basedpyright.settings.basedpyright.analysis.extraPaths = pythonExtraPaths;
+              # basedpyright has no formatting capability, so the default
+              # <leader>lf -> vim.lsp.buf.format errors on Python files.
+              # Route through conform instead, which has ruff-fix registered
+              # and falls back to the LSP formatter for everything else.
+              mappings.format = null;
             };
+
+            # nvf's ruff formatter preset passes `--config "format.indent-width = ..."`,
+            # but current ruff moved indent-width out of the [format] table to the
+            # top level, so that flag is rejected. indent-style and quote-style are
+            # still valid [format] keys, so we pass those explicitly.
+            formatter.conform-nvim.setupOpts.formatters.ruff.args = [
+              "format"
+              "--config"
+              "format.indent-style = 'tab'"
+              "--config"
+              "format.quote-style = 'double'"
+              "--force-exclude"
+              "--stdin-filename"
+              "$FILENAME"
+              "-"
+            ];
 
             lsp.servers.nixd.settings = {
               nixpkgs.expr = "import ${flakeRef}.inputs.nixpkgs { }";
@@ -252,7 +276,10 @@
                 enable = true;
                 format = {
                   enable = true;
-                  type = [ "ruff-fix" ];
+                  type = [
+                    "ruff-fix"
+                    "ruff"
+                  ];
                 };
                 lsp = {
                   enable = true;
@@ -315,6 +342,48 @@
                 ]
               )
               ++ [
+                {
+                  key = "<leader>wv";
+                  action = "<cmd>vsplit<cr>";
+                  mode = "n";
+                  desc = "Split window vertically";
+                  silent = true;
+                }
+                {
+                  key = "<leader>w-";
+                  action = "<cmd>split<cr>";
+                  mode = "n";
+                  desc = "Split window horizontally";
+                  silent = true;
+                }
+                {
+                  key = "<leader>wc";
+                  action = "<cmd>close<cr>";
+                  mode = "n";
+                  desc = "Close split (keep buffer)";
+                  silent = true;
+                }
+                {
+                  key = "<leader>wo";
+                  action = "<cmd>only<cr>";
+                  mode = "n";
+                  desc = "Close other splits";
+                  silent = true;
+                }
+                {
+                  key = "<leader>w=";
+                  action = "<cmd>wincmd =<cr>";
+                  mode = "n";
+                  desc = "Equalize split sizes";
+                  silent = true;
+                }
+                {
+                  key = "<leader>lf";
+                  action = "<cmd>lua require('conform').format({ async = true, lsp_fallback = true })<cr>";
+                  mode = "n";
+                  desc = "Format buffer";
+                  silent = true;
+                }
                 {
                   key = "<leader>tp";
                   action = "<cmd>TypstPreviewToggle<cr>";
