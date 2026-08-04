@@ -17,6 +17,108 @@
         "${config.home.homeDirectory}/Documents/Repos/rf_analyzer/src"
         "${config.home.homeDirectory}/Documents/Repos/Imodulator/src"
       ];
+
+      # Keymap builders: `key` defaults to normal-mode + silent; `keyM` takes
+      # explicit mode(s) for visual/terminal binds.
+      keyM = mode: k: action: desc: {
+        inherit mode action desc;
+        key = k;
+        silent = true;
+      };
+      key = keyM "n";
+
+      # <leader>b<N> jumps to the Nth buffer in the bufferline.
+      bufferKeys = builtins.genList (
+        i:
+        key "<leader>b${toString (i + 1)}" "<cmd>BufferLineGoToBuffer ${toString (i + 1)}<cr>"
+          "Go to buffer ${toString (i + 1)}"
+      ) 9;
+
+      # <C-h/j/k/l> window navigation; mode "t" makes it work from inside
+      # terminal buffers (toggleterm, Claude) without <C-\><C-n>.
+      windowNavKeys =
+        builtins.map (dir: keyM [ "n" "t" ] "<C-${dir}>" "<cmd>wincmd ${dir}<cr>" "Window ${dir}")
+          [
+            "h"
+            "j"
+            "k"
+            "l"
+          ];
+
+      # Fold group under <leader>c: each suffix mirrors the native z-command
+      # (swap `z` for `<leader>c`).
+      foldKeys = builtins.map ({ s, desc }: key "<leader>c${s}" "z${s}" desc) [
+        {
+          s = "a";
+          desc = "Toggle fold under cursor";
+        }
+        {
+          s = "c";
+          desc = "Close fold under cursor";
+        }
+        {
+          s = "o";
+          desc = "Open fold under cursor";
+        }
+        {
+          s = "M";
+          desc = "Close all folds";
+        }
+        {
+          s = "R";
+          desc = "Open all folds";
+        }
+        {
+          s = "m";
+          desc = "Fold more (one level)";
+        }
+        {
+          s = "r";
+          desc = "Fold less (one level)";
+        }
+        {
+          s = "j";
+          desc = "Jump to next fold";
+        }
+        {
+          s = "k";
+          desc = "Jump to previous fold";
+        }
+      ];
+
+      nvimKeymaps =
+        bufferKeys
+        ++ [
+          (key "<leader>bx" "<cmd>lua Snacks.bufdelete()<cr>" "Close buffer")
+          (key "<leader>bt" "<cmd>enew<cr>" "New buffer")
+        ]
+        ++ windowNavKeys
+        ++ [
+          (key "<leader>wv" "<cmd>vsplit<cr>" "Split window vertically")
+          (key "<leader>w-" "<cmd>split<cr>" "Split window horizontally")
+          (key "<leader>wc" "<cmd>close<cr>" "Close split (keep buffer)")
+          (key "<leader>wo" "<cmd>only<cr>" "Close other splits")
+          (key "<leader>w=" "<cmd>wincmd =<cr>" "Equalize split sizes")
+          (key "<leader>lf" "<cmd>lua require('conform').format({ async = true, lsp_fallback = true })<cr>"
+            "Format buffer"
+          )
+        ]
+        ++ foldKeys
+        ++ [
+          (key "<leader>tp" "<cmd>TypstPreviewToggle<cr>" "Toggle Typst preview")
+          (key "<leader>?" "<cmd>Telescope keymaps<cr>" "Search keymaps")
+          (key "<leader>e" "<cmd>lua Snacks.explorer()<cr>" "Toggle file tree")
+          (key "<leader>ac" "<cmd>ClaudeCode<cr>" "Toggle Claude")
+          (keyM [ "n" "v" ] "<leader>as" "<cmd>ClaudeCodeSend<cr>" "Send to Claude")
+          (keyM [ "n" "v" ] "<leader>aa" "<cmd>ClaudeCodeDiffAccept<cr>" "Accept diff")
+          (keyM [ "n" "v" ] "<leader>ad" "<cmd>ClaudeCodeDiffDeny<cr>" "Deny diff")
+          (key "<leader>yp" "<cmd>let @+ = expand('%:p')<cr>" "Yank absolute file path")
+          (key "<leader>yr" "<cmd>let @+ = expand('%:.')<cr>" "Yank relative file path")
+          (keyM "v" "<leader>y" "\"+y" "Yank selection to clipboard")
+          (key "<leader>yy" "\"+yy" "Yank line to clipboard")
+          (key "<leader>ya" "<cmd>%y+<cr>" "Yank whole file to clipboard")
+          (keyM [ "n" "v" ] "<leader>p" "\"+p" "Paste from clipboard")
+        ];
     in
     {
       imports = [ inputs.nvf.homeManagerModules.default ];
@@ -50,15 +152,18 @@
             options = {
               smartindent = false;
               autoindent = false;
-              # Open all folds when a file loads (no collapsed markdown headers)
+              # Treesitter-driven folds so <leader>c can collapse functions.
+              foldmethod = "expr";
+              foldexpr = "v:lua.vim.treesitter.foldexpr()";
+              # Open all folds when a file loads (nothing collapsed until asked)
               foldlevel = 99;
               foldlevelstart = 99;
             };
             # --- 2. UI & Theming ---
             theme = {
-              enable = true;
-              name = "gruvbox";
-              style = "dark";
+              enable = false;
+              # name = "gruvbox";
+              # style = "dark";
             };
 
             ui = {
@@ -80,8 +185,22 @@
             };
 
             extraPlugins = {
-              kanagawa = {
-                package = pkgs.vimPlugins.kanagawa-nvim;
+              # VSCode "Dark Modern" replica. The plugin palette already
+              # matches Dark Modern exactly; only the foreground differs
+              # (#D4D4D4 vs Dark Modern's #CCCCCC), hence the override.
+              vscode-nvim = {
+                package = pkgs.vimPlugins.vscode-nvim;
+                setup = ''
+                  require("vscode").setup({
+                    transparent = true,
+                    color_overrides = { vscFront = "#CCCCCC" },
+                  })
+                  require("vscode").load()
+                  local border_green = "#89D185"
+                  vim.api.nvim_set_hl(0, "WinSeparator", { fg = border_green })
+                  vim.api.nvim_set_hl(0, "FloatBorder", { fg = border_green })
+                  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+                '';
               };
               nvim-surround = {
                 package = pkgs.vimPlugins.nvim-surround;
@@ -91,7 +210,7 @@
                 package = pkgs.vimPlugins.smear-cursor-nvim;
                 setup = ''
                   require("smear_cursor").setup({
-                    cursor_color = "#fbf1c7",
+                    cursor_color = "#AEAFAD",
                     stiffness = 0.8,
                     trailing_stiffness = 0.6,
                     stiffness_insert_mode = 0.9,
@@ -170,14 +289,21 @@
               mappings = {
                 open = "<c-t>";
               };
+              setupOpts.shade_terminals = false;
             };
 
             # --- 4. Utilities & Git ---
             binds.whichKey.enable = true; # Keybind helper popups
-            git.enable = true;
-
-            notes.obsidian = {
+            git = {
               enable = true;
+              # Free up the <leader>c prefix (used for folding) by moving the
+              # git-conflict resolvers under <leader>gc.
+              git-conflict.mappings = {
+                ours = "<leader>gco";
+                theirs = "<leader>gct";
+                both = "<leader>gcb";
+                none = "<leader>gc0";
+              };
             };
 
             # --- 5. LSP, Autocomplete & Core Language Features ---
@@ -231,14 +357,15 @@
             };
 
             # nvf's ruff preset passes `--config "format.indent-width = ..."`, which
-            # current ruff rejects (indent-width is no longer a [format] key). The
-            # preset also defines these args itself, hence mkForce to override it.
+            # current ruff rejects (indent-width is no longer a [format] key), hence
+            # mkForce to override the preset. No `--config` style flags of our own: ruff
+            # auto-discovers each project's [tool.ruff]/ruff.toml by walking up from the
+            # file, so project config wins (CLI --config would override it). Absent a
+            # project config it falls back to ruff defaults (4-space, double quotes).
+            # --force-exclude keeps ruff honoring exclude patterns for the explicitly
+            # named file conform passes via --stdin-filename.
             formatter.conform-nvim.setupOpts.formatters.ruff.args = lib.mkForce [
               "format"
-              "--config"
-              "format.indent-style = 'tab'"
-              "--config"
-              "format.quote-style = 'double'"
               "--force-exclude"
               "--stdin-filename"
               "$FILENAME"
@@ -295,198 +422,7 @@
               };
             };
 
-            keymaps =
-              # <leader>b<N> jumps to the Nth buffer in the bufferline
-              (builtins.genList (i: {
-                key = "<leader>b${toString (i + 1)}";
-                action = "<cmd>BufferLineGoToBuffer ${toString (i + 1)}<cr>";
-                mode = "n";
-                desc = "Go to buffer ${toString (i + 1)}";
-                silent = true;
-              }) 9)
-              ++ [
-                {
-                  key = "<leader>bx";
-                  action = "<cmd>lua Snacks.bufdelete()<cr>";
-                  mode = "n";
-                  desc = "Close buffer";
-                  silent = true;
-                }
-                {
-                  key = "<leader>bt";
-                  action = "<cmd>enew<cr>";
-                  mode = "n";
-                  desc = "New buffer";
-                  silent = true;
-                }
-              ]
-              # <C-h/j/k/l> window navigation; mode "t" makes it work from
-              # inside terminal buffers (toggleterm, Claude) without <C-\><C-n>
-              ++ (map
-                (dir: {
-                  key = "<C-${dir}>";
-                  action = "<cmd>wincmd ${dir}<cr>";
-                  mode = [
-                    "n"
-                    "t"
-                  ];
-                  desc = "Window ${dir}";
-                  silent = true;
-                })
-                [
-                  "h"
-                  "j"
-                  "k"
-                  "l"
-                ]
-              )
-              ++ [
-                {
-                  key = "<leader>wv";
-                  action = "<cmd>vsplit<cr>";
-                  mode = "n";
-                  desc = "Split window vertically";
-                  silent = true;
-                }
-                {
-                  key = "<leader>w-";
-                  action = "<cmd>split<cr>";
-                  mode = "n";
-                  desc = "Split window horizontally";
-                  silent = true;
-                }
-                {
-                  key = "<leader>wc";
-                  action = "<cmd>close<cr>";
-                  mode = "n";
-                  desc = "Close split (keep buffer)";
-                  silent = true;
-                }
-                {
-                  key = "<leader>wo";
-                  action = "<cmd>only<cr>";
-                  mode = "n";
-                  desc = "Close other splits";
-                  silent = true;
-                }
-                {
-                  key = "<leader>w=";
-                  action = "<cmd>wincmd =<cr>";
-                  mode = "n";
-                  desc = "Equalize split sizes";
-                  silent = true;
-                }
-                {
-                  key = "<leader>lf";
-                  action = "<cmd>lua require('conform').format({ async = true, lsp_fallback = true })<cr>";
-                  mode = "n";
-                  desc = "Format buffer";
-                  silent = true;
-                }
-                {
-                  key = "<leader>tp";
-                  action = "<cmd>TypstPreviewToggle<cr>";
-                  mode = "n";
-                  desc = "Toggle Typst preview";
-                  silent = true;
-                }
-                {
-                  key = "<leader>?";
-                  action = "<cmd>Telescope keymaps<cr>";
-                  mode = "n";
-                  desc = "Search keymaps";
-                  silent = true;
-                }
-                {
-                  key = "<leader>e";
-                  action = "<cmd>lua Snacks.explorer()<cr>";
-                  mode = "n";
-                  desc = "Toggle file tree";
-                  silent = true;
-                }
-                {
-                  key = "<leader>ac";
-                  action = "<cmd>ClaudeCode<cr>";
-                  mode = "n";
-                  desc = "Toggle Claude";
-                  silent = true;
-                }
-                {
-                  key = "<leader>as";
-                  action = "<cmd>ClaudeCodeSend<cr>";
-                  mode = [
-                    "n"
-                    "v"
-                  ];
-                  desc = "Send to Claude";
-                  silent = true;
-                }
-                {
-                  key = "<leader>aa";
-                  action = "<cmd>ClaudeCodeDiffAccept<cr>";
-                  mode = [
-                    "n"
-                    "v"
-                  ];
-                  desc = "Accept diff";
-                  silent = true;
-                }
-                {
-                  key = "<leader>ad";
-                  action = "<cmd>ClaudeCodeDiffDeny<cr>";
-                  mode = [
-                    "n"
-                    "v"
-                  ];
-                  desc = "Deny diff";
-                  silent = true;
-                }
-                {
-                  key = "<leader>yp";
-                  action = "<cmd>let @+ = expand('%:p')<cr>";
-                  mode = "n";
-                  desc = "Yank absolute file path";
-                  silent = true;
-                }
-                {
-                  key = "<leader>yr";
-                  action = "<cmd>let @+ = expand('%:.')<cr>";
-                  mode = "n";
-                  desc = "Yank relative file path";
-                  silent = true;
-                }
-                {
-                  key = "<leader>y";
-                  action = "\"+y";
-                  mode = "v";
-                  desc = "Yank selection to clipboard";
-                  silent = true;
-                }
-                {
-                  key = "<leader>yy";
-                  action = "\"+yy";
-                  mode = "n";
-                  desc = "Yank line to clipboard";
-                  silent = true;
-                }
-                {
-                  key = "<leader>ya";
-                  action = "<cmd>%y+<cr>";
-                  mode = "n";
-                  desc = "Yank whole file to clipboard";
-                  silent = true;
-                }
-                {
-                  key = "<leader>p";
-                  action = "\"+p";
-                  mode = [
-                    "n"
-                    "v"
-                  ];
-                  desc = "Paste from clipboard";
-                  silent = true;
-                }
-              ];
+            keymaps = nvimKeymaps;
 
             #End of Vim
           };

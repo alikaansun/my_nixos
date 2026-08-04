@@ -3,6 +3,7 @@
   flake.homeModules.git =
     { pkgs, config, ... }:
     {
+      sops.secrets.git_work_email = { };
       programs.git = {
         enable = true;
         signing.format = null;
@@ -14,6 +15,12 @@
           core.editor = "nvim";
           push.autoSetupRemote = "true";
         };
+        includes = [
+          {
+            condition = "hasconfig:remote.*.url:git@gitlab.tue.nl:**/**";
+            path = config.sops.secrets.git_work_email.path;
+          }
+        ];
       };
 
       programs.lazygit = {

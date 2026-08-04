@@ -24,7 +24,7 @@
         };
 
         theme = {
-          name = "gruvbox";
+          name = "kanagawa";
           auto_switch = false;
         };
 

@@ -166,36 +166,36 @@
               cursor-style = "bar";
               cursor-style-blink = true;
 
-              # Colors (Gruvbox Material Dark)
-              background = "32302f";
-              foreground = "d4be98";
+              # Colors (Kanagawa Wave)
+              background = "1f1f28";
+              foreground = "dcd7ba";
 
               palette = [
                 # Normal
-                "0=282828" # black
-                "1=ea6962" # red
-                "2=a9b665" # green
-                "3=d8a657" # yellow
-                "4=7daea3" # blue
-                "5=d3869b" # magenta
-                "6=89b482" # cyan
-                "7=d4be98" # white
+                "0=090618" # black
+                "1=c34043" # red
+                "2=76946a" # green
+                "3=c0a36e" # yellow
+                "4=7e9cd8" # blue
+                "5=957fb8" # magenta
+                "6=6a9589" # cyan
+                "7=c8c093" # white
                 # Bright
-                "8=7c6f64" # bright black
-                "9=ea6962" # bright red
-                "10=a9b665" # bright green
-                "11=d8a657" # bright yellow
-                "12=7daea3" # bright blue
-                "13=d3869b" # bright magenta
-                "14=89b482" # bright cyan
-                "15=d4be98" # bright white
+                "8=727169" # bright black
+                "9=e82424" # bright red
+                "10=98bb6c" # bright green
+                "11=e6c384" # bright yellow
+                "12=7fb4ca" # bright blue
+                "13=938aa9" # bright magenta
+                "14=7aa89f" # bright cyan
+                "15=dcd7ba" # bright white
               ];
 
-              cursor-color = "fbf1c7";
-              cursor-text = "32302f";
+              cursor-color = "c8c093";
+              cursor-text = "1f1f28";
               adjust-cursor-thickness = 1;
-              selection-background = "d4be98";
-              selection-foreground = "32302f";
+              selection-background = "2d4f67";
+              selection-foreground = "dcd7ba";
 
               keybind = [
                 "ctrl+g=text:lazygit\\n"

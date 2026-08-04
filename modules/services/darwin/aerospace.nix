@@ -190,7 +190,7 @@
 
       services.jankyborders = {
         enable = true;
-        active_color = "0xfffabd2f"; # gruvbox dark yellow
+        active_color = "0xff0078d4"; # vscode dark modern accent blue
         width = 3.0;
         hidpi = true;
         order = "above";
