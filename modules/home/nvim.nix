@@ -132,6 +132,7 @@
         mermaid-cli
         tectonic
         trash-cli
+        python3Packages.pylatexenc
       ];
 
       programs.nvf = {
@@ -223,7 +224,7 @@
                 package = pkgs.vimPlugins.snacks-nvim;
                 setup = ''
                   require("snacks").setup({
-                    image = { enabled = true },
+                    image = { enabled = true, math = { enabled = false } },
                     explorer = { enabled = true },
                     picker = { enabled = true },
                     indent = { enabled = true },

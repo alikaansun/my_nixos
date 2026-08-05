@@ -18,6 +18,7 @@
             nbpreview = inputs.yazi-nbpreview;
             zoom = inputs.yazi-zoom;
             smart-enter = inputs.yazi-smart-enter;
+            preview-typst = inputs.yazi-preview-typst;
 
           }
           // pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
@@ -102,6 +103,16 @@
                 {
                   url = "*.ipynb";
                   run = "nbpreview";
+                }
+                {
+                  url = "*.typ";
+                  run = "preview-typst";
+                }
+              ];
+              prepend_preloaders = [
+                {
+                  url = "*.typ";
+                  run = "preview-typst";
                 }
               ];
             };

@@ -74,6 +74,10 @@
       url = "github:yazi-rs/plugins?dir=smart-enter.yazi";
       flake = false;
     };
+    yazi-preview-typst = {
+      url = "github:AminurAlam/yazi-plugins?dir=preview-typst.yazi";
+      flake = false;
+    };
 
   };
 
