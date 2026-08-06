@@ -104,6 +104,7 @@ rc2nix
         ├── kanata.nix
         ├── localai.nix
         ├── miniflux.nix
+        ├── navidrome.nix
         ├── nextcloud.nix
         ├── paperless.nix
         ├── rustdeskServer.nix

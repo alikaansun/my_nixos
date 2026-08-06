@@ -13,6 +13,8 @@
       systemAttr = if pkgs.stdenv.isDarwin then "darwinConfigurations" else "nixosConfigurations";
       flakeRef = "(builtins.getFlake \"${dotfilesFlake}\")";
 
+      borderGreen = "#89D185";
+
       pythonExtraPaths = [
         "${config.home.homeDirectory}/Documents/Repos/rf_analyzer/src"
         "${config.home.homeDirectory}/Documents/Repos/Imodulator/src"
@@ -89,6 +91,7 @@
       nvimKeymaps =
         bufferKeys
         ++ [
+          (key "<leader><leader>" "<cmd>Telescope buffers<cr>" "Find buffer")
           (key "<leader>bx" "<cmd>lua Snacks.bufdelete()<cr>" "Close buffer")
           (key "<leader>bt" "<cmd>enew<cr>" "New buffer")
         ]
@@ -197,9 +200,8 @@
                     color_overrides = { vscFront = "#CCCCCC" },
                   })
                   require("vscode").load()
-                  local border_green = "#89D185"
-                  vim.api.nvim_set_hl(0, "WinSeparator", { fg = border_green })
-                  vim.api.nvim_set_hl(0, "FloatBorder", { fg = border_green })
+                  vim.api.nvim_set_hl(0, "WinSeparator", { fg = "${borderGreen}" })
+                  vim.api.nvim_set_hl(0, "FloatBorder", { fg = "${borderGreen}" })
                   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
                 '';
               };

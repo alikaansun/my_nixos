@@ -81,6 +81,7 @@
         vesktop
         fastfetch
         duti # set default apps for file types
+        util-linux
       ];
 
       # Make VLC the default player for common video formats
@@ -158,7 +159,7 @@
           AppleShowAllExtensions = true;
           AppleShowAllFiles = true;
           ShowPathbar = true;
-          FXPreferredViewStyle = "clmv";
+          FXPreferredViewStyle = "Nlsv";
           FXRemoveOldTrashItems = true;
         };
         loginwindow.LoginwindowText = "AliKaanSun";
