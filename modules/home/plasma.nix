@@ -131,7 +131,6 @@
           "services/obsidian.desktop"."_launch" = "Ctrl+Alt+O";
           "services/org.keepassxc.KeePassXC.desktop"."_launch" = "Ctrl+Alt+K";
           "services/steam.desktop"."_launch" = "Ctrl+Alt+S";
-          "services/thunderbird.desktop"."_launch" = "Ctrl+Alt+M";
 
           # Optional: keep the alternate terminal binding if you still want it
           # "services/kitty.desktop"."New" = "Ctrl+Alt+T";
@@ -142,7 +141,67 @@
           "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Ctrl+Print";
         };
 
+        window-rules = [
+          {
+            description = "Zotero -> Desktop 1";
+            match.window-class = {
+              value = "zotero";
+              type = "substring";
+            };
+            apply.desktops = "Desktop_1";
+          }
+          {
+            description = "Obsidian -> Desktop 1";
+            match.window-class = {
+              value = "obsidian";
+              type = "substring";
+            };
+            apply.desktops = "Desktop_1";
+          }
+          {
+            description = "Terminal (Ghostty) -> Desktop 2";
+            match.window-class = {
+              value = "com.mitchellh.ghostty";
+              type = "substring";
+            };
+            apply.desktops = "Desktop_2";
+          }
+          {
+            description = "VSCode -> Desktop 2";
+            match.window-class = {
+              value = "Code";
+              type = "exact";
+            };
+            apply.desktops = "Desktop_2";
+          }
+          {
+            description = "Steam -> Desktop 3";
+            match.window-class = {
+              value = "steam";
+              type = "substring";
+            };
+            apply.desktops = "Desktop_3";
+          }
+          {
+            description = "Vesktop (Discord) -> Desktop 4";
+            match.window-class = {
+              value = "Vesktop";
+              type = "exact";
+            };
+            apply.desktops = "Desktop_4";
+          }
+          {
+            description = "Spotify -> Desktop 5";
+            match.window-class = {
+              value = "spotify";
+              type = "exact";
+            };
+            apply.desktops = "Desktop_5";
+          }
+        ];
+
         configFile = {
+          "kwinrc"."Windows"."Placement" = "Smart";
           "kwinrc"."Plugins"."translucencyEnabled" = true;
           "kwinrc"."Effect-translucency"."DropdownMenus" = 80;
           "kwinrc"."Effect-translucency"."IndividualMenuConfig" = true;
