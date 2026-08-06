@@ -326,6 +326,33 @@
             treesitter = {
               enable = true;
               indent.enable = true;
+              # Upstream nix injections already cover script/pre*/post*, the
+              # write*Script builders, and a `# <lang>` comment above a string.
+              # These add the attribute names this config embeds code in.
+              queries = [
+                {
+                  type = "injections";
+                  filetypes = [ "nix" ];
+                  loadtype = "extends";
+                  query = ''
+                    (binding attrpath: (attrpath (identifier) @_p)
+                      expression: (_ (string_fragment) @injection.content)
+                      (#eq? @_p "setup")
+                      (#set! injection.language "lua") (#set! injection.combined))
+
+                    (binding attrpath: (attrpath (identifier) @_p)
+                      expression: (attrset_expression (binding_set (binding
+                        expression: (_ (string_fragment) @injection.content))))
+                      (#eq? @_p "luaConfigRC")
+                      (#set! injection.language "lua"))
+
+                    (binding attrpath: (attrpath (identifier) @_p)
+                      expression: (_ (string_fragment) @injection.content)
+                      (#any-of? @_p "initContent" "config" "text")
+                      (#set! injection.language "bash") (#set! injection.combined))
+                  '';
+                }
+              ];
               grammars =
                 with pkgs.vimPlugins.nvim-treesitter.builtGrammars;
                 [
