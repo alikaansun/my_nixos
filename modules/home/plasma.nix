@@ -170,7 +170,7 @@
             description = "VSCode -> Desktop 2";
             match.window-class = {
               value = "Code";
-              type = "exact";
+              type = "substring";
             };
             apply.desktops = "Desktop_2";
           }
@@ -186,7 +186,7 @@
             description = "Vesktop (Discord) -> Desktop 4";
             match.window-class = {
               value = "Vesktop";
-              type = "exact";
+              type = "substring";
             };
             apply.desktops = "Desktop_4";
           }
@@ -194,7 +194,7 @@
             description = "Spotify -> Desktop 5";
             match.window-class = {
               value = "spotify";
-              type = "exact";
+              type = "substring";
             };
             apply.desktops = "Desktop_5";
           }

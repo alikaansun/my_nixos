@@ -23,6 +23,7 @@
       sops.age.keyFile = "/home/alik/.config/sops/age/keys.txt";
 
       home.pointerCursor = {
+        enable = true;
         gtk.enable = true;
         package = pkgs.vanilla-dmz;
         name = "Vanilla-DMZ";
@@ -30,6 +31,7 @@
 
       programs.ssh = {
         enable = true;
+        enableDefaultConfig = false;
       };
 
       home.packages = with pkgs; [
