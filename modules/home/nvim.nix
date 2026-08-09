@@ -15,6 +15,8 @@
 
       borderGreen = "#89D185";
 
+      jupynvimPlugin = pkgs.callPackage ../_files/jupynvim { };
+
       pythonExtraPaths = [
         "${config.home.homeDirectory}/Documents/Repos/rf_analyzer/src"
         "${config.home.homeDirectory}/Documents/Repos/Imodulator/src"
@@ -91,7 +93,6 @@
       nvimKeymaps =
         bufferKeys
         ++ [
-          (key "<leader><leader>" "<cmd>Telescope buffers<cr>" "Find buffer")
           (key "<leader>bx" "<cmd>lua Snacks.bufdelete()<cr>" "Close buffer")
           (key "<leader>bt" "<cmd>enew<cr>" "New buffer")
         ]
@@ -147,6 +148,7 @@
             # --- 1. Core & Globals ---
             viAlias = true;
             vimAlias = true;
+            lineNumberMode = "number";
 
             # Set Space as the leader key
             globals = {
@@ -189,9 +191,6 @@
             };
 
             extraPlugins = {
-              # VSCode "Dark Modern" replica. The plugin palette already
-              # matches Dark Modern exactly; only the foreground differs
-              # (#D4D4D4 vs Dark Modern's #CCCCCC), hence the override.
               vscode-nvim = {
                 package = pkgs.vimPlugins.vscode-nvim;
                 setup = ''
@@ -257,6 +256,10 @@
                 package = pkgs.vimPlugins.claudecode-nvim;
                 setup = "require('claudecode').setup()";
               };
+              jupynvim = {
+                package = jupynvimPlugin;
+                setup = "require('jupynvim').setup({})";
+              };
             };
 
             luaConfigRC = {
@@ -281,6 +284,11 @@
                   end,
                 })
               '';
+              autoSave = ''
+                vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave", "WinLeave" }, {
+                  command = "silent! wall",
+                })
+              '';
             };
 
             # --- 3. Navigation & Terminal ---
@@ -299,8 +307,6 @@
             binds.whichKey.enable = true; # Keybind helper popups
             git = {
               enable = true;
-              # Free up the <leader>c prefix (used for folding) by moving the
-              # git-conflict resolvers under <leader>gc.
               git-conflict.mappings = {
                 ours = "<leader>gco";
                 theirs = "<leader>gct";
@@ -402,6 +408,23 @@
               "-"
             ];
 
+            # Format nix with the same treefmt that `nix fmt` runs, rather than
+            # nvf's nixfmt preset: that one passes --indent=<shiftwidth>, so
+            # Neovim's default of 8 reindents whole files away from `nix fmt`.
+            # cwd follows the buffer so treefmt resolves the right tree root.
+            formatter.conform-nvim.setupOpts = {
+              formatters.treefmt = {
+                command = lib.getExe pkgs.nixfmt-tree;
+                args = [
+                  "--stdin"
+                  "$FILENAME"
+                ];
+                stdin = true;
+                cwd = lib.generators.mkLuaInline "function(self, ctx) return ctx.dirname end";
+              };
+              formatters_by_ft.nix = [ "treefmt" ];
+            };
+
             lsp.servers.nixd.settings = {
               nixpkgs.expr = "import ${flakeRef}.inputs.nixpkgs { }";
               formatting.command = [ "nixfmt" ];
@@ -419,10 +442,8 @@
 
               nix = {
                 enable = true;
-                format = {
-                  enable = true;
-                  type = [ "nixfmt" ];
-                };
+                # Formatting comes from the treefmt entry above, not an nvf preset.
+                format.enable = false;
                 lsp.enable = true;
                 lsp.servers = [ "nixd" ];
               };

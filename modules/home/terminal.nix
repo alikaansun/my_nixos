@@ -159,7 +159,7 @@
               # title = "Ghostty";
 
               # Font
-              font-family = "MesloLGM Nerd Font Mono";
+             font-family = if pkgs.stdenv.isDarwin then "Menlo" else "MesloLGM Nerd Font Mono";
               font-size = if pkgs.stdenv.isDarwin then 13 else 10;
 
               # Cursor
