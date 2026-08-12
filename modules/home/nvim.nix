@@ -122,6 +122,10 @@
           (key "<leader>yy" "\"+yy" "Yank line to clipboard")
           (key "<leader>ya" "<cmd>%y+<cr>" "Yank whole file to clipboard")
           (keyM [ "n" "v" ] "<leader>p" "\"+p" "Paste from clipboard")
+          (key "<A-Down>" "<cmd>m .+1<cr>==" "Move line down")
+          (key "<A-Up>" "<cmd>m .-2<cr>==" "Move line up")
+          (keyM "v" "<A-Down>" ":m '>+1<cr>gv=gv" "Move selection down")
+          (keyM "v" "<A-Up>" ":m '<-2<cr>gv=gv" "Move selection up")
         ];
     in
     {
