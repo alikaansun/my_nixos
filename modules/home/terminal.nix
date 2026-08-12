@@ -172,7 +172,7 @@
 
               palette = [
                 # Normal
-                "0=090618" # black
+                "0=54546d" # black
                 "1=c34043" # red
                 "2=76946a" # green
                 "3=c0a36e" # yellow

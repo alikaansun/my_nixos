@@ -256,6 +256,10 @@
                 package = pkgs.vimPlugins.claudecode-nvim;
                 setup = "require('claudecode').setup()";
               };
+              telescope-media-files = {
+                package = pkgs.vimPlugins.telescope-media-files-nvim;
+                setup = "require('telescope').load_extension('media_files')";
+              };
               jupynvim = {
                 package = jupynvimPlugin;
                 setup = "require('jupynvim').setup({})";
@@ -287,6 +291,11 @@
               autoSave = ''
                 vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave", "WinLeave" }, {
                   command = "silent! wall",
+                })
+              '';
+              autoRead = ''
+                vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "TermClose", "TermLeave" }, {
+                  command = "silent! checktime",
                 })
               '';
             };
