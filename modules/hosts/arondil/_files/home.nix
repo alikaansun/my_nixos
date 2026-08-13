@@ -29,6 +29,7 @@ in
   home.packages = with pkgs; [
     # Creative apps
     pythonEnv
+    uv
     blender # 3D modeling and animation
     gimp # Image editing
     # texliveFull

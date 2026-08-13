@@ -148,7 +148,7 @@
         enable = true;
         enable32Bit = true;
       };
-
+      programs.nix-ld.enable = true;
       services.xserver.videoDrivers = [ "amdgpu" ];
       # services.xserver.videoDrivers = ["nvidia"];
       # hardware.nvidia = {
