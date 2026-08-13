@@ -25,9 +25,16 @@ in
   sops.age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
   sops.defaultSopsFile = ../../../secrets/secrets.yaml;
 
+  sops.secrets.arondil_ipv4 = { };
   sops.secrets.ssh_work_hostname = { };
   sops.secrets.ssh_work_user = { };
 
+  sops.templates."ssh-arondil-config".content = ''
+    Host arondil
+      HostName ${config.sops.placeholder.arondil_ipv4}
+      User alik
+      RequestTTY yes
+  '';
   sops.templates."ssh-work-config".content = ''
     Host work
       HostName ${config.sops.placeholder.ssh_work_hostname}
@@ -77,6 +84,9 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    includes = [ config.sops.templates."ssh-work-config".path ];
+    includes = [
+      config.sops.templates."ssh-arondil-config".path
+      config.sops.templates."ssh-work-config".path
+    ];
   };
 }
