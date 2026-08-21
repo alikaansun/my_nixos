@@ -169,9 +169,13 @@
               excel = [
                 {
                   run =
-                    if pkgs.stdenv.hostPlatform.isDarwin then "open -a 'Microsoft Excel' %1" else "onlyoffice-desktopeditors %1";
+                    if pkgs.stdenv.hostPlatform.isDarwin then
+                      "open -a 'Microsoft Excel' %1"
+                    else
+                      "onlyoffice-desktopeditors %1";
                   orphan = true;
-                  desc = if pkgs.stdenv.hostPlatform.isDarwin then "Open in Microsoft Excel" else "Open in OnlyOffice";
+                  desc =
+                    if pkgs.stdenv.hostPlatform.isDarwin then "Open in Microsoft Excel" else "Open in OnlyOffice";
                 }
               ];
             };
