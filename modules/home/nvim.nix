@@ -213,9 +213,7 @@
               nextnano-nvim = {
                 package = nextnanoPlugin;
               };
-              # nextnano.nvim serves its keyword tree through omnifunc, and
-              # nvim-cmp only queries the sources it is configured with, so
-              # bridge the two for that filetype.
+
               cmp-omni = {
                 package = pkgs.vimPlugins.cmp-omni;
                 setup = ''
@@ -295,11 +293,7 @@
                   }
                 }
               '';
-              # Treesitter's nix indent queries misjudge let/in and attrsets,
-              # producing erratic indentation on <CR> that other filetypes'
-              # grammars don't suffer from. Fall back to plain autoindent
-              # (copy previous line) for nix; nixfmt fixes real formatting
-              # on save anyway.
+
               nixIndentFix = ''
                 vim.api.nvim_create_autocmd("FileType", {
                   pattern = "nix",
@@ -413,22 +407,13 @@
             lsp = {
               enable = true;
               lspSignature.enable = true;
-              servers.basedpyright.settings.basedpyright.analysis.extraPaths = pythonExtraPaths;
-              # basedpyright has no formatting capability, so the default
-              # <leader>lf -> vim.lsp.buf.format errors on Python files.
-              # Route through conform instead, which has ruff-fix registered
-              # and falls back to the LSP formatter for everything else.
+              servers.basedpyright.settings.basedpyright.analysis = {
+                extraPaths = pythonExtraPaths;
+                typeCheckingMode = "standard";
+              };
               mappings.format = null;
             };
 
-            # nvf's ruff preset passes `--config "format.indent-width = ..."`, which
-            # current ruff rejects (indent-width is no longer a [format] key), hence
-            # mkForce to override the preset. No `--config` style flags of our own: ruff
-            # auto-discovers each project's [tool.ruff]/ruff.toml by walking up from the
-            # file, so project config wins (CLI --config would override it). Absent a
-            # project config it falls back to ruff defaults (4-space, double quotes).
-            # --force-exclude keeps ruff honoring exclude patterns for the explicitly
-            # named file conform passes via --stdin-filename.
             formatter.conform-nvim.setupOpts.formatters.ruff.args = lib.mkForce [
               "format"
               "--force-exclude"
@@ -437,10 +422,6 @@
               "-"
             ];
 
-            # Format nix with the same treefmt that `nix fmt` runs, rather than
-            # nvf's nixfmt preset: that one passes --indent=<shiftwidth>, so
-            # Neovim's default of 8 reindents whole files away from `nix fmt`.
-            # cwd follows the buffer so treefmt resolves the right tree root.
             formatter.conform-nvim.setupOpts = {
               formatters.treefmt = {
                 command = lib.getExe pkgs.nixfmt-tree;
