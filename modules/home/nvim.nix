@@ -16,6 +16,7 @@
       borderGreen = "#89D185";
 
       jupynvimPlugin = pkgs.callPackage ../_files/jupynvim { };
+      nextnanoPlugin = pkgs.callPackage inputs.nextnano-nvim { };
 
       pythonExtraPaths = [
         "${config.home.homeDirectory}/Documents/Repos/rf_analyzer/src"
@@ -116,11 +117,16 @@
           (keyM [ "n" "v" ] "<leader>as" "<cmd>ClaudeCodeSend<cr>" "Send to Claude")
           (keyM [ "n" "v" ] "<leader>aa" "<cmd>ClaudeCodeDiffAccept<cr>" "Accept diff")
           (keyM [ "n" "v" ] "<leader>ad" "<cmd>ClaudeCodeDiffDeny<cr>" "Deny diff")
-          (key "<leader>yp" "<cmd>let @+ = expand('%:p')<cr>" "Yank absolute file path")
-          (key "<leader>yr" "<cmd>let @+ = expand('%:.')<cr>" "Yank relative file path")
-          (keyM "v" "<leader>y" "\"+y" "Yank selection to clipboard")
-          (key "<leader>yy" "\"+yy" "Yank line to clipboard")
-          (key "<leader>ya" "<cmd>%y+<cr>" "Yank whole file to clipboard")
+          (key "<leader>yp" "<cmd>let @\" = expand('%:p')<cr>" "Yank absolute file path")
+          (key "<leader>yr" "<cmd>let @\" = expand('%:.')<cr>" "Yank relative file path")
+          (keyM "v" "<leader>yy" "y" "Yank selection")
+          (key "<leader>yy" "yy" "Yank line")
+          (key "<leader>ya" "<cmd>%y<cr>" "Yank whole file")
+          (key "<leader>ycp" "<cmd>let @+ = expand('%:p')<cr>" "Yank absolute file path to clipboard")
+          (key "<leader>ycr" "<cmd>let @+ = expand('%:.')<cr>" "Yank relative file path to clipboard")
+          (keyM "v" "<leader>ycy" "\"+y" "Yank selection to clipboard")
+          (key "<leader>ycy" "\"+yy" "Yank line to clipboard")
+          (key "<leader>yca" "<cmd>%y+<cr>" "Yank whole file to clipboard")
           (keyM [ "n" "v" ] "<leader>p" "\"+p" "Paste from clipboard")
         ];
     in
@@ -202,6 +208,25 @@
                   vim.api.nvim_set_hl(0, "WinSeparator", { fg = "${borderGreen}" })
                   vim.api.nvim_set_hl(0, "FloatBorder", { fg = "${borderGreen}" })
                   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+                '';
+              };
+              nextnano-nvim = {
+                package = nextnanoPlugin;
+              };
+              # nextnano.nvim serves its keyword tree through omnifunc, and
+              # nvim-cmp only queries the sources it is configured with, so
+              # bridge the two for that filetype.
+              cmp-omni = {
+                package = pkgs.vimPlugins.cmp-omni;
+                setup = ''
+                  vim.api.nvim_create_autocmd("FileType", {
+                    pattern = "nextnano",
+                    callback = function()
+                      require("cmp").setup.buffer({
+                        sources = { { name = "omni" }, { name = "path" } },
+                      })
+                    end,
+                  })
                 '';
               };
               nvim-surround = {
@@ -304,7 +329,11 @@
             };
 
             # --- 4. Utilities & Git ---
-            binds.whichKey.enable = true; # Keybind helper popups
+            binds.whichKey = {
+              enable = true; # Keybind helper popups
+              register."<leader>y" = "Yank";
+              register."<leader>yc" = "Copy to clipboard";
+            };
             git = {
               enable = true;
               git-conflict.mappings = {

@@ -54,6 +54,13 @@
       url = "github:Lil-Dank/lazygit.yazi";
       flake = false;
     };
+    # Local checkout while the plugin is developed; swap to
+    # "github:alikaansun/nextnano.nvim" once it is pushed. Changes need
+    # `nix flake update nextnano-nvim` to be picked up.
+    nextnano-nvim = {
+      url = "path:/Users/alik/Documents/Repos/nextnano.nvim";
+      flake = false;
+    };
     yazi-clippy = {
       url = "github:gallardo994/clippy.yazi";
       flake = false;
