@@ -2,7 +2,7 @@
   flake.homeModules.zed =
     { hostname, pkgs, ... }:
     let
-      isDarwin = pkgs.stdenv.isDarwin;
+      isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
       flakePath = if isDarwin then "/Users/alik/.dotfiles" else "/home/alik/.dotfiles";
       osConfigName = if isDarwin then "darwinConfigurations" else "nixosConfigurations";
       osName = if isDarwin then "darwin" else "nixos";

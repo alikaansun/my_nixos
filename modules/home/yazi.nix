@@ -21,10 +21,10 @@
             preview-typst = inputs.yazi-preview-typst;
 
           }
-          // pkgs.lib.optionalAttrs pkgs.stdenv.isDarwin {
+          // pkgs.lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
             clippy = inputs.yazi-clippy;
           }
-          // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
+          // pkgs.lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
             clipboard = inputs.yazi-clipboard;
           };
           keymap = {
@@ -60,7 +60,7 @@
                 }
 
               ]
-              ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
+              ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
                 {
                   on = [
                     "c"
@@ -73,7 +73,7 @@
                   desc = "Yank and Copy to system clipboard";
                 }
               ]
-              ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+              ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
                 {
                   on = [
                     "c"
@@ -148,7 +148,7 @@
             opener = {
               vlc = [
                 {
-                  run = if pkgs.stdenv.isDarwin then "open -a VLC %1" else "vlc %1";
+                  run = if pkgs.stdenv.hostPlatform.isDarwin then "open -a VLC %1" else "vlc %1";
                   orphan = true;
                   desc = "Open in VLC";
                 }
@@ -161,7 +161,7 @@
               ];
               klayout = [
                 {
-                  run = if pkgs.stdenv.isDarwin then "open -a klayout %1" else "klayout %1";
+                  run = if pkgs.stdenv.hostPlatform.isDarwin then "open -a klayout %1" else "klayout %1";
                   orphan = true;
                   desc = "Open in KLayout";
                 }
@@ -169,9 +169,9 @@
               excel = [
                 {
                   run =
-                    if pkgs.stdenv.isDarwin then "open -a 'Microsoft Excel' %1" else "onlyoffice-desktopeditors %1";
+                    if pkgs.stdenv.hostPlatform.isDarwin then "open -a 'Microsoft Excel' %1" else "onlyoffice-desktopeditors %1";
                   orphan = true;
-                  desc = if pkgs.stdenv.isDarwin then "Open in Microsoft Excel" else "Open in OnlyOffice";
+                  desc = if pkgs.stdenv.hostPlatform.isDarwin then "Open in Microsoft Excel" else "Open in OnlyOffice";
                 }
               ];
             };

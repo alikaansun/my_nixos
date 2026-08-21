@@ -27,7 +27,7 @@
             xclip
             xsel
           ]
-          ++ (pkgs.lib.optionals pkgs.stdenv.isLinux [
+          ++ (pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
             parted
             lm_sensors
             pciutils
@@ -36,12 +36,12 @@
             nvtopPackages.full
             wl-clipboard
           ])
-          ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin [
+          ++ (pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
             macmon
           ]);
 
         programs = {
-          bluetuith.enable = if pkgs.stdenv.isLinux then true else false;
+          bluetuith.enable = if pkgs.stdenv.hostPlatform.isLinux then true else false;
 
           oh-my-posh = {
             enable = true;
@@ -105,7 +105,7 @@
 
               e() {
                 local target="''${1:-.}"
-                ${if pkgs.stdenv.isDarwin then "open" else "xdg-open"} "$target"
+                ${if pkgs.stdenv.hostPlatform.isDarwin then "open" else "xdg-open"} "$target"
               }
             '';
 
@@ -149,7 +149,7 @@
 
           ghostty = {
             enable = true;
-            package = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+            package = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
             enableZshIntegration = true;
             settings = {
               # Window
@@ -159,8 +159,8 @@
               # title = "Ghostty";
 
               # Font
-             font-family = if pkgs.stdenv.isDarwin then "Menlo" else "MesloLGM Nerd Font Mono";
-              font-size = if pkgs.stdenv.isDarwin then 13 else 10;
+              font-family = if pkgs.stdenv.hostPlatform.isDarwin then "Menlo" else "MesloLGM Nerd Font Mono";
+              font-size = if pkgs.stdenv.hostPlatform.isDarwin then 13 else 10;
 
               # Cursor
               cursor-style = "bar";

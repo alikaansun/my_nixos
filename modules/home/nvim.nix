@@ -10,7 +10,7 @@
     }:
     let
       dotfilesFlake = "${config.home.homeDirectory}/.dotfiles";
-      systemAttr = if pkgs.stdenv.isDarwin then "darwinConfigurations" else "nixosConfigurations";
+      systemAttr = if pkgs.stdenv.hostPlatform.isDarwin then "darwinConfigurations" else "nixosConfigurations";
       flakeRef = "(builtins.getFlake \"${dotfilesFlake}\")";
 
       borderGreen = "#89D185";
@@ -266,7 +266,15 @@
               };
               jupynvim = {
                 package = jupynvimPlugin;
-                setup = "require('jupynvim').setup({})";
+                setup = ''
+                  require('jupynvim').setup({
+                    explorer_keys = {},
+                    explorer_cwd_keys = {},
+                    terminal_keys = {},
+                    terminal_right_keys = {},
+                    pick_keys = { files = {}, grep = {} },
+                  })
+                '';
               };
             };
 
@@ -397,7 +405,13 @@
             lsp = {
               enable = true;
               lspSignature.enable = true;
-              servers.basedpyright.settings.basedpyright.analysis.extraPaths = pythonExtraPaths;
+              servers.basedpyright.settings.basedpyright.analysis = {
+                extraPaths = pythonExtraPaths;
+                # basedpyright defaults to "recommended", which flags every
+                # partially-inferred type (reportUnknown*). "standard" matches
+                # upstream pyright.
+                typeCheckingMode = "standard";
+              };
               # basedpyright has no formatting capability, so the default
               # <leader>lf -> vim.lsp.buf.format errors on Python files.
               # Route through conform instead, which has ruff-fix registered
