@@ -10,7 +10,7 @@
     }:
     let
       dotfilesFlake = "${config.home.homeDirectory}/.dotfiles";
-      systemAttr = if pkgs.stdenv.hostPlatform.isDarwin then "darwinConfigurations" else "nixosConfigurations";
+      systemAttr = if pkgs.stdenv.isDarwin then "darwinConfigurations" else "nixosConfigurations";
       flakeRef = "(builtins.getFlake \"${dotfilesFlake}\")";
 
       borderGreen = "#89D185";
@@ -122,10 +122,6 @@
           (key "<leader>yy" "\"+yy" "Yank line to clipboard")
           (key "<leader>ya" "<cmd>%y+<cr>" "Yank whole file to clipboard")
           (keyM [ "n" "v" ] "<leader>p" "\"+p" "Paste from clipboard")
-          (key "<A-Down>" "<cmd>m .+1<cr>==" "Move line down")
-          (key "<A-Up>" "<cmd>m .-2<cr>==" "Move line up")
-          (keyM "v" "<A-Down>" ":m '>+1<cr>gv=gv" "Move selection down")
-          (keyM "v" "<A-Up>" ":m '<-2<cr>gv=gv" "Move selection up")
         ];
     in
     {
@@ -260,21 +256,9 @@
                 package = pkgs.vimPlugins.claudecode-nvim;
                 setup = "require('claudecode').setup()";
               };
-              telescope-media-files = {
-                package = pkgs.vimPlugins.telescope-media-files-nvim;
-                setup = "require('telescope').load_extension('media_files')";
-              };
               jupynvim = {
                 package = jupynvimPlugin;
-                setup = ''
-                  require('jupynvim').setup({
-                    explorer_keys = {},
-                    explorer_cwd_keys = {},
-                    terminal_keys = {},
-                    terminal_right_keys = {},
-                    pick_keys = { files = {}, grep = {} },
-                  })
-                '';
+                setup = "require('jupynvim').setup({})";
               };
             };
 
@@ -303,11 +287,6 @@
               autoSave = ''
                 vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave", "WinLeave" }, {
                   command = "silent! wall",
-                })
-              '';
-              autoRead = ''
-                vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "TermClose", "TermLeave" }, {
-                  command = "silent! checktime",
                 })
               '';
             };
@@ -405,13 +384,7 @@
             lsp = {
               enable = true;
               lspSignature.enable = true;
-              servers.basedpyright.settings.basedpyright.analysis = {
-                extraPaths = pythonExtraPaths;
-                # basedpyright defaults to "recommended", which flags every
-                # partially-inferred type (reportUnknown*). "standard" matches
-                # upstream pyright.
-                typeCheckingMode = "standard";
-              };
+              servers.basedpyright.settings.basedpyright.analysis.extraPaths = pythonExtraPaths;
               # basedpyright has no formatting capability, so the default
               # <leader>lf -> vim.lsp.buf.format errors on Python files.
               # Route through conform instead, which has ruff-fix registered

@@ -7,6 +7,37 @@
       ...
     }:
     let
+      appWorkspaces = {
+        "com.microsoft.VSCode" = "2";
+        "com.mitchellh.ghostty" = "2";
+        "com.microsoft.teams2" = "5";
+        "com.microsoft.teams" = "5";
+        "com.microsoft.Outlook" = "5";
+        "com.spotify.client" = "m";
+        "net.whatsapp.WhatsApp" = "m";
+        "org.keepassxc.keepassxc" = "m";
+        "md.obsidian" = "3";
+        "org.zotero.zotero" = "3";
+      };
+
+      # on-window-detected only fires for newly detected windows, so sorting
+      # already-open ones has to go through the CLI.
+      sortWindows = pkgs.writeShellScript "aerospace-sort-windows" ''
+        aerospace=${config.services.aerospace.package}/bin/aerospace
+        "$aerospace" list-windows --all --format '%{window-id}|%{app-bundle-id}' |
+          while IFS='|' read -r id bundle; do
+            id=''${id// /}
+            bundle=''${bundle// /}
+            case "$bundle" in
+        ${lib.concatStringsSep "\n" (
+          lib.mapAttrsToList (
+            id: ws: "      ${id}) \"$aerospace\" move-node-to-workspace --window-id \"$id\" ${ws} ;;"
+          ) appWorkspaces
+        )}
+            esac
+          done
+      '';
+
       commonBindings = {
         alt-1 = "workspace 1";
         alt-2 = "workspace 2";
@@ -23,6 +54,7 @@
         alt-shift-m = "move-node-to-workspace m";
 
         alt-shift-f = "layout floating tiling";
+        alt-shift-s = "exec-and-forget ${sortWindows}";
 
         #App Bindings
         cmd-enter = "exec-and-forget open -n -b com.mitchellh.ghostty";
@@ -55,6 +87,7 @@
           enable-normalization-flatten-containers = true;
           enable-normalization-opposite-orientation-for-nested-containers = true;
           accordion-padding = 50;
+          default-root-container-layout = "accordion";
           key-mapping.preset = "qwerty";
           automatically-unhide-macos-hidden-apps = true;
           gaps = {
@@ -80,39 +113,11 @@
               "if".app-id = "com.apple.ActivityMonitor";
               run = [ "layout floating" ];
             }
-            {
-              "if".app-id = "com.microsoft.VSCode";
-              run = [ "move-node-to-workspace 2" ];
-            }
-            {
-              "if".app-id = "com.microsoft.teams2";
-              run = [ "move-node-to-workspace 5" ];
-            }
-            {
-              "if".app-id = "com.microsoft.teams";
-              run = [ "move-node-to-workspace 5" ];
-            }
-            {
-              "if".app-id = "com.microsoft.Outlook";
-              run = [ "move-node-to-workspace 5" ];
-            }
-            {
-              "if".app-id = "com.spotify.client";
-              run = [ "move-node-to-workspace m" ];
-            }
-            {
-              "if".app-id = "net.whatsapp.WhatsApp";
-              run = [ "move-node-to-workspace m" ];
-            }
-            {
-              "if".app-id = "md.obsidian";
-              run = [ "move-node-to-workspace 3" ];
-            }
-            {
-              "if".app-id = "org.zotero.zotero";
-              run = [ "move-node-to-workspace 3" ];
-            }
-          ];
+          ]
+          ++ lib.mapAttrsToList (id: ws: {
+            "if".app-id = id;
+            run = [ "move-node-to-workspace ${ws}" ];
+          }) appWorkspaces;
 
           mode.main.binding = {
             alt-j = "focus left";

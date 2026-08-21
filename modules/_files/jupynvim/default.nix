@@ -6,12 +6,12 @@
   vimUtils,
 }:
 let
-  version = "0.4.4";
+  version = "0.4.4-unstable-2026-08-09";
   src = fetchFromGitHub {
-    owner = "sheng-tse";
+    owner = "alikaansun";
     repo = "jupynvim";
-    tag = "v${version}";
-    hash = "sha256-DJinRfxOoSj8xnWUnpPd14mA8zMQmLhavmJsUz4h2XQ=";
+    rev = "6b76d320885605dc0ca13e4912a5888e714f9214";
+    hash = "sha256-zM3tIsVfeqbr6K3/7ZmyEKvkgRqRCUK7AHSOtX9+yzM=";
   };
   jupynvim-core = rustPlatform.buildRustPackage {
     pname = "jupynvim-core";
