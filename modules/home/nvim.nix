@@ -250,7 +250,12 @@
                   require("snacks").setup({
                     image = { enabled = true, math = { enabled = false } },
                     explorer = { enabled = true },
-                    picker = { enabled = true },
+                    picker = {
+                      enabled = true,
+                      sources = {
+                        explorer = { hidden = true, ignored = true },
+                      },
+                    },
                     indent = { enabled = true },
                     notifier = { enabled = true },
                     scroll = { enabled = true },
@@ -311,7 +316,13 @@
             };
 
             # --- 3. Navigation & Terminal ---
-            telescope.enable = true; # Fuzzy finder for files, ripgrep, etc.
+            telescope = {
+              enable = true; # Fuzzy finder for files, ripgrep, etc.
+              setupOpts.pickers.find_files = {
+                hidden = false;
+                no_ignore = true;
+              };
+            };
 
             terminal.toggleterm = {
               enable = true;
