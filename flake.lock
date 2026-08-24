@@ -315,7 +315,7 @@
     "nextnano-nvim": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-oD/J3SzhcAbpicoNttz11oHTRXO+ilhHtPbd0qBnJCA=",
+        "narHash": "sha256-T1AC505plJEqfhQK08OhCqhbfZsb/NPdA4oHgOc2WoY=",
         "path": "/Users/alik/Documents/Repos/nextnano.nvim",
         "type": "path"
       },

@@ -153,7 +153,7 @@
             enableZshIntegration = true;
             settings = {
               # Window
-              background-opacity = 0.9;
+              background-opacity = 1.0;
               window-padding-x = 10;
               window-padding-y = 10;
               # title = "Ghostty";
