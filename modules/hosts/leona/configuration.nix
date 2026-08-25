@@ -34,7 +34,10 @@
       ];
       services.mykanata.enable = false;
 
-      security.pam.services.sudo_local.touchIdAuth = true;
+      security.pam.services.sudo_local = {
+        touchIdAuth = true;
+        reattach = true;
+      };
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
@@ -61,9 +64,6 @@
       # System packages
       nixpkgs.hostPlatform = "aarch64-darwin";
       nixpkgs.config.allowUnfree = true;
-      # vesktop's build pins pnpm-10.29.2, flagged insecure after a nixpkgs bump.
-      # pnpm is a build-time tool here (not shipped in the app), so permit it.
-      # nixpkgs.config.permittedInsecurePackages = [ "pnpm-10.29.2" ];
       environment.systemPackages = with pkgs; [
         git
         vscode
@@ -150,11 +150,7 @@
           autohide = true;
           mru-spaces = false;
         };
-        # NSGlobalDomain = {
-        #   AppleWindowTabbingMode = "manual";
-        #   # Enable focus-follows-mouse (hover to focus)
-        #   "com.apple.mouse.focusFollowsMouse" = true;
-        # };
+
         finder = {
           AppleShowAllExtensions = true;
           AppleShowAllFiles = true;
@@ -189,11 +185,6 @@
         };
       };
 
-      # programs.ssh.knownHosts = {
-
-      # Skip the Darwin HTML manual: nix-darwin still passes render-docs'
-      # removed `--toc-depth`. The uninstaller bundles its own manual-building
-      # system, so it must be dropped too.
       documentation.doc.enable = false;
       system.tools.darwin-uninstaller.enable = false;
 
