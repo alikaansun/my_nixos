@@ -334,13 +334,17 @@
     "nextnano-nvim": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-T1AC505plJEqfhQK08OhCqhbfZsb/NPdA4oHgOc2WoY=",
-        "path": "/Users/alik/Documents/Repos/nextnano.nvim",
-        "type": "path"
+        "lastModified": 1787340608,
+        "narHash": "sha256-DSSmlZMZrR5S+G0omAY+ry7wPtBS3pNsek4koS++LlE=",
+        "ref": "refs/heads/main",
+        "rev": "ddeb72ed1f4acfada126067a1314f7372873d1d9",
+        "revCount": 4,
+        "type": "git",
+        "url": "ssh://git@github.com/alikaansun/nextnano.nvim"
       },
       "original": {
-        "path": "/Users/alik/Documents/Repos/nextnano.nvim",
-        "type": "path"
+        "type": "git",
+        "url": "ssh://git@github.com/alikaansun/nextnano.nvim"
       }
     },
     "nix-darwin": {

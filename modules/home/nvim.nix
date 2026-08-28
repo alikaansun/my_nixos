@@ -215,10 +215,6 @@
                   vim.api.nvim_set_hl(0, "FloatBorder", { fg = "${borderGreen}" })
                 '';
               };
-              nextnano-nvim = {
-                package = nextnanoPlugin;
-              };
-
               cmp-omni = {
                 package = pkgs.vimPlugins.cmp-omni;
                 setup = ''
@@ -293,9 +289,8 @@
                 package = pkgs.vimPlugins.jupynvim;
                 setup = "require('jupynvim').setup({})";
               };
-              outline-nvim = {
-                package = pkgs.vimPlugins.outline-nvim;
-                setup = "require('outline').setup()";
+              nextnano-nvim = {
+                package = nextnanoPlugin;
               };
             };
 

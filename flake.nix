@@ -62,7 +62,7 @@
       flake = false;
     };
     nextnano-nvim = {
-      url = "path:/Users/alik/Documents/Repos/nextnano.nvim";
+      url = "git+ssh://git@github.com/alikaansun/nextnano.nvim";
       flake = false;
     };
     yazi-clippy = {
