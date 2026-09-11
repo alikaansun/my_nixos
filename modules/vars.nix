@@ -3,7 +3,7 @@
 
     obsidian = {
       # Vault path relative to $HOME. Consumed by obs.nix (vault target) and
-      # sym.nix (source of the ~/.claude symlinks, under <vault>/_claude).
+      # sym.nix (source of the ~/.claude symlinks, under <vault>/_drasleona).
       vault = "Documents/ObsNotes";
     };
 

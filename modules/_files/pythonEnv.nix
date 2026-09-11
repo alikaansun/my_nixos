@@ -16,7 +16,7 @@ pkgs.python313.withPackages (
     numpy
     anthropic
     numpy-stl
-    # pandas
+    pandas
     pip
     scipy
     setuptools
@@ -28,7 +28,7 @@ pkgs.python313.withPackages (
     pyyaml
     openpyxl
     # manim
-    # markitdown
+    markitdown
   ]
   ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
     pyautogui
