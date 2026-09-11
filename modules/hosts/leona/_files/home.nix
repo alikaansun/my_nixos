@@ -18,6 +18,7 @@ in
     self.homeModules.herdr
     self.homeModules.obs
     self.homeModules.sym
+    self.homeModules.zotero
     # inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.sops-nix.homeManagerModules.sops
   ];

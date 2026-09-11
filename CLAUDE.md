@@ -70,21 +70,27 @@ rc2nix
     ├── vars.nix                       # shared variables → flake.vars
     ├── virtualisation.nix
     ├── _files/
-    │   └── pythonEnv.nix              # reusable Python env exposed as a flake package
+    │   ├── jupynvim/default.nix       # package expr for the jupynvim plugin (upstreamed to nixpkgs)
+    │   ├── pythonEnv.nix              # reusable Python env exposed as a flake package
+    │   └── zotero_sync.py             # Zotero PDFs → markdown + Obsidian library index
     ├── desktop/
     │   ├── fav.jpg
-    │   └── fav1.jpg
+    │   ├── fav1.jpg
+    │   └── fav2.jpeg
     ├── home/                          # Home Manager modules
     │   ├── common.nix
     │   ├── git.nix
     │   ├── herdr.nix
     │   ├── hyprland.nix
     │   ├── nvim.nix
+    │   ├── obs.nix                    # Obsidian + obsidian-cli, vault from vars.obsidian
     │   ├── plasma.nix
     │   ├── plasma.txt                 # plasma-manager capture output
+    │   ├── sym.nix                    # hand-managed symlinks (~/.claude → vault/_drasleona)
     │   ├── terminal.nix
     │   ├── yazi.nix
-    │   └── zed.nix
+    │   ├── zed.nix
+    │   └── zotero.nix                 # zotero-md-sync package + rebuild activation hook
     ├── hosts/
     │   ├── arondil/                   # NixOS x86_64, AMD GPU (KDE Plasma)
     │   │   ├── configuration.nix
@@ -139,6 +145,8 @@ Each host lives in `modules/hosts/<name>/configuration.nix` and imports the modu
 - `modules/stylix.nix` — system-wide theming (Gruvbox Dark, Fira Code)
 - `modules/gc.nix` — automatic weekly garbage collection
 - `modules/_files/pythonEnv.nix` — reusable Python environment exposed as a flake package
+- `modules/home/sym.nix` — hand-managed symlinks; assistant config lives in the vault under `_drasleona` and is linked into `~/.claude`
+- `modules/home/zotero.nix` — installs `zotero-md-sync` and runs it on every rebuild; converts Zotero PDFs to markdown and indexes the library into the vault
 
 ### Secrets (sops-nix)
 

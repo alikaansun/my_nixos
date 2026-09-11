@@ -7,6 +7,12 @@
       vault = "Documents/ObsNotes";
     };
 
+    zotero = {
+      # Zotero data dir relative to $HOME. Inside the Nextcloud sync root, so the
+      # generated markdown and figures follow the library to other machines.
+      dir = "Nextcloud/AppData/Zotero";
+    };
+
     nextcloud = {
       hostName = "nextcloud.arondil.local";
       IP = "0.0.0.0";
