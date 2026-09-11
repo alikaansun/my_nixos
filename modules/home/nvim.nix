@@ -204,13 +204,12 @@
                 package = pkgs.vimPlugins.vscode-nvim;
                 setup = ''
                   require("vscode").setup({
-                    transparent = true,
+                    transparent = false,
                     color_overrides = { vscFront = "#CCCCCC" },
                   })
                   require("vscode").load()
                   vim.api.nvim_set_hl(0, "WinSeparator", { fg = "${borderGreen}" })
                   vim.api.nvim_set_hl(0, "FloatBorder", { fg = "${borderGreen}" })
-                  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
                 '';
               };
               nextnano-nvim = {

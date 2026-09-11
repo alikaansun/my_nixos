@@ -148,7 +148,7 @@
             opener = {
               vlc = [
                 {
-                  run = if pkgs.stdenv.hostPlatform.isDarwin then "open -a VLC %1" else "vlc %1";
+                  run = if pkgs.stdenv.hostPlatform.isDarwin then "open -a VLC %s" else "vlc %s";
                   orphan = true;
                   desc = "Open in VLC";
                 }
@@ -161,7 +161,7 @@
               ];
               klayout = [
                 {
-                  run = if pkgs.stdenv.hostPlatform.isDarwin then "open -a klayout %1" else "klayout %1";
+                  run = if pkgs.stdenv.hostPlatform.isDarwin then "open -a klayout %s" else "klayout %s";
                   orphan = true;
                   desc = "Open in KLayout";
                 }
@@ -170,9 +170,9 @@
                 {
                   run =
                     if pkgs.stdenv.hostPlatform.isDarwin then
-                      "open -a 'Microsoft Excel' %1"
+                      "open -a 'Microsoft Excel' %s"
                     else
-                      "onlyoffice-desktopeditors %1";
+                      "onlyoffice-desktopeditors %s";
                   orphan = true;
                   desc =
                     if pkgs.stdenv.hostPlatform.isDarwin then "Open in Microsoft Excel" else "Open in OnlyOffice";
