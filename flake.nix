@@ -86,15 +86,13 @@
   outputs =
     inputs@{ self, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } (
-      let
-        tree = inputs.import-tree ./modules;
-      in
       {
         systems = [
           "x86_64-linux"
           "aarch64-darwin"
         ];
-        imports = tree.imports ++ [
+        imports = [
+          (inputs.import-tree ./modules)
           inputs.home-manager.flakeModules.home-manager
           inputs.nix-darwin.flakeModules.default
           # Declare darwinModules option (not provided by nix-darwin flakeModule)

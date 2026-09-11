@@ -60,6 +60,12 @@
       # networking.computerName = "leona";
       networking.hostName = "leona";
       networking.wakeOnLan.enable = true;
+      # Other resolvers hand back Cloudflare's 188.114.96.0/22 edge.
+      networking.knownNetworkServices = [ "Wi-Fi" ];
+      networking.dns = [
+        "1.1.1.1"
+        "1.0.0.1"
+      ];
 
       # System packages
       nixpkgs.hostPlatform = "aarch64-darwin";

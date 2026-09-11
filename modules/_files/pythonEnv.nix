@@ -28,7 +28,7 @@ pkgs.python313.withPackages (
     pyyaml
     openpyxl
     # manim
-    markitdown
+    # markitdown
     pymupdf4llm
   ]
   ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
