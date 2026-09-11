@@ -44,6 +44,10 @@ IMAGE_SIZE_LIMIT = 0.15
 MAX_FIGURE_PAGES = 50
 # Below this many characters the extraction is assumed to have failed (scanned page).
 MIN_CHARS = 500
+# Fraction of the PDF's raw text layer the markdown must retain. Below it, layout
+# analysis dropped content (OCR scans) and the plainer text wins. Measured: affected
+# files kept 2-6% of their text layer; healthy ones sit well above 50%.
+RECOVERY_RATIO = 0.5
 
 
 def load_library(db_path):
@@ -155,10 +159,10 @@ def find_pdf(folder, filename):
     return hits[0] if hits else None
 
 
-def convert(pdf, key, folder, fm, dry):
+def convert(pdf, key, folder, fm, dry, force=False):
     """Extract text+figures. Returns 'ok', 'skip' or 'fail'."""
     out = folder / f"{key}.md"
-    if out.exists() and out.stat().st_mtime >= pdf.stat().st_mtime:
+    if not force and out.exists() and out.stat().st_mtime >= pdf.stat().st_mtime:
         return "skip"
     if dry:
         print(f"  would convert {key}  ({pdf.name})")
@@ -180,16 +184,22 @@ def convert(pdf, key, folder, fm, dry):
                 dpi=DPI,
                 graphics_limit=5000,
             )
+            raw = "\n\n".join(page.get_text() for page in doc)
     except Exception as exc:  # one bad PDF must not abort the run
         print(f"  FAIL {key}: {exc}", file=sys.stderr)
         return "fail"
 
+    # An OCR'd scan is an image plus an *invisible* text layer. to_markdown's layout
+    # pass drops invisible text, so a scanned paper yields only its publisher banner
+    # while the body sits in the page text. Comparing against a raw get_text() catches
+    # that; an absolute floor alone does not, since the banner clears it.
     source = "pymupdf4llm"
-    if len(text.strip()) < MIN_CHARS:
+    if len(text.strip()) < max(MIN_CHARS, len(raw.strip()) * RECOVERY_RATIO):
         cache = folder / ".zotero-ft-cache"
-        if cache.exists() and cache.stat().st_size > len(text):
-            text = cache.read_text(errors="replace")
-            source = "ft-cache"
+        cached = cache.read_text(errors="replace") if cache.exists() else ""
+        best = max((raw, "text-layer"), (cached, "ft-cache"), key=lambda p: len(p[0].strip()))
+        if len(best[0].strip()) > len(text.strip()):
+            text, source = best
     if not text.strip():
         print(f"  EMPTY {key}: no extractable text (scanned? needs OCR)", file=sys.stderr)
         return "fail"
@@ -239,6 +249,11 @@ def main():
     ap.add_argument("--vault", type=Path)
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--limit", type=int, help="convert at most N PDFs (for testing)")
+    ap.add_argument(
+        "--force",
+        action="store_true",
+        help="re-convert PDFs that are already up to date (after changing settings above)",
+    )
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
 
@@ -272,7 +287,7 @@ def main():
             if (folder / f"{akey}.md").exists():
                 fulltext[parent] = (folder / f"{akey}.md", pdf)
             continue
-        result = convert(pdf, akey, folder, fm, args.dry_run)
+        result = convert(pdf, akey, folder, fm, args.dry_run, args.force)
         tally[result] += 1
         if result != "fail":
             fulltext[parent] = (folder / f"{akey}.md", pdf)
