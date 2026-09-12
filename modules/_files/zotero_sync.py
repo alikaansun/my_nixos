@@ -44,6 +44,10 @@ IMAGE_SIZE_LIMIT = 0.15
 MAX_FIGURE_PAGES = 50
 # Below this many characters the extraction is assumed to have failed (scanned page).
 MIN_CHARS = 500
+# Below this many characters per page the PDF has no real text layer. Measured across
+# the library: true image-only scans sit at 2-216 chars/page and the next real document
+# is at 1343, so this threshold separates them with a wide margin.
+MIN_CHARS_PER_PAGE = 400
 # Fraction of the PDF's raw text layer the markdown must retain. Below it, layout
 # analysis dropped content (OCR scans) and the plainer text wins. Measured: affected
 # files kept 2-6% of their text layer; healthy ones sit well above 50%.
@@ -172,7 +176,8 @@ def convert(pdf, key, folder, fm, dry, force=False):
     assets.mkdir(exist_ok=True)
     try:
         with pymupdf.open(pdf) as doc:
-            figures = doc.page_count <= MAX_FIGURE_PAGES
+            pages = doc.page_count
+            figures = pages <= MAX_FIGURE_PAGES
             text = pymupdf4llm.to_markdown(
                 doc,
                 filename=key,  # names figures <KEY>-<page>-<n>.png instead of the pdf title
@@ -211,7 +216,16 @@ def convert(pdf, key, folder, fm, dry, force=False):
     if not any(assets.iterdir()):
         assets.rmdir()
 
+    # A PDF with no text layer at all (a plain scan) extracts to a few hundred
+    # characters of header without failing, which would otherwise pass silently as a
+    # successful conversion. The page renders usually remain readable, so say so rather
+    # than treating it as a failure.
+    sparse = pages and len(text.strip()) / pages < MIN_CHARS_PER_PAGE
     extra = {"source": source}
+    if sparse:
+        where = f"read the page images in {key}_md_assets/" if figures else "no page images (long document)"
+        extra["text_extraction"] = f"sparse - image-only scan? {where}"
+        print(f"  SPARSE {key}: {len(text.strip()) // pages} chars/page over {pages}p - {where}", file=sys.stderr)
     if not figures:
         extra["figures"] = "skipped (long document)"
     out.write_text(frontmatter({**fm, **extra}) + "\n" + text)
@@ -299,6 +313,12 @@ def main():
     # --- write vault stubs --------------------------------------------------
     created = refreshed = 0
     used = set()
+    sparse = sorted(
+        p.parent.name for p in storage.glob("*/*.md") if "text_extraction: sparse" in p.read_text(errors="replace")
+    )
+    if sparse:
+        print(f"{len(sparse)} sparse (no text layer; read their page images): {', '.join(sparse)}")
+
     if not args.dry_run:
         notes.mkdir(parents=True, exist_ok=True)
     for iid, item in sorted(items.items(), key=lambda kv: kv[1]["key"]):
