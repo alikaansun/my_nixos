@@ -18,6 +18,10 @@ import sqlite3
 import sys
 from pathlib import Path
 
+# pymupdf prints a one-line ad for its paid layout add-on to *stdout* on import, which
+# would otherwise land in the middle of this script's report.
+os.environ.setdefault("PYMUPDF_SUGGEST_LAYOUT_ANALYZER", "0")
+
 # ponytail: /usr/bin/python3 (3.9, no deps) shadows the nix env in $PATH, so a bare
 # `python3 zotero_sync.py` lands on the wrong interpreter. Re-exec under the nix one.
 try:

@@ -193,6 +193,8 @@
 
             statusline.lualine.enable = true;
 
+            mini.icons.enable = true;
+
             # Show open buffers as tabs for easy switching in the same session
             tabline.nvimBufferline = {
               enable = true;
@@ -441,7 +443,12 @@
             formatter.conform-nvim.setupOpts = {
               formatters.treefmt = {
                 command = lib.getExe pkgs.nixfmt-tree;
+                # treefmt resolves its tree root from the binary's own store
+                # path unless told otherwise, which puts $FILENAME outside the
+                # tree and aborts; cwd below is the file's directory.
                 args = [
+                  "--tree-root"
+                  "."
                   "--stdin"
                   "$FILENAME"
                 ];
@@ -451,7 +458,10 @@
               formatters_by_ft.nix = [ "treefmt" ];
             };
 
-            lsp.servers.nixd.settings = {
+            # nixd fetches its config via workspace/configuration section
+            # "nixd", so it has to sit under that key or the server silently
+            # falls back to its built-in <nixpkgs> NixOS options.
+            lsp.servers.nixd.settings.nixd = {
               nixpkgs.expr = "import ${flakeRef}.inputs.nixpkgs { }";
               formatting.command = [ "nixfmt" ];
               options = {
