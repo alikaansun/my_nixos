@@ -50,8 +50,8 @@ in
   home.packages = with pkgs; [
     pythonEnv
     typst
-    # zotero
     claude-code
+    nodejs
   ];
 
   manual.manpages.enable = false;
