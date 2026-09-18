@@ -8,6 +8,7 @@
     }:
     let
       appWorkspaces = {
+        "com.brave.Browser" = "1";
         "com.microsoft.VSCode" = "2";
         "com.mitchellh.ghostty" = "2";
         "com.microsoft.teams2" = "5";

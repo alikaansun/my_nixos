@@ -51,6 +51,7 @@
           "blender"
           "vlc"
           "spotify"
+          "tor-browser"
           "font-fira-code-nerd-font"
           #mac spesific stuff
           "betterdisplay" # external display
