@@ -112,6 +112,7 @@
           (key "<leader>tp" "<cmd>TypstPreviewToggle<cr>" "Toggle Typst preview")
           (key "<leader>?" "<cmd>Telescope keymaps<cr>" "Search keymaps")
           (key "<leader>e" "<cmd>lua Snacks.explorer()<cr>" "Toggle file tree")
+          (key "<leader>o" "<cmd>Outline<cr>" "Toggle symbol outline")
           (key "<leader>ac" "<cmd>ClaudeCode<cr>" "Toggle Claude")
           (keyM [ "n" "v" ] "<leader>as" "<cmd>ClaudeCodeSend<cr>" "Send to Claude")
           (keyM [ "n" "v" ] "<leader>aa" "<cmd>ClaudeCodeDiffAccept<cr>" "Accept diff")
@@ -291,6 +292,10 @@
               jupynvim = {
                 package = pkgs.vimPlugins.jupynvim;
                 setup = "require('jupynvim').setup({})";
+              };
+              outline-nvim = {
+                package = pkgs.vimPlugins.outline-nvim;
+                setup = "require('outline').setup()";
               };
             };
 
