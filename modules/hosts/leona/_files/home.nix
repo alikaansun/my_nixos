@@ -9,6 +9,32 @@
 
 let
   pythonEnv = import ../../../_files/pythonEnv.nix { inherit pkgs; };
+
+  # duti only takes effect for a real UTI with the viewer/editor roles; bare
+  # extensions and the "all" role are silently ignored on recent macOS.
+  vlcAssociations =
+    let
+      utis = [
+        "public.movie"
+        "public.video"
+        "public.audiovisual-content"
+        "public.mpeg-4"
+        "public.mpeg-2-video"
+        "public.avi"
+        "com.apple.quicktime-movie"
+        "org.matroska.mkv"
+        "public.mp3"
+        "com.microsoft.waveform-audio"
+        "public.aiff-audio"
+      ];
+      set = uti: role: "${pkgs.duti}/bin/duti -s org.videolan.vlc ${uti} ${role} || true";
+    in
+    builtins.concatStringsSep "\n" (
+      builtins.concatMap (uti: [
+        (set uti "viewer")
+        (set uti "editor")
+      ]) utis
+    );
 in
 {
   imports = [
@@ -50,7 +76,6 @@ in
   home.packages = with pkgs; [
     pythonEnv
     typst
-    claude-code
     nodejs
   ];
 
@@ -75,6 +100,10 @@ in
           done
         fi
       done
+    '';
+
+    setVlcDefault = config.lib.dag.entryAfter [ "linkNixApps" ] ''
+      ${vlcAssociations}
     '';
   };
 

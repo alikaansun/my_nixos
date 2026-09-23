@@ -53,6 +53,9 @@
       url = "github:ogulcancelik/herdr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    claude-code-nix = {
+      url = "github:sadjow/claude-code-nix";
+    };
     shad06_nixpkgs.url = "github:nixos/nixpkgs/b95dd9da90309705b8a32f849b80fad1cca16620";
     yazi-lazygit = {
       url = "github:Lil-Dank/lazygit.yazi";
@@ -91,46 +94,44 @@
 
   outputs =
     inputs@{ self, flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } (
-      {
-        systems = [
-          "x86_64-linux"
-          "aarch64-darwin"
-        ];
-        imports = [
-          (inputs.import-tree ./modules)
-          inputs.home-manager.flakeModules.home-manager
-          inputs.nix-darwin.flakeModules.default
-          # Declare darwinModules option (not provided by nix-darwin flakeModule)
-          {
-            options.flake.darwinModules = inputs.nixpkgs.lib.mkOption {
-              type = inputs.nixpkgs.lib.types.lazyAttrsOf inputs.nixpkgs.lib.types.raw;
-              default = { };
-              description = "Darwin modules to be exported from this flake.";
-            };
-          }
-        ];
-
-        flake = {
-          # Host configurations are defined in modules/hosts/*/configuration.nix
-        };
-
-        perSystem =
-          {
-            pkgs,
-            ...
-          }:
-          let
-            pythonEnv = import ./modules/_files/pythonEnv.nix { inherit pkgs; };
-          in
-          {
-            # Formatters per system
-            formatter = pkgs.nixfmt-tree;
-            packages.pythonEnv = pythonEnv;
-            devShells.python = pkgs.mkShell {
-              packages = [ pythonEnv ];
-            };
+    flake-parts.lib.mkFlake { inherit inputs; } ({
+      systems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
+      imports = [
+        (inputs.import-tree ./modules)
+        inputs.home-manager.flakeModules.home-manager
+        inputs.nix-darwin.flakeModules.default
+        # Declare darwinModules option (not provided by nix-darwin flakeModule)
+        {
+          options.flake.darwinModules = inputs.nixpkgs.lib.mkOption {
+            type = inputs.nixpkgs.lib.types.lazyAttrsOf inputs.nixpkgs.lib.types.raw;
+            default = { };
+            description = "Darwin modules to be exported from this flake.";
           };
-      }
-    );
+        }
+      ];
+
+      flake = {
+        # Host configurations are defined in modules/hosts/*/configuration.nix
+      };
+
+      perSystem =
+        {
+          pkgs,
+          ...
+        }:
+        let
+          pythonEnv = import ./modules/_files/pythonEnv.nix { inherit pkgs; };
+        in
+        {
+          # Formatters per system
+          formatter = pkgs.nixfmt-tree;
+          packages.pythonEnv = pythonEnv;
+          devShells.python = pkgs.mkShell {
+            packages = [ pythonEnv ];
+          };
+        };
+    });
 }

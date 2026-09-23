@@ -88,40 +88,8 @@
         fastfetch
         duti # set default apps for file types
         util-linux
+        inputs.claude-code-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
-
-      # Make VLC the default player for common video formats
-      system.activationScripts.setVlcDefault.text =
-        let
-          vlc = "org.videolan.vlc";
-          # UTIs and bare file extensions to associate with VLC
-          targets = [
-            # Generic video UTIs
-            "public.movie"
-            "public.video"
-            "public.audiovisual-content"
-            "public.mpeg-4"
-            "com.apple.quicktime-movie"
-            # File extensions (duti accepts bare extensions too)
-            "mp4"
-            "mkv"
-            "avi"
-            "mov"
-            "webm"
-            "flv"
-            "wmv"
-            "m4v"
-            "mpg"
-            "mpeg"
-            "m2ts"
-            "ts"
-          ];
-          lines = builtins.map (t: "/run/current-system/sw/bin/duti -s ${vlc} ${t} all || true") targets;
-        in
-        ''
-          echo "setting VLC as default video player..." >&2
-        ''
-        + builtins.concatStringsSep "\n" lines;
 
       # Nix settings
       # System configuration

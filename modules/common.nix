@@ -86,7 +86,7 @@
         cifs-utils
         trezor-suite
         brave
-        claude-code
+        inputs.claude-code-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
         # texliveFull
         # protonmail-desktop
         # inputs.zen-browser.packages."${system}".default
