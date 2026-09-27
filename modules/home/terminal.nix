@@ -204,6 +204,7 @@
 
               keybind = [
                 "ctrl+g=text:lazygit\\n"
+                "f18=text:\\x02"
               ];
 
             };
