@@ -79,7 +79,13 @@ in
       imports = [ options ];
 
       config = lib.mkIf config.services.mykanata.enable {
-        environment.etc."kanata/config.kbd".text = "(defcfg\n${defcfg})\n${kbd}";
+        environment.etc."kanata/config.kbd".text = ''
+          (defcfg
+            ${defcfg}
+            macos-dev-names-include ("Apple Internal Keyboard / Trackpad")
+          )
+          ${kbd}
+        '';
 
         system.activationScripts.postActivation.text = ''
           # A system extension only activates from a real bundle in /Applications, not a store symlink.
