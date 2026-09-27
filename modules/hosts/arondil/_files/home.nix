@@ -32,7 +32,6 @@ in
     uv
     blender # 3D modeling and animation
     gimp # Image editing
-    # texliveFull
     typst
     onlyoffice-desktopeditors
     tor-browser
