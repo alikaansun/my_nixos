@@ -59,7 +59,6 @@
           "keka" # winrar
           "linearmouse"
           "keyclu"
-          "karabiner-elements" # Required for kanata
         ];
         onActivation = {
           cleanup = "uninstall";

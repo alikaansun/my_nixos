@@ -32,7 +32,7 @@
         inputs.sops-nix.darwinModules.sops
 
       ];
-      services.mykanata.enable = false;
+      services.mykanata.enable = true;
 
       security.pam.services.sudo_local = {
         touchIdAuth = true;
@@ -108,15 +108,6 @@
       system.primaryUser = "alik";
       system.stateVersion = 6;
       system.keyboard.enableKeyMapping = true;
-      system.keyboard.remapCapsLockToEscape = true;
-      # Physical Esc → F18; ghostty turns F18 into ctrl+b (herdr prefix).
-      # hidutil can't emit key combos, and caps already sends Esc, so a spare key is needed to tell them apart.
-      system.keyboard.userKeyMapping = [
-        {
-          HIDKeyboardModifierMappingSrc = 30064771113; # 0x700000029 Esc
-          HIDKeyboardModifierMappingDst = 30064771181; # 0x70000006D F18
-        }
-      ];
       system.defaults = {
         controlcenter = {
           BatteryShowPercentage = true;
