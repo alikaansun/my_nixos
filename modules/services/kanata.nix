@@ -1,32 +1,37 @@
 let
-  kbd = ''
-    (defsrc
-      esc caps a s d f j k l ;
-    )
+  kbd =
+    {
+      src ? "",
+      base ? "",
+    }:
+    ''
+      (defsrc
+        esc caps a s d f j k l ; ${src}
+      )
 
-    (defvar
-      tap-time 200
-      hold-time 200
-    )
+      (defvar
+        tap-time 200
+        hold-time 200
+      )
 
-    (defalias
-      escctrl (tap-hold 100 200 esc lctl)
-      ;; With an empty key list this is permissive hold: the mod activates as soon as another
-      ;; key is pressed and released while this one is held, otherwise after hold-time.
-      a (tap-hold-release-keys $tap-time $hold-time a lsft ())
-      s (tap-hold-release-keys $tap-time $hold-time s lalt ())
-      d (tap-hold-release-keys $tap-time $hold-time d lmet ())
-      f (tap-hold-release-keys $tap-time $hold-time f lctl ())
-      j (tap-hold-release-keys $tap-time $hold-time j rctl ())
-      k (tap-hold-release-keys $tap-time $hold-time k rmet ())
-      l (tap-hold-release-keys $tap-time $hold-time l ralt ())
-      ; (tap-hold-release-keys $tap-time $hold-time ; rsft ())
-    )
+      (defalias
+        escctrl (tap-hold 100 200 esc lctl)
+        ;; With an empty key list this is permissive hold: the mod activates as soon as another
+        ;; key is pressed and released while this one is held, otherwise after hold-time.
+        a (tap-hold-release-keys $tap-time $hold-time a lsft ())
+        s (tap-hold-release-keys $tap-time $hold-time s lalt ())
+        d (tap-hold-release-keys $tap-time $hold-time d lmet ())
+        f (tap-hold-release-keys $tap-time $hold-time f lctl ())
+        j (tap-hold-release-keys $tap-time $hold-time j rctl ())
+        k (tap-hold-release-keys $tap-time $hold-time k rmet ())
+        l (tap-hold-release-keys $tap-time $hold-time l ralt ())
+        ; (tap-hold-release-keys $tap-time $hold-time ; rsft ())
+      )
 
-    (deflayer base
-      C-b @escctrl @a @s @d @f @j @k @l @;
-    )
-  '';
+      (deflayer base
+        C-b @escctrl @a @s @d @f @j @k @l @; ${base}
+      )
+    '';
 
   # Without process-unmapped-keys, keys outside defsrc skip the tap-hold decision: they arrive
   # out of order and can't trigger an early hold. prior-idle makes a home-row key pressed within
@@ -53,7 +58,7 @@ in
           enable = true;
           keyboards.default = {
             extraDefCfg = defcfg;
-            config = kbd;
+            config = kbd { };
           };
         };
       };
@@ -79,12 +84,21 @@ in
       imports = [ options ];
 
       config = lib.mkIf config.services.mykanata.enable {
+        # Apple's driver turns the internal keyboard's F-row into media keys; kanata re-emits through
+        # the generic virtual HID keyboard, so they arrive as plain F1–F12 unless mapped here.
+        # fn still reaches macOS and additionally switches the row back to real F-keys.
         environment.etc."kanata/config.kbd".text = ''
           (defcfg
             ${defcfg}
             macos-dev-names-include ("Apple Internal Keyboard / Trackpad")
           )
-          ${kbd}
+          ${kbd {
+            src = "fn f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12";
+            base = "(multi fn (layer-while-held fkeys)) brdn brup mctl sls dtn dnd prev pp next mute vold volu";
+          }}
+          (deflayer fkeys
+            _ _ _ _ _ _ _ _ _ _ _ f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
+          )
         '';
 
         system.activationScripts.postActivation.text = ''
