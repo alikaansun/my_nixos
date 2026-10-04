@@ -6,7 +6,6 @@
     # in
     {
       environment.systemPackages = with pkgs; [
-        protonup-ng
         # lutris
         heroic
         hmcl # minecraft
@@ -26,10 +25,7 @@
         dedicatedServer.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
         gamescopeSession.enable = true;
-      };
-
-      environment.sessionVariables = {
-        STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/alik/.steam/root/compatibilitytools.d";
+        extraCompatPackages = [ pkgs.proton-ge-bin ];
       };
 
       # Gamescope fails to launch when used within Steam
