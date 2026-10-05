@@ -23,6 +23,7 @@
     in
     {
       home.packages = [ zoteroSync ];
+      home.shellAliases.zsync = "zotero-md-sync";
 
       # home-manager runs activation under `set -e`, so an unguarded failure here
       # would abort the whole switch.
