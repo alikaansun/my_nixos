@@ -292,6 +292,10 @@
               nextnano-nvim = {
                 package = nextnanoPlugin;
               };
+              outline-nvim = {
+                package = pkgs.vimPlugins.outline-nvim;
+                setup = "require('outline').setup()";
+              };
             };
 
             luaConfigRC = {

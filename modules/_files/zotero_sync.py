@@ -14,8 +14,10 @@ import argparse
 import getpass
 import os
 import re
+import shutil
 import sqlite3
 import sys
+import tempfile
 from pathlib import Path
 
 # pymupdf prints a one-line ad for its paid layout add-on to *stdout* on import, which
@@ -60,7 +62,15 @@ RECOVERY_RATIO = 0.5
 
 def load_library(db_path):
     """Return (items_by_id, attachments) read from a live Zotero database."""
-    con = sqlite3.connect(f"file:{db_path}?immutable=1", uri=True)
+    # Zotero holds an exclusive lock while running and keeps recent writes in the
+    # -wal file, so `immutable=1` on the live DB misses new items. Snapshot the
+    # db + wal into a temp dir and let sqlite replay the log there.
+    tmp = tempfile.TemporaryDirectory()
+    for suffix in ("", "-wal"):
+        src = Path(f"{db_path}{suffix}")
+        if src.exists():
+            shutil.copy(src, Path(tmp.name) / src.name)
+    con = sqlite3.connect(Path(tmp.name) / Path(db_path).name)
     q = lambda sql: con.execute(sql).fetchall()
 
     field = {name: fid for fid, name in q("SELECT fieldID, fieldName FROM fields")}
