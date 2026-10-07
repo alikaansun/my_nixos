@@ -56,6 +56,16 @@
     claude-code-nix = {
       url = "github:sadjow/claude-code-nix";
     };
+    nix-warcraft = {
+      url = "github:raccube/nix-warcraft";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.proton-ge-nix.follows = "proton-ge-nix";
+    };
+    # nix-warcraft's module reads inputs.proton-ge-nix from the home-manager specialArgs.
+    proton-ge-nix = {
+      url = "github:Daaboulex/proton-ge-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     shad06_nixpkgs.url = "github:nixos/nixpkgs/b95dd9da90309705b8a32f849b80fad1cca16620";
     yazi-lazygit = {
       url = "github:Lil-Dank/lazygit.yazi";
