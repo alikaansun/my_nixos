@@ -43,7 +43,7 @@
         spotify
         vlc
         nextcloud-client
-        zotero
+        # zotero
         tor-browser
         # rustdesk
         onlyoffice-desktopeditors

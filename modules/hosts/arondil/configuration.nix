@@ -83,6 +83,17 @@
           "exec"
         ];
       };
+      # 4TB IronWolf HDD, used for Nextcloud backups
+      fileSystems."/mnt/backup" = {
+        device = "/dev/disk/by-label/backup";
+        fsType = "ext4";
+        options = [
+          "defaults"
+          "noatime"
+          "nofail"
+        ];
+      };
+      systemd.tmpfiles.rules = [ "d /mnt/backup 0755 alik users -" ];
 
       # Use systemd to set permissions after mount
       systemd.services.setStoragePermissions = {
