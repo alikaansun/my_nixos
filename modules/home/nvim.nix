@@ -286,7 +286,17 @@
                 setup = "require('claudecode').setup()";
               };
               jupynvim = {
-                package = pkgs.vimPlugins.jupynvim;
+                # vim.lsp.start takes bufnr/reuse_client in its 2nd (opts) arg;
+                # upstream passes them in config, where they're ignored, so every
+                # notebook after the first reuses the first one's kernel-completion
+                # client and completes against that notebook's buffer and kernel.
+                package = pkgs.vimPlugins.jupynvim.overrideAttrs (old: {
+                  postPatch = (old.postPatch or "") + ''
+                    substituteInPlace lua/jupynvim/lsp/kernel.lua --replace-fail \
+                      ${lib.escapeShellArg "    reuse_client = function() return false end,"} \
+                      ${lib.escapeShellArg "  }, {\n    bufnr = buf,\n    reuse_client = function(c) return c.name == \"jupynvim_kernel\" and c.attached_buffers[buf] ~= nil end,"}
+                  '';
+                });
                 setup = "require('jupynvim').setup({})";
               };
               nextnano-nvim = {
