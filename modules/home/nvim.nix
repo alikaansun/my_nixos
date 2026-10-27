@@ -348,7 +348,11 @@
               mappings = {
                 open = "<c-t>";
               };
-              setupOpts.shade_terminals = false;
+              setupOpts = {
+                shade_terminals = false;
+                # Otherwise toggleterm reopens in whatever mode the terminal was left in.
+                persist_mode = false;
+              };
             };
 
             # --- 4. Utilities & Git ---
