@@ -192,7 +192,12 @@
               };
             };
 
-            statusline.lualine.enable = true;
+            statusline.lualine = {
+              enable = true;
+              # laststatus=3: horizontal splits (e.g. toggleterm) then get a
+              # WinSeparator line instead of the upper window's statusline.
+              setupOpts.options.globalstatus = true;
+            };
 
             mini.icons.enable = true;
 
