@@ -38,6 +38,11 @@
         enable = true;
         enableZshIntegration = true;
         settings = {
+          git.diffRenderers = [
+            {
+              command = "${pkgs.delta}/bin/delta --{{colorScheme}} --paging=never --syntax-theme=gruvbox-dark";
+            }
+          ];
           gui.theme = {
             lightTheme = false;
             activeBorderColor = [
