@@ -34,28 +34,44 @@
         ];
       };
 
-      programs.lazygit = {
-        enable = true;
-        enableZshIntegration = true;
-        settings = {
-          git.diffRenderers = [
-            {
-              command = "${pkgs.delta}/bin/delta --{{colorScheme}} --paging=never --syntax-theme=gruvbox-dark";
-            }
-          ];
-          gui.theme = {
-            lightTheme = false;
-            activeBorderColor = [
-              "#a9b665"
-              "bold"
+      programs.lazygit =
+        let
+          # Kanagawa Wave, matching the ghostty palette in terminal.nix
+          c = {
+            fg = "#dcd7ba";
+            gray = "#54546d";
+            blue = "#7e9cd8";
+            brightBlue = "#7fb4ca";
+            red = "#c34043";
+            selection = "#2d4f67";
+            addBg = "#2b3328";
+            addEmphBg = "#3b4a35";
+            delBg = "#43242b";
+            delEmphBg = "#5a2a33";
+          };
+        in
+        {
+          enable = true;
+          enableZshIntegration = true;
+          settings = {
+            git.diffRenderers = [
+              {
+                command = "${pkgs.delta}/bin/delta --{{colorScheme}} --paging=never --syntax-theme=ansi --plus-style='syntax ${c.addBg}' --minus-style='syntax ${c.delBg}' --plus-emph-style='syntax ${c.addEmphBg}' --minus-emph-style='syntax ${c.delEmphBg}' --hunk-header-decoration-style='${c.blue} box' --file-decoration-style='${c.blue} ul' --file-style='${c.brightBlue} bold'";
+              }
             ];
-            inactiveBorderColor = [ "#a89984" ];
-            optionsTextColor = [ "#7daea3" ];
-            selectedLineBgColor = [ "#32302f" ];
-            unstagedChangesColor = [ "#ea6962" ];
-            defaultFgColor = [ "#d4be98" ];
+            gui.theme = {
+              lightTheme = false;
+              activeBorderColor = [
+                c.blue
+                "bold"
+              ];
+              inactiveBorderColor = [ c.gray ];
+              optionsTextColor = [ c.brightBlue ];
+              selectedLineBgColor = [ c.selection ];
+              unstagedChangesColor = [ c.red ];
+              defaultFgColor = [ c.fg ];
+            };
           };
         };
-      };
     };
 }
