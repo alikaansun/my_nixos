@@ -470,11 +470,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793115061,
-        "narHash": "sha256-yOqPfYcYLViUAAtu3GFZR1BUV2VEGDj1n+dEQ20owlY=",
+        "lastModified": 1793527839,
+        "narHash": "sha256-jNMzyMfj946+zkLEiCU8i0h1WeovXrdbGfaLFdL0F3A=",
         "owner": "raccube",
         "repo": "nix-warcraft",
-        "rev": "20b98509a1a9c998108780bc59b5ba36c0ff808a",
+        "rev": "243a1136d3c1885470a293f0ca5300a18303152e",
         "type": "github"
       },
       "original": {

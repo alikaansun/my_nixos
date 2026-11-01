@@ -15,6 +15,9 @@
     let
       drasleonaDir = "${config.home.homeDirectory}/${vars.obsidian.vault}/_drasleona";
       link = target: config.lib.file.mkOutOfStoreSymlink target;
+      # Claude Code's project dir name: the absolute path with / and . as -.
+      projectDir =
+        rel: builtins.replaceStrings [ "/" "." ] [ "-" "-" ] "${config.home.homeDirectory}/${rel}";
     in
     {
       home.file = {
@@ -25,8 +28,8 @@
         ".claude/hooks".source = link "${drasleonaDir}/hooks";
         # Claude Code keys its per-project memory dir by project path, so every
         # project that should share the one vault memory store needs its own link.
-        ".claude/projects/-Users-alik--dotfiles/memory".source = link "${drasleonaDir}/memory";
-        ".claude/projects/-Users-alik-Documents-ObsNotes/memory".source = link "${drasleonaDir}/memory";
+        ".claude/projects/${projectDir ".dotfiles"}/memory".source = link "${drasleonaDir}/memory";
+        ".claude/projects/${projectDir vars.obsidian.vault}/memory".source = link "${drasleonaDir}/memory";
       };
     };
 }
