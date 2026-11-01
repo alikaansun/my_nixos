@@ -10,6 +10,8 @@
 
       programs.wow = {
         enable = true;
+        # Battle.net's clicks land in the wrong place under Wine's native Wayland driver.
+        wayland = false;
         versions.retail.addonPackages = with wow-addons; [
           bigwigs.core
         ];

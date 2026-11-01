@@ -677,6 +677,7 @@
         "proton-ge-nix": "proton-ge-nix",
         "shad06_nixpkgs": "shad06_nixpkgs",
         "sops-nix": "sops-nix",
+        "soundshed": "soundshed",
         "stablenixpkgs": "stablenixpkgs",
         "stylix": "stylix",
         "yazi-clipboard": "yazi-clipboard",
@@ -742,6 +743,27 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "soundshed": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793528929,
+        "narHash": "sha256-QV5zT4tfp1p6QViJkrv1s2dhAj85YXoizYSTcgkJE8g=",
+        "owner": "alikaansun",
+        "repo": "soundshed-app",
+        "rev": "bd20bb561c16ea3e4545ac0e16030e4518a91b82",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alikaansun",
+        "ref": "nix",
+        "repo": "soundshed-app",
         "type": "github"
       }
     },

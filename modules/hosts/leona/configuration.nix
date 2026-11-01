@@ -89,6 +89,7 @@
         duti # set default apps for file types
         util-linux
         inputs.claude-code-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
+        inputs.soundshed.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
 
       # Nix settings

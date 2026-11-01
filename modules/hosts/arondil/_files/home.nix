@@ -39,6 +39,7 @@ in
     ardour # Audio recording and editing
     lingot # tuner
     element-desktop # matrix chat
+    inputs.soundshed.packages.${pkgs.stdenv.hostPlatform.system}.default
     # musescore      # Music notation software
   ];
 

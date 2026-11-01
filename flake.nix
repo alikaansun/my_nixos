@@ -56,6 +56,10 @@
     claude-code-nix = {
       url = "github:sadjow/claude-code-nix";
     };
+    soundshed = {
+      url = "github:alikaansun/soundshed-app/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-warcraft = {
       url = "github:raccube/nix-warcraft";
       inputs.nixpkgs.follows = "nixpkgs";
