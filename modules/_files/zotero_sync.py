@@ -7,7 +7,8 @@ Writes three things:
   <vault>/Zotero/notes/<citekey>.md     one stub note per item, for Bases and ripgrep
 
 Re-runnable: a PDF is converted only when its .md is missing or older, and a stub's
-body is never touched once created -- only its frontmatter is refreshed.
+body is never touched once created -- only its frontmatter is refreshed, and only
+when it actually changed.
 """
 
 import argparse
@@ -343,17 +344,25 @@ def main():
             fm["pdf"] = str(pdf)
         path = notes / f"{stub_name(fm, used)}.md"
         abstract = item.get("abstractNote")
-        if path.exists():
-            body = body_of(path.read_text())
-            refreshed += 1
+        old = path.read_text() if path.exists() else None
+        if old is not None:
+            body = body_of(old)
         else:
             body = "\n"
             if abstract:
                 quoted = "\n".join(f"> {ln}" for ln in abstract.splitlines())
                 body = f"\n> [!note]- 🤖 Abstract\n{quoted}\n\n"
+        new = frontmatter(fm) + body
+        # Rewriting an unchanged stub still bumps its mtime, and the vault's WebDAV
+        # sync re-uploads every file whose mtime moved.
+        if new == old:
+            continue
+        if old is None:
             created += 1
+        else:
+            refreshed += 1
         if not args.dry_run:
-            path.write_text(frontmatter(fm) + body)
+            path.write_text(new)
     print(f"stubs: {created} created, {refreshed} refreshed  ->  {notes}")
 
     if notes.is_dir():
