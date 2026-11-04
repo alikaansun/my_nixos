@@ -117,6 +117,8 @@
               # `e` opens Finder (darwin) or xdg-open/Dolphin (linux) — defined as a shell function in zsh.initContent above
               freecad-x11 = "QT_QPA_PLATFORM=xcb freecad";
               rc2nix = "nix run github:nix-community/plasma-manager > ~/.dotfiles/modules/home/plasma.txt";
+              # npx-only: Nix's node has a read-only global prefix, so no `npm i -g`.
+              graft = "DO_NOT_TRACK=1 npx -y @nanonets/graft";
             };
           };
 
