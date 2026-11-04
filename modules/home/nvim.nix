@@ -426,7 +426,6 @@
                   css
                   html
                   javascript
-                  latex
                   markdown
                   markdown_inline
                   scss
@@ -523,6 +522,7 @@
                 };
               };
               clang.enable = true;
+              tex.enable = true;
               typst = {
                 enable = true;
                 extensions.typst-preview-nvim.enable = true;
