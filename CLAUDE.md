@@ -70,6 +70,12 @@ rc2nix
     ├── vars.nix                       # shared variables → flake.vars
     ├── virtualisation.nix
     ├── _files/
+    │   ├── hypr/
+    │   │   ├── hyprland.lua           # Hyprland Lua config; loads optional per-host host.lua
+    │   │   ├── kanagawa-wave.json     # Noctalia palette: Kanagawa with blue accent instead of green
+    │   │   ├── noctalia.toml          # Noctalia shell settings
+    │   │   ├── scripts.nix            # hypr-desktop-menu / keybind-help / record-toggle
+    │   │   └── test-runner.nix        # `nix run .#hyprland-test`: nested Hyprland window on KDE
     │   ├── jupynvim/default.nix       # package expr for the jupynvim plugin (upstreamed to nixpkgs)
     │   ├── pythonEnv.nix              # reusable Python env exposed as a flake package
     │   └── zotero_sync.py             # Zotero PDFs → markdown + Obsidian library index
@@ -88,6 +94,7 @@ rc2nix
     │   ├── plasma.txt                 # plasma-manager capture output
     │   ├── sym.nix                    # hand-managed symlinks (~/.claude → vault/_drasleona)
     │   ├── terminal.nix
+    │   ├── wow.nix                    # World of Warcraft via nix-warcraft (addons)
     │   ├── yazi.nix
     │   ├── zed.nix
     │   └── zotero.nix                 # zotero-md-sync package + rebuild activation hook
@@ -145,6 +152,7 @@ Each host lives in `modules/hosts/<name>/configuration.nix` and imports the modu
 - `modules/stylix.nix` — system-wide theming (Gruvbox Dark, Fira Code)
 - `modules/gc.nix` — automatic weekly garbage collection
 - `modules/_files/pythonEnv.nix` — reusable Python environment exposed as a flake package
+- `modules/_files/hypr/` — Hyprland + Noctalia config files; `nix run .#hyprland-test` runs them live from `~/.dotfiles` in a nested window with isolated `XDG_*` dirs and a `systemctl` stub (never start nested Hyprland on KDE without it)
 - `modules/home/sym.nix` — hand-managed symlinks; assistant config lives in the vault under `_drasleona` and is linked into `~/.claude`
 - `modules/home/zotero.nix` — installs `zotero-md-sync` and runs it on every rebuild; converts Zotero PDFs to markdown and indexes the library into the vault
 
