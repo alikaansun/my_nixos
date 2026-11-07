@@ -102,10 +102,10 @@
 
           # App specific behavior
           on-window-detected = [
-            {
-              "if".app-id = "com.apple.finder";
-              run = [ "layout floating" ];
-            }
+            # {
+            #   "if".app-id = "com.apple.finder";
+            #   run = [ "layout floating" ];
+            # }
             {
               "if".app-id = "com.apple.systempreferences";
               run = [ "layout floating" ];
