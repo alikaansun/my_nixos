@@ -441,6 +441,15 @@
                       (#eq? @_p "luaConfigRC")
                       (#set! injection.language "lua"))
 
+                    (apply_expression
+                      function: [
+                        (variable_expression name: (identifier) @_f)
+                        (select_expression attrpath: (attrpath attr: (identifier) @_f .))
+                      ]
+                      argument: (_ (string_fragment) @injection.content)
+                      (#eq? @_f "mkLuaInline")
+                      (#set! injection.language "lua"))
+
                     (binding attrpath: (attrpath (identifier) @_p)
                       expression: (_ (string_fragment) @injection.content)
                       (#any-of? @_p "initContent" "config" "text")
