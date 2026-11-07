@@ -85,6 +85,13 @@ in
 
   home.activation = {
     linkNixApps = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+      # Links to apps dropped from the config dangle and block a Homebrew cask of the same name.
+      for link in /Applications/*.app; do
+        if [ -L "$link" ] && [ ! -e "$link" ]; then
+          rm "$link"
+          echo "  Removed stale link $(basename "$link")" >&2
+        fi
+      done
       for nix_apps in "/Applications/Nix Apps" "$HOME/Applications/Home Manager Apps" "$HOME/Applications"; do
         if [ -d "$nix_apps" ]; then
           find "$nix_apps" -maxdepth 1 -name '*.app' -print0 | while IFS= read -r -d "" app; do

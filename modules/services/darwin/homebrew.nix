@@ -52,6 +52,7 @@
           "vlc"
           "spotify"
           "tor-browser"
+          "brave-browser"
           "font-fira-code-nerd-font"
           #mac spesific stuff
           "betterdisplay" # external display

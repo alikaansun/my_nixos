@@ -75,7 +75,6 @@
         vscode
         uv
         raycast
-        brave
         nixd # nix language server
         nil
         nixfmt # nix formatter
