@@ -408,11 +408,11 @@
     "nextnano-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1787340608,
-        "narHash": "sha256-DSSmlZMZrR5S+G0omAY+ry7wPtBS3pNsek4koS++LlE=",
+        "lastModified": 1794051531,
+        "narHash": "sha256-clTmtCm4bH0gSOZHottgZzUSN82coLYZ3SxEPSYrAnk=",
         "ref": "refs/heads/main",
-        "rev": "ddeb72ed1f4acfada126067a1314f7372873d1d9",
-        "revCount": 4,
+        "rev": "a465e082651b3d28d877e84d393528897e8ea766",
+        "revCount": 6,
         "type": "git",
         "url": "ssh://git@github.com/alikaansun/nextnano.nvim"
       },

@@ -456,33 +456,6 @@
                       (#set! injection.language "bash") (#set! injection.combined))
                   '';
                 }
-                {
-                  type = "injections";
-                  filetypes = [ "python" ];
-                  loadtype = "extends";
-                  # nextnano++ input templates: a string whose text opens with a
-                  # group, `name{` + whitespace, or `name{{` in an f-string
-                  # (where a single `{` is an interpolation, as in f"layer{i}").
-                  # No space before the brace and no `\` before the name in
-                  # plain strings, so docstrings and LaTeX (r"\alpha{x}") stay
-                  # python. The test runs on the whole string so every fragment
-                  # of an f-string is injected, not just the one before the
-                  # first interpolation; include-children keeps the `{{`
-                  # escapes, which python parses as children of string_content.
-                  query = ''
-                    ((string (string_content) @injection.content) @_s
-                      (#lua-match? @_s "^%a*[fF]%a*[\"']+[%s\\]*[%a_][%w_]*{{")
-                      (#set! injection.language "nextnano_in")
-                      (#set! injection.include-children)
-                      (#set! injection.combined))
-
-                    ((string (string_content) @injection.content) @_s
-                      (#lua-match? @_s "^[rRbBuU]*[\"']+%s*[%a_][%w_]*{%s")
-                      (#set! injection.language "nextnano_in")
-                      (#set! injection.include-children)
-                      (#set! injection.combined))
-                  '';
-                }
               ];
               grammars =
                 with pkgs.vimPlugins.nvim-treesitter.builtGrammars;
@@ -502,7 +475,6 @@
                 ]
                 ++ [
                   pkgs.tree-sitter-grammars.tree-sitter-norg
-                  nextnanoPlugin.grammar
                 ];
             };
 
