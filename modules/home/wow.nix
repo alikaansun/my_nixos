@@ -14,6 +14,9 @@
         wayland = false;
         versions.retail.addonPackages = with wow-addons; [
           bigwigs.core
+          enhance-qol
+          gatherlite
+          baganator
         ];
       };
     };
