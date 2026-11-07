@@ -270,7 +270,16 @@
                 '';
               };
               snacks-nvim = {
-                package = pkgs.vimPlugins.snacks-nvim;
+                # Placement:update() hides an image once its buffer leaves every
+                # window but never calls show() when it returns, so switching
+                # back to an image buffer renders empty placeholders.
+                package = pkgs.vimPlugins.snacks-nvim.overrideAttrs (old: {
+                  postPatch = (old.postPatch or "") + ''
+                    substituteInPlace lua/snacks/image/placement.lua --replace-fail \
+                      ${lib.escapeShellArg "    self:hide()\n    return\n  end\n  self.img:place(self)"} \
+                      ${lib.escapeShellArg "    self:hide()\n    return\n  end\n  if self.hidden then\n    return self:show()\n  end\n  self.img:place(self)"}
+                  '';
+                });
                 setup = ''
                   require("snacks").setup({
                     image = { enabled = true, math = { enabled = false } },
