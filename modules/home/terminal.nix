@@ -207,6 +207,7 @@
               keybind = [
                 "ctrl+g=text:lazygit\\n"
                 "ctrl+n=text:nvim\\n"
+                "ctrl+enter=unbind"
               ];
 
             };
