@@ -142,7 +142,12 @@
         {
           # Formatters per system
           formatter = pkgs.nixfmt-tree;
-          packages.pythonEnv = pythonEnv;
+          packages = {
+            inherit pythonEnv;
+          }
+          // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
+            hyprland-test = import ./modules/_files/hypr/test-runner.nix { inherit pkgs; };
+          };
           devShells.python = pkgs.mkShell {
             packages = [ pythonEnv ];
           };

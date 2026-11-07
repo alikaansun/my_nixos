@@ -1,0 +1,25 @@
+[shell]
+polkit_agent = true
+setup_wizard_enabled = false
+
+[theme]
+mode = "dark"
+source = "custom"
+custom_palette = "kanagawa-wave"
+
+[bar.default]
+start = ["launcher", "workspaces"]
+
+[keybinds]
+up = ["up", "ctrl+k"]
+down = ["down", "ctrl+j"]
+
+[idle.behavior.lock]
+timeout = 300
+action = "lock"
+enabled = true
+
+[idle.behavior.screen-off]
+timeout = 600
+action = "screen_off"
+enabled = true

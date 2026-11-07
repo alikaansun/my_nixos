@@ -198,6 +198,17 @@
             };
             apply.desktops = "Desktop_5";
           }
+          {
+            description = "Hyprland test window keeps Super and Alt";
+            match.window-class = {
+              value = "aquamarine";
+              type = "substring";
+            };
+            apply.disableglobal = {
+              value = true;
+              apply = "force";
+            };
+          }
         ];
 
         configFile = {
