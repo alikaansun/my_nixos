@@ -197,6 +197,25 @@
               # laststatus=3: horizontal splits (e.g. toggleterm) then get a
               # WinSeparator line instead of the upper window's statusline.
               setupOpts.options.globalstatus = true;
+              # mkOptionDefault so this appends to nvf's default section
+              # (LSP name, diagnostics) instead of replacing it.
+              # ponytail: wordcount() counts markup tokens (\cite{..}, #set, ##)
+              # as words; use texcount / a typst query if an exact count matters.
+              setupOpts.sections.lualine_x = lib.mkOptionDefault (
+                lib.mkAfter [
+                  (lib.generators.mkLuaInline ''
+                    {
+                      function()
+                        local wc = vim.fn.wordcount()
+                        return (wc.visual_words or wc.words) .. " words"
+                      end,
+                      cond = function()
+                        return vim.tbl_contains({ "markdown", "tex", "plaintex", "typst", "text" }, vim.bo.filetype)
+                      end,
+                    }
+                  '')
+                ]
+              );
             };
 
             mini.icons.enable = true;
