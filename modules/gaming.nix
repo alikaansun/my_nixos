@@ -8,7 +8,7 @@
       environment.systemPackages = with pkgs; [
         # lutris
         heroic
-        hmcl # minecraft
+        # hmcl # minecraft — terracotta fails on nixos-unstable until NixOS/nixpkgs#584298 lands
         # oldPkgs.shadps4
         shadps4
         gamemode

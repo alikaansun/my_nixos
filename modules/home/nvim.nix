@@ -144,7 +144,6 @@
         ripgrep
         fd
         mermaid-cli
-        tectonic
         trash-cli
         python3Packages.pylatexenc
       ];
