@@ -85,7 +85,7 @@
         nfs-utils
         cifs-utils
         trezor-suite
-        brave
+        inputs.brave_nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.brave
         inputs.claude-code-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
         # texliveFull
         # protonmail-desktop

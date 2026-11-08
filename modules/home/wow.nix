@@ -12,12 +12,16 @@
         enable = true;
         # Battle.net's clicks land in the wrong place under Wine's native Wayland driver.
         wayland = false;
-        versions.retail.addonPackages = with wow-addons; [
-          bigwigs.core
-          enhance-qol
-          gatherlite
-          baganator
-        ];
+        versions.forever = {
+          # Battle.net installed the game on /mnt/D, not inside the Proton prefix the module defaults to.
+          addonDir = "/mnt/D/games/battlenet/World of Warcraft/_forever_/Interface/AddOns";
+          addonPackages = with wow-addons; [
+            bigwigs.core
+            enhance-qol
+            gatherlite
+            baganator
+          ];
+        };
       };
     };
 }

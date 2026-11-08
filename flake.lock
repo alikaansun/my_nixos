@@ -68,6 +68,22 @@
         "type": "github"
       }
     },
+    "brave_nixpkgs": {
+      "locked": {
+        "lastModified": 1792842277,
+        "narHash": "sha256-pGPnZGi8y9d76xNeracniXO3dsYVROEmMkMc8jD0Ihc=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d3b13ad75cc492690728f9307e443dec9ef9a20e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d3b13ad75cc492690728f9307e443dec9ef9a20e",
+        "type": "github"
+      }
+    },
     "brew-src": {
       "flake": false,
       "locked": {
@@ -659,6 +675,7 @@
     },
     "root": {
       "inputs": {
+        "brave_nixpkgs": "brave_nixpkgs",
         "claude-code-nix": "claude-code-nix",
         "flake-parts": "flake-parts",
         "herdr": "herdr",
