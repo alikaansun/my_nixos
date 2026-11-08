@@ -12,14 +12,24 @@
         enable = true;
         # Battle.net's clicks land in the wrong place under Wine's native Wayland driver.
         wayland = false;
+        # nix-warcraft's default still points at proton-ge-nix's removed `v11` attr.
+        protonPackage = inputs.proton-ge-nix.packages.${pkgs.stdenv.hostPlatform.system}.proton-ge.steamcompattool;
         versions.forever = {
           # Battle.net installed the game on /mnt/D, not inside the Proton prefix the module defaults to.
           addonDir = "/mnt/D/games/battlenet/World of Warcraft/_forever_/Interface/AddOns";
           addonPackages = with wow-addons; [
             bigwigs.core
-            enhance-qol
             gatherlite
+            whats-training
             baganator
+            handynotes
+            questie
+            auctionator
+            forever-dungeon-journal
+            rarescanner-forever
+            rxp-guides
+            syndicator
+            compass-forever
           ];
         };
       };
