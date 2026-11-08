@@ -115,7 +115,7 @@
             # "$mod, SPACE, exec, zen" # Zen browser
             "$mod, V, exec, code" # VSCode
             "$mod, E, exec, dolphin" # VSCode
-            "$mod, D, exec, vesktop" # Discord/Vesktop
+            "$mod, D, exec, discord" # Discord
             "$mod, O, exec, obsidian" # Obsidian
             "$mod, K, exec, keepassxc" # KeePassXC
             "$mod, S, exec, steam" # Steam

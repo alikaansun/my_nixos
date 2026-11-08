@@ -127,7 +127,7 @@
           # "services/zen.desktop"."_launch" = "Meta+Space";
           "services/brave-browser.desktop"."new-window" = "Meta+Space";
           "services/code.desktop"."_launch" = "Ctrl+Alt+V";
-          "services/vesktop.desktop"."_launch" = "Ctrl+Alt+D";
+          "services/discord.desktop"."_launch" = "Ctrl+Alt+D";
           "services/obsidian.desktop"."_launch" = "Ctrl+Alt+O";
           "services/org.keepassxc.KeePassXC.desktop"."_launch" = "Ctrl+Alt+K";
           "services/steam.desktop"."_launch" = "Ctrl+Alt+S";
@@ -183,9 +183,9 @@
             apply.desktops = "Desktop_3";
           }
           {
-            description = "Vesktop (Discord) -> Desktop 4";
+            description = "Discord -> Desktop 4";
             match.window-class = {
-              value = "Vesktop";
+              value = "discord";
               type = "substring";
             };
             apply.desktops = "Desktop_4";

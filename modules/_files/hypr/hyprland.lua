@@ -61,7 +61,7 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("ghostty"))
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("brave"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("dolphin"))
-for key, command in pairs({ V = "code", D = "vesktop", O = "obsidian", K = "keepassxc --config " .. configHome .. "/keepassxc/hyprland.ini", M = "spotify", S = "steam" }) do
+for key, command in pairs({ V = "code", D = "discord", O = "obsidian", K = "keepassxc --config " .. configHome .. "/keepassxc/hyprland.ini", M = "spotify", S = "steam" }) do
     hl.bind("CTRL + ALT + " .. key, hl.dsp.exec_cmd(command))
 end
 
@@ -129,7 +129,7 @@ assign("^(brave-browser)$", "1")
 assign("^(com.mitchellh.ghostty|code)$", "2")
 assign("^(obsidian|zotero|Zotero)$", "3")
 assign("^(steam)$", "4")
-assign("^(spotify|Spotify|whatsapp.*|org.keepassxc.KeePassXC|vesktop)$", "name:m")
+assign("^(spotify|Spotify|whatsapp.*|org.keepassxc.KeePassXC|discord)$", "name:m")
 
 hl.window_rule({ name = "games-tear", match = { class = "^(steam_app_.*|gamescope)$" }, immediate = true })
 hl.window_rule({ name = "games-workspace", match = { class = "^(steam_app_.*|gamescope)$" }, workspace = "4" })

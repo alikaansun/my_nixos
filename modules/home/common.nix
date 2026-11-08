@@ -39,7 +39,7 @@
         thunderbird
         vscode
         obsidian
-        vesktop
+        discord
         spotify
         vlc
         nextcloud-client
