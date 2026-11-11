@@ -70,18 +70,15 @@
     },
     "brave_nixpkgs": {
       "locked": {
-        "lastModified": 1792842277,
-        "narHash": "sha256-pGPnZGi8y9d76xNeracniXO3dsYVROEmMkMc8jD0Ihc=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "d3b13ad75cc492690728f9307e443dec9ef9a20e",
-        "type": "github"
+        "lastModified": 1794378162,
+        "narHash": "sha256-aDNo5UNufgyUk5UzVv+2/yIxnPKxyqM+tMX1jyIY0Mc=",
+        "rev": "c24da8b1d51f447e8faedcb5cb823b3f84346a60",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/unstable-small/nixos-26.11pre1117555.c24da8b1d51f/nixexprs.tar.zst"
       },
       "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "d3b13ad75cc492690728f9307e443dec9ef9a20e",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixos-unstable-small/nixexprs.tar.zst"
       }
     },
     "brew-src": {

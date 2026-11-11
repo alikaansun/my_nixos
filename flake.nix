@@ -71,8 +71,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     shad06_nixpkgs.url = "github:nixos/nixpkgs/b95dd9da90309705b8a32f849b80fad1cca16620";
-    # shortcut: last pre-removal unstable rev with brave; frozen, gets no security updates — drop once brave is back in nixpkgs
-    brave_nixpkgs.url = "github:nixos/nixpkgs/d3b13ad75cc492690728f9307e443dec9ef9a20e";
+    # ponytail: brave re-add (nixpkgs#584534) is on unstable-small but not nixos-unstable yet; drop this input and use pkgs.brave once it lands
+    brave_nixpkgs.url = "https://channels.nixos.org/nixos-unstable-small/nixexprs.tar.zst";
     yazi-lazygit = {
       url = "github:Lil-Dank/lazygit.yazi";
       flake = false;

@@ -83,8 +83,8 @@
         sops
         wireguard-tools
         klayout
-        vesktop
         fastfetch
+        discord
         duti # set default apps for file types
         util-linux
         inputs.claude-code-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
