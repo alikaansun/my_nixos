@@ -116,6 +116,16 @@
         '';
       };
 
+      sops.secrets.arondil_lan_ipv4 = { };
+      sops.secrets.lan_gateway = { };
+      sops.templates."eno1.env" = {
+        content = ''
+          ARONDIL_LAN_IPV4=${config.sops.placeholder.arondil_lan_ipv4}
+          LAN_GATEWAY=${config.sops.placeholder.lan_gateway}
+        '';
+        restartUnits = [ "NetworkManager-ensure-profiles.service" ];
+      };
+
       # Bridge network for nas
       networking = {
         hostName = "arondil";
@@ -126,6 +136,8 @@
         #   }];
         # };
 
+        # NM substitutes $VARS from the sops-rendered env file, so the addresses never enter the store.
+        networkmanager.ensureProfiles.environmentFiles = [ config.sops.templates."eno1.env".path ];
         networkmanager.ensureProfiles.profiles.eno1 = {
           connection = {
             id = "eno1";
@@ -133,7 +145,11 @@
             interface-name = "eno1";
             autoconnect = true;
           };
-          ipv4.method = "auto";
+          ipv4 = {
+            method = "manual";
+            address1 = "$ARONDIL_LAN_IPV4/24,$LAN_GATEWAY";
+            dns = "$LAN_GATEWAY;";
+          };
           ipv6.method = "auto";
         };
       };
