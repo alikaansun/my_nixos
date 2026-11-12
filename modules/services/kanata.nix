@@ -107,11 +107,14 @@ in
             rm -rf ${manager}
             cp -R ${driver}/Applications/.Karabiner-VirtualHIDDevice-Manager.app ${manager}
           fi
+          # The Input Monitoring grant is pinned to the ad-hoc signature's cdhash, so any new build
+          # (even a same-version nixpkgs rebuild) silently loses it. Only replace on a version bump.
           # rm before cp: overwriting a signed binary in place gets it killed by the kernel's signature cache.
-          if ! cmp -s ${pkgs.kanata}/bin/kanata ${kanata}; then
+          if [ "$(${kanata} --version 2>/dev/null)" != "$(${pkgs.kanata}/bin/kanata --version)" ]; then
             mkdir -p /usr/local/bin
             rm -f ${kanata}
             cp ${pkgs.kanata}/bin/kanata ${kanata}
+            echo "kanata updated: re-add ${kanata} under Privacy & Security -> Input Monitoring" >&2
           fi
           launchctl kickstart -k system/org.nixos.karabiner-vhid-daemon || true
           launchctl kickstart -k system/org.nixos.kanata || true
