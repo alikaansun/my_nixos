@@ -53,6 +53,7 @@ in
   sops.defaultSopsFile = ../../../secrets/secrets.yaml;
 
   sops.secrets.arondil_ipv4 = { };
+  sops.secrets.arondil_lan_ipv4 = { };
   sops.secrets.ssh_work_hostname = { };
   sops.secrets.ssh_work_user = { };
 
@@ -61,6 +62,15 @@ in
       HostName ${config.sops.placeholder.arondil_ipv4}
       User alik
       RequestTTY yes
+
+    Host arondil-lan
+      HostName ${config.sops.placeholder.arondil_lan_ipv4}
+      User alik
+      UserKnownHostsFile ~/.ssh/known_hosts ${config.sops.templates."arondil-known-hosts".path}
+  '';
+  # Pinned host key so non-interactive SSH (herdr machine status) never hits the trust prompt.
+  sops.templates."arondil-known-hosts".content = ''
+    ${config.sops.placeholder.arondil_lan_ipv4} ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK1BsXhFSLeipd2GMqDvzRoxYP9GzRWICY05cW19nSxr
   '';
   sops.templates."ssh-work-config".content = ''
     Host work
