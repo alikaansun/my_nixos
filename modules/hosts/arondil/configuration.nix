@@ -168,6 +168,7 @@
         };
       };
 
+
       # Enable CUPS to print documents.
       # services.printing.enable = true;
 
@@ -176,6 +177,7 @@
         enable32Bit = true;
       };
       programs.nix-ld.enable = true;
+      programs.nix-ld.libraries = [ pkgs.expat ];
       services.xserver.videoDrivers = [ "amdgpu" ];
       # services.xserver.videoDrivers = ["nvidia"];
       # hardware.nvidia = {

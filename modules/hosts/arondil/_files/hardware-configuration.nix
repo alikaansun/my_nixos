@@ -25,6 +25,37 @@
   hardware.amdgpu.opencl.enable = true;
   # hardware.amdgpu.amdvlk.enable = true;
   nixpkgs.config.rocmSupport = true;
+  # Prebuilt ROCm wheels (e.g. jax_rocm7_plugin) load their libs from /opt/rocm/lib.
+  systemd.tmpfiles.rules =
+    let
+      rocm = pkgs.symlinkJoin {
+        name = "rocm";
+        paths =
+          (with pkgs.rocmPackages; [
+            clr
+            rocm-runtime
+            rocm-comgr
+            rocm-core
+            rocm-smi
+            hipblas
+            hipblaslt
+            hipsolver
+            hipsparse
+            hipsparselt
+            miopen
+            rccl
+            rocsolver
+            rocsparse
+            rocprofiler-register
+            rocprofiler-sdk
+            roctracer
+          ])
+          ++ [ pkgs.numactl ];
+      };
+    in
+    [ "L+ /opt/rocm - - - - ${rocm}" ];
+  # ROCm segfaults enumerating the Raphael iGPU (gfx1036), so expose only the RX 9070 XT.
+  environment.sessionVariables.ROCR_VISIBLE_DEVICES = "0";
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/918035b4-4f41-468b-8a10-f45afacbfad3";
