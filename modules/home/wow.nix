@@ -23,7 +23,6 @@
             whats-training
             baganator
             handynotes
-            questie
             auctionator
             forever-dungeon-journal
             rarescanner-forever
