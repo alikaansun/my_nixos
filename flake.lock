@@ -694,7 +694,13 @@
         "soundshed": "soundshed",
         "stablenixpkgs": "stablenixpkgs",
         "stylix": "stylix",
-        "yazi-lazygit": "yazi-lazygit"
+        "yazi-clipboard": "yazi-clipboard",
+        "yazi-clippy": "yazi-clippy",
+        "yazi-lazygit": "yazi-lazygit",
+        "yazi-nbpreview": "yazi-nbpreview",
+        "yazi-preview-typst": "yazi-preview-typst",
+        "yazi-smart-enter": "yazi-smart-enter",
+        "yazi-zoom": "yazi-zoom"
       }
     },
     "rust-overlay": {
@@ -943,6 +949,38 @@
         "type": "github"
       }
     },
+    "yazi-clipboard": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791881457,
+        "narHash": "sha256-R58Kn0K5CwCH7LGFBW0Sy7C/HAG39tWOhPafu+Gn+FA=",
+        "owner": "XYenon",
+        "repo": "clipboard.yazi",
+        "rev": "4b4b6c513c555366744e03c16d7af481360be35f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "XYenon",
+        "repo": "clipboard.yazi",
+        "type": "github"
+      }
+    },
+    "yazi-clippy": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1756239331,
+        "narHash": "sha256-oB9DkNWvUDbSAPnxtv56frlWWYz5vtu2BJVvWH/Uags=",
+        "owner": "gallardo994",
+        "repo": "clippy.yazi",
+        "rev": "8ce55413976ebd1922dbc4fc27ced9776823df54",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gallardo994",
+        "repo": "clippy.yazi",
+        "type": "github"
+      }
+    },
     "yazi-lazygit": {
       "flake": false,
       "locked": {
@@ -956,6 +994,76 @@
       "original": {
         "owner": "Lil-Dank",
         "repo": "lazygit.yazi",
+        "type": "github"
+      }
+    },
+    "yazi-nbpreview": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1761137799,
+        "narHash": "sha256-Fh0F8sa3X6w83KukSdyNw8XtYAnFYcJ36Be55z/fdRw=",
+        "owner": "AnirudhG07",
+        "repo": "nbpreview.yazi",
+        "rev": "b50459402c52cbfd8d9262ae91e353d3300f8a8c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AnirudhG07",
+        "repo": "nbpreview.yazi",
+        "type": "github"
+      }
+    },
+    "yazi-preview-typst": {
+      "flake": false,
+      "locked": {
+        "dir": "preview-typst.yazi",
+        "lastModified": 1794318995,
+        "narHash": "sha256-iPe0BlQSY9/qnklwL2WyaDh2jCCIDEUREXI9l3h6IAQ=",
+        "owner": "AminurAlam",
+        "repo": "yazi-plugins",
+        "rev": "aebeaa7eec76f7a22e1218b5c4841ab87acd56da",
+        "type": "github"
+      },
+      "original": {
+        "dir": "preview-typst.yazi",
+        "owner": "AminurAlam",
+        "repo": "yazi-plugins",
+        "type": "github"
+      }
+    },
+    "yazi-smart-enter": {
+      "flake": false,
+      "locked": {
+        "dir": "smart-enter.yazi",
+        "lastModified": 1794293599,
+        "narHash": "sha256-Nz6AvWAiwdmH2HJ2vA3rMfbDDHSkXG20Ml6vc5yrjRM=",
+        "owner": "yazi-rs",
+        "repo": "plugins",
+        "rev": "1ef5fe02a6122f8f3bb47a41056aab3f4b8598bf",
+        "type": "github"
+      },
+      "original": {
+        "dir": "smart-enter.yazi",
+        "owner": "yazi-rs",
+        "repo": "plugins",
+        "type": "github"
+      }
+    },
+    "yazi-zoom": {
+      "flake": false,
+      "locked": {
+        "dir": "zoom.yazi",
+        "lastModified": 1794293599,
+        "narHash": "sha256-Nz6AvWAiwdmH2HJ2vA3rMfbDDHSkXG20Ml6vc5yrjRM=",
+        "owner": "yazi-rs",
+        "repo": "plugins",
+        "rev": "1ef5fe02a6122f8f3bb47a41056aab3f4b8598bf",
+        "type": "github"
+      },
+      "original": {
+        "dir": "zoom.yazi",
+        "owner": "yazi-rs",
+        "repo": "plugins",
         "type": "github"
       }
     }

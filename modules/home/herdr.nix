@@ -55,7 +55,7 @@
           next_workspace = "prefix+shift+n";
           previous_workspace = "prefix+shift+p";
           rename_workspace = "prefix+shift+r";
-          switch_workspace = "prefix+shift+1..9";
+          switch_workspace = "ctrl+1..9";
 
           resize_mode = "";
           reload_config = "";

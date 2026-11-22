@@ -44,7 +44,6 @@
           "whatsapp"
           # "claud"
           "zotero"
-          "rustdesk"
           "keepassxc"
           # "anydesk"
           "steam"
