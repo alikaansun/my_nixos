@@ -167,8 +167,8 @@
 
               # Font
               font-family = if pkgs.stdenv.hostPlatform.isDarwin then "Menlo" else "MesloLGM Nerd Font Mono";
-              font-size = if pkgs.stdenv.hostPlatform.isDarwin then 13 else 10;
-
+              font-size = if pkgs.stdenv.hostPlatform.isDarwin then 13 else 11;
+              freetype-load-flags = "hinting,no-force-autohint,no-monochrome,autohint,no-light";
               # Cursor
               cursor-style = "bar";
               cursor-style-blink = true;

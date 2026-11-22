@@ -28,6 +28,7 @@
             rarescanner-forever
             rxp-guides
             syndicator
+            spoken
             compass-forever
           ];
         };
