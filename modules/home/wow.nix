@@ -17,6 +17,7 @@
         versions.forever = {
           # Battle.net installed the game on /mnt/D, not inside the Proton prefix the module defaults to.
           addonDir = "/mnt/D/games/battlenet/World of Warcraft/_forever_/Interface/AddOns";
+          mutableAddOns = true;
           addonPackages = with wow-addons; [
             bigwigs.core
             gatherlite
