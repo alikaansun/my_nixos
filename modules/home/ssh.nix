@@ -1,7 +1,12 @@
 {
   # Expects the host to import sops-nix and set sops.defaultSopsFile / sops.age.keyFile.
   flake.homeModules.ssh =
-    { config, ... }:
+    {
+      config,
+      lib,
+      osConfig,
+      ...
+    }:
     {
       sops.secrets.arondil_ipv4 = { };
       sops.secrets.arondil_lan_ipv4 = { };
@@ -56,7 +61,14 @@
             session = "default";
             enabled = true;
           }
-        ];
+        ]
+        ++ lib.optional (osConfig.networking.hostName != "arondil") {
+          id = "cce40968d8cdfc9846a85808dc71f010";
+          label = "arondil";
+          target = "arondil-lan";
+          session = "default";
+          enabled = true;
+        };
       };
     };
 }

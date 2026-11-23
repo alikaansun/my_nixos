@@ -195,6 +195,9 @@
       services.trezord.enable = true;
       # Enable the OpenSSH daemon.
       services.openssh.enable = true;
+      users.users.alik.openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKU9/5OgwGbaysmXNNbrXG+PXPmmAEGh1MpclyFv1yDl leona"
+      ];
 
       # Open ports in the firewall.
       # networking.firewall.allowedTCPPorts = [ ... ];
