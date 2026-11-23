@@ -72,13 +72,34 @@ in
   sops.templates."arondil-known-hosts".content = ''
     ${config.sops.placeholder.arondil_lan_ipv4} ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK1BsXhFSLeipd2GMqDvzRoxYP9GzRWICY05cW19nSxr
   '';
+  # herdr runs `ssh -T <target> <cmd>`, which ssh rejects when RemoteCommand is set,
+  # so it gets its own alias without one.
   sops.templates."ssh-work-config".content = ''
-    Host work
-      HostName ${config.sops.placeholder.ssh_work_hostname}
-      User ${config.sops.placeholder.ssh_work_user}
+    Host work ${config.sops.placeholder.ssh_work_hostname}
       RequestTTY yes
       RemoteCommand pwsh -NoLogo -NoExit
+
+    Host work work-herdr ${config.sops.placeholder.ssh_work_hostname}
+      HostName ${config.sops.placeholder.ssh_work_hostname}
+      User ${config.sops.placeholder.ssh_work_user}
+      IdentityFile ~/.ssh/id_ed25519
+      IdentitiesOnly yes
   '';
+
+  # herdr's saved-machine catalog. Being a store symlink, `herdr machine add/rename/remove`
+  # can't write it; add machines here instead.
+  xdg.stateFile."herdr/client/endpoints.json".text = builtins.toJSON {
+    version = 1;
+    ssh = [
+      {
+        id = "1acd50db388c6235ac9dbb43b351a1e3";
+        label = "work";
+        target = "work-herdr";
+        session = "default";
+        enabled = true;
+      }
+    ];
+  };
 
   home.username = "alik";
   home.homeDirectory = "/Users/alik";
