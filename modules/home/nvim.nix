@@ -368,6 +368,15 @@
             # --- 3. Navigation & Terminal ---
             telescope = {
               enable = true; # Fuzzy finder for files, ripgrep, etc.
+              # Replaces nvf's default list, so its entries are repeated here.
+              setupOpts.defaults.file_ignore_patterns = [
+                "node_modules"
+                "%.git/"
+                "dist/"
+                "build/"
+                "target/"
+                "graft/"
+              ];
               setupOpts.pickers.find_files = {
                 hidden = false;
                 no_ignore = true;
