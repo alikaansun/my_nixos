@@ -32,9 +32,11 @@ in
     # Creative apps
     pythonEnv
     uv
+    nodejs
     blender # 3D modeling and animation
     gimp # Image editing
     typst
+    zotero
     onlyoffice-desktopeditors
     tor-browser
     ardour # Audio recording and editing

@@ -81,7 +81,6 @@
         gparted
         kdePackages.filelight
         eduvpn-client
-        zotero
         usbutils
         nfs-utils
         cifs-utils

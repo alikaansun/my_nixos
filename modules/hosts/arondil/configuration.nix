@@ -93,8 +93,12 @@
           "nofail"
         ];
       };
-      systemd.tmpfiles.rules = [ "d /mnt/backup 0755 alik users -" ];
 
+      systemd.tmpfiles.rules = [ "d /mnt/backup 0755 alik users -" ];
+      #Zotero requires the exact package to be permitted, will be deleted
+      nixpkgs.config.permittedInsecurePackages = [
+        "firefox-esr-140-bin-unwrapped-140.17.0esr"
+      ];
       # Use systemd to set permissions after mount
       systemd.services.setStoragePermissions = {
         description = "Set permissions on /mnt/storage after mount";
@@ -167,7 +171,6 @@
           timeoutStyle = "hidden";
         };
       };
-
 
       # Enable CUPS to print documents.
       # services.printing.enable = true;
