@@ -29,11 +29,6 @@
         name = "Vanilla-DMZ";
       };
 
-      programs.ssh = {
-        enable = true;
-        enableDefaultConfig = false;
-      };
-
       home.packages = with pkgs; [
         keepassxc
         thunderbird

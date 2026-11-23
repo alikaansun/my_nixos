@@ -20,6 +20,7 @@ in
     self.homeModules.nvim
     self.homeModules.git
     self.homeModules.herdr
+    self.homeModules.ssh
     self.homeModules.wow
   ];
 

@@ -45,61 +45,13 @@ in
     self.homeModules.obs
     self.homeModules.sym
     self.homeModules.zotero
+    self.homeModules.ssh
     # inputs.spicetify-nix.homeManagerModules.spicetify
     inputs.sops-nix.homeManagerModules.sops
   ];
 
   sops.age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
   sops.defaultSopsFile = ../../../secrets/secrets.yaml;
-
-  sops.secrets.arondil_ipv4 = { };
-  sops.secrets.arondil_lan_ipv4 = { };
-  sops.secrets.ssh_work_hostname = { };
-  sops.secrets.ssh_work_user = { };
-
-  sops.templates."ssh-arondil-config".content = ''
-    Host arondil
-      HostName ${config.sops.placeholder.arondil_ipv4}
-      User alik
-      RequestTTY yes
-
-    Host arondil-lan
-      HostName ${config.sops.placeholder.arondil_lan_ipv4}
-      User alik
-      UserKnownHostsFile ~/.ssh/known_hosts ${config.sops.templates."arondil-known-hosts".path}
-  '';
-  # Pinned host key so non-interactive SSH (herdr machine status) never hits the trust prompt.
-  sops.templates."arondil-known-hosts".content = ''
-    ${config.sops.placeholder.arondil_lan_ipv4} ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK1BsXhFSLeipd2GMqDvzRoxYP9GzRWICY05cW19nSxr
-  '';
-  # herdr runs `ssh -T <target> <cmd>`, which ssh rejects when RemoteCommand is set,
-  # so it gets its own alias without one.
-  sops.templates."ssh-work-config".content = ''
-    Host work ${config.sops.placeholder.ssh_work_hostname}
-      RequestTTY yes
-      RemoteCommand pwsh -NoLogo -NoExit
-
-    Host work work-herdr ${config.sops.placeholder.ssh_work_hostname}
-      HostName ${config.sops.placeholder.ssh_work_hostname}
-      User ${config.sops.placeholder.ssh_work_user}
-      IdentityFile ~/.ssh/id_ed25519
-      IdentitiesOnly yes
-  '';
-
-  # herdr's saved-machine catalog. Being a store symlink, `herdr machine add/rename/remove`
-  # can't write it; add machines here instead.
-  xdg.stateFile."herdr/client/endpoints.json".text = builtins.toJSON {
-    version = 1;
-    ssh = [
-      {
-        id = "1acd50db388c6235ac9dbb43b351a1e3";
-        label = "work";
-        target = "work-herdr";
-        session = "default";
-        enabled = true;
-      }
-    ];
-  };
 
   home.username = "alik";
   home.homeDirectory = "/Users/alik";
@@ -148,13 +100,4 @@ in
   home.sessionVariables.SOPS_AGE_KEY_FILE = "$HOME/.config/sops/age/keys.txt";
 
   programs.home-manager.enable = true;
-
-  programs.ssh = {
-    enable = true;
-    enableDefaultConfig = false;
-    includes = [
-      config.sops.templates."ssh-arondil-config".path
-      config.sops.templates."ssh-work-config".path
-    ];
-  };
 }

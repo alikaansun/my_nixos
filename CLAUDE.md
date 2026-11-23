@@ -92,6 +92,7 @@ rc2nix
     │   ├── obs.nix                    # Obsidian + obsidian-cli, vault from vars.obsidian
     │   ├── plasma.nix
     │   ├── plasma.txt                 # plasma-manager capture output
+    │   ├── ssh.nix                    # sops ssh config, pinned known_hosts, herdr machine catalog
     │   ├── sym.nix                    # hand-managed symlinks (~/.claude → vault/_drasleona)
     │   ├── terminal.nix
     │   ├── wow.nix                    # World of Warcraft via nix-warcraft (addons)
