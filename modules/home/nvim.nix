@@ -113,10 +113,6 @@
           (key "<leader>?" "<cmd>Telescope keymaps<cr>" "Search keymaps")
           (key "<leader>e" "<cmd>lua Snacks.explorer()<cr>" "Toggle file tree")
           (key "<leader>o" "<cmd>Outline<cr>" "Toggle symbol outline")
-          (key "<leader>ac" "<cmd>ClaudeCode<cr>" "Toggle Claude")
-          (keyM [ "n" "v" ] "<leader>as" "<cmd>ClaudeCodeSend<cr>" "Send to Claude")
-          (keyM [ "n" "v" ] "<leader>aa" "<cmd>ClaudeCodeDiffAccept<cr>" "Accept diff")
-          (keyM [ "n" "v" ] "<leader>ad" "<cmd>ClaudeCodeDiffDeny<cr>" "Deny diff")
           (key "<leader>yp" "<cmd>let @\" = expand('%:p')<cr>" "Yank absolute file path")
           (key "<leader>yr" "<cmd>let @\" = expand('%:.')<cr>" "Yank relative file path")
           (keyM "v" "<leader>yy" "y" "Yank selection")
@@ -312,10 +308,6 @@
               render-markdown-nvim = {
                 package = pkgs.vimPlugins.render-markdown-nvim;
                 setup = "require('render-markdown').setup()";
-              };
-              claudecode-nvim = {
-                package = pkgs.vimPlugins.claudecode-nvim;
-                setup = "require('claudecode').setup()";
               };
               jupynvim = {
                 # vim.lsp.start takes bufnr/reuse_client in its 2nd (opts) arg;
